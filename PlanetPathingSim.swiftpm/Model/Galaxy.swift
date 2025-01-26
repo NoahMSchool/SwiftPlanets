@@ -92,24 +92,4 @@ class Galaxy : ObservableObject{
             
         }        
     }
-    func buildTestGalaxy(){
-        let noah = Planet(galaxy: self, position: CGPoint(x: 200, y: 400), name: "Noah")
-        let jon = Planet(galaxy: self, position: CGPoint(x: 400, y: 600), name: "Jon")
-        let rocco = Planet(galaxy: self, position: CGPoint(x: 500, y: 250), name: "Rocco")
-        let rambo = Planet(galaxy: self, position: CGPoint(x: 700, y: 350), name: "Rambo")
-        
-        self.shape.addChild(noah.getShape())
-        self.shape.addChild(jon.getShape())
-        self.shape.addChild(rocco.getShape())
-        self.shape.addChild(rambo.getShape())
-        
-        self.addPlanet(planet: noah)
-        self.addPlanet(planet: jon)
-        self.addPlanet(planet: rocco)
-        self.addPlanet(planet: rambo)
-        
-        self.startPlanet = noah
-        self.endPlanet = rambo
-        
-    }
 }
