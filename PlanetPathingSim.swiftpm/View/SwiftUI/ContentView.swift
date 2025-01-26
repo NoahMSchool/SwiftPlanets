@@ -10,13 +10,14 @@ struct ContentView: View {
                 Image(systemName: "sparkles")
                     .imageScale(.large)
                     .foregroundColor(.gray) 
-                Text(galaxy.name)
             }
             //Gauge(value: 0.5, in: 0...1) {Text("Mabel")}
             ZStack{
-                //SpriteKitView()
-                //HUDView()
                 VStack{
+                    SpriteKitView()
+                        .environmentObject(galaxy)
+                    //HUDView()
+                
                     
                     Button("Forward", action: {
                         galaxy.nextStep()
