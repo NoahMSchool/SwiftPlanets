@@ -1,9 +1,11 @@
 import SpriteKit
 
-class Galaxy{
+class Galaxy : ObservableObject{
+    @Published var name : String = "StarWars"
     var planets : [Planet]
     var startPlanet : Planet?
     var endPlanet : Planet?
+    @Published var path : BFS?
     var ship : Ship?
     var shape : SKNode
     var planetNames = ["Nyxalith","Threxion","Vraquor","Zyrrholl","Quintirax","Olorhyn","Xanthevir","Brakkithar","Yllithra","Phorvynax","Zephyros","Calystria", "Umbryth","Solaryn","Noctivis","Vyridia","Erythion","Auralis","Drakontha","Lunethra"]
@@ -11,11 +13,18 @@ class Galaxy{
     init(){
         self.planets = []
         self.shape = SKNode()
-    }
-    func startGame(){
-        
+        self.buildRandomGalaxy(planetCount: 20)
         self.startPlanet = randomPlanet()
         self.endPlanet = randomPlanet()
+        if let startPlanet = startPlanet, let endPlanet = endPlanet{
+            self.path = BFS(start: startPlanet, end: endPlanet)
+        }
+        self.ship = Ship(galaxy: self, planet: startPlanet!) 
+        self.shape.addChild(ship!.getShape())
+
+    }
+    /*
+    func startGame(){
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
             let path = BFS(start: startPlanet, end: endPlanet)
             print("=======================================================")
@@ -36,6 +45,14 @@ class Galaxy{
         
         self.ship = Ship(galaxy: self, planet: startPlanet!) 
         self.shape.addChild(ship!.getShape())
+    }
+    */
+    
+    func nextStep(){
+        guard let path = self.path else{return}
+        path.nextstep()
+        //name = path.explanation
+        name = "something"
     }
     
     func getShape()->SKNode{
