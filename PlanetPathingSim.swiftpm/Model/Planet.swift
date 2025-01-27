@@ -65,7 +65,7 @@ extension Planet : Traversable{
     }
     
     func getNeighbours() -> [(neighbour: any Traversable, weight: Double)] {
-        let distance : Double = 200
+        let distance : Double = galaxy.getMaxDistance()
         let planets = galaxy.getPlanets()
         var neighbours : [(any Traversable, Double)] = []
         for p in planets{

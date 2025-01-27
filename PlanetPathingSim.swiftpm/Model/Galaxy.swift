@@ -2,11 +2,21 @@ import SpriteKit
 
 class Galaxy : ObservableObject{
     @Published var name : String = "StarWars"
-    @Published var planetCount : Int
+    @Published var planetCount : Int{
+        didSet{
+            reset()
+        }
+    }
+    @Published var maxDistance : Double{
+        didSet{
+            addPlanetPaths()
+        }
+    }
     var planets : [Planet]
     var startPlanet : Planet?
     var endPlanet : Planet?
     @Published var path : BFS?
+    var lines : SKNode
     var ship : Ship?
     var shape : SKNode
     var planetNames = ["Nyxalith","Threxion","Vraquor","Zyrrholl","Quintirax","Olorhyn","Xanthevir","Brakkithar","Yllithra","Phorvynax","Zephyros","Calystria", "Umbryth","Solaryn","Noctivis","Vyridia","Erythion","Auralis","Drakontha","Lunethra"]
@@ -14,13 +24,16 @@ class Galaxy : ObservableObject{
     init(){
         self.planets = []
         self.shape = SKNode()
+        self.lines = SKNode()
         self.planetCount = 20
+        self.maxDistance = 250
         reset()
         
     }
     func reset(){
         self.planets = []
         self.shape.removeAllChildren()
+        self.shape.addChild(self.lines)
         self.buildRandomGalaxy(planetCount: planetCount)
         self.startPlanet = randomPlanet()
         self.endPlanet = randomPlanet()
@@ -52,9 +65,8 @@ class Galaxy : ObservableObject{
         self.planets.append(planet)
     }
     func addPlanetPaths(){
-        var lines : SKNode = SKNode()
+        self.lines.removeAllChildren()
         for planet in getPlanets(){
-            
             let neighbours = planet.getNeighbours()
             for n in neighbours{
                 if let p = n.neighbour as? Planet{
@@ -64,11 +76,13 @@ class Galaxy : ObservableObject{
                     let line = SKShapeNode(path: path)
                     line.zPosition = 0
                     line.strokeColor = .darkGray
-                    lines.addChild(line)    
+                    self.lines.addChild(line)    
                 }
             }
         }
-        self.shape.addChild(lines)
+    }
+    func getMaxDistance()->Double{
+        return maxDistance
     }
     
     func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){
@@ -83,12 +97,16 @@ class Galaxy : ObservableObject{
         }
         options = options.shuffled()
         planetNames = planetNames.shuffled()
-        for i in 0...planetCount{
+        for i in 0...planetCount-1{
             var name = "No Name \(i)"
             if !planetNames.isEmpty{
                 name = planetNames.removeFirst()
             }
-            let planet = Planet(galaxy: self, position: options[i], name: name)
+            var offsetPos = options[i]
+            offsetPos.x += CGFloat(Int.random(in: -15...15))
+            offsetPos.y += CGFloat(Int.random(in: -15...15))
+
+            let planet = Planet(galaxy: self, position: offsetPos, name: name)
             self.addPlanet(planet : planet)
             self.shape.addChild(planet.getShape())
         }
