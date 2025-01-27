@@ -13,15 +13,20 @@ class Galaxy : ObservableObject{
     init(){
         self.planets = []
         self.shape = SKNode()
-        self.buildRandomGalaxy(planetCount: 20)
+        reset()
+        
+    }
+    func reset(){
+        self.planets = []
+        self.shape.removeAllChildren()
+        self.buildRandomGalaxy(planetCount: 25)
         self.startPlanet = randomPlanet()
         self.endPlanet = randomPlanet()
+        self.ship = Ship(galaxy: self, planet: startPlanet!) 
+        self.shape.addChild(ship!.getShape())
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
             self.path = BFS(start: startPlanet, end: endPlanet)
         }
-        self.ship = Ship(galaxy: self, planet: startPlanet!) 
-        self.shape.addChild(ship!.getShape())
-
     }
     /*
     func startGame(){
@@ -68,6 +73,25 @@ class Galaxy : ObservableObject{
     func addPlanet(planet : Planet){
         self.planets.append(planet)
     }
+    func addPlanetPaths(){
+        var lines : SKNode = SKNode()
+        for planet in getPlanets(){
+            
+            let neighbours = planet.getNeighbours()
+            for n in neighbours{
+                if let p = n.neighbour as? Planet{
+                    let path = CGMutablePath()
+                    path.move(to: planet.position)
+                    path.addLine(to: p.position)
+                    let line = SKShapeNode(path: path)
+                    line.zPosition = 0
+                    line.strokeColor = .darkGray
+                    lines.addChild(line)    
+                }
+            }
+        }
+        self.shape.addChild(lines)
+    }
     
     func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){
         self.startPlanet = nil
@@ -89,7 +113,7 @@ class Galaxy : ObservableObject{
             let planet = Planet(galaxy: self, position: options[i], name: name)
             self.addPlanet(planet : planet)
             self.shape.addChild(planet.getShape())
-            
-        }        
+        }
+        addPlanetPaths()
     }
 }

@@ -4,7 +4,7 @@ class GameScene : SKScene{
     let cam = SKCameraNode()
     var galaxy : Galaxy?         
     override func didMove(to view: SKView) {
-        backgroundColor = .darkGray
+        backgroundColor = .black
         guard let galaxy = galaxy else {return}
         addChild(galaxy.getShape())
         addChild(cam)

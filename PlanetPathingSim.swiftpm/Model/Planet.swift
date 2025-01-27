@@ -30,11 +30,14 @@ class Planet : CustomDebugStringConvertible{
         self.name = name
         self.state = .unknown
         self.shape = SKShapeNode(circleOfRadius: 25)
+        self.shape.fillColor = .darkGray
         self.shape.strokeColor = .black
         self.shape.position = position
+        self.shape.zPosition = 1
         let label = SKLabelNode(text: self.name)
         label.position = CGPoint(x: 0, y: -50)
         label.fontSize = 15
+        label.fontColor = .white
         self.shape.addChild(label)
     }
     var debugDescription: String {
