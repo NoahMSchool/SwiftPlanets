@@ -18,10 +18,17 @@ struct ContentView: View {
                         .environmentObject(galaxy)
                     //HUDView()
                 
-                    
-                    Button("Forward", action: {
-                        galaxy.nextStep()
-                    })
+                    HStack{
+                        
+                        Button("Forward", action: {
+                            galaxy.nextStep()
+                        })
+                        Button("Reset", action: {
+                            galaxy.reset()
+                        })
+                        
+                        
+                    }
                     if let path = galaxy.path{
                         Text(path.explanation)
                     }
