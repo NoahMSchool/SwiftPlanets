@@ -1,0 +1,7 @@
+/*
+ 
+Make it so paths are not made twice 
+
+
+
+ */

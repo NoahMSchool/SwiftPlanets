@@ -28,35 +28,11 @@ class Galaxy : ObservableObject{
             self.path = BFS(start: startPlanet, end: endPlanet)
         }
     }
-    /*
-    func startGame(){
-        if let startPlanet = startPlanet, let endPlanet = endPlanet{
-            let path = BFS(start: startPlanet, end: endPlanet)
-            print("=======================================================")
-            while !path.completed{
-                path.nextstep()                                
-                path.showState()  
-                for p in path.explored{
-                    if let planet = p as? Planet{
-                        //planet.shape.fillColor = .blue
-                        planet.state = .found
-                    }                
-                }
-            }
-            
-            startPlanet.state = .start
-            endPlanet.state = .treasure
-        }
-        
-        self.ship = Ship(galaxy: self, planet: startPlanet!) 
-        self.shape.addChild(ship!.getShape())
-    }
-    */
     
     func nextStep(){
         guard let path = self.path else{return}
         path.nextstep()
-        //name = path.explanation
+        //name = path.explanation -- TODO remove requirement for name
         name = "something"
     }
     
