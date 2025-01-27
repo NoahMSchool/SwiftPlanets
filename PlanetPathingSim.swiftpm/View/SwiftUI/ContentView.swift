@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var galaxy : Galaxy
+    var planetCountRange = 0...50
     var body: some View {
         VStack {
             HStack{
@@ -29,6 +30,14 @@ struct ContentView: View {
                         
                         
                     }
+                    Slider(
+                        value: Binding(
+                            get: { Double(galaxy.planetCount) },
+                            set: { galaxy.planetCount = Int($0) }
+                        ),
+                        in: Double(planetCountRange.lowerBound)...Double(planetCountRange.upperBound),
+                        step: 1.0
+                    ).frame(maxWidth: 100)
                     if let path = galaxy.path{
                         Text(path.explanation)
                     }

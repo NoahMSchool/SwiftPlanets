@@ -2,6 +2,7 @@ import SpriteKit
 
 class Galaxy : ObservableObject{
     @Published var name : String = "StarWars"
+    @Published var planetCount : Int
     var planets : [Planet]
     var startPlanet : Planet?
     var endPlanet : Planet?
@@ -13,13 +14,14 @@ class Galaxy : ObservableObject{
     init(){
         self.planets = []
         self.shape = SKNode()
+        self.planetCount = 20
         reset()
         
     }
     func reset(){
         self.planets = []
         self.shape.removeAllChildren()
-        self.buildRandomGalaxy(planetCount: 25)
+        self.buildRandomGalaxy(planetCount: planetCount)
         self.startPlanet = randomPlanet()
         self.endPlanet = randomPlanet()
         self.ship = Ship(galaxy: self, planet: startPlanet!) 
