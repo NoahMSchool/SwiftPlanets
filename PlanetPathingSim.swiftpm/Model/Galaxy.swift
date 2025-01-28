@@ -34,19 +34,38 @@ class Galaxy : ObservableObject{
         self.planets = []
         self.shape.removeAllChildren()
         self.shape.addChild(self.lines)
-        self.buildRandomGalaxy(planetCount: planetCount)
+        self.buildRandomGalaxy(planetCount: planetCount)        
         self.startPlanet = randomPlanet()
         self.endPlanet = randomPlanet()
+
+        
         self.ship = Ship(galaxy: self, planet: startPlanet!) 
         self.shape.addChild(ship!.getShape())
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
+            startPlanet.waypoint = .start
+            endPlanet.waypoint = .end
             self.path = BFS(start: startPlanet, end: endPlanet)
+            
         }
     }
     
     func nextStep(){
         guard let path = self.path else{return}
         path.nextstep()
+        for p in path.getExplored(){
+            if let x = p as? Planet{
+                x.setSearchState(searchState: .explored)
+            }
+        }
+        for p in path.getFrontier(){
+            if let x = p as? Planet{
+                x.setSearchState(searchState: .frontier)
+            }
+        }
+        let p = path.getCurrent()
+        if let x = p as? Planet{
+            x.setSearchState(searchState: .current)
+        }
         //name = path.explanation -- TODO remove requirement for name
         name = "something"
     }

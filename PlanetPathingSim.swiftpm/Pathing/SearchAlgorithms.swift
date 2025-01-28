@@ -1,6 +1,7 @@
 class BFS{
     let start : any Traversable
     let end : (any Traversable)?
+    var current: (any Traversable)
     var frontier : [(neighbour: any Traversable, weight: Double)]
     var explored : [any Traversable]
     var completed : Bool
@@ -9,6 +10,7 @@ class BFS{
     init(start : any Traversable, end : any Traversable){
         self.start = start
         self.end = end
+        self.current = start
         self.frontier = [(neighbour: start, weight : 0)]
         self.explored = [start]
         self.completed = false
@@ -34,7 +36,10 @@ class BFS{
             return
         }
         else{
-            var current = frontier.removeFirst().neighbour
+            //change between breadth and depth first search
+            current = frontier.removeFirst().neighbour
+                //TODO : Move this out of Search Algorithms by looking at explored
+
             
             if let end = end{
                 if end.isEqual(to : current){
@@ -53,5 +58,18 @@ class BFS{
                 }
             }
         }
+    }
+    func getFrontier()->[Traversable]{
+        var frontierNodes : [Traversable] = []
+        for f in frontier{
+            frontierNodes.append(f.neighbour)
+        }
+        return frontierNodes
+    }
+    func getExplored()->[Traversable]{
+        explored
+    }
+    func getCurrent()->Traversable{
+        current
     }
 }
