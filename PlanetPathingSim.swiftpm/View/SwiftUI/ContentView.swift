@@ -2,7 +2,8 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var galaxy : Galaxy
-    var planetCountRange = 0...50
+    var planetCountRange = 1...100
+    var maxDistanceRange = 50...500
     var body: some View {
         VStack {
             HStack{
@@ -17,6 +18,7 @@ struct ContentView: View {
                 VStack{
                     SpriteKitView()
                         .environmentObject(galaxy)
+
                     //HUDView()
                 
                     HStack{
@@ -27,17 +29,30 @@ struct ContentView: View {
                         Button("Reset", action: {
                             galaxy.reset()
                         })
-                        
-                        
                     }
-                    Slider(
-                        value: Binding(
-                            get: { Double(galaxy.planetCount) },
-                            set: { galaxy.planetCount = Int($0) }
-                        ),
-                        in: Double(planetCountRange.lowerBound)...Double(planetCountRange.upperBound),
-                        step: 1.0
-                    ).frame(maxWidth: 100)
+                    VStack{
+                        //Text(galaxy.planetCount)
+                        Slider(
+                            value: Binding(
+                                get: { Double(galaxy.planetCount) },
+                                set: { galaxy.planetCount = Int($0) }
+                            ),
+                            in: Double(planetCountRange.lowerBound)...Double(planetCountRange.upperBound),
+                            step: 1.0
+                        ).frame(maxWidth: 500)
+                        Slider(
+                            value: Binding(
+                                get: { Double(galaxy.maxDistance) },
+                                set: { galaxy.maxDistance = Double($0) }
+                            ),
+                            in: Double(maxDistanceRange.lowerBound)...Double(maxDistanceRange.upperBound),
+                            step: 10
+                        ).frame(maxWidth: 500)
+
+                    }
+                    //add label to number
+                    //add fuel count
+
                     if let path = galaxy.path{
                         Text(path.explanation)
                     }
