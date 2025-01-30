@@ -7,7 +7,7 @@ Galaxy Genaration
 UI
     
  
-
+        //TODO Research UIPan GestureRecogniser
 
 Things I learned
      Protocols
