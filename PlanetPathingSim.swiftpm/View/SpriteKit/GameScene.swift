@@ -66,9 +66,14 @@ class GameScene : SKScene{
 
         if sender.state == .changed || sender.state == .ended {
             let scale = sender.scale
-            camZoom = scale
+            let delta = scale-1
+            let dampFactor = 0.1
+            let newscale = 1 + dampFactor*delta
+            camZoom *= newscale
+            
+            camZoom = max(0.25, min(camZoom, 2.5))
             print(camZoom)
-            }
+        }
     }
 
 }
