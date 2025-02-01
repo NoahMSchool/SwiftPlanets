@@ -59,6 +59,9 @@ class BFS{
             }
         }
     }
+    func getExplanation()->String{
+        self.explanation
+    }
     func getFrontier()->[Traversable]{
         var frontierNodes : [Traversable] = []
         for f in frontier{

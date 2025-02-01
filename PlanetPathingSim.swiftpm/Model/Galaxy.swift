@@ -19,7 +19,7 @@ class Galaxy : ObservableObject{
     var lines : SKNode
     var ship : Ship?
     var shape : SKNode
-    var planetNames = ["Nyxalith","Threxion","Vraquor","Zyrrholl","Quintirax","Olorhyn","Xanthevir","Brakkithar","Yllithra","Phorvynax","Zephyros","Calystria", "Umbryth","Solaryn","Noctivis","Vyridia","Erythion","Auralis","Drakontha","Lunethra"]
+    @Published var planetNames = ["Nyxalith","Threxion","Vraquor","Zyrrholl","Quintirax","Olorhyn","Xanthevir","Brakkithar","Yllithra","Phorvynax","Zephyros","Calystria", "Umbryth","Solaryn","Noctivis","Vyridia","Erythion","Auralis","Drakontha","Lunethra"]
     
     init(){
         self.planets = []
@@ -44,12 +44,12 @@ class Galaxy : ObservableObject{
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
-            self.path = BFS(start: startPlanet, end: endPlanet)
+                        self.path = BFS(start: startPlanet, end: endPlanet)
             
         }
     }
     
-    func nextStep(){
+    func forward(){
         guard let path = self.path else{return}
         path.nextstep()
         for p in path.getExplored(){
@@ -68,6 +68,9 @@ class Galaxy : ObservableObject{
         }
         //name = path.explanation -- TODO remove requirement for name
         name = "something"
+    }
+    func backward(){
+        
     }
     
     func getShape()->SKNode{
@@ -111,6 +114,14 @@ class Galaxy : ObservableObject{
             }
         }
         return strings
+    }
+    func getExplanationString()->String{
+        guard let path = path else {
+            return "No Path"
+            }
+        return path.getExplanation()
+        
+
     }
     
     func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){

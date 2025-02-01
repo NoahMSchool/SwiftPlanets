@@ -19,8 +19,8 @@ struct SpriteKitView: View {
     }
     var body: some View{
         SpriteView(scene: scene)
-            .frame(width: 1000, height: 1000)
-            .cornerRadius(50)
+            //.frame(width: 1000, height: 1000)
+            //.cornerRadius(50)
     
      }
      
