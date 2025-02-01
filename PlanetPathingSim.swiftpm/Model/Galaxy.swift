@@ -103,6 +103,15 @@ class Galaxy : ObservableObject{
     func getMaxDistance()->Double{
         return maxDistance
     }
+    func getFrontierStrings()->[String]{
+        var strings : [String] = []
+        for p in self.path!.getFrontier(){
+            if let planet = p as? Planet{
+                strings.append(planet.name)
+            }
+        }
+        return strings
+    }
     
     func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){
         self.startPlanet = nil
