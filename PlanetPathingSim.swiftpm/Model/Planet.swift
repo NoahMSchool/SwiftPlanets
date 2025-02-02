@@ -16,6 +16,7 @@ class Planet : CustomDebugStringConvertible{
     var galaxy : Galaxy
     var position : CGPoint
     var name : String
+    var id : UUID
     var shape : SKShapeNode
     var searchState : SearchState{
         didSet{
@@ -41,6 +42,7 @@ class Planet : CustomDebugStringConvertible{
         self.galaxy = galaxy
         self.position = position
         self.name = name
+        self.id = UUID()
         self.shape = SKShapeNode(circleOfRadius: 25)
         self.shape.position = position
         self.shape.zPosition = 1

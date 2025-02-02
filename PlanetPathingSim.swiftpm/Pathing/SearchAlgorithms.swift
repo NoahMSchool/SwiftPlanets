@@ -1,9 +1,12 @@
+import Foundation
+
 class BaseSearch{
     let start : any Traversable
     let end : (any Traversable)?
     var current: (any Traversable)
     var frontier : [(neighbour: any Traversable, weight: Double)]
     var explored : [any Traversable]
+    var cameFrom : [UUID: (any Traversable)?] = [:]
     var completed : Bool
     var explanation : String
     var algorithm : String
@@ -14,6 +17,7 @@ class BaseSearch{
         self.current = start
         self.frontier = [(neighbour: start, weight : 0)]
         self.explored = [start]
+        self.cameFrom [start.id] = nil
         self.completed = false
         self.explanation = ""
         self.algorithm = "No algorithm"
@@ -56,7 +60,14 @@ class BaseSearch{
             explanation = "Getting Neighbours for \(current)"
             for n in current.getNeighbours(){
                 if !explored.contains(where: {$0.isEqual(to: n.neighbour)}){
+                    /*
+                     if next not in came_from:
+                     frontier.put(next)
+                     came_from[next] = current
+
+                     */
                     frontier.append(n)
+                    cameFrom[n.neighbour.id] = current
                     explanation += " adding \(n.neighbour)"
                     explored.append(n.neighbour)
                 }
@@ -66,17 +77,17 @@ class BaseSearch{
     func getExplanation()->String{
         self.explanation
     }
-    func getFrontier()->[Traversable]{
-        var frontierNodes : [Traversable] = []
+    func getFrontier()->[any Traversable]{
+        var frontierNodes : [any Traversable] = []
         for f in frontier{
             frontierNodes.append(f.neighbour)
         }
         return frontierNodes
     }
-    func getExplored()->[Traversable]{
+    func getExplored()->[any Traversable]{
         explored
     }
-    func getCurrent()->Traversable{
+    func getCurrent()->any Traversable{
         current
     }
 }
