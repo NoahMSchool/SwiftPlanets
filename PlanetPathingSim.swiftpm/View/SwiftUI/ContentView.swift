@@ -3,14 +3,17 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var galaxy : Galaxy
         var body: some View {
-                VStack{
-                TitleName()
-                ExplanationBlock().environmentObject(galaxy)
-                GalaxySliders().environmentObject(galaxy)
-                GalaxyButtons().environmentObject(galaxy)
+            ZStack(alignment: .bottom){                
                 SpriteKitView().environmentObject(galaxy)
-            }        .border(.red)
+                    .scaledToFill()
+                    .border(.red, width: 10)
+                
+                HUDView().environmentObject(galaxy)
+                    .background(.white)
+                    .border(.cyan, width : 10)
+                    .opacity(0.75)
+                    
 
-        .scaledToFit()
-    }
+            }
+        }
 }
