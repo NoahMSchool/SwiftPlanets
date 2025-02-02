@@ -5,7 +5,7 @@ struct TitleName : View{
     var body : some View{
         HStack{
             Text("Pathing Planets")
-                .font(.title)
+                .font(.custom("ChalkDuster", size: 72))
             Image(systemName: "sparkles")
                 .imageScale(.large)
                 .foregroundColor(.gray) 
@@ -21,7 +21,7 @@ struct ExplanationBlock : View{
                 .fill(Color.blue)
             Text(galaxy.getExplanationString())
         }
-        .frame(maxWidth: 500, maxHeight: 100)
+        .frame(maxWidth: 500, maxHeight: 250)
     }
 }
 

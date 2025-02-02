@@ -6,9 +6,8 @@ struct MyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
-            //ContentView()
-              //  .environmentObject(galaxy)
+            //HomeView()
+            ContentView().environmentObject(galaxy)
 
         }
     }
