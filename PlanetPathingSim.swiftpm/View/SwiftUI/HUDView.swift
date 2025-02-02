@@ -7,10 +7,12 @@ struct HUDView : View{
         HStack(alignment: .bottom){
                     PlanetList(title : "Frontier", planets : galaxy.getFrontierStrings())
                     VStack{
+                        Text(galaxy.getAlgorithmString())
                         ExplanationBlock().environmentObject(galaxy)
                         GalaxySliders().environmentObject(galaxy)
                         GalaxyButtons().environmentObject(galaxy)        
                     }
+                    .padding(.vertical)
                     .border(.green, width: 10)
             
                     PlanetList(title : "Explored", planets : galaxy.getExploredStrings())

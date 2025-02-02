@@ -1,4 +1,4 @@
-class BFS{
+class BaseSearch{
     let start : any Traversable
     let end : (any Traversable)?
     var current: (any Traversable)
@@ -6,6 +6,7 @@ class BFS{
     var explored : [any Traversable]
     var completed : Bool
     var explanation : String
+    var algorithm : String
     
     init(start : any Traversable, end : any Traversable){
         self.start = start
@@ -15,6 +16,7 @@ class BFS{
         self.explored = [start]
         self.completed = false
         self.explanation = ""
+        self.algorithm = "No algorithm"
     }
     func showState(){
         //print("\(start) to \(end)")
@@ -24,6 +26,10 @@ class BFS{
         print("complete \(completed)")
         print("-------------------------")
         
+    }
+    func getNextFrontier()->(neighbour: any Traversable, weight: Double){
+        // this should not have any logic as it is in base class
+        frontier.removeLast()
     }
     func nextstep(){
         if completed{
@@ -36,9 +42,7 @@ class BFS{
             return
         }
         else{
-            //change between breadth and depth first search
-            current = frontier.removeFirst().neighbour
-                //TODO : Move this out of Search Algorithms by looking at explored
+            current = getNextFrontier().neighbour
 
             
             if let end = end{
@@ -75,4 +79,28 @@ class BFS{
     func getCurrent()->Traversable{
         current
     }
+}
+
+class BreadthFirstSearch: BaseSearch{
+    override init(start : any Traversable, end : any Traversable){
+        super.init(start: start, end: end)
+        self.algorithm = "Breadth First Search"
+    }
+    //Breadth First this is a queue
+    override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
+        frontier.removeFirst()
+    }
+
+
+}
+class DepthFirstSearch: BaseSearch{
+    override init(start : any Traversable, end : any Traversable){
+        super.init(start: start, end: end)
+        self.algorithm = "Depth First Search"
+    }
+    //Depth First this is a Stack
+    override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
+        frontier.removeLast()
+    }
+    
 }

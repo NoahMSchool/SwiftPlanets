@@ -15,7 +15,7 @@ class Galaxy : ObservableObject{
     var planets : [Planet]
     var startPlanet : Planet?
     var endPlanet : Planet?
-    @Published var path : BFS?
+    @Published var path : BaseSearch?
     var lines : SKNode
     var ship : Ship?
     var shape : SKNode
@@ -44,7 +44,7 @@ class Galaxy : ObservableObject{
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
-                        self.path = BFS(start: startPlanet, end: endPlanet)
+            self.path = DepthFirstSearch(start: startPlanet, end: endPlanet)
             
         }
     }
@@ -134,7 +134,15 @@ class Galaxy : ObservableObject{
         
 
     }
-    
+    func getAlgorithmString()->String{
+        guard let path = path else {
+            return "No Algorithm"
+        }
+        return path.algorithm
+        
+        
+    }
+
     func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){
         self.startPlanet = nil
         self.endPlanet = nil
