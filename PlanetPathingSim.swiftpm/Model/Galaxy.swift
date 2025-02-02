@@ -115,6 +115,17 @@ class Galaxy : ObservableObject{
         }
         return strings
     }
+    func getExploredStrings()->[String]{
+        var strings : [String] = []
+        for p in self.path!.getExplored(){
+            if let planet = p as? Planet{
+                strings.append(planet.name)
+            }
+        }
+        return strings
+    }
+
+    
     func getExplanationString()->String{
         guard let path = path else {
             return "No Path"

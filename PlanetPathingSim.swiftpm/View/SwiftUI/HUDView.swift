@@ -4,32 +4,21 @@ struct HUDView : View{
 
     @EnvironmentObject var galaxy : Galaxy
     var body : some View{
-        VStack{
-            Spacer()
-            HStack{
-                
-                List(galaxy.getFrontierStrings(), id: \.self) {planet in
-                    Text(planet)
-                }
-                .navigationTitle("Frontier")                .frame(width: 250)
-                .scrollContentBackground(.hidden)
-                .border(.blue)
-                 
-                Spacer()
-                //Button(stepForward, image: "Globe", action: stepForward)
-            }
-            Button(action: testButton, label: {
-                Text("Button")
-            })
+        HStack(alignment: .bottom){
+                    PlanetList(title : "Frontier", planets : galaxy.getFrontierStrings())
+                    VStack{
+                        ExplanationBlock().environmentObject(galaxy)
+                        GalaxySliders().environmentObject(galaxy)
+                        GalaxyButtons().environmentObject(galaxy)        
+                    }
+                    .border(.green, width: 10)
+            
+                    PlanetList(title : "Explored", planets : galaxy.getExploredStrings())
         }
+        .frame(height: 500)
+        .font(.custom("ChalkDuster", size: 24))
     }
-    private func testButton(){
-        print(galaxy.path?.getFrontier())
-    }
-    private func deleteItems(at offsets : IndexSet){
-       // testList.remove(atOffsets: offsets)
-        
-    }
+    
 }
 
 
