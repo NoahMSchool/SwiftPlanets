@@ -113,5 +113,8 @@ class DepthFirstSearch: BaseSearch{
     override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
         frontier.removeLast()
     }
-    
+    override func getFrontier()->[any Traversable]
+    {
+        super.getFrontier().reversed()
+    }
 }
