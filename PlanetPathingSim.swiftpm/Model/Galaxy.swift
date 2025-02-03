@@ -44,6 +44,7 @@ class Galaxy : ObservableObject{
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
+            //self.path = BreadthFirstSearch(start: startPlanet, end: endPlanet)
             self.path = DepthFirstSearch(start: startPlanet, end: endPlanet)
             
         }
@@ -52,13 +53,19 @@ class Galaxy : ObservableObject{
     func forward(){
         guard let path = self.path else{return}
         path.nextstep()
+        var exploredCounter : Int = 0
         for p in path.getExplored(){
             if let x = p as? Planet{
+                exploredCounter += 1
+                x.setNumber(num: exploredCounter)
                 x.setSearchState(searchState: .explored)
             }
         }
+        var counter : Int = 0
         for p in path.getFrontier(){
             if let x = p as? Planet{
+                counter += 1
+                x.setNumber(num: counter)
                 x.setSearchState(searchState: .frontier)
             }
         }

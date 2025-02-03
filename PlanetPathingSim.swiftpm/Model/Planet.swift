@@ -18,12 +18,13 @@ class Planet : CustomDebugStringConvertible{
     var name : String
     var id : UUID
     var shape : SKShapeNode
+    var numberLabel : SKLabelNode
     var searchState : SearchState{
         didSet{
             switch searchState {
             case .unknown: shape.fillColor = .gray
             case .frontier: shape.fillColor = .blue
-            case .explored: shape.fillColor = .green
+            case .explored: shape.fillColor = .purple
             case .current: shape.fillColor = .white
             }
         }
@@ -51,7 +52,15 @@ class Planet : CustomDebugStringConvertible{
         label.fontSize = 15
         label.fontColor = .white
         self.shape.addChild(label)
-        //shouldnt need this
+        
+        let numberlabel = SKLabelNode(text: "")
+        numberlabel.position = CGPoint(x: 0, y: -5)
+        numberlabel.fontSize = 15
+        numberlabel.fontColor = .white
+        self.numberLabel = numberlabel
+        self.shape.addChild(numberlabel)
+
+        
         self.shape.fillColor = .gray
         self.searchState = .unknown
         self.waypoint = .middle
@@ -64,6 +73,9 @@ class Planet : CustomDebugStringConvertible{
     }
     func setWaypoint(waypoint : Waypoint){
         self.waypoint = waypoint
+    }
+    func setNumber(num : Int){
+        self.numberLabel.text = String(num)
     }
     func getShape()->SKNode{
         shape
