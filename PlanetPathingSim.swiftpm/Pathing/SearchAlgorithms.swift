@@ -90,6 +90,9 @@ class BaseSearch{
     func getCurrent()->any Traversable{
         current
     }
+    func getCameFrom()->[UUID: (any Traversable)?]{
+        cameFrom
+    } 
 }
 
 class BreadthFirstSearch: BaseSearch{

@@ -42,7 +42,7 @@ class Galaxy : ObservableObject{
         self.buildRandomGalaxy(planetCount: planetCount)        
         self.startPlanet = randomPlanet()
         self.endPlanet = randomPlanet()
-
+        
         
         self.ship = Ship(galaxy: self, planet: startPlanet!) 
         self.shape.addChild(ship!.getShape())
@@ -51,8 +51,16 @@ class Galaxy : ObservableObject{
             endPlanet.waypoint = .end
             //self.path = BreadthFirstSearch(start: startPlanet, end: endPlanet)
             self.path = DepthFirstSearch(start: startPlanet, end: endPlanet)
-            
         }
+    }
+    
+    func keyToPlanet(key : UUID) -> Planet?{
+        for planet in planets {
+            if planet.id == key{
+                return planet
+            }
+        }
+        return nil
     }
     
     func forward(){
@@ -74,6 +82,14 @@ class Galaxy : ObservableObject{
                 x.setSearchState(searchState: .frontier)
             }
         }
+        
+        for x in path.getCameFrom(){
+            if let from = x.value as? Planet, let to = keyToPlanet(key: x.key) {
+                let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: .lightGray)
+                self.shape.addChild(arrow)
+            }
+        }
+        
         let p = path.getCurrent()
         if let x = p as? Planet{
             x.setSearchState(searchState: .current)
@@ -138,6 +154,7 @@ class Galaxy : ObservableObject{
             return "No Path"
         }
         return path.getExplanation()
+        
         
     }
     func getAlgorithmString()->String{
