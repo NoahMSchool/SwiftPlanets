@@ -104,13 +104,8 @@ class Galaxy : ObservableObject{
             let neighbours = planet.getNeighbours()
             for n in neighbours{
                 if let p = n.neighbour as? Planet{
-                    let path = CGMutablePath()
-                    path.move(to: planet.position)
-                    path.addLine(to: p.position)
-                    let line = SKShapeNode(path: path)
-                    line.zPosition = 0
-                    line.strokeColor = .darkGray
-                    self.lines.addChild(line)    
+                    let line = drawLine(from : planet.position, to : p.position, lineWidth: 5, color: .darkGray)
+                    self.lines.addChild(line)
                 }
             }
         }
@@ -136,15 +131,14 @@ class Galaxy : ObservableObject{
         }
         return strings
     }
-
+    
     
     func getExplanationString()->String{
         guard let path = path else {
             return "No Path"
-            }
+        }
         return path.getExplanation()
         
-
     }
     func getAlgorithmString()->String{
         guard let path = path else {
@@ -154,7 +148,7 @@ class Galaxy : ObservableObject{
         
         
     }
-
+    
     func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){
         self.startPlanet = nil
         self.endPlanet = nil
@@ -175,7 +169,7 @@ class Galaxy : ObservableObject{
             var offsetPos = options[i]
             offsetPos.x += CGFloat(Int.random(in: -15...15))
             offsetPos.y += CGFloat(Int.random(in: -15...15))
-
+            
             let planet = Planet(galaxy: self, position: offsetPos, name: name)
             self.addPlanet(planet : planet)
             self.shape.addChild(planet.getShape())
