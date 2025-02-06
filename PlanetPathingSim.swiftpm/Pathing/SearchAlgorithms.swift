@@ -7,6 +7,7 @@ class BaseSearch{
     var frontier : [(neighbour: any Traversable, weight: Double)]
     var explored : [any Traversable]
     var cameFrom : [UUID: (any Traversable)?] = [:]
+    var path : [any Traversable] = []
     var completed : Bool
     var explanation : String
     var algorithm : String
@@ -51,6 +52,15 @@ class BaseSearch{
             
             if let end = end{
                 if end.isEqual(to : current){
+                    
+                    var backwards: (any Traversable)? = end
+                    var reconstructedPath: [any Traversable] = []
+                    
+                    while let node = backwards {
+                        reconstructedPath.append(node)    
+                        backwards = cameFrom[node.id] ?? nil               
+                }
+                    path = reconstructedPath.reversed()
                     explanation = "You have found the treasure at \(current)"
                     completed = true
                     return
@@ -60,12 +70,6 @@ class BaseSearch{
             explanation = "Getting Neighbours for \(current)"
             for n in current.getNeighbours(){
                 if !explored.contains(where: {$0.isEqual(to: n.neighbour)}){
-                    /*
-                     if next not in came_from:
-                     frontier.put(next)
-                     came_from[next] = current
-
-                     */
                     frontier.append(n)
                     cameFrom[n.neighbour.id] = current
                     explanation += " adding \(n.neighbour)"
@@ -90,6 +94,10 @@ class BaseSearch{
     func getCurrent()->any Traversable{
         current
     }
+    func getPath()->[any Traversable]{
+        path
+    }
+    
     func getCameFrom()->[UUID: (any Traversable)?]{
         cameFrom
     } 

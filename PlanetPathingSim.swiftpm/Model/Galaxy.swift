@@ -49,8 +49,8 @@ class Galaxy : ObservableObject{
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
-            //self.path = BreadthFirstSearch(start: startPlanet, end: endPlanet)
-            self.path = DepthFirstSearch(start: startPlanet, end: endPlanet)
+            self.path = BreadthFirstSearch(start: startPlanet, end: endPlanet)
+            //self.path = DepthFirstSearch(start: startPlanet, end: endPlanet)
         }
     }
     
@@ -89,7 +89,18 @@ class Galaxy : ObservableObject{
                 self.shape.addChild(arrow)
             }
         }
-        
+        if path.completed{
+            var complete_path = path.getPath()
+            var from = complete_path.removeFirst()
+            for to in complete_path{
+                if var f = from as? Planet, var t = to as? Planet{   
+                    let arrow = drawArrow(from :f.position, to: t.position, lineWidth: 5, arrowSize: 10, color: .yellow)
+                    self.shape.addChild(arrow)
+                    from = to
+                }
+       
+            }
+        }     
         let p = path.getCurrent()
         if let x = p as? Planet{
             x.setSearchState(searchState: .current)
