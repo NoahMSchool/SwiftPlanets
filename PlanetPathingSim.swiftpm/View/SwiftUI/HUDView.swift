@@ -10,7 +10,18 @@ struct HUDView : View{
                         Text(galaxy.getAlgorithmString())
                         ExplanationBlock().environmentObject(galaxy)
                         GalaxySliders().environmentObject(galaxy)
-                        GalaxyButtons().environmentObject(galaxy)        
+                        GalaxyButtons().environmentObject(galaxy)
+                        Picker("Search Algorithm", selection: $galaxy.selectedAlgorithm){
+                            ForEach (galaxy.searchAlgoritm, id : \.self){
+                                option in Text(option).tag(option)
+                            }
+                        }
+                        .pickerStyle(WheelPickerStyle())
+                        .frame(width : 300, height: 100)
+                        //.padding()
+                        .background(Color(.systemBackground))
+                        .cornerRadius(50)
+                        
                     }
                     .padding(.vertical)
                     .border(.green, width: 10)

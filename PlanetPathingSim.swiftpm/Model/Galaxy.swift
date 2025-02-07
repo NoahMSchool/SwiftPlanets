@@ -1,6 +1,8 @@
 import SpriteKit
 
 class Galaxy : ObservableObject{
+    @Published var searchAlgoritm : [String] = ["BFS", "DFS", "A*", "Dijkstra"]
+    @Published var selectedAlgorithm : String = "BFS"
     @Published var name : String = "StarWars"
     @Published var planetCount : Int{
         didSet{
@@ -49,8 +51,11 @@ class Galaxy : ObservableObject{
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
-            self.path = BreadthFirstSearch(start: startPlanet, end: endPlanet)
-            //self.path = DepthFirstSearch(start: startPlanet, end: endPlanet)
+            switch selectedAlgorithm{
+            case "BFS" : self.path = BreadthFirstSearch(start: startPlanet, end: endPlanet)
+            case "DFS" : self.path = DepthFirstSearch(start: startPlanet, end: endPlanet)
+            default: self.path = BreadthFirstSearch(start: startPlanet, end: endPlanet)    
+            }
         }
     }
     
