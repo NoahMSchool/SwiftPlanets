@@ -17,7 +17,7 @@ class Galaxy : ObservableObject{
     var planets : [Planet]
     var startPlanet : Planet?
     var endPlanet : Planet?
-    @Published var path : BaseSearch?
+    @Published var algorithm : BaseSearch?
     var lines : SKNode
     var ship : Ship?
     var shape : SKNode
@@ -39,12 +39,12 @@ class Galaxy : ObservableObject{
     }
     func reset(){
         self.planets = []
+        self.startPlanet = nil
+        self.endPlanet = nil
         self.shape.removeAllChildren()
         self.shape.addChild(self.lines)
-        self.buildRandomGalaxy(planetCount: planetCount)        
-        self.startPlanet = randomPlanet()
-        self.endPlanet = randomPlanet()
-        
+        self.buildRandomGalaxy(planetCount: planetCount)
+        //self.buildTreeGalaxy()        
         
         self.ship = Ship(galaxy: self, planet: startPlanet!) 
         self.shape.addChild(ship!.getShape())
@@ -52,9 +52,9 @@ class Galaxy : ObservableObject{
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
             switch selectedAlgorithm{
-            case "BFS" : self.path = BreadthFirstSearch(start: startPlanet, end: endPlanet)
-            case "DFS" : self.path = DepthFirstSearch(start: startPlanet, end: endPlanet)
-            default: self.path = BreadthFirstSearch(start: startPlanet, end: endPlanet)    
+            case "BFS" : self.algorithm = BreadthFirstSearch(start: startPlanet, end: endPlanet)
+            case "DFS" : self.algorithm = DepthFirstSearch(start: startPlanet, end: endPlanet)
+            default: self.algorithm = BreadthFirstSearch(start: startPlanet, end: endPlanet)    
             }
         }
     }
@@ -69,7 +69,7 @@ class Galaxy : ObservableObject{
     }
     
     func forward(){
-        guard let path = self.path else{return}
+        guard let path = self.algorithm else{return}
         path.nextstep()
         var exploredCounter : Int = 0
         for p in path.getExplored(){
@@ -129,6 +129,7 @@ class Galaxy : ObservableObject{
     
     func addPlanet(planet : Planet){
         self.planets.append(planet)
+        self.shape.addChild(planet.getShape())
     }
     func addPlanetPaths(){
         self.lines.removeAllChildren()
@@ -147,7 +148,7 @@ class Galaxy : ObservableObject{
     }
     func getFrontierStrings()->[String]{
         var strings : [String] = []
-        for p in self.path!.getFrontier(){
+        for p in self.algorithm!.getFrontier(){
             if let planet = p as? Planet{
                 strings.append(planet.name)
             }
@@ -156,7 +157,7 @@ class Galaxy : ObservableObject{
     }
     func getExploredStrings()->[String]{
         var strings : [String] = []
-        for p in self.path!.getExplored(){
+        for p in self.algorithm!.getExplored(){
             if let planet = p as? Planet{
                 strings.append(planet.name)
             }
@@ -166,7 +167,7 @@ class Galaxy : ObservableObject{
     
     
     func getExplanationString()->String{
-        guard let path = path else {
+        guard let path = algorithm else {
             return "No Path"
         }
         return path.getExplanation()
@@ -174,7 +175,7 @@ class Galaxy : ObservableObject{
         
     }
     func getAlgorithmString()->String{
-        guard let path = path else {
+        guard let path = algorithm else {
             return "No Algorithm"
         }
         return path.algorithm
@@ -183,8 +184,6 @@ class Galaxy : ObservableObject{
     }
     
     func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){
-        self.startPlanet = nil
-        self.endPlanet = nil
         var options : [CGPoint] = []
         let offset : Double = 50
         for y in stride(from: 0, to: mapSize, by: spacing){
@@ -205,8 +204,11 @@ class Galaxy : ObservableObject{
             
             let planet = Planet(galaxy: self, position: offsetPos, name: name)
             self.addPlanet(planet : planet)
-            self.shape.addChild(planet.getShape())
+            
         }
+        self.startPlanet = randomPlanet()
+        self.endPlanet = randomPlanet()
         addPlanetPaths()
     }
+    
 }
