@@ -124,7 +124,7 @@ class Galaxy : ObservableObject{
         }
         if path.completed{
             var complete_path = path.getPath()
-            var from = complete_path.removeFirst()
+            var from = complete_path[0]
             for to in complete_path{
                 if let f = from as? Planet, var t = to as? Planet{   
                     let arrow = drawArrow(from :f.position, to: t.position, lineWidth: 5, arrowSize: 10, color: .yellow)
