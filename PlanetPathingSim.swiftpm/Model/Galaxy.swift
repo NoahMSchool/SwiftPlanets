@@ -1,32 +1,48 @@
 import SpriteKit
 
 class Galaxy : ObservableObject{
-    @Published var searchAlgoritm : [String] = ["BFS", "DFS", "A*", "Dijkstra"]
-    @Published var selectedAlgorithm : String = "BFS"
+    
     @Published var name : String = "StarWars"
+
+    /* This controls the options in the dropdown in the user interface */
+    @Published var searchAlgoritm : [String] = ["BFS", "DFS", "A*", "Dijkstra"]
+    
+    /* These are variables that are bindings in the user interface that can be selected */
+    // Picker
+    @Published var selectedAlgorithm : String = "BFS" 
+    
+    // Sliders
     @Published var planetCount : Int{
         didSet{
+            // When we change the planet count we reset the whole map
             reset()
         }
     }
     @Published var maxDistance : Double{
         didSet{
+            // When we change the distance we want to keep the planets but recalcute the path
             addPlanetPaths()
         }
     }
     var planets : [Planet]
     var startPlanet : Planet?
     var endPlanet : Planet?
+    
     @Published var algorithm : BaseSearch?
-    var lines : SKNode
     var ship : Ship?
-    var shape : SKNode
     @Published var planetNames = [
         "Auralis", "Borealis", "Calystria", "Drakontha", "Erythion", "Faryth", "Glythos", "Heliara",
         "Icarion", "Jovareth", "Kythera", "Lunethra", "Maelvion", "Nyxara", "Oberion", "Pyrrhion",
         "Quorath", "Rhyzora", "Solaryn", "Tyranthos", "Umbryth", "Vyridia", "Wytheris", "Xelthar",
         "Yzendra", "Zephyros"
     ]
+
+    // These are the container SKNodes
+    // TODO: Should rename them to make it more obvious they are SKNodes e.g. shapeSKNode
+    // TODO: Maybe add another top level node to contain all the planets
+    var shape : SKNode
+    var lines : SKNode
+
     
     init(){
         self.planets = []
@@ -37,6 +53,7 @@ class Galaxy : ObservableObject{
         reset()
         
     }
+    
     func reset(){
         self.planets = []
         self.startPlanet = nil
@@ -46,8 +63,6 @@ class Galaxy : ObservableObject{
         self.buildRandomGalaxy(planetCount: planetCount)
         //self.buildTreeGalaxy()        
         
-        self.ship = Ship(galaxy: self, planet: startPlanet!) 
-        self.shape.addChild(ship!.getShape())
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
@@ -57,8 +72,13 @@ class Galaxy : ObservableObject{
             default: self.algorithm = BreadthFirstSearch(start: startPlanet, end: endPlanet)    
             }
         }
+
+        self.ship = Ship(galaxy: self, planet: startPlanet!) 
+        self.shape.addChild(ship!.getShape())
+
     }
-    
+
+    // Look up a planet based on its key which is a UUID
     func keyToPlanet(key : UUID) -> Planet?{
         for planet in planets {
             if planet.id == key{
@@ -67,10 +87,13 @@ class Galaxy : ObservableObject{
         }
         return nil
     }
-    
+
+    // This steps through the search algorithm
+    // TODO: Move most of this into a new functions which updates the galaxy based on the algorithn
     func forward(){
         guard let path = self.algorithm else{return}
         path.nextstep()
+        
         var exploredCounter : Int = 0
         for p in path.getExplored(){
             if let x = p as? Planet{
@@ -131,6 +154,8 @@ class Galaxy : ObservableObject{
         self.planets.append(planet)
         self.shape.addChild(planet.getShape())
     }
+
+    // This creates SKLines for each neighbour
     func addPlanetPaths(){
         self.lines.removeAllChildren()
         for planet in getPlanets(){
@@ -143,9 +168,12 @@ class Galaxy : ObservableObject{
             }
         }
     }
+
+    // These functions return values that are shown on the interfaces
     func getMaxDistance()->Double{
         return maxDistance
     }
+    
     func getFrontierStrings()->[String]{
         var strings : [String] = []
         for p in self.algorithm!.getFrontier(){
@@ -165,7 +193,6 @@ class Galaxy : ObservableObject{
         return strings
     }
     
-    
     func getExplanationString()->String{
         guard let path = algorithm else {
             return "No Path"
@@ -182,7 +209,8 @@ class Galaxy : ObservableObject{
         
         
     }
-    
+
+    // These build the different kinds of galaxies
     func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){
         var options : [CGPoint] = []
         let offset : Double = 50
