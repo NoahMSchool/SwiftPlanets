@@ -40,16 +40,21 @@ class Galaxy : ObservableObject{
     // These are the container SKNodes
     // TODO: Should rename them to make it more obvious they are SKNodes e.g. shapeSKNode
     // TODO: Maybe add another top level node to contain all the planets
-    var shape : SKNode
-    var lines : SKNode
-
+    var skShape : SKNode
+    var skPlanets : SKNode
+    var skLines : SKNode
+// is skShape updating when skPlanets Change
     
     init(){
         self.planets = []
-        self.shape = SKNode()
-        self.lines = SKNode()
+        self.skShape = SKNode()
+        self.skPlanets = SKNode()
+        self.skLines = SKNode()
         self.planetCount = 20
         self.maxDistance = 250
+        skShape.addChild(skPlanets)
+        skShape.addChild(skLines)
+
         reset()
         
     }
@@ -58,8 +63,8 @@ class Galaxy : ObservableObject{
         self.planets = []
         self.startPlanet = nil
         self.endPlanet = nil
-        self.shape.removeAllChildren()
-        self.shape.addChild(self.lines)
+        self.skLines.removeAllChildren()
+        self.skPlanets.removeAllChildren()
         self.buildRandomGalaxy(planetCount: planetCount)
         //self.buildTreeGalaxy()        
         
@@ -74,7 +79,7 @@ class Galaxy : ObservableObject{
         }
 
         self.ship = Ship(galaxy: self, planet: startPlanet!) 
-        self.shape.addChild(ship!.getShape())
+        //self.SKShape.addChild(ship!.getShape())
 
     }
 
@@ -114,16 +119,16 @@ class Galaxy : ObservableObject{
         for x in path.getCameFrom(){
             if let from = x.value as? Planet, let to = keyToPlanet(key: x.key) {
                 let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: .lightGray)
-                self.shape.addChild(arrow)
+                self.skLines.addChild(arrow)
             }
         }
         if path.completed{
             var complete_path = path.getPath()
             var from = complete_path.removeFirst()
             for to in complete_path{
-                if var f = from as? Planet, var t = to as? Planet{   
+                if let f = from as? Planet, var t = to as? Planet{   
                     let arrow = drawArrow(from :f.position, to: t.position, lineWidth: 5, arrowSize: 10, color: .yellow)
-                    self.shape.addChild(arrow)
+                    self.skLines.addChild(arrow)
                     from = to
                 }
        
@@ -141,7 +146,7 @@ class Galaxy : ObservableObject{
     }
     
     func getShape()->SKNode{
-        shape
+        skShape
     }
     func getPlanets()-> [Planet]{
         self.planets
@@ -152,18 +157,18 @@ class Galaxy : ObservableObject{
     
     func addPlanet(planet : Planet){
         self.planets.append(planet)
-        self.shape.addChild(planet.getShape())
+        self.skPlanets.addChild(planet.getShape())
     }
 
     // This creates SKLines for each neighbour
     func addPlanetPaths(){
-        self.lines.removeAllChildren()
+        self.skLines.removeAllChildren()
         for planet in getPlanets(){
             let neighbours = planet.getNeighbours()
             for n in neighbours{
                 if let p = n.neighbour as? Planet{
                     let line = drawLine(from : planet.position, to : p.position, lineWidth: 5, color: .darkGray)
-                    self.lines.addChild(line)
+                    self.skLines.addChild(line)
                 }
             }
         }
