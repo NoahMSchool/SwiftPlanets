@@ -218,6 +218,7 @@ class Galaxy : ObservableObject{
     // These build the different kinds of galaxies
     func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){
         var options : [CGPoint] = []
+        var jitter = 0
         let offset : Double = 50
         for y in stride(from: 0, to: mapSize, by: spacing){
             for x in stride(from: 0, to: mapSize, by: spacing){
@@ -232,8 +233,8 @@ class Galaxy : ObservableObject{
                 name = planetNames.removeFirst()
             }
             var offsetPos = options[i]
-            offsetPos.x += CGFloat(Int.random(in: -15...15))
-            offsetPos.y += CGFloat(Int.random(in: -15...15))
+            offsetPos.x += CGFloat(Int.random(in: -jitter...jitter))
+            offsetPos.y += CGFloat(Int.random(in: -jitter...jitter))
             
             let planet = Planet(galaxy: self, position: offsetPos, name: name)
             self.addPlanet(planet : planet)
