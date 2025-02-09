@@ -30,6 +30,7 @@ class Galaxy : ObservableObject{
     
     @Published var algorithm : BaseSearch?
     var ship : Ship?
+    @Published var useWeights : Bool = true
     @Published var planetNames = [
         "Auralis", "Borealis", "Calystria", "Drakontha", "Erythion", "Faryth", "Glythos", "Heliara",
         "Icarion", "Jovareth", "Kythera", "Lunethra", "Maelvion", "Nyxara", "Oberion", "Pyrrhion",
@@ -163,15 +164,48 @@ class Galaxy : ObservableObject{
     // This creates SKLines for each neighbour
     func addPlanetPaths(){
         self.skLines.removeAllChildren()
+        var lines : [(start : CGPoint, end : CGPoint)] = []
+        
         for planet in getPlanets(){
             let neighbours = planet.getNeighbours()
             for n in neighbours{
                 if let p = n.neighbour as? Planet{
-                    let line = drawLine(from : planet.position, to : p.position, lineWidth: 5, color: .darkGray)
-                    self.skLines.addChild(line)
+                        if planet.id > p.id{
+                            lines.append((start: planet.getPosition(), end : p.getPosition()))
+                        }
                 }
             }
         }
+        let sortedLines = lines.sorted {
+            return (CGPoint.findDistance(c1: $0.start, c2: $0.end) < CGPoint.findDistance(c1: $1.start, c2: $1.end))
+        }
+        var finalLines : [(start : CGPoint, end : CGPoint)] = []
+        for line in sortedLines{
+            var accepted = true
+            for checkline in finalLines{
+                if checkIntersections(p1: line.start, q1: line.end, p2: checkline.start, q2: checkline.end){
+                    accepted = false        
+                }
+            }
+            if accepted{
+                finalLines.append(line)
+            }
+        }
+        var count = 0
+        for line in finalLines{
+            count += 1
+            let skLine = drawLine(from : line.start, to : line.end, lineWidth: 5, color: .darkGray)
+            self.skLines.addChild(skLine)
+            if useWeights{
+//                let weightLabel = SKLabelNode(text: String(round(CGPoint.findDistance(c1: line.start, c2: line.end))))
+                let weightLabel = SKLabelNode(text: String(count))
+                weightLabel.fontSize = 10
+                weightLabel.position = CGPoint(x: (line.start.x + line.end.x)/2, y: (line.start.y + line.end.y)/2)
+    
+                skLine.addChild(weightLabel)
+            }
+        }
+                                    
     }
 
     // These functions return values that are shown on the interfaces
