@@ -17,18 +17,18 @@ struct HUDView : View{
                             }
                         }
                         .pickerStyle(WheelPickerStyle())
-                        .frame(width : 300, height: 100)
+                        //.frame(width : 300, height: 100)
                         //.padding()
                         .background(Color(.systemBackground))
                         .cornerRadius(50)
-                        
+                        PlanetCountInput().environmentObject(galaxy)
                     }
                     .padding(.vertical)
                     .border(.green, width: 10)
             
                     PlanetList(title : "Explored", planets : galaxy.getExploredStrings())
         }
-        .frame(height: 500)
+        //.frame(height: 500)
         .font(.custom("ChalkDuster", size: 24))
     }
     

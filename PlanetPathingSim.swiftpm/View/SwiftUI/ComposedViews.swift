@@ -21,7 +21,7 @@ struct ExplanationBlock : View{
                 .fill(Color.blue)
             Text(galaxy.getExplanationString())
         }
-        .frame(maxWidth: 500, maxHeight: 250)
+ //       .frame(maxWidth: 500, maxHeight: 250)
     }
 }
 
@@ -93,6 +93,25 @@ struct GalaxySliders : View{
         }
     }
 }
+struct PlanetCountInput : View{
+    @EnvironmentObject var galaxy : Galaxy
+    var body : some View{
+        TextField("Enter number", text: Binding(
+            get: {String(galaxy.planetCount)}, set: {newValue in 
+            if let intValue = Int(newValue){
+                if intValue>0 && intValue < 100{
+                    
+                    galaxy.planetCount = intValue
+                }
+            }    
+            }
+        ))
+            .keyboardType(.numberPad)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .frame(width: 80)
+    }
+    
+}
 
 struct PlanetList : View{
     var title : String
@@ -104,7 +123,7 @@ struct PlanetList : View{
             }
             .navigationTitle(title + " " + String(planets.count))                
         }
-        .frame(width: 250)
+        .frame(maxWidth: 250)
         .scrollContentBackground(.hidden)
         .border(.blue, width: 15)
 
