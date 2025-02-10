@@ -279,4 +279,14 @@ class Galaxy : ObservableObject{
         addPlanetPaths()
     }
     
+    func buildTreeGalaxy(){
+        let root = Planet(galaxy: self, position: CGPoint(x: 500, y: 100), name: "Root")
+        self.addPlanet(planet: root)
+        self.startPlanet = root
+        let left = Planet(galaxy: self, position: CGPoint(x: 700, y: -300), name: "left")
+        let right = Planet(galaxy: self, position: CGPoint(x: 700, y: 300), name: "right")
+        self.addPlanet(planet: left)
+        self.addPlanet(planet: right)
+        
+    }
 }
