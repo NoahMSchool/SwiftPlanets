@@ -45,7 +45,8 @@ class Galaxy : ObservableObject{
     var skPlanets : SKNode
     var skLines : SKNode
 // is skShape updating when skPlanets Change
-    
+    var finalPaths : [(start : Planet, end : Planet, distance : Double)] = []
+
     init(){
         self.planets = []
         self.skShape = SKNode()
@@ -164,53 +165,47 @@ class Galaxy : ObservableObject{
     // This creates SKLines for each neighbour
     func addPlanetPaths(){
         self.skLines.removeAllChildren()
-        var lines : [(start : CGPoint, end : CGPoint)] = []
+        self.finalPaths = []
         
-        for planet in getPlanets(){
-            let neighbours = planet.getNeighbours()
-            for n in neighbours{
-                if let p = n.neighbour as? Planet{
-                        if planet.id > p.id{
-                            lines.append((start: planet.getPosition(), end : p.getPosition()))
-                        }
-                }
-            }
-        }
-        let sortedLines = lines.sorted {
-            return (CGPoint.findDistance(c1: $0.start, c2: $0.end) < CGPoint.findDistance(c1: $1.start, c2: $1.end))
-        }
-        var finalLines : [(start : CGPoint, end : CGPoint)] = []
-        for line in sortedLines{
-            var accepted = true
-            for checkline in finalLines{
-                if checkIntersections(p1: line.start, q1: line.end, p2: checkline.start, q2: checkline.end){
-                    accepted = false        
-                }
-            }
-            if accepted{
-                finalLines.append(line)
-            }
-        }
-        var count = 0
-        for line in finalLines{
-            count += 1
-            let skLine = drawLine(from : line.start, to : line.end, lineWidth: 5, color: .darkGray)
-            self.skLines.addChild(skLine)
-            if useWeights{
-//                let weightLabel = SKLabelNode(text: String(round(CGPoint.findDistance(c1: line.start, c2: line.end))))
-                let weightLabel = SKLabelNode(text: String(count))
-                weightLabel.fontSize = 10
-                weightLabel.position = CGPoint(x: (line.start.x + line.end.x)/2, y: (line.start.y + line.end.y)/2)
-    
-                skLine.addChild(weightLabel)
-            }
-        }
-                                    
-    }
+        var potentialPaths : [(start : Planet, end : Planet, distance : Double)] = []
 
+        for start in getPlanets(){
+            for end in getPlanets(){
+                let distance = CGPoint.findDistance(c1: start.position, c2: end.position)
+                if distance > 0 && distance < self.getMaxDistance(){
+                    potentialPaths.append((start: start, end: end, distance: distance))
+                }
+            }
+        }
+        let sortedPaths = potentialPaths.sorted {
+            return $0.distance<$1.distance
+        }
+        for path in sortedPaths{
+            var hasIntersection = false
+            for checkPath in finalPaths{
+                if checkIntersections(p1: path.start.getPosition(), q1: path.end.getPosition(), p2: checkPath.start.getPosition(), q2: checkPath.end.getPosition()){
+                    hasIntersection = true
+                }   
+            }
+            if !hasIntersection{
+                finalPaths.append(path)
+            }
+        }
+        self.skLines.addChild(drawPaths(paths: finalPaths, lineWidth: 5, color: .darkGray))
+    }
+    
     // These functions return values that are shown on the interfaces
     func getMaxDistance()->Double{
         return maxDistance
+    }
+    func getPlanetNeighbours(planet : Planet)->[(neighbour: Planet, weight: Double)]{
+        var neighbours : [(neighbour: Planet, weight: Double)] = []
+        for p in self.finalPaths{
+            if p.start.isEqual(to: planet){
+                neighbours.append((neighbour: p.end, weight: p.distance))
+            }
+        }
+        return neighbours
     }
     
     func getFrontierStrings()->[String]{
