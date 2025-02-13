@@ -247,7 +247,7 @@ class Galaxy : ObservableObject{
     // These build the different kinds of galaxies
     func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){
         var options : [CGPoint] = []
-        var jitter = 0
+        let jitter = Int(spacing/10)
         let offset : Double = 50
         for y in stride(from: 0, to: mapSize, by: spacing){
             for x in stride(from: 0, to: mapSize, by: spacing){
@@ -256,7 +256,8 @@ class Galaxy : ObservableObject{
         }
         options = options.shuffled()
         planetNames = planetNames.shuffled()
-        for i in 0...planetCount-1{
+     
+        for i in 0...min(planetCount, options.count)-1{
             var name = "No Name \(i)"
             if !planetNames.isEmpty{
                 name = planetNames.removeFirst()
