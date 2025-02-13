@@ -17,24 +17,27 @@ class Planet : CustomDebugStringConvertible{
     var position : CGPoint
     var name : String
     var id : UUID
-    var shape : SKShapeNode
+    var shape : PlanetNode
     var numberLabel : SKLabelNode
-    var searchState : SearchState{
+    var searchState : SearchState
+    {
         didSet{
             switch searchState {
-            case .unknown: shape.fillColor = .gray
-            case .frontier: shape.fillColor = .blue
-            case .explored: shape.fillColor = .purple
-            case .current: shape.fillColor = .white
+            case .unknown: shape.changeBorder(color: .gray)
+            case .frontier: shape.changeBorder(color: .blue)
+            case .explored: shape.changeBorder(color: .brown)
+            case .current: shape.changeBorder(color: .white)
+            
             }
         }
     }
-    var waypoint : Waypoint{
+    var waypoint : Waypoint
+    {
         didSet{
             switch waypoint {
-            case .start: shape.strokeColor = .red
-            case .middle: shape.strokeColor = .white
-            case .end: shape.strokeColor = .yellow
+            case .start: shape.changeBorder(color: .green)
+            case .end: shape.changeBorder(color: .yellow)
+            default : shape.changeBorder(color: .darkGray)
             }
         }
     }
@@ -44,15 +47,12 @@ class Planet : CustomDebugStringConvertible{
         self.position = position
         self.name = name
         self.id = UUID()
-        self.shape = SKShapeNode(circleOfRadius: 25)
+        
+        self.shape = PlanetNode(planetName: self.name)
         self.shape.position = position
         self.shape.zPosition = 1
         let label = SKLabelNode(text: self.name)
-        label.position = CGPoint(x: 0, y: -50)
-        label.fontSize = 15
-        label.fontColor = .white
-        self.shape.addChild(label)
-        
+
         let numberlabel = SKLabelNode(text: "")
         numberlabel.position = CGPoint(x: 0, y: -5)
         numberlabel.fontSize = 15
@@ -110,6 +110,7 @@ extension Planet : Traversable{
             }
         }
         return neighbours
+        return galaxy.getPlanetNeighbours(planet: self)
     }    
 }
 
