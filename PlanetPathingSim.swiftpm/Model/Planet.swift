@@ -51,7 +51,6 @@ class Planet : CustomDebugStringConvertible{
         self.shape = PlanetNode(planetName: self.name)
         self.shape.position = position
         self.shape.zPosition = 1
-        let label = SKLabelNode(text: self.name)
 
         let numberlabel = SKLabelNode(text: "")
         numberlabel.position = CGPoint(x: 0, y: -5)
@@ -60,8 +59,6 @@ class Planet : CustomDebugStringConvertible{
         self.numberLabel = numberlabel
         self.shape.addChild(numberlabel)
 
-        
-        self.shape.fillColor = .gray
         self.searchState = .unknown
         self.waypoint = .middle
     }
@@ -98,18 +95,6 @@ extension Planet : Traversable{
     }
     
     func getNeighbours() -> [(neighbour: any Traversable, weight: Double)] {
-        let distance : Double = galaxy.getMaxDistance()
-        let planets = galaxy.getPlanets()
-        var neighbours : [(any Traversable, Double)] = []
-        for p in planets{
-            if !p.isEqual(to: self){
-                
-                if CGPoint.findDistance(c1: position, c2: p.getPosition()) <= Double(distance){
-                    neighbours.append((neighbour : p, weight : 1))
-                }
-            }
-        }
-        return neighbours
         return galaxy.getPlanetNeighbours(planet: self)
     }    
 }
