@@ -9,6 +9,7 @@ class BaseSearch{
     var cameFrom : [UUID: (any Traversable)?] = [:]
     var path : [any Traversable] = []
     var completed : Bool
+    var pathExists : Bool
     var explanation : String
     var algorithm : String
     
@@ -20,6 +21,7 @@ class BaseSearch{
         self.explored = [start]
         self.cameFrom [start.id] = nil
         self.completed = false
+        self.pathExists = false
         self.explanation = ""
         self.algorithm = "No algorithm"
     }
@@ -61,6 +63,7 @@ class BaseSearch{
                         backwards = cameFrom[node.id] ?? nil               
                 }
                     path = reconstructedPath.reversed()
+                    pathExists = true
                     explanation = "You have found the treasure at \(current)"
                     completed = true
                     return

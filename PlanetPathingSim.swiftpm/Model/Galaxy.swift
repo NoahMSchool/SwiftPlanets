@@ -123,7 +123,7 @@ class Galaxy : ObservableObject{
                 self.skLines.addChild(arrow)
             }
         }
-        if path.completed{
+        if path.pathExists{
             var complete_path = path.getPath()
             var from = complete_path[0]
             for to in complete_path{
