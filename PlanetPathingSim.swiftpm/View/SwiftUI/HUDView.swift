@@ -16,9 +16,9 @@ struct HUDView : View{
                                 option in Text(option).tag(option)
                             }
                         }
-                        .pickerStyle(WheelPickerStyle())
-                        //.frame(width : 300, height: 100)
-                        //.padding()
+
+                        .pickerStyle(MenuPickerStyle())
+
                         .background(Color(.systemBackground))
                         .cornerRadius(50)
                         PlanetCountInput().environmentObject(galaxy)

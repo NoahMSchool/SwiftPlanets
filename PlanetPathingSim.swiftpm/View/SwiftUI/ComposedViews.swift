@@ -21,7 +21,7 @@ struct ExplanationBlock : View{
                 .fill(Color.blue)
             Text(galaxy.getExplanationString())
         }
- //       .frame(maxWidth: 500, maxHeight: 250)
+        .frame(maxWidth: 500, maxHeight: 250)
     }
 }
 
