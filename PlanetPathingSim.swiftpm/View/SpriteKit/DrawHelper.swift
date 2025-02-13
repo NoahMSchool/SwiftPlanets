@@ -42,3 +42,27 @@ func drawArrow(from start: CGPoint, to end: CGPoint, lineWidth: CGFloat, arrowSi
     
     return arrowNode
 }    
+
+func drawlines(lines : [(start : CGPoint, end : CGPoint, weight : Double?)], lineWidth: CGFloat, color: UIColor)-> SKNode{
+    let linesNodes : SKNode = SKNode()
+    var count = 0
+    for line in lines{
+        count += 1
+        let skLine = drawLine(from : line.start, to : line.end, lineWidth: lineWidth, color: color)
+        linesNodes.addChild(skLine)
+        if let weight = line.weight{
+            let weightLabel = TextBubble(textString: String(weight.rounded()))
+            weightLabel.position = CGPoint(x: (line.start.x + line.end.x)/2, y: (line.start.y + line.end.y)/2)
+            skLine.addChild(weightLabel)
+        }
+    }
+    return linesNodes
+}
+//converts paths between planets to lines for drawing
+func drawPaths(paths : [(start : Planet, end : Planet, distance : Double)], lineWidth: CGFloat, color: UIColor)-> SKNode{
+    var lines : [(start : CGPoint, end : CGPoint, weight : Double?)] = []
+    for path in paths {
+        lines.append((path.start.getPosition(), path.end.getPosition(), weight : path.distance))    
+    }
+    return drawlines(lines: lines, lineWidth: lineWidth, color: color)
+}
