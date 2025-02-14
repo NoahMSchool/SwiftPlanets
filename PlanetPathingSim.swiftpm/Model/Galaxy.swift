@@ -3,7 +3,7 @@ import SpriteKit
 class Galaxy : ObservableObject{
     
     @Published var name : String = "StarWars"
-
+    
     /* This controls the options in the dropdown in the user interface */
     @Published var searchAlgoritm : [String] = ["BFS", "DFS", "A*", "Dijkstra"]
     
@@ -37,16 +37,16 @@ class Galaxy : ObservableObject{
         "Quorath", "Rhyzora", "Solaryn", "Tyranthos", "Umbryth", "Vyridia", "Wytheris", "Xelthar",
         "Yzendra", "Zephyros"
     ]
-
+    
     // These are the container SKNodes
     // TODO: Should rename them to make it more obvious they are SKNodes e.g. shapeSKNode
     // TODO: Maybe add another top level node to contain all the planets
     var skShape : SKNode
     var skPlanets : SKNode
     var skLines : SKNode
-// is skShape updating when skPlanets Change
+    // is skShape updating when skPlanets Change
     var finalPaths : [(start : Planet, end : Planet, distance : Double)] = []
-
+    
     init(){
         self.planets = []
         self.skShape = SKNode()
@@ -60,7 +60,7 @@ class Galaxy : ObservableObject{
         skShape.addChild(skLines)
         skShape.addChild(ship.getShape())
         ship.shape.zPosition = 10
-
+        
         reset()
         
     }
@@ -72,7 +72,7 @@ class Galaxy : ObservableObject{
         self.skLines.removeAllChildren()
         self.skPlanets.removeAllChildren()
         self.buildRandomGalaxy(planetCount: planetCount)
-        //self.buildTreeGalaxy()        
+        //self.buildTreeGalaxy()
         
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
             startPlanet.waypoint = .start
@@ -80,12 +80,12 @@ class Galaxy : ObservableObject{
             switch selectedAlgorithm{
             case "BFS" : self.algorithm = BreadthFirstSearch(start: startPlanet, end: endPlanet)
             case "DFS" : self.algorithm = DepthFirstSearch(start: startPlanet, end: endPlanet)
-            default: self.algorithm = BreadthFirstSearch(start: startPlanet, end: endPlanet)    
+            default: self.algorithm = BreadthFirstSearch(start: startPlanet, end: endPlanet)
             }
             ship.setPosition(position: startPlanet.getPosition())
         }
     }
-
+    
     // Look up a planet based on its key which is a UUID
     func keyToPlanet(key : UUID) -> Planet?{
         for planet in planets {
@@ -95,7 +95,7 @@ class Galaxy : ObservableObject{
         }
         return nil
     }
-
+    
     // This steps through the search algorithm
     // TODO: Move most of this into a new functions which updates the galaxy based on the algorithn
     func forward(){
@@ -134,11 +134,12 @@ class Galaxy : ObservableObject{
                     self.skLines.addChild(arrow)
                     from = to
                 }
-       
+                
             }
         }     
         let p = path.getCurrent()
         if let x = p as? Planet{
+            //ship.setPosition(position: x.getPosition())
             ship.moveToPosition(position: x.getPosition())
             x.setSearchState(searchState: .current)
         }
@@ -163,14 +164,14 @@ class Galaxy : ObservableObject{
         self.planets.append(planet)
         self.skPlanets.addChild(planet.getShape())
     }
-
+    
     // This creates SKLines for each neighbour
     func addPlanetPaths(){
         self.skLines.removeAllChildren()
         self.finalPaths = []
         
         var potentialPaths : [(start : Planet, end : Planet, distance : Double)] = []
-
+        
         for start in getPlanets(){
             for end in getPlanets(){
                 let distance = CGPoint.findDistance(c1: start.position, c2: end.position)
@@ -245,7 +246,7 @@ class Galaxy : ObservableObject{
         
         
     }
-
+    
     // These build the different kinds of galaxies
     func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){
         var options : [CGPoint] = []
@@ -258,7 +259,7 @@ class Galaxy : ObservableObject{
         }
         options = options.shuffled()
         planetNames = planetNames.shuffled()
-     
+        
         for i in 0...min(planetCount, options.count)-1{
             var name = "No Name \(i)"
             if !planetNames.isEmpty{
