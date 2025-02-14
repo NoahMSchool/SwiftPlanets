@@ -29,7 +29,7 @@ class Galaxy : ObservableObject{
     var endPlanet : Planet?
     
     @Published var algorithm : BaseSearch?
-    var ship : Ship?
+    var ship : Ship
     @Published var useWeights : Bool = true
     @Published var planetNames = [
         "Auralis", "Borealis", "Calystria", "Drakontha", "Erythion", "Faryth", "Glythos", "Heliara",
@@ -54,8 +54,12 @@ class Galaxy : ObservableObject{
         self.skLines = SKNode()
         self.planetCount = 20
         self.maxDistance = 250
+        self.ship = Ship() 
+        
         skShape.addChild(skPlanets)
         skShape.addChild(skLines)
+        skShape.addChild(ship.getShape())
+        ship.shape.zPosition = 10
 
         reset()
         
@@ -78,11 +82,8 @@ class Galaxy : ObservableObject{
             case "DFS" : self.algorithm = DepthFirstSearch(start: startPlanet, end: endPlanet)
             default: self.algorithm = BreadthFirstSearch(start: startPlanet, end: endPlanet)    
             }
+            ship.setPosition(position: startPlanet.getPosition())
         }
-
-        self.ship = Ship(galaxy: self, planet: startPlanet!) 
-        //self.SKShape.addChild(ship!.getShape())
-
     }
 
     // Look up a planet based on its key which is a UUID
@@ -138,6 +139,7 @@ class Galaxy : ObservableObject{
         }     
         let p = path.getCurrent()
         if let x = p as? Planet{
+            ship.moveToPosition(position: x.getPosition())
             x.setSearchState(searchState: .current)
         }
         //name = path.explanation -- TODO remove requirement for name
