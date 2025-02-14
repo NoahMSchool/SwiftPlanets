@@ -30,15 +30,24 @@ func drawArrow(from start: CGPoint, to end: CGPoint, lineWidth: CGFloat, arrowSi
     arrowPath.addLine(to: CGPoint(x: -arrowSize, y: -arrowSize / 2))
     arrowPath.closeSubpath()
     
-    let arrowhead = SKShapeNode(path: arrowPath)
-    arrowhead.fillColor = color
-    arrowhead.strokeColor = color
+    let arrowheadFirst = SKShapeNode(path: arrowPath)
+    let arrowheadSecond = SKShapeNode(path: arrowPath)
+
+    arrowheadFirst.fillColor = color
+    arrowheadFirst.strokeColor = color
+    
+    arrowheadSecond.fillColor = color
+    arrowheadSecond.strokeColor = color
     
     // 4. Position & rotate the arrowhead
-    arrowhead.position = CGPoint(x: (start.x + end.x)/2, y: (start.y + end.y)/2)
-    arrowhead.zRotation = angle // Rotate to match the line direction
+    arrowheadFirst.position = CGPoint(x: (end.x-start.x)/3+start.x, y: ((end.y-start.y)/3+start.y))
+    arrowheadSecond.position = CGPoint(x: (end.x-start.x)*2/3+start.x, y: ((end.y-start.y)*2/3+start.y))
     
-    arrowNode.addChild(arrowhead)
+    arrowheadFirst.zRotation = angle // Rotate to match the line direction
+    arrowheadSecond.zRotation = angle // Rotate to match the line direction
+    
+    arrowNode.addChild(arrowheadFirst)
+    arrowNode.addChild(arrowheadSecond)
     
     return arrowNode
 }    
