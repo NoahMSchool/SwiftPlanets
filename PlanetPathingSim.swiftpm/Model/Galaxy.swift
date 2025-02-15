@@ -107,38 +107,43 @@ class Galaxy : ObservableObject{
     
     // This steps through the search algorithm
     // TODO: Move most of this into a new functions which updates the galaxy based on the algorithn
-    func updateUI(){  
-        guard let path = self.algorithm else{return}
-        
-        //to update buttons to allow forwards/backward
-        backwardAllowed = !path.history.isEmpty
-        forwardAllowed = !path.completed
-        
+    
+    func updateExplored(){
+        guard let algorithm = self.algorithm else{return}
         var exploredCounter : Int = 0
-        for p in path.getExplored(){
+        for p in algorithm.getExplored(){
             if let x = p as? Planet{
                 exploredCounter += 1
                 x.setNumber(num: exploredCounter)
                 x.setSearchState(searchState: .explored)
             }
         }
+    }
+    func updateFrontier(){
+        guard let algorithm = self.algorithm else{return}
         var counter : Int = 0
-        for p in path.getFrontier(){
+        for p in algorithm.getFrontier(){
             if let x = p as? Planet{
                 counter += 1
                 x.setNumber(num: counter)
                 x.setSearchState(searchState: .frontier)
             }
         }
-        self.skPathLines.removeAllChildren()
-        for x in path.getCameFrom(){
+        
+    }
+    func drawCameFromLines(){
+        guard let algorithm = self.algorithm else{return}
+        for x in algorithm.getCameFrom(){
             if let from = x.value as? Planet, let to = keyToPlanet(key: x.key) {
                 let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: .lightGray)
                 self.skPathLines.addChild(arrow)
             }
-        }
-        if path.pathExists{
-            var complete_path = path.getPath()
+        }        
+    }
+    func drawFinalPathLines(){
+        guard let algorithm = self.algorithm else{return}
+        if algorithm.pathExists{
+            var complete_path = algorithm.getPath()
             var from = complete_path[0]
             for to in complete_path{
                 if let f = from as? Planet, var t = to as? Planet{   
@@ -148,13 +153,35 @@ class Galaxy : ObservableObject{
                 }
                 
             }
-        }     
+        }    
+    }
+    func updatePathData(){
+        updateExplored()
+        updateFrontier()
+        
+        self.skPathLines.removeAllChildren()
+        drawCameFromLines()
+        drawFinalPathLines()
+        
+    }
+    func updateUI(){  
+        guard let path = self.algorithm else{return}
+        
+        //to update buttons to allow forwards/backward
+        backwardAllowed = !path.history.isEmpty
+        forwardAllowed = !path.completed
+        
         let p = path.getCurrent()
         if let x = p as? Planet{
             //ship.setPosition(position: x.getPosition())
-            ship.moveToPosition(position: x.getPosition())
-            x.setSearchState(searchState: .current)
+            //            ship.moveToPosition(position: x.getPosition())
+            ship.shape.run(moveNode(from: ship.shape.position, to: x.getPosition(), duration: 0.5)){
+                [self] in 
+                x.setSearchState(searchState: .current)
+                x.pulseRing()    
+                updatePathData()            }
         }
+        
         //name = path.explanation -- TODO remove requirement for name
         name = "something"
     }
@@ -163,7 +190,7 @@ class Galaxy : ObservableObject{
         path.forward() 
         updateUI()
     }
-
+    
     func backward(){
         guard let path = self.algorithm else{return}
         path.backward() 
@@ -220,7 +247,7 @@ class Galaxy : ObservableObject{
                     break
                 }   
             }
-                // dont check for intersection if intersection is already found
+            // dont check for intersection if intersection is already found
             if !hasIntersection{
                 for checkPath in finalPaths{
                     if checkIntersections(p1: path.start.getPosition(), q1: path.end.getPosition(), p2: checkPath.start.getPosition(), q2: checkPath.end.getPosition()){
