@@ -44,6 +44,7 @@ class Galaxy : ObservableObject{
     var skShape : SKNode
     var skPlanets : SKNode
     var skLines : SKNode
+    var skPathLines : SKNode
     // is skShape updating when skPlanets Change
     var finalPaths : [(start : Planet, end : Planet, distance : Double)] = []
     
@@ -52,12 +53,14 @@ class Galaxy : ObservableObject{
         self.skShape = SKNode()
         self.skPlanets = SKNode()
         self.skLines = SKNode()
+        self.skPathLines = SKNode()
         self.planetCount = 20
         self.maxDistance = 250
         self.ship = Ship() 
         
         skShape.addChild(skPlanets)
         skShape.addChild(skLines)
+        skShape.addChild(skPathLines)
         skShape.addChild(ship.getShape())
         ship.shape.zPosition = 10
         
@@ -70,6 +73,7 @@ class Galaxy : ObservableObject{
         self.startPlanet = nil
         self.endPlanet = nil
         self.skLines.removeAllChildren()
+        self.skPathLines.removeAllChildren()
         self.skPlanets.removeAllChildren()
         self.buildRandomGalaxy(planetCount: planetCount)
         //self.buildTreeGalaxy()
@@ -118,11 +122,11 @@ class Galaxy : ObservableObject{
                 x.setSearchState(searchState: .frontier)
             }
         }
-        
+        self.skPathLines.removeAllChildren()
         for x in path.getCameFrom(){
             if let from = x.value as? Planet, let to = keyToPlanet(key: x.key) {
                 let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: .lightGray)
-                self.skLines.addChild(arrow)
+                self.skPathLines.addChild(arrow)
             }
         }
         if path.pathExists{
@@ -131,7 +135,7 @@ class Galaxy : ObservableObject{
             for to in complete_path{
                 if let f = from as? Planet, var t = to as? Planet{   
                     let arrow = drawArrow(from :f.position, to: t.position, lineWidth: 5, arrowSize: 10, color: .yellow)
-                    self.skLines.addChild(arrow)
+                    self.skPathLines.addChild(arrow)
                     from = to
                 }
                 
