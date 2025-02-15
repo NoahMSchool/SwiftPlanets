@@ -11,7 +11,7 @@ class PlanetNode : SKNode{
         self.border = SKShapeNode(circleOfRadius: borderRadius)
         self.planetLabel = TextBubble(textString: planetName)
         
-        planetLabel.position = CGPoint(x: 0, y: 40)
+        planetLabel.position = CGPoint(x: 0, y: 30)
         
         planet.fillColor = planetColors.randomElement()!
         planet.strokeColor = .clear
@@ -41,16 +41,16 @@ class PlanetNode : SKNode{
 class TextBubble : SKNode{
     var labelText : SKLabelNode
     var border : SKShapeNode
-    let minWidth : CGFloat = 10
-    let maxWidth : CGFloat = 100
-    let minHeight : CGFloat = 10
-    let maxHeight : CGFloat = 100
-    let padding : CGFloat = 10
+    let minWidth : CGFloat = 5
+    let maxWidth : CGFloat = 50
+    let minHeight : CGFloat = 5
+    let maxHeight : CGFloat = 50
+    let padding : CGFloat = 5
     
     init(textString: String) {
         self.labelText = SKLabelNode(text: textString)        
         
-        labelText.fontSize = 10
+        labelText.fontSize = 8
         labelText.fontName = "ChalkDuster"
         labelText.verticalAlignmentMode = .center
         labelText.horizontalAlignmentMode = .center

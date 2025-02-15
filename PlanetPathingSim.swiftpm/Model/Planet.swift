@@ -18,7 +18,7 @@ class Planet : CustomDebugStringConvertible{
     var name : String
     var id : UUID
     var shape : PlanetNode
-    var planetRadius : CGFloat = 25
+    var planetRadius : CGFloat = 20
     var numberLabel : SKLabelNode
     var searchState : SearchState
     {
@@ -28,7 +28,7 @@ class Planet : CustomDebugStringConvertible{
             case .frontier: shape.changeBorder(color: .blue)
             case .explored: shape.changeBorder(color: .brown)
             case .current: shape.changeBorder(color: .white)
-            
+                
             }
         }
     }
@@ -52,14 +52,14 @@ class Planet : CustomDebugStringConvertible{
         self.shape = PlanetNode(planetName: self.name, borderRadius: planetRadius)
         self.shape.position = position
         self.shape.zPosition = 1
-
+        
         let numberlabel = SKLabelNode(text: "")
         numberlabel.position = CGPoint(x: 0, y: -5)
         numberlabel.fontSize = 15
         numberlabel.fontColor = .white
         self.numberLabel = numberlabel
         self.shape.addChild(numberlabel)
-
+        
         self.searchState = .unknown
         self.waypoint = .middle
     }
@@ -84,17 +84,18 @@ class Planet : CustomDebugStringConvertible{
     }
     func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
         let horizontalFirst = (start: CGPoint(x: self.position.x-planetRadius, y: self.position.y), 
-                          end: CGPoint(x: self.position.x, y: self.position.y))
+                               end: CGPoint(x: self.position.x, y: self.position.y))
         let horizontalSecond = (start: CGPoint(x: self.position.x, y: self.position.y), 
-                               end: CGPoint(x: self.position.x+planetRadius, y: self.position.y))
+                                end: CGPoint(x: self.position.x+planetRadius, y: self.position.y))
         
         let verticalFirst = (start: CGPoint(x: self.position.x, y: self.position.y-planetRadius), 
-                          end: CGPoint(x: self.position.x, y: self.position.y))
+                             end: CGPoint(x: self.position.x, y: self.position.y))
         let verticalSecond = (start: CGPoint(x: self.position.x, y: self.position.y), 
-                            end: CGPoint(x: self.position.x, y: self.position.y+planetRadius))
+                              end: CGPoint(x: self.position.x, y: self.position.y+planetRadius))
         var checkLines : [(start: CGPoint, end : CGPoint)] = [horizontalFirst, horizontalSecond, verticalFirst, verticalSecond]
         return checkLines
-    }}
+    }
+}
 
 //to conform to Traversable
 extension Planet : Traversable{
