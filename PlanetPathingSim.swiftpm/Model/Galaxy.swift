@@ -142,7 +142,7 @@ class Galaxy : ObservableObject{
     }
     func drawFinalPathLines(){
         guard let algorithm = self.algorithm else{return}
-        if algorithm.pathExists{
+        if algorithm.pathExists(){
             var complete_path = algorithm.getPath()
             var from = complete_path[0]
             for to in complete_path{
@@ -169,7 +169,7 @@ class Galaxy : ObservableObject{
         
         //to update buttons to allow forwards/backward
         backwardAllowed = !path.history.isEmpty
-        forwardAllowed = !path.completed
+        forwardAllowed = !path.completed()
         
         let p = path.getCurrent()
         if let x = p as? Planet{

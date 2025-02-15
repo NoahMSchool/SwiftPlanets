@@ -1,10 +1,5 @@
 import Foundation
-
-class BaseSearch{
-    let start : any Traversable
-    let end : (any Traversable)?
-    var algorithm : String
-    
+struct AlgorithmState{
     var current: (any Traversable)
     var frontier : [(neighbour: any Traversable, weight: Double)]
     var explored : [any Traversable]
@@ -13,110 +8,90 @@ class BaseSearch{
     var completed : Bool
     var pathExists : Bool
     var explanation : String
-
-    var history: [(
-        current: any Traversable, 
-        frontier: [(neighbour: any Traversable, weight: Double)],
-        explored : [any Traversable],
-        cameFrom : [UUID: (any Traversable)?],
-        path : [any Traversable],
-        completed : Bool,
-        pathExists : Bool,
-        explanation : String
-    )]
-
+}
+class BaseSearch{
+    let start : any Traversable
+    let end : (any Traversable)?
+    var algorithm : String
+    var currentState : AlgorithmState
+    var history: [AlgorithmState]
+    
     
     init(start : any Traversable, end : any Traversable){
+        self.algorithm = "No algorithm"
         self.start = start
         self.end = end
-        self.current = start
-        self.frontier = [(neighbour: start, weight : 0)]
-        self.explored = [start]
-        self.cameFrom [start.id] = nil
         self.history = []
-        self.completed = false
-        self.pathExists = false
-        self.explanation = ""
-        self.algorithm = "No algorithm"
+        self.currentState = AlgorithmState(
+            current: start,
+            frontier: [(neighbour: start, weight : 0)], 
+            explored: [start], 
+            cameFrom: [start.id : nil], 
+            path: [], 
+            completed: false, 
+            pathExists: false, 
+            explanation: "")
     }
-    func showState(){
-        //print("\(start) to \(end)")
-        print(explanation)
-        debugPrint(frontier)
-        debugPrint(explored)
-        print("complete \(completed)")
-        print("-------------------------")
-        
+    func pathExists()->Bool{
+        currentState.pathExists
+    }
+    func completed()->Bool{
+        currentState.completed
     }
     func getNextFrontier()->(neighbour: any Traversable, weight: Double){
         // this should not have any logic as it is in base class
-        frontier.removeLast()
+        currentState.frontier.removeLast()
     }
     func storeHistory(){
-        history.append((current: current, 
-                        frontier: frontier, 
-                        explored: explored, 
-                        cameFrom: cameFrom, 
-                        path: path,
-                        completed: completed,
-                        pathExists: pathExists,
-                        explanation: explanation
-                       ))
+        history.append(currentState)
     }
     func restoreHistory(){
         if let previousState = history.popLast(){
-            current = previousState.current
-            frontier = previousState.frontier
-            explored = previousState.explored
-            cameFrom = previousState.cameFrom
-            path = previousState.path
-            completed = previousState.completed
-            pathExists = previousState.pathExists
-            explanation = previousState.explanation
+            currentState = previousState
         }
         
         
     }
     func forward(){
-        if completed{
-            explanation = "Already Complete"
+        if currentState.completed{
+            currentState.explanation = "Already Complete"
             return
         }
-        else if frontier.isEmpty{
-            explanation = "Nothing left to explore"
-            completed = true
+        else if currentState.frontier.isEmpty{
+            currentState.explanation = "Nothing left to explore"
+            currentState.completed = true
             return
         }
         else{
             storeHistory()
-            current = getNextFrontier().neighbour
-
+            currentState.current = getNextFrontier().neighbour
+            
             
             if let end = end{
-                if end.isEqual(to : current){
+                if end.isEqual(to : currentState.current){
                     
                     var backwards: (any Traversable)? = end
                     var reconstructedPath: [any Traversable] = []
                     
                     while let node = backwards {
                         reconstructedPath.append(node)    
-                        backwards = cameFrom[node.id] ?? nil               
-                }
-                    path = reconstructedPath.reversed()
-                    pathExists = true
-                    explanation = "You have found the treasure at \(current)"
-                    completed = true
+                        backwards = currentState.cameFrom[node.id] ?? nil               
+                    }
+                    currentState.path = reconstructedPath.reversed()
+                    currentState.pathExists = true
+                    currentState.explanation = "You have found the treasure at \(end)"
+                    currentState.completed = true
                     return
                 }
             }
             
-            explanation = "Getting Neighbours for \(current)"
-            for n in current.getNeighbours(){
-                if !explored.contains(where: {$0.isEqual(to: n.neighbour)}){
-                    frontier.append(n)
-                    cameFrom[n.neighbour.id] = current
-                    explanation += " adding \(n.neighbour)"
-                    explored.append(n.neighbour)
+            currentState.explanation = "Getting Neighbours for \(currentState.current)"
+            for n in currentState.current.getNeighbours(){
+                if !currentState.explored.contains(where: {$0.isEqual(to: n.neighbour)}){
+                    currentState.frontier.append(n)
+                    currentState.cameFrom[n.neighbour.id] = currentState.current
+                    currentState.explanation += " adding \(n.neighbour)"
+                    currentState.explored.append(n.neighbour)
                 }
             }
         }
@@ -125,27 +100,27 @@ class BaseSearch{
         restoreHistory()
     }
     func getExplanation()->String{
-        self.explanation
+        self.currentState.explanation
     }
     func getFrontier()->[any Traversable]{
         var frontierNodes : [any Traversable] = []
-        for f in frontier{
+        for f in currentState.frontier{
             frontierNodes.append(f.neighbour)
         }
         return frontierNodes
     }
     func getExplored()->[any Traversable]{
-        explored
+        currentState.explored
     }
     func getCurrent()->any Traversable{
-        current
+        currentState.current
     }
     func getPath()->[any Traversable]{
-        path
+        currentState.path
     }
     
     func getCameFrom()->[UUID: (any Traversable)?]{
-        cameFrom
+        currentState.cameFrom
     } 
 }
 
@@ -156,10 +131,10 @@ class BreadthFirstSearch: BaseSearch{
     }
     //Breadth First this is a queue
     override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
-        frontier.removeFirst()
+        currentState.frontier.removeFirst()
     }
-
-
+    
+    
 }
 class DepthFirstSearch: BaseSearch{
     override init(start : any Traversable, end : any Traversable){
@@ -168,7 +143,7 @@ class DepthFirstSearch: BaseSearch{
     }
     //Depth First this is a Stack
     override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
-        frontier.removeLast()
+        currentState.frontier.removeLast()
     }
     override func getFrontier()->[any Traversable]
     {
