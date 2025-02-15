@@ -24,6 +24,9 @@ class Galaxy : ObservableObject{
             addPlanetPaths()
         }
     }
+    @Published var forwardAllowed : Bool = true
+    @Published var backwardAllowed : Bool = false
+    
     var planets : [Planet]
     var startPlanet : Planet?
     var endPlanet : Planet?
@@ -76,6 +79,8 @@ class Galaxy : ObservableObject{
         self.skPathLines.removeAllChildren()
         self.skPlanets.removeAllChildren()
         self.buildRandomGalaxy(planetCount: planetCount)
+        self.forwardAllowed = true
+        self.backwardAllowed = false
         //self.buildTreeGalaxy()
         
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
@@ -102,9 +107,12 @@ class Galaxy : ObservableObject{
     
     // This steps through the search algorithm
     // TODO: Move most of this into a new functions which updates the galaxy based on the algorithn
-    func forward(){
+    func updateUI(){  
         guard let path = self.algorithm else{return}
-        path.nextstep()
+        
+        //to update buttons to allow forwards/backward
+        backwardAllowed = !path.history.isEmpty
+        forwardAllowed = !path.completed
         
         var exploredCounter : Int = 0
         for p in path.getExplored(){
@@ -150,8 +158,16 @@ class Galaxy : ObservableObject{
         //name = path.explanation -- TODO remove requirement for name
         name = "something"
     }
+    func forward(){
+        guard let path = self.algorithm else{return}
+        path.forward() 
+        updateUI()
+    }
+
     func backward(){
-        
+        guard let path = self.algorithm else{return}
+        path.backward() 
+        updateUI()
     }
     
     func getShape()->SKNode{

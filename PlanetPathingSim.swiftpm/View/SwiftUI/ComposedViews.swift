@@ -36,9 +36,11 @@ struct GalaxyButtons : View{
                     .font(.system(size: 24))   
                     .foregroundColor(.white)   
                     .padding()                 
-                    .background(Color.blue)    
+                    .background(galaxy.backwardAllowed ? .green : .red)                    
                     .clipShape(Circle())       
             }
+            .disabled(!galaxy.backwardAllowed)
+            
             Button(action: {
                 galaxy.forward()
             }) {
@@ -46,9 +48,10 @@ struct GalaxyButtons : View{
                     .font(.system(size: 24))   
                     .foregroundColor(.white)   
                     .padding()                 
-                    .background(Color.blue)    
+                    .background(galaxy.forwardAllowed ? .green : .red)                    
                     .clipShape(Circle())       
             }
+            .disabled(!galaxy.forwardAllowed)
             Button(action: {
                 galaxy.reset()
             }) {

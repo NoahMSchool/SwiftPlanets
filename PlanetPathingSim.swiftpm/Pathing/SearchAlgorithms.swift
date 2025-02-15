@@ -3,6 +3,8 @@ import Foundation
 class BaseSearch{
     let start : any Traversable
     let end : (any Traversable)?
+    var algorithm : String
+    
     var current: (any Traversable)
     var frontier : [(neighbour: any Traversable, weight: Double)]
     var explored : [any Traversable]
@@ -11,7 +13,18 @@ class BaseSearch{
     var completed : Bool
     var pathExists : Bool
     var explanation : String
-    var algorithm : String
+
+    var history: [(
+        current: any Traversable, 
+        frontier: [(neighbour: any Traversable, weight: Double)],
+        explored : [any Traversable],
+        cameFrom : [UUID: (any Traversable)?],
+        path : [any Traversable],
+        completed : Bool,
+        pathExists : Bool,
+        explanation : String
+    )]
+
     
     init(start : any Traversable, end : any Traversable){
         self.start = start
@@ -20,6 +33,7 @@ class BaseSearch{
         self.frontier = [(neighbour: start, weight : 0)]
         self.explored = [start]
         self.cameFrom [start.id] = nil
+        self.history = []
         self.completed = false
         self.pathExists = false
         self.explanation = ""
@@ -38,7 +52,32 @@ class BaseSearch{
         // this should not have any logic as it is in base class
         frontier.removeLast()
     }
-    func nextstep(){
+    func storeHistory(){
+        history.append((current: current, 
+                        frontier: frontier, 
+                        explored: explored, 
+                        cameFrom: cameFrom, 
+                        path: path,
+                        completed: completed,
+                        pathExists: pathExists,
+                        explanation: explanation
+                       ))
+    }
+    func restoreHistory(){
+        if let previousState = history.popLast(){
+            current = previousState.current
+            frontier = previousState.frontier
+            explored = previousState.explored
+            cameFrom = previousState.cameFrom
+            path = previousState.path
+            completed = previousState.completed
+            pathExists = previousState.pathExists
+            explanation = previousState.explanation
+        }
+        
+        
+    }
+    func forward(){
         if completed{
             explanation = "Already Complete"
             return
@@ -49,6 +88,7 @@ class BaseSearch{
             return
         }
         else{
+            storeHistory()
             current = getNextFrontier().neighbour
 
             
@@ -80,6 +120,9 @@ class BaseSearch{
                 }
             }
         }
+    }
+    func backward(){
+        restoreHistory()
     }
     func getExplanation()->String{
         self.explanation
