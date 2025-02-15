@@ -21,22 +21,24 @@ func createPulsingAndFadingAction(scaleAmount: CGFloat, duration: TimeInterval) 
     return SKAction.repeatForever(sequence)
 }
 
-func moveNode(to position: CGPoint, duration: TimeInterval) -> SKAction {
+func moveNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction {
     
-    let moveAction = SKAction.move(to: position, duration: 1.0)
-    moveAction.timingMode = .easeInEaseOut // Smooth start and stop
+    let dy = to.y-from.y
+    let dx = to.x-from.x
+    let direction = -atan2(dx, dy)
+    let rotatePlanet = SKAction.rotate(toAngle: direction, duration: 0.25, shortestUnitArc: true)
+    let rotateNorth = SKAction.rotate(toAngle: 0, duration: 0.25)
     
-    let grow = SKAction.scale(to: 1.4, duration: duration)
-    let shrink = SKAction.scale(to: 1, duration: duration)
+    let moveAction = SKAction.move(to: to, duration: 1.0)
+    moveAction.timingMode = .easeInEaseOut
+
+    let shrink = SKAction.scale(to: 0.8, duration: duration)    
+    let grow = SKAction.scale(to: 1, duration: duration)
+
     grow.timingMode = .easeInEaseOut
     shrink.timingMode = .easeInEaseOut
-    let pulseAction = SKAction.sequence([grow, shrink])
-    
-    // Repeat pulsing while moving
-    let repeatPulse = SKAction.repeat(pulseAction, count: 1)
-    
-    // Run both move and pulse actions together
-    let groupAction = SKAction.group([moveAction, repeatPulse])
+    let shrinkGrow = SKAction.sequence([shrink, grow])
+    let groupAction = SKAction.sequence([rotatePlanet, SKAction.group([moveAction, shrinkGrow]), rotateNorth])
     
     return groupAction
 }
