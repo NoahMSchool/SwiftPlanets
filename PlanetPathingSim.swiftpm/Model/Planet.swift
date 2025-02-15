@@ -18,6 +18,7 @@ class Planet : CustomDebugStringConvertible{
     var name : String
     var id : UUID
     var shape : PlanetNode
+    var planetRadius : CGFloat = 25
     var numberLabel : SKLabelNode
     var searchState : SearchState
     {
@@ -48,7 +49,7 @@ class Planet : CustomDebugStringConvertible{
         self.name = name
         self.id = UUID()
         
-        self.shape = PlanetNode(planetName: self.name)
+        self.shape = PlanetNode(planetName: self.name, borderRadius: planetRadius)
         self.shape.position = position
         self.shape.zPosition = 1
 
@@ -81,7 +82,19 @@ class Planet : CustomDebugStringConvertible{
     func getPosition()->CGPoint{
         position
     }
-}
+    func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
+        let horizontalFirst = (start: CGPoint(x: self.position.x-planetRadius, y: self.position.y), 
+                          end: CGPoint(x: self.position.x, y: self.position.y))
+        let horizontalSecond = (start: CGPoint(x: self.position.x, y: self.position.y), 
+                               end: CGPoint(x: self.position.x+planetRadius, y: self.position.y))
+        
+        let verticalFirst = (start: CGPoint(x: self.position.x, y: self.position.y-planetRadius), 
+                          end: CGPoint(x: self.position.x, y: self.position.y))
+        let verticalSecond = (start: CGPoint(x: self.position.x, y: self.position.y), 
+                            end: CGPoint(x: self.position.x, y: self.position.y+planetRadius))
+        var checkLines : [(start: CGPoint, end : CGPoint)] = [horizontalFirst, horizontalSecond, verticalFirst, verticalSecond]
+        return checkLines
+    }}
 
 //to conform to Traversable
 extension Planet : Traversable{

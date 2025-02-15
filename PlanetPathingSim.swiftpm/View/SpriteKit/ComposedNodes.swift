@@ -6,9 +6,9 @@ class PlanetNode : SKNode{
     let planetLabel : TextBubble
     let planetColors : [UIColor] = [.green, .orange, .red, .blue, .magenta, .cyan]
     
-    init(planetName : String) {
+    init(planetName : String, borderRadius : CGFloat) {
         self.planet = SKShapeNode(circleOfRadius: 10)
-        self.border = SKShapeNode(circleOfRadius: 25)
+        self.border = SKShapeNode(circleOfRadius: borderRadius)
         self.planetLabel = TextBubble(textString: planetName)
         
         planetLabel.position = CGPoint(x: 0, y: 40)

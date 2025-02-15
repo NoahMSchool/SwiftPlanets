@@ -165,10 +165,18 @@ class Galaxy : ObservableObject{
         self.skPlanets.addChild(planet.getShape())
     }
     
-    // This creates SKLines for each neighbour
+    func getPlanetCheckLines()->[(start: CGPoint,end:  CGPoint)]{
+        var checkLines : [(start: CGPoint, end: CGPoint)] = []
+        for planet in planets{
+            checkLines+=planet.getCheckLines()
+        }
+        return checkLines
+    }
+    
     func addPlanetPaths(){
         self.skLines.removeAllChildren()
         self.finalPaths = []
+        let planetCheckLines = getPlanetCheckLines()
         
         var potentialPaths : [(start : Planet, end : Planet, distance : Double)] = []
         
@@ -185,10 +193,21 @@ class Galaxy : ObservableObject{
         }
         for path in sortedPaths{
             var hasIntersection = false
-            for checkPath in finalPaths{
-                if checkIntersections(p1: path.start.getPosition(), q1: path.end.getPosition(), p2: checkPath.start.getPosition(), q2: checkPath.end.getPosition()){
+            //checks if goes through planets
+            for checkLines in planetCheckLines{
+                if checkIntersections(p1: path.start.getPosition(), q1: path.end.getPosition(), p2: checkLines.start, q2: checkLines.end){
                     hasIntersection = true
+                    break
                 }   
+            }
+                // dont check for intersection if intersection is already found
+            if !hasIntersection{
+                for checkPath in finalPaths{
+                    if checkIntersections(p1: path.start.getPosition(), q1: path.end.getPosition(), p2: checkPath.start.getPosition(), q2: checkPath.end.getPosition()){
+                        hasIntersection = true
+                        break
+                    }   
+                }
             }
             if !hasIntersection{
                 finalPaths.append(path)
