@@ -42,3 +42,10 @@ func moveNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction 
     
     return groupAction
 }
+
+func ringPulseAction(scaleBy : CGFloat) -> SKAction{
+    let grow = SKAction.scale(by: scaleBy, duration: 1)
+    let fade = SKAction.fadeOut(withDuration: 1.5)
+    let groupAction = SKAction.group([grow, fade])
+    return groupAction
+}

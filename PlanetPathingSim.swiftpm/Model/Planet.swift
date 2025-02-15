@@ -42,7 +42,7 @@ class Planet : CustomDebugStringConvertible{
             }
         }
     }
-
+    
     init(galaxy : Galaxy, position : CGPoint, name : String){
         self.galaxy = galaxy
         self.position = position
@@ -82,6 +82,16 @@ class Planet : CustomDebugStringConvertible{
     func getPosition()->CGPoint{
         position
     }
+    
+    func pulseRing(){
+        let ring = SKShapeNode(circleOfRadius: self.planetRadius)
+        ring.strokeColor = UIColor.blue
+        ring.lineWidth = 2
+        ring.fillColor = .clear
+        self.shape.addChild(ring)
+        ring.run(ringPulseAction(scaleBy: galaxy.maxDistance/self.planetRadius))
+    }
+    
     func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
         let horizontalFirst = (start: CGPoint(x: self.position.x-planetRadius, y: self.position.y), 
                                end: CGPoint(x: self.position.x, y: self.position.y))
