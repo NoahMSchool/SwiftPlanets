@@ -7,20 +7,6 @@ func createPulsingAction(scaleAmount: CGFloat, duration: TimeInterval) -> SKActi
     return SKAction.repeatForever(sequence)
 }
 
-func createPulsingAndFadingAction(scaleAmount: CGFloat, duration: TimeInterval) -> SKAction {
-    let scaleUp = SKAction.scale(to: scaleAmount, duration: duration)
-    let fadeOut = SKAction.fadeAlpha(to: 0.5, duration: duration)
-    
-    let scaleDown = SKAction.scale(to: 1.0, duration: duration)
-    let fadeIn = SKAction.fadeAlpha(to: 1.0, duration: duration)
-    
-    let groupUp = SKAction.group([scaleUp, fadeOut])
-    let groupDown = SKAction.group([scaleDown, fadeIn])
-    
-    let sequence = SKAction.sequence([groupUp, groupDown])
-    return SKAction.repeatForever(sequence)
-}
-
 func moveNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction {
     
     let dy = to.y-from.y

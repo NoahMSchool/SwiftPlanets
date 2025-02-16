@@ -25,8 +25,8 @@ class Planet : CustomDebugStringConvertible{
         didSet{
             switch searchState {
             case .unknown: shape.changeBorder(color: .gray)
-            case .frontier: shape.changeBorder(color: .blue)
-            case .explored: shape.changeBorder(color: .brown)
+            case .frontier: shape.changeBorder(color: .cyan)
+            case .explored: shape.changeBorder(color: .purple)
             case .current: shape.changeBorder(color: .white)
                 
             }
@@ -89,7 +89,7 @@ class Planet : CustomDebugStringConvertible{
     
     func pulseRing(){
         let ring = SKShapeNode(circleOfRadius: self.planetRadius)
-        ring.strokeColor = UIColor.blue
+        ring.strokeColor = UIColor.cyan
         ring.lineWidth = 2
         ring.fillColor = .clear
         self.shape.addChild(ring)

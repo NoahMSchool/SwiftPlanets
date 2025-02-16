@@ -13,6 +13,7 @@ class GameScene : SKScene{
     var galaxy : Galaxy?
     
     override func didMove(to view: SKView) {
+        clearConsole()
         backgroundColor = .black
         guard let galaxy = galaxy else {return}
         addChild(galaxy.getShape())
@@ -76,4 +77,8 @@ class GameScene : SKScene{
         }
     }
 
+}
+
+func clearConsole() {
+    for _ in 0...50 { print("\n") } // Push old output off the screen
 }
