@@ -5,9 +5,11 @@ struct AlgorithmState{
     var explored : [any Traversable]
     var cameFrom : [UUID: (any Traversable)?] = [:]
     var path : [any Traversable] = []
+    var backtrackPathFromPrevious : [any Traversable] = []
     var completed : Bool
     var pathExists : Bool
     var explanation : String
+
 }
 class BaseSearch{
     let start : any Traversable
@@ -28,6 +30,7 @@ class BaseSearch{
             explored: [], 
             cameFrom: [start.id : nil], 
             path: [], 
+            backtrackPathFromPrevious: [],
             completed: false, 
             pathExists: false, 
             explanation: "")
@@ -52,6 +55,24 @@ class BaseSearch{
         
         
     }
+    func calculatePathFromPreviousToCurrent(previousNode: any Traversable){
+        //backtrack both to start, find common element in backtrack list, backtrack from previous to common element, forward. track from common element to next
+        self.currentState.backtrackPathFromPrevious = []
+        let backtrackPrevious = getPathToStart(end: previousNode)
+        let backtrackNext = Array(getPathToStart(end: currentState.current).reversed())
+        if let firstPreviousIndex = backtrackPrevious.firstIndex(where: { obj in backtrackNext.contains { $0.isEqual(to: obj) } }) {
+            let commonNode = backtrackPrevious[firstPreviousIndex]
+            if let firstNextIndex = backtrackNext.firstIndex(where:  { $0.isEqual(to: commonNode) }) {
+                let previous = backtrackPrevious[...firstPreviousIndex]
+                let next = backtrackNext[firstNextIndex...].dropFirst()
+                self.currentState.backtrackPathFromPrevious = Array(previous+next)
+            }
+        }
+    }
+    func getPathFromPreviousToCurrent()->[any Traversable]{
+        self.currentState.backtrackPathFromPrevious
+    }
+    
     func forward(){
         if currentState.completed{
             currentState.explanation = "Already Complete"
@@ -63,9 +84,12 @@ class BaseSearch{
             return
         }
         else{
+            let previousNode = currentState.current
             storeHistory()
             currentState.current = getNextFrontier().neighbour
             currentState.explored.append(currentState.current)
+            calculatePathFromPreviousToCurrent(previousNode: previousNode)
+
             
             if let end = end{
                 if end.isEqual(to : currentState.current){
