@@ -70,13 +70,8 @@ class BaseSearch{
             if let end = end{
                 if end.isEqual(to : currentState.current){
                     
-                    var backwards: (any Traversable)? = end
-                    var reconstructedPath: [any Traversable] = []
+                    let reconstructedPath = getPathToStart(end: end)
                     
-                    while let node = backwards {
-                        reconstructedPath.append(node)    
-                        backwards = currentState.cameFrom[node.id] ?? nil               
-                    }
                     currentState.path = reconstructedPath.reversed()
                     currentState.pathExists = true
                     currentState.explanation = "You have found the treasure at \(end)"
@@ -95,6 +90,17 @@ class BaseSearch{
             }
         }
     }
+    func getPathToStart(end: any Traversable)->[any Traversable]{
+        var backwards: (any Traversable)? = end
+        var reconstructedPath: [any Traversable] = []
+        
+        while let node = backwards {
+            reconstructedPath.append(node)    
+            backwards = currentState.cameFrom[node.id] ?? nil               
+        }
+        return reconstructedPath
+    }
+    
     func backward(){
         restoreHistory()
     }
