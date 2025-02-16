@@ -157,7 +157,7 @@ class Galaxy : ObservableObject{
         guard let algorithm = self.algorithm else{return}
         for x in algorithm.getCameFrom(){
             if let from = x.value as? Planet, let to = keyToPlanet(key: x.key) {
-                let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: .lightGray)
+                let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: .cyan)
                 self.skPathLines.addChild(arrow)
             }
         }        
@@ -165,10 +165,10 @@ class Galaxy : ObservableObject{
     func drawFinalPathLines(){
         guard let algorithm = self.algorithm else{return}
         if algorithm.pathExists(){
-            var complete_path = algorithm.getPath()
+            let complete_path = algorithm.getPath()
             var from = complete_path[0]
             for to in complete_path{
-                if let f = from as? Planet, var t = to as? Planet{   
+                if let f = from as? Planet, let t = to as? Planet{   
                     let arrow = drawArrow(from :f.position, to: t.position, lineWidth: 5, arrowSize: 10, color: .yellow)
                     self.skPathLines.addChild(arrow)
                     from = to
@@ -188,13 +188,13 @@ class Galaxy : ObservableObject{
         
     }
     func updateUI(){  
-        guard let path = self.algorithm else{return}
+        guard let algorithm = self.algorithm else{return}
         
         //to update buttons to allow forwards/backward
-        backwardAllowed = !path.history.isEmpty
-        forwardAllowed = !path.completed()
+        backwardAllowed = !algorithm.history.isEmpty
+        forwardAllowed = !algorithm.completed()
         
-        let p = path.getCurrent()
+        let p = algorithm.getCurrent()
         if let x = p as? Planet{
             //ship.setPosition(position: x.getPosition())
             //            ship.moveToPosition(position: x.getPosition())
