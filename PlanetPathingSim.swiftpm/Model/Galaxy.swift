@@ -156,6 +156,7 @@ class Galaxy : ObservableObject{
         }    
     }
     func updatePathData(){
+        clearPlanetNumbers()
         updateExplored()
         updateFrontier()
         
@@ -206,7 +207,11 @@ class Galaxy : ObservableObject{
     func randomPlanet()->Planet?{
         planets.randomElement()
     }
-    
+    func clearPlanetNumbers(){
+        for planet in planets{
+            planet.clearNumber()
+        }
+    }
     func addPlanet(planet : Planet){
         self.planets.append(planet)
         self.skPlanets.addChild(planet.getShape())

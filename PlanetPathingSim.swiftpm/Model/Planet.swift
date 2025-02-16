@@ -75,6 +75,10 @@ class Planet : CustomDebugStringConvertible{
     func setNumber(num : Int){
         self.numberLabel.text = String(num)
     }
+    func clearNumber(){
+        self.numberLabel.text = ""
+    }
+    
     func getShape()->SKNode{
         shape
     }
