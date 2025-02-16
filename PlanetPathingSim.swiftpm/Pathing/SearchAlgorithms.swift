@@ -25,7 +25,7 @@ class BaseSearch{
         self.currentState = AlgorithmState(
             current: start,
             frontier: [(neighbour: start, weight : 0)], 
-            explored: [start], 
+            explored: [], 
             cameFrom: [start.id : nil], 
             path: [], 
             completed: false, 
@@ -65,7 +65,7 @@ class BaseSearch{
         else{
             storeHistory()
             currentState.current = getNextFrontier().neighbour
-            
+            currentState.explored.append(currentState.current)
             
             if let end = end{
                 if end.isEqual(to : currentState.current){
@@ -87,11 +87,10 @@ class BaseSearch{
             
             currentState.explanation = "Getting Neighbours for \(currentState.current)"
             for n in currentState.current.getNeighbours(){
-                if !currentState.explored.contains(where: {$0.isEqual(to: n.neighbour)}){
+                if !currentState.explored.contains(where: {$0.isEqual(to: n.neighbour)}) && !currentState.frontier.contains(where: {$0.neighbour.isEqual(to: n.neighbour)}){
                     currentState.frontier.append(n)
                     currentState.cameFrom[n.neighbour.id] = currentState.current
                     currentState.explanation += " adding \(n.neighbour)"
-                    currentState.explored.append(n.neighbour)
                 }
             }
         }
