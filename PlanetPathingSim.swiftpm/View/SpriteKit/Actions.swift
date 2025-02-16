@@ -13,7 +13,6 @@ func moveNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction 
     let dx = to.x-from.x
     let direction = -atan2(dx, dy)
     let rotatePlanet = SKAction.rotate(toAngle: direction, duration: 0.25, shortestUnitArc: true)
-    let rotateNorth = SKAction.rotate(toAngle: 0, duration: 0.25)
     
     let moveAction = SKAction.move(to: to, duration: 1.0)
     moveAction.timingMode = .easeInEaseOut
@@ -24,9 +23,22 @@ func moveNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction 
     grow.timingMode = .easeInEaseOut
     shrink.timingMode = .easeInEaseOut
     let shrinkGrow = SKAction.sequence([shrink, grow])
-    let groupAction = SKAction.sequence([rotatePlanet, SKAction.group([moveAction, shrinkGrow]), rotateNorth])
+    let groupAction = SKAction.sequence([rotatePlanet, SKAction.group([moveAction, shrinkGrow])])
     
     return groupAction
+}
+func moveMultipleNodes(planetOrder: [Planet], duration: TimeInterval) -> SKAction{
+    let rotateNorth = SKAction.rotate(toAngle: 0, duration: 0.25)
+    var groupMove : [SKAction] = []
+    if planetOrder.count>1{
+        let singleDuration = duration/TimeInterval(planetOrder.count) 
+        for i in 0...planetOrder.count-2{
+            groupMove.append(moveNode(from: planetOrder[i].position, to: planetOrder[i+1].position, duration: singleDuration))
+        }
+    }
+    groupMove.append(rotateNorth)
+    let finalMove = SKAction.sequence(groupMove)
+    return finalMove
 }
 
 func ringPulseAction(scaleBy : CGFloat) -> SKAction{

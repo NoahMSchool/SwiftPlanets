@@ -197,8 +197,10 @@ class Galaxy : ObservableObject{
         let p = algorithm.getCurrent()
         if let x = p as? Planet{
             //ship.setPosition(position: x.getPosition())
+            var moveAction = moveMultipleNodes(planetOrder: algorithm.getPathFromPreviousToCurrent() as? [Planet] ?? [], duration: 0.5)
             //            ship.moveToPosition(position: x.getPosition())
-            ship.shape.run(moveNode(from: ship.shape.position, to: x.getPosition(), duration: 0.5)){
+            //ship.shape.run(moveNode(from: ship.shape.position, to: x.getPosition(), duration: 0.5)){
+            ship.shape.run(moveAction){
                 [self] in 
                 x.setSearchState(searchState: .current)
                 x.pulseRing()    
