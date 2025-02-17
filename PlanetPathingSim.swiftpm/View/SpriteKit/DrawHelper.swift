@@ -60,7 +60,7 @@ func drawlines(lines : [(start : CGPoint, end : CGPoint, weight : Double?)], lin
         let skLine = drawLine(from : line.start, to : line.end, lineWidth: lineWidth, color: color)
         linesNodes.addChild(skLine)
         if let weight = line.weight{
-            let weightLabel = TextBubble(textString: String(weight.rounded()))
+            let weightLabel = TextBubble(textString: String(Int(weight)))
             weightLabel.position = CGPoint(x: (line.start.x + line.end.x)/2, y: (line.start.y + line.end.y)/2)
             skLine.addChild(weightLabel)
         }

@@ -269,7 +269,7 @@ class Galaxy : ObservableObject{
             for end in getPlanets(){
                 let distance = CGPoint.findDistance(c1: start.position, c2: end.position)
                 if distance > 0 && distance < self.getMaxDistance(){
-                    potentialPaths.append((start: start, end: end, distance: distance))
+                    potentialPaths.append((start: start, end: end, distance: distance/25+Double(Int.random(in: 0...25))))
                 }
             }
         }
@@ -319,7 +319,7 @@ class Galaxy : ObservableObject{
         var strings : [String] = []
         for p in self.algorithm!.getWeightedFrontier(){
             if let planet = p.neighbour as? Planet{
-                strings.append(planet.name + " " + String(round(p.weight)))
+                strings.append(planet.name + " " + String(Int(p.weight)))
             }
         }
         return strings
