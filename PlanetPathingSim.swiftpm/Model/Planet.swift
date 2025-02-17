@@ -36,9 +36,9 @@ class Planet : CustomDebugStringConvertible{
     {
         didSet{
             switch waypoint {
-            case .start: shape.changeBorder(color: .green)
-            case .end: shape.changeBorder(color: .yellow)
-            default : shape.changeBorder(color: .darkGray)
+            case .start: shape.setPlanetNameLabel(color: .green)
+            case .end: shape.setPlanetNameLabel(color: .yellow)
+            default : shape.setPlanetNameLabel(color: .darkGray)
             }
         }
     }
@@ -75,8 +75,9 @@ class Planet : CustomDebugStringConvertible{
     func setNumber(num : Int){
         self.numberLabel.text = String(num)
     }
-    func clearNumber(){
+    func clearState(){
         self.numberLabel.text = ""
+        self.searchState = .unknown
     }
     
     func getShape()->SKNode{

@@ -179,7 +179,7 @@ class Galaxy : ObservableObject{
         }    
     }
     func updatePathData(){
-        clearPlanetNumbers()
+        clearPlanetState()
         updateExplored()
         updateFrontier()
         
