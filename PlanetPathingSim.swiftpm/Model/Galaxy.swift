@@ -222,6 +222,7 @@ class Galaxy : ObservableObject{
     func forward(){
         guard let path = self.algorithm else{return}
         path.forward() 
+        updateUI(hasAnimation: true)
     }
     
     func backward(){
@@ -239,9 +240,9 @@ class Galaxy : ObservableObject{
     func randomPlanet()->Planet?{
         planets.randomElement()
     }
-    func clearPlanetNumbers(){
+    func clearPlanetState(){
         for planet in planets{
-            planet.clearNumber()
+            planet.clearState()
         }
     }
     func addPlanet(planet : Planet){
