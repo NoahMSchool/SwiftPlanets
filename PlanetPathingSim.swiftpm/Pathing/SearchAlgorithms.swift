@@ -4,6 +4,7 @@ struct AlgorithmState{
     var frontier : [(neighbour: any Traversable, weight: Double)]
     var explored : [any Traversable]
     var cameFrom : [UUID: (any Traversable)?] = [:]
+    var weightSoFar : [UUID: Double] = [:]
     var path : [any Traversable] = []
     var backtrackPathFromPrevious : [any Traversable] = []
     var completed : Bool
@@ -29,6 +30,7 @@ class BaseSearch{
             frontier: [(neighbour: start, weight : 0)], 
             explored: [], 
             cameFrom: [start.id : nil], 
+            weightSoFar: [start.id:0],
             path: [], 
             backtrackPathFromPrevious: [],
             completed: false, 
@@ -72,6 +74,10 @@ class BaseSearch{
     func getPathFromPreviousToCurrent()->[any Traversable]{
         self.currentState.backtrackPathFromPrevious
     }
+    func shouldCheckFrontierBeforeAdding()->Bool{
+        true
+    }
+    
     
     func forward(){
         if currentState.completed{
@@ -102,14 +108,18 @@ class BaseSearch{
                     currentState.completed = true
                     return
                 }
-            }
-            
+                }
+            let weightToCurrent = currentState.weightSoFar[currentState.current.id] ?? 0            
             currentState.explanation = "Getting Neighbours for \(currentState.current)"
             for n in currentState.current.getNeighbours(){
-                if !currentState.explored.contains(where: {$0.isEqual(to: n.neighbour)}) && !currentState.frontier.contains(where: {$0.neighbour.isEqual(to: n.neighbour)}){
-                    currentState.frontier.append(n)
-                    currentState.cameFrom[n.neighbour.id] = currentState.current
-                    currentState.explanation += " adding \(n.neighbour)"
+                if !currentState.explored.contains(where: {$0.isEqual(to: n.neighbour)}){
+                    if !currentState.frontier.contains(where: {$0.neighbour.isEqual(to: n.neighbour)}) || !shouldCheckFrontierBeforeAdding(){
+                        let newWeight = weightToCurrent + n.weight
+                        currentState.frontier.append((neighbour: n.neighbour, weight: newWeight))
+                        currentState.cameFrom[n.neighbour.id] = currentState.current
+                        currentState.weightSoFar[n.neighbour.id] = newWeight
+                        currentState.explanation += " adding \(n.neighbour)"
+                    }
                 }
             }
         }
