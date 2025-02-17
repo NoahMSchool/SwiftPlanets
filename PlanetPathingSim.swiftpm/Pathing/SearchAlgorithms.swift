@@ -153,7 +153,7 @@ class BaseSearch{
     } 
 }
 
-class BreadthFirstSearch: BaseSearch{
+class BreadthFirst: BaseSearch{
     override init(start : any Traversable, end : any Traversable){
         super.init(start: start, end: end)
         self.algorithm = "Breadth First Search"
@@ -165,7 +165,7 @@ class BreadthFirstSearch: BaseSearch{
     
     
 }
-class DepthFirstSearch: BaseSearch{
+class DepthFirst: BaseSearch{
     override init(start : any Traversable, end : any Traversable){
         super.init(start: start, end: end)
         self.algorithm = "Depth First Search"
@@ -179,3 +179,16 @@ class DepthFirstSearch: BaseSearch{
         super.getFrontier().reversed()
     }
 }
+class Dijkstra: BaseSearch{
+    override init(start : any Traversable, end : any Traversable){
+        super.init(start: start, end: end)
+        self.algorithm = "Dijkstra"
+    }
+    //Depth First this is a Stack
+    override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
+        currentState.frontier.removeLast()
+    }
+    override func getFrontier()->[any Traversable]
+    {
+        super.getFrontier().reversed()
+    }}

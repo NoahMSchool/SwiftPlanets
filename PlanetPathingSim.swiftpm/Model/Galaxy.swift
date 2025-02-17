@@ -109,9 +109,10 @@ class Galaxy : ObservableObject{
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
             switch selectedAlgorithm{
-            case "BFS" : self.algorithm = BreadthFirstSearch(start: startPlanet, end: endPlanet)
-            case "DFS" : self.algorithm = DepthFirstSearch(start: startPlanet, end: endPlanet)
-            default: self.algorithm = BreadthFirstSearch(start: startPlanet, end: endPlanet)
+            case "BFS" : self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
+            case "DFS" : self.algorithm = DepthFirst(start: startPlanet, end: endPlanet)
+            case "Dijkstra" : self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
+            default: self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
             }
             ship.setPosition(position: startPlanet.getPosition())
         }

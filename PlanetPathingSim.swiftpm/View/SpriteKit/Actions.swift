@@ -14,7 +14,7 @@ func moveNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction 
     let direction = -atan2(dx, dy)
     let rotatePlanet = SKAction.rotate(toAngle: direction, duration: 0.25, shortestUnitArc: true)
     
-    let moveAction = SKAction.move(to: to, duration: 1.0)
+    let moveAction = SKAction.move(to: to, duration: duration)
     moveAction.timingMode = .easeInEaseOut
 
     let shrink = SKAction.scale(to: 0.8, duration: duration)    
@@ -31,7 +31,8 @@ func moveMultipleNodes(planetOrder: [Planet], duration: TimeInterval) -> SKActio
     let rotateNorth = SKAction.rotate(toAngle: 0, duration: 0.25)
     var groupMove : [SKAction] = []
     if planetOrder.count>1{
-        let singleDuration = duration/TimeInterval(planetOrder.count) 
+//        let singleDuration = duration/TimeInterval(planetOrder.count)
+        let singleDuration = 0.5
         for i in 0...planetOrder.count-2{
             groupMove.append(moveNode(from: planetOrder[i].position, to: planetOrder[i+1].position, duration: singleDuration))
         }
