@@ -309,9 +309,9 @@ class Galaxy : ObservableObject{
     
     func getFrontierStrings()->[String]{
         var strings : [String] = []
-        for p in self.algorithm!.getFrontier(){
-            if let planet = p as? Planet{
-                strings.append(planet.name)
+        for p in self.algorithm!.getWeightedFrontier(){
+            if let planet = p.neighbour as? Planet{
+                strings.append(planet.name + " " + String(round(p.weight)))
             }
         }
         return strings

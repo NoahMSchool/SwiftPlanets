@@ -138,6 +138,9 @@ class BaseSearch{
         }
         return frontierNodes
     }
+    func getWeightedFrontier()->[(neighbour: any Traversable, weight: Double)]{
+        currentState.frontier
+    }
     func getExplored()->[any Traversable]{
         currentState.explored
     }
