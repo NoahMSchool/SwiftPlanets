@@ -188,7 +188,7 @@ class Galaxy : ObservableObject{
         drawFinalPathLines()
         
     }
-    func updateUI(){  
+    func updateUI(hasAnimation : Bool){  
         guard let algorithm = self.algorithm else{return}
         
         //to update buttons to allow forwards/backward
@@ -198,13 +198,21 @@ class Galaxy : ObservableObject{
         let p = algorithm.getCurrent()
         if let x = p as? Planet{
             //ship.setPosition(position: x.getPosition())
-            var moveAction = moveMultipleNodes(planetOrder: algorithm.getPathFromPreviousToCurrent() as? [Planet] ?? [], duration: 0.5)
+            let moveAction : SKAction
+            if hasAnimation{
+                 moveAction = moveMultipleNodes(planetOrder: algorithm.getPathFromPreviousToCurrent() as? [Planet] ?? [], duration: 0.25)
+            }
+            else{
+                moveAction = teleportNode(to: x.position)
+            }
             //            ship.moveToPosition(position: x.getPosition())
             //ship.shape.run(moveNode(from: ship.shape.position, to: x.getPosition(), duration: 0.5)){
             ship.shape.run(moveAction){
                 [self] in 
                 x.setSearchState(searchState: .current)
-                x.pulseRing()    
+                if hasAnimation{
+                    x.pulseRing()    
+                }
                 updatePathData()            }
         }
         
@@ -214,13 +222,12 @@ class Galaxy : ObservableObject{
     func forward(){
         guard let path = self.algorithm else{return}
         path.forward() 
-        updateUI()
     }
     
     func backward(){
         guard let path = self.algorithm else{return}
         path.backward() 
-        updateUI()
+        updateUI(hasAnimation: false)
     }
     
     func getShape()->SKNode{
