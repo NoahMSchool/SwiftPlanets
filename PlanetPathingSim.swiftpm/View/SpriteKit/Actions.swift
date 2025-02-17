@@ -12,7 +12,7 @@ func moveNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction 
     let dy = to.y-from.y
     let dx = to.x-from.x
     let direction = -atan2(dx, dy)
-    let rotatePlanet = SKAction.rotate(toAngle: direction, duration: 0.25, shortestUnitArc: true)
+    let rotatePlanet = SKAction.rotate(toAngle: direction, duration: duration, shortestUnitArc: true)
     
     let moveAction = SKAction.move(to: to, duration: duration)
     moveAction.timingMode = .easeInEaseOut
@@ -27,17 +27,23 @@ func moveNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction 
     
     return groupAction
 }
+
+func teleportNode(to : CGPoint) -> SKAction {
+    let moveAction = SKAction.move(to: to, duration: 0)
+    return moveAction
+}
+
+
 func moveMultipleNodes(planetOrder: [Planet], duration: TimeInterval) -> SKAction{
-    let rotateNorth = SKAction.rotate(toAngle: 0, duration: 0.25)
+    let rotateNorth = SKAction.rotate(toAngle: 0, duration: duration)
     var groupMove : [SKAction] = []
     if planetOrder.count>1{
 //        let singleDuration = duration/TimeInterval(planetOrder.count)
-        let singleDuration = 0.5
+        let singleDuration = duration
         for i in 0...planetOrder.count-2{
             groupMove.append(moveNode(from: planetOrder[i].position, to: planetOrder[i+1].position, duration: singleDuration))
         }
     }
-    groupMove.append(rotateNorth)
     let finalMove = SKAction.sequence(groupMove)
     return finalMove
 }
