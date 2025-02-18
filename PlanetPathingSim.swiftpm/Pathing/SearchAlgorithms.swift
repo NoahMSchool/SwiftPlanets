@@ -45,7 +45,7 @@ class BaseSearch{
     }
     func getNextFrontier()->(neighbour: any Traversable, weight: Double){
         // this should not have any logic as it is in base class
-        currentState.frontier.removeLast()
+        currentState.frontier.removeFirst()
     }
     func storeHistory(){
         history.append(currentState)

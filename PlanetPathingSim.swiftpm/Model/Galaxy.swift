@@ -137,7 +137,6 @@ class Galaxy : ObservableObject{
         for p in algorithm.getExplored(){
             if let x = p as? Planet{
                 exploredCounter += 1
-                x.setNumber(num: exploredCounter)
                 let weights = algorithm.getWeightSoFar()
                 if let weight = weights[x.id]{
                     x.setNumber(num: Int(weight))
