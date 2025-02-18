@@ -138,6 +138,10 @@ class Galaxy : ObservableObject{
             if let x = p as? Planet{
                 exploredCounter += 1
                 x.setNumber(num: exploredCounter)
+                let weights = algorithm.getWeightSoFar()
+                if let weight = weights[x.id]{
+                    x.setNumber(num: Int(weight))
+                }
                 x.setSearchState(searchState: .explored)
             }
         }
@@ -148,7 +152,11 @@ class Galaxy : ObservableObject{
         for p in algorithm.getFrontier(){
             if let x = p as? Planet{
                 counter += 1
-                x.setNumber(num: counter)
+                let weights = algorithm.getWeightSoFar()
+                if let weight = weights[x.id]{
+                    x.setNumber(num: Int(weight))
+                }
+                //x.setNumber(num: counter)
                 x.setSearchState(searchState: .frontier)
             }
         }
@@ -200,7 +208,7 @@ class Galaxy : ObservableObject{
             //ship.setPosition(position: x.getPosition())
             let moveAction : SKAction
             if hasAnimation{
-                 moveAction = moveMultipleNodes(planetOrder: algorithm.getPathFromPreviousToCurrent() as? [Planet] ?? [], duration: 0.25)
+                moveAction = moveMultipleNodes(planetOrder: algorithm.getPathFromPreviousToCurrent() as? [Planet] ?? [], duration: 0.25)
             }
             else{
                 moveAction = teleportNode(to: x.position)
@@ -209,11 +217,12 @@ class Galaxy : ObservableObject{
             //ship.shape.run(moveNode(from: ship.shape.position, to: x.getPosition(), duration: 0.5)){
             ship.shape.run(moveAction){
                 [self] in 
-                x.setSearchState(searchState: .current)
                 if hasAnimation{
                     x.pulseRing()    
                 }
                 updatePathData()            }
+            x.setSearchState(searchState: .current)
+            
         }
         
         //name = path.explanation -- TODO remove requirement for name
@@ -269,7 +278,8 @@ class Galaxy : ObservableObject{
             for end in getPlanets(){
                 let distance = CGPoint.findDistance(c1: start.position, c2: end.position)
                 if distance > 0 && distance < self.getMaxDistance(){
-                    potentialPaths.append((start: start, end: end, distance: distance/25+Double(Int.random(in: 0...25))))
+                    var weight = distance/25
+                    potentialPaths.append((start: start, end: end, distance: weight))
                 }
             }
         }

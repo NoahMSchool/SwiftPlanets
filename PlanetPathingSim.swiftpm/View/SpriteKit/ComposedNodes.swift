@@ -1,11 +1,13 @@
 import SpriteKit
 
 class PlanetNode : SKNode{
-    let planet : SKShapeNode
     let border : SKShapeNode
     let planetLabel : TextBubble
     let planetColors : [UIColor] = [.green, .orange, .red, .blue, .magenta, .cyan]
     
+    let planetColors: [UIColor] =  [
+        UIColor(red: 0.5, green: 0.75, blue: 0.9, alpha: 1.0),  // Vibrant Sky Blue
+        UIColor(red: 0.4, green: 0.6, blue: 0.8, alpha: 1.0),   // Deep Cerulean
     init(planetName : String, borderRadius : CGFloat) {
         self.planet = SKShapeNode(circleOfRadius: 10)
         self.border = SKShapeNode(circleOfRadius: borderRadius)

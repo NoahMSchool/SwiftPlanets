@@ -78,6 +78,21 @@ class BaseSearch{
         true
     }
     
+    func prioritizeFrontier(){
+        
+    }
+    
+    func shouldAddToFrontier(n : (neighbour : any Traversable, weight : Double), newWeight : Double)->Bool{
+        if let _ = currentState.weightSoFar[n.neighbour.id]{
+            print("FALSE : already in weights SO far")
+            return false
+        }
+        else{
+            print("TRUE : not in wieghts so far")
+            return true
+            
+        }
+    }
     
     func forward(){
         if currentState.completed{
@@ -112,15 +127,23 @@ class BaseSearch{
             let weightToCurrent = currentState.weightSoFar[currentState.current.id] ?? 0            
             currentState.explanation = "Getting Neighbours for \(currentState.current)"
             for n in currentState.current.getNeighbours(){
-                if !currentState.explored.contains(where: {$0.isEqual(to: n.neighbour)}){
-                    if !currentState.frontier.contains(where: {$0.neighbour.isEqual(to: n.neighbour)}) || !shouldCheckFrontierBeforeAdding(){
-                        let newWeight = weightToCurrent + n.weight
+                let newWeight = weightToCurrent + n.weight
+                if shouldAddToFrontier(n : n, newWeight : newWeight){
+                    //if !currentState.frontier.contains(where: {$0.neighbour.isEqual(to: n.neighbour)}) || !shouldCheckFrontierBeforeAdding(){
                         currentState.frontier.append((neighbour: n.neighbour, weight: newWeight))
                         currentState.cameFrom[n.neighbour.id] = currentState.current
                         currentState.weightSoFar[n.neighbour.id] = newWeight
-                        currentState.explanation += " adding \(n.neighbour)"
-                    }
+                        currentState.explanation += " adding \(n.neighbour) with new weght \(Int(newWeight))"
+                    
+                    //}
                 }
+            }
+            //added to frontier so can resort
+            prioritizeFrontier()
+            //TODO currently bug if frontier is empty it lets you do one more step
+            if currentState.frontier.isEmpty{
+                currentState.explanation = "Nothing left to explore"
+                currentState.completed = true
             }
         }
     }
@@ -163,7 +186,10 @@ class BaseSearch{
     
     func getCameFrom()->[UUID: (any Traversable)?]{
         currentState.cameFrom
-    } 
+    }
+        func getWeightSoFar()->[UUID: Double]{
+            currentState.weightSoFar
+        } 
 }
 
 class BreadthFirst: BaseSearch{
@@ -198,10 +224,27 @@ class Dijkstra: BaseSearch{
         self.algorithm = "Dijkstra"
     }
     //Depth First this is a Stack
-    override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
-        currentState.frontier.removeLast()
+    override func prioritizeFrontier() {
+        currentState.frontier = currentState.frontier.sorted{
+            return $0.weight<$1.weight
+        }
+        print(currentState.frontier)
     }
-    override func getFrontier()->[any Traversable]
-    {
-        super.getFrontier().reversed()
-    }}
+    override func shouldAddToFrontier(n : (neighbour : any Traversable, weight : Double), newWeight : Double)->Bool{
+        print(n.neighbour)
+        if let existing = currentState.weightSoFar[n.neighbour.id]{
+            if existing > newWeight{
+                print("TRUE : existing weight less then ene waighst", existing, newWeight)
+                return true
+            }
+            else{
+                print("False aready exists with lower weight", existing, newWeight)
+                return false
+            }
+        }
+        else{
+            print("Tru = not in frontier")
+            return true
+        }
+    }
+}
