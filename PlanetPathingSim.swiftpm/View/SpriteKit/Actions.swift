@@ -35,7 +35,6 @@ func teleportNode(to : CGPoint) -> SKAction {
 
 
 func moveMultipleNodes(planetOrder: [Planet], duration: TimeInterval) -> SKAction{
-    let rotateNorth = SKAction.rotate(toAngle: 0, duration: duration)
     var groupMove : [SKAction] = []
     if planetOrder.count>1{
 //        let singleDuration = duration/TimeInterval(planetOrder.count)

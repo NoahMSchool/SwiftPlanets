@@ -13,14 +13,12 @@ class GameScene : SKScene{
     var galaxy : Galaxy?
     
     override func didMove(to view: SKView) {
-        clearConsole()
         backgroundColor = .black
         guard let galaxy = galaxy else {return}
         addChild(galaxy.getShape())
         addChild(cam)
         camera = cam
         cam.position = CGPoint(x: 500, y: 500)
-        
         
         let minX = 0.0, maxX = size.width
         let minY = 0.0, maxY = size.height
@@ -37,7 +35,11 @@ class GameScene : SKScene{
         view.addGestureRecognizer(panGesture)
         
         }
-    
+    override func update(_ currentTime: TimeInterval) {
+        if let galaxy = galaxy{
+            //cam.position = galaxy.ship.shape.position
+        }
+    }
     @objc func handlePan(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         let sceneTranslation = CGPoint(x: -translation.x, y: translation.y)
@@ -79,6 +81,3 @@ class GameScene : SKScene{
 
 }
 
-func clearConsole() {
-    for _ in 0...50 { print("\n") } // Push old output off the screen
-}

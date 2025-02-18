@@ -80,9 +80,8 @@ class Galaxy : ObservableObject{
     }
     func setInitialSKNodes(){
         self.setInitialCameFromLinesSKNodes()
-        self.setInitialPlanetSKNodes()        
+        self.setInitialPlanetSKNodes() 
         self.setInitialPlanetPathsSKNodes()
-
     }
     
     func reset(){        
@@ -211,10 +210,10 @@ class Galaxy : ObservableObject{
             else{
                 moveAction = teleportNode(to: x.position)
             }
-            //            ship.moveToPosition(position: x.getPosition())
-            //ship.shape.run(moveNode(from: ship.shape.position, to: x.getPosition(), duration: 0.5)){
-            ship.shape.run(moveAction){
-                [self] in 
+            //if there is no action make empty action so the closure still runs
+            let actionToRun = moveAction ?? SKAction.run {}
+
+            ship.shape.run(actionToRun){[self] in 
                 if hasAnimation{
                     x.pulseRing(outerDistance: self.maxDistance)    
                 }

@@ -59,7 +59,6 @@ class PlanetNode : SKNode{
         let planetBody = SKShapeNode(circleOfRadius: size)
         planetBody.fillColor = baseColor
         planetBody.strokeColor = accentColor
-        print("glow")
         planetBody.glowWidth = 1.0
         planetNode.addChild(planetBody)
               
