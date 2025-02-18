@@ -26,6 +26,18 @@ class Planet : CustomDebugStringConvertible{
             updateSKPlanetNode()            
         }
     }
+    
+    static let searchStateColors : [SearchState:UIColor] = [
+        .unknown : .darkGray,
+        .frontier : .cyan,
+        .explored : .brown,
+        .current : .white
+    ]
+    static let waypointColors : [Waypoint : UIColor] = [
+        .start : .green,
+        .middle : .darkGray,
+        .end : .yellow
+    ]
     var waypoint : Waypoint
     {
         didSet{
@@ -55,18 +67,8 @@ class Planet : CustomDebugStringConvertible{
     }
     func updateSKPlanetNode(){
         print(name,searchState,waypoint)
-        switch searchState {
-        case .unknown: shape.changeBorder(color: .darkGray)
-        case .frontier: shape.changeBorder(color: .cyan)
-        case .explored: shape.changeBorder(color: .brown)
-        case .current: shape.changeBorder(color: .white)            
-        }
-        switch waypoint {
-        case .start: shape.setPlanetNameLabel(color: .green)
-        case .end: shape.setPlanetNameLabel(color: .yellow)
-        default : shape.setPlanetNameLabel(color: .darkGray)
-        }
-        
+        shape.changeBorder(color: Planet.searchStateColors[searchState]!)
+        shape.setPlanetNameLabel(color: Planet.waypointColors[waypoint]!)
     }
     var debugDescription: String {
         return "Planet : \(name)"

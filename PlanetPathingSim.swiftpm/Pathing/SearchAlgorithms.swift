@@ -218,6 +218,9 @@ class DepthFirst: BaseSearch{
         super.getFrontier().reversed()
     }
 }
+
+
+
 class Dijkstra: BaseSearch{
     override init(start : any Traversable, end : any Traversable){
         super.init(start: start, end: end)
@@ -235,6 +238,7 @@ class Dijkstra: BaseSearch{
         if let existing = currentState.weightSoFar[n.neighbour.id]{
             if existing > newWeight{
                 print("TRUE : existing weight less then ene waighst", existing, newWeight)
+                //TODO replace instead of inserting duplicate
                 return true
             }
             else{
