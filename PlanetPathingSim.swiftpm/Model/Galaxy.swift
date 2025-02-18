@@ -278,6 +278,10 @@ class Galaxy : ObservableObject{
                 let distance = CGPoint.findDistance(c1: start.position, c2: end.position)
                 if distance > 0 && distance < self.getMaxDistance(){
                     var weight = distance/25
+                    //                    if Int.random(in: 0...1) == 1{
+                    //                        weight = 1
+                    //                    }
+                    //+Double(Int.random(in: -3...3))
                     potentialPaths.append((start: start, end: end, distance: weight))
                 }
             }
@@ -390,15 +394,6 @@ class Galaxy : ObservableObject{
         self.endPlanet = randomPlanet()
         addPlanetPaths()
     }
-    
-    func buildTreeGalaxy(){
-        let root = Planet(galaxy: self, position: CGPoint(x: 500, y: 100), name: "Root")
-        self.addPlanet(planet: root)
-        self.startPlanet = root
-        let left = Planet(galaxy: self, position: CGPoint(x: 700, y: -300), name: "left")
-        let right = Planet(galaxy: self, position: CGPoint(x: 700, y: 300), name: "right")
-        self.addPlanet(planet: left)
-        self.addPlanet(planet: right)
-        
-    }
 }
+
+
