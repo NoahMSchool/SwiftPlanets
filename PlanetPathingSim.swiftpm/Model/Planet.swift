@@ -13,38 +13,27 @@ class Planet : CustomDebugStringConvertible{
         case end
     }
     
-    var galaxy : Galaxy
     var position : CGPoint
     var name : String
     var id : UUID
     var shape : PlanetNode
     var planetRadius : CGFloat = 20
     var numberLabel : SKLabelNode
+    var neighbours : [(neighbour: Planet, weight: Double)] = []
     var searchState : SearchState
     {
         didSet{
-            switch searchState {
-            case .unknown: shape.changeBorder(color: .gray)
-            case .frontier: shape.changeBorder(color: .cyan)
-            case .explored: shape.changeBorder(color: .purple)
-            case .current: shape.changeBorder(color: .white)
-                
-            }
+            updateSKPlanetNode()            
         }
     }
     var waypoint : Waypoint
     {
         didSet{
-            switch waypoint {
-            case .start: shape.setPlanetNameLabel(color: .green)
-            case .end: shape.setPlanetNameLabel(color: .yellow)
-            default : shape.setPlanetNameLabel(color: .darkGray)
-            }
+            updateSKPlanetNode()
         }
     }
     
-    init(galaxy : Galaxy, position : CGPoint, name : String){
-        self.galaxy = galaxy
+    init(position : CGPoint, name : String){
         self.position = position
         self.name = name
         self.id = UUID()
@@ -62,6 +51,22 @@ class Planet : CustomDebugStringConvertible{
         
         self.searchState = .unknown
         self.waypoint = .middle
+        self.updateSKPlanetNode()
+    }
+    func updateSKPlanetNode(){
+        print(name,searchState,waypoint)
+        switch searchState {
+        case .unknown: shape.changeBorder(color: .darkGray)
+        case .frontier: shape.changeBorder(color: .cyan)
+        case .explored: shape.changeBorder(color: .brown)
+        case .current: shape.changeBorder(color: .white)            
+        }
+        switch waypoint {
+        case .start: shape.setPlanetNameLabel(color: .green)
+        case .end: shape.setPlanetNameLabel(color: .yellow)
+        default : shape.setPlanetNameLabel(color: .darkGray)
+        }
+        
     }
     var debugDescription: String {
         return "Planet : \(name)"
@@ -87,14 +92,17 @@ class Planet : CustomDebugStringConvertible{
     func getPosition()->CGPoint{
         position
     }
+    func addNeighbour(path: (neighbour: Planet, weight: Double)){
+        self.neighbours.append(path)
+    }
     
-    func pulseRing(){
+    func pulseRing(outerDistance : CGFloat){
         let ring = SKShapeNode(circleOfRadius: self.planetRadius)
         ring.strokeColor = UIColor.cyan
         ring.lineWidth = 2
         ring.fillColor = .clear
         self.shape.addChild(ring)
-        ring.run(ringPulseAction(scaleBy: galaxy.maxDistance/self.planetRadius))
+        ring.run(ringPulseAction(scaleBy: outerDistance/self.planetRadius))
     }
     
     func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
@@ -124,7 +132,7 @@ extension Planet : Traversable{
     }
     
     func getNeighbours() -> [(neighbour: any Traversable, weight: Double)] {
-        return galaxy.getPlanetNeighbours(planet: self)
+        self.neighbours
     }    
 }
 

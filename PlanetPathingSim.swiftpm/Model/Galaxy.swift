@@ -1,27 +1,22 @@
 import SpriteKit
 
 class Galaxy : ObservableObject{
-    
     @Published var name : String = "StarWars"
     
-    /* This controls the options in the dropdown in the user interface */
+    //This controls the options in the dropdown in the user interface 
     @Published var searchAlgoritm : [String] = ["BFS", "DFS", "A*", "Dijkstra"]
     
-    /* These are variables that are bindings in the user interface that can be selected */
-    // Picker
-    @Published var selectedAlgorithm : String = "BFS" 
-    
-    // Sliders
+    //These are variables that are bindings in the user interface that can be selected 
+    @Published var selectedAlgorithm : String = "Dijkstra"     
     @Published var planetCount : Int{
         didSet{
-            // When we change the planet count we reset the whole map
             reset()
         }
     }
     @Published var maxDistance : Double{
         didSet{
             // When we change the distance we want to keep the planets but recalcute the path
-            addPlanetPaths()
+            self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)
         }
     }
     @Published var forwardAllowed : Bool = true
@@ -34,34 +29,6 @@ class Galaxy : ObservableObject{
     @Published var algorithm : BaseSearch?
     var ship : Ship
     @Published var useWeights : Bool = true
-    @Published var planetNames = [
-        "Auralis", "Astrion", "Arkena", "Azorith",
-        "Borealis", "Brathos", "Bythoria", "Benzar",
-        "Calystria", "Celthos", "Crython", "Cygnara",
-        "Drakontha", "Dythor", "Damaris", "Draxion",
-        "Erythion", "Eldara", "Exion", "Echiron",
-        "Faryth", "Fendara", "Fyrax", "Folvus",
-        "Glythos", "Ghoran", "Garnith", "Gelyra",
-        "Heliara", "Hyphos", "Havoth", "Hextara",
-        "Icarion", "Iskora", "Ixarith", "Illthos",
-        "Jovareth", "Jenthos", "Jyxor", "Jundara",
-        "Kythera", "Krythos", "Kaldris", "Korvath",
-        "Lunethra", "Lazeth", "Lyvion", "Lythara",
-        "Maelvion", "Mordaris", "Mythos", "Mazora",
-        "Nyxara", "Nythion", "Nolvus", "Nexara",
-        "Oberion", "Odythos", "Onthara", "Orivon",
-        "Pyrrhion", "Phalora", "Pexis", "Prolyth",
-        "Quorath", "Qytheris", "Qyldor", "Quivara",
-        "Rhyzora", "Raldith", "Ryphos", "Remthar",
-        "Solaryn", "Sylvaris", "Sythron", "Selkora",
-        "Tyranthos", "Tylvion", "Threxos", "Tandara",
-        "Umbryth", "Ulvora", "Uxaris", "Unthara",
-        "Vyridia", "Vaelith", "Vyssara", "Vorthex",
-        "Wytheris", "Waldora", "Wrythion", "Wexara",
-        "Xelthar", "Xyphos", "Xandros", "Xovira",
-        "Yzendra", "Ythorin", "Ylthos", "Yndara",
-        "Zephyros", "Zyphara", "Zenthos", "Zolaris"
-    ]
     
     // These are the container SKNodes
     // TODO: Should rename them to make it more obvious they are SKNodes e.g. shapeSKNode
@@ -69,23 +36,23 @@ class Galaxy : ObservableObject{
     var skShape : SKNode
     var skPlanets : SKNode
     var skLines : SKNode
-    var skPathLines : SKNode
+    var skCameFromLines : SKNode
     // is skShape updating when skPlanets Change
-    var finalPaths : [(start : Planet, end : Planet, distance : Double)] = []
+    var planetPaths : [(start : Planet, end : Planet, distance : Double)] = []
     
     init(){
         self.planets = []
+        self.planetCount = 20
+        self.maxDistance = 250
         self.skShape = SKNode()
         self.skPlanets = SKNode()
         self.skLines = SKNode()
-        self.skPathLines = SKNode()
-        self.planetCount = 20
-        self.maxDistance = 250
-        self.ship = Ship() 
+        self.skCameFromLines = SKNode()
+               self.ship = Ship() 
         
         skShape.addChild(skPlanets)
         skShape.addChild(skLines)
-        skShape.addChild(skPathLines)
+        skShape.addChild(skCameFromLines)
         skShape.addChild(ship.getShape())
         ship.shape.zPosition = 10
         
@@ -93,19 +60,49 @@ class Galaxy : ObservableObject{
         
     }
     
-    func reset(){
-        self.planets = []
-        self.startPlanet = nil
-        self.endPlanet = nil
-        self.skLines.removeAllChildren()
-        self.skPathLines.removeAllChildren()
+    func setInitialPlanetSKNodes(){
         self.skPlanets.removeAllChildren()
-        self.buildRandomGalaxy(planetCount: planetCount)
-        self.forwardAllowed = true
-        self.backwardAllowed = false
-        //self.buildTreeGalaxy()
+        for planet in planets {
+            self.skPlanets.addChild(planet.getShape())
+        }
+    }
+    func setInitialPlanetPathsSKNodes(){
+        self.skLines.removeAllChildren()
+        var lines : [(start : CGPoint, end : CGPoint, weight : Double?)] = []
+        for path in self.planetPaths {
+            lines.append((path.start.getPosition(), path.end.getPosition(), weight : path.distance))    
+        }
+        self.skLines.addChild(drawlines(lines: lines, lineWidth: 5, color: .darkGray))    
+    }
+    func setInitialCameFromLinesSKNodes(){
+        //we dont start with any cameFrom SKNodes
+        self.skCameFromLines.removeAllChildren()
+    }
+    func setInitialSKNodes(){
+        self.setInitialCameFromLinesSKNodes()
+        self.setInitialPlanetSKNodes()        
+        self.setInitialPlanetPathsSKNodes()
+
+    }
+    
+    func reset(){        
+
+        //building galaxy and adding planet paths and setting neighbours of planets
+        self.planets = GalaxyBuilder.createRandomPlanets(planetCount: planetCount)
+        self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)        
+        self.setPlanetNeighbours()
         
+        //adding planets and paths nodes so they can be displayed
+        self.setInitialSKNodes()
+        //getting random start and end planet
+        self.startPlanet = randomPlanet()
+        self.endPlanet = randomPlanet()
+        
+        //check if we have a start and end position and if so start the search algorithm and place ship on start planet
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
+            self.forwardAllowed = true
+            self.backwardAllowed = false
+            
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
             switch selectedAlgorithm{
@@ -114,6 +111,8 @@ class Galaxy : ObservableObject{
             case "Dijkstra" : self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
             default: self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
             }
+            //frontier can be changed when intialising the algorithm
+            updateFrontier()
             ship.setPosition(position: startPlanet.getPosition())
         }
     }
@@ -166,7 +165,7 @@ class Galaxy : ObservableObject{
         for x in algorithm.getCameFrom(){
             if let from = x.value as? Planet, let to = keyToPlanet(key: x.key) {
                 let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: .cyan)
-                self.skPathLines.addChild(arrow)
+                self.skCameFromLines.addChild(arrow)
             }
         }        
     }
@@ -178,7 +177,7 @@ class Galaxy : ObservableObject{
             for to in complete_path{
                 if let f = from as? Planet, let t = to as? Planet{   
                     let arrow = drawArrow(from :f.position, to: t.position, lineWidth: 5, arrowSize: 10, color: .yellow)
-                    self.skPathLines.addChild(arrow)
+                    self.skCameFromLines.addChild(arrow)
                     from = to
                 }
                 
@@ -190,7 +189,7 @@ class Galaxy : ObservableObject{
         updateExplored()
         updateFrontier()
         
-        self.skPathLines.removeAllChildren()
+        self.skCameFromLines.removeAllChildren()
         drawCameFromLines()
         drawFinalPathLines()
         
@@ -217,9 +216,10 @@ class Galaxy : ObservableObject{
             ship.shape.run(moveAction){
                 [self] in 
                 if hasAnimation{
-                    x.pulseRing()    
+                    x.pulseRing(outerDistance: self.maxDistance)    
                 }
-                updatePathData()            }
+                updatePathData()
+            }
             x.setSearchState(searchState: .current)
             
         }
@@ -242,9 +242,7 @@ class Galaxy : ObservableObject{
     func getShape()->SKNode{
         skShape
     }
-    func getPlanets()-> [Planet]{
-        self.planets
-    }
+    
     func randomPlanet()->Planet?{
         planets.randomElement()
     }
@@ -253,79 +251,20 @@ class Galaxy : ObservableObject{
             planet.clearState()
         }
     }
-    func addPlanet(planet : Planet){
-        self.planets.append(planet)
-        self.skPlanets.addChild(planet.getShape())
-    }
     
-    func getPlanetCheckLines()->[(start: CGPoint,end:  CGPoint)]{
-        var checkLines : [(start: CGPoint, end: CGPoint)] = []
-        for planet in planets{
-            checkLines+=planet.getCheckLines()
-        }
-        return checkLines
-    }
-    
-    func addPlanetPaths(){
-        self.skLines.removeAllChildren()
-        self.finalPaths = []
-        let planetCheckLines = getPlanetCheckLines()
-        
-        var potentialPaths : [(start : Planet, end : Planet, distance : Double)] = []
-        
-        for start in getPlanets(){
-            for end in getPlanets(){
-                let distance = CGPoint.findDistance(c1: start.position, c2: end.position)
-                if distance > 0 && distance < self.getMaxDistance(){
-                    var weight = distance/25
-                    //                    if Int.random(in: 0...1) == 1{
-                    //                        weight = 1
-                    //                    }
-                    //+Double(Int.random(in: -3...3))
-                    potentialPaths.append((start: start, end: end, distance: weight))
-                }
-            }
-        }
-        let sortedPaths = potentialPaths.sorted {
-            return $0.distance<$1.distance
-        }
-        for path in sortedPaths{
-            var hasIntersection = false
-            //checks if goes through planets
-            for checkLines in planetCheckLines{
-                if checkIntersections(p1: path.start.getPosition(), q1: path.end.getPosition(), p2: checkLines.start, q2: checkLines.end){
-                    hasIntersection = true
-                    break
-                }   
-            }
-            // dont check for intersection if intersection is already found
-            if !hasIntersection{
-                for checkPath in finalPaths{
-                    if checkIntersections(p1: path.start.getPosition(), q1: path.end.getPosition(), p2: checkPath.start.getPosition(), q2: checkPath.end.getPosition()){
-                        hasIntersection = true
-                        break
-                    }   
-                }
-            }
-            if !hasIntersection{
-                finalPaths.append(path)
-            }
-        }
-        self.skLines.addChild(drawPaths(paths: finalPaths, lineWidth: 5, color: .darkGray))
-    }
-    
-    // These functions return values that are shown on the interfaces
-    func getMaxDistance()->Double{
-        return maxDistance
-    }
     func getPlanetNeighbours(planet : Planet)->[(neighbour: Planet, weight: Double)]{
         var neighbours : [(neighbour: Planet, weight: Double)] = []
-        for p in self.finalPaths{
+        for p in self.planetPaths{
             if p.start.isEqual(to: planet){
                 neighbours.append((neighbour: p.end, weight: p.distance))
             }
         }
         return neighbours
+    }
+    func setPlanetNeighbours(){
+        for p in self.planetPaths{
+            p.start.addNeighbour(path: (neighbour: p.end, weight: p.distance))
+        }
     }
     
     func getFrontierStrings()->[String]{
@@ -363,37 +302,4 @@ class Galaxy : ObservableObject{
         
         
     }
-    
-    // These build the different kinds of galaxies
-    func buildRandomGalaxy(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000){
-        var options : [CGPoint] = []
-        let jitter = Int(spacing/10)
-        let offset : Double = 50
-        for y in stride(from: 0, to: mapSize, by: spacing){
-            for x in stride(from: 0, to: mapSize, by: spacing){
-                options.append(CGPoint(x: x+offset, y: y+offset))
-            }
-        }
-        options = options.shuffled()
-        planetNames = planetNames.shuffled()
-        
-        for i in 0...min(planetCount, options.count)-1{
-            var name = "No Name \(i)"
-            if !planetNames.isEmpty{
-                name = planetNames.removeFirst()
-            }
-            var offsetPos = options[i]
-            offsetPos.x += CGFloat(Int.random(in: -jitter...jitter))
-            offsetPos.y += CGFloat(Int.random(in: -jitter...jitter))
-            
-            let planet = Planet(galaxy: self, position: offsetPos, name: name)
-            self.addPlanet(planet : planet)
-            
-        }
-        self.startPlanet = randomPlanet()
-        self.endPlanet = randomPlanet()
-        addPlanetPaths()
-    }
 }
-
-

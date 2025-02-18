@@ -67,11 +67,4 @@ func drawlines(lines : [(start : CGPoint, end : CGPoint, weight : Double?)], lin
     }
     return linesNodes
 }
-//converts paths between planets to lines for drawing
-func drawPaths(paths : [(start : Planet, end : Planet, distance : Double)], lineWidth: CGFloat, color: UIColor)-> SKNode{
-    var lines : [(start : CGPoint, end : CGPoint, weight : Double?)] = []
-    for path in paths {
-        lines.append((path.start.getPosition(), path.end.getPosition(), weight : path.distance))    
-    }
-    return drawlines(lines: lines, lineWidth: lineWidth, color: color)
-}
+
