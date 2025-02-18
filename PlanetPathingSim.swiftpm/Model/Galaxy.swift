@@ -17,6 +17,8 @@ class Galaxy : ObservableObject{
         didSet{
             // When we change the distance we want to keep the planets but recalcute the path
             self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)
+            self.setPlanetNeighbours()
+            self.setInitialPlanetPathsSKNodes()
         }
     }
     @Published var forwardAllowed : Bool = true
