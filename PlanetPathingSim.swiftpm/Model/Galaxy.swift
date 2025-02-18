@@ -62,30 +62,6 @@ class Galaxy : ObservableObject{
         
     }
     
-    func setInitialPlanetSKNodes(){
-        self.skPlanets.removeAllChildren()
-        for planet in planets {
-            self.skPlanets.addChild(planet.getShape())
-        }
-    }
-    func setInitialPlanetPathsSKNodes(){
-        self.skLines.removeAllChildren()
-        var lines : [(start : CGPoint, end : CGPoint, weight : Double?)] = []
-        for path in self.planetPaths {
-            lines.append((path.start.getPosition(), path.end.getPosition(), weight : path.distance))    
-        }
-        self.skLines.addChild(drawlines(lines: lines, lineWidth: 5, color: .darkGray))    
-    }
-    func setInitialCameFromLinesSKNodes(){
-        //we dont start with any cameFrom SKNodes
-        self.skCameFromLines.removeAllChildren()
-    }
-    func setInitialSKNodes(){
-        self.setInitialCameFromLinesSKNodes()
-        self.setInitialPlanetSKNodes() 
-        self.setInitialPlanetPathsSKNodes()
-    }
-    
     func reset(){        
 
         //building galaxy and adding planet paths and setting neighbours of planets
@@ -160,39 +136,17 @@ class Galaxy : ObservableObject{
             }
         }
         
-    }
-    func drawCameFromLines(){
-        guard let algorithm = self.algorithm else{return}
-        for x in algorithm.getCameFrom(){
-            if let from = x.value as? Planet, let to = keyToPlanet(key: x.key) {
-                let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: .cyan)
-                self.skCameFromLines.addChild(arrow)
-            }
-        }        
-    }
-    func drawFinalPathLines(){
-        guard let algorithm = self.algorithm else{return}
-        if algorithm.pathExists(){
-            let complete_path = algorithm.getPath()
-            var from = complete_path[0]
-            for to in complete_path{
-                if let f = from as? Planet, let t = to as? Planet{   
-                    let arrow = drawArrow(from :f.position, to: t.position, lineWidth: 5, arrowSize: 10, color: .yellow)
-                    self.skCameFromLines.addChild(arrow)
-                    from = to
-                }
-                
-            }
-        }    
-    }
+    }      
     func updatePathData(){
+        //resets the labels and the search state, reupdates search state based on explored and frontier
         clearPlanetState()
         updateExplored()
         updateFrontier()
         
-        self.skCameFromLines.removeAllChildren()
+        //remove camefrom lines and redraw them
+        setInitialCameFromLinesSKNodes()
         drawCameFromLines()
-        drawFinalPathLines()
+        drawCompletePathLines()
         
     }
     func updateUI(hasAnimation : Bool){  
@@ -300,7 +254,57 @@ class Galaxy : ObservableObject{
             return "No Algorithm"
         }
         return path.algorithm
-        
-        
     }
+}
+extension Galaxy{
+    func setInitialPlanetSKNodes(){
+        self.skPlanets.removeAllChildren()
+        for planet in planets {
+            self.skPlanets.addChild(planet.getShape())
+        }
+    }
+    func setInitialPlanetPathsSKNodes(){
+        self.skLines.removeAllChildren()
+        var lines : [(start : CGPoint, end : CGPoint, weight : Double?)] = []
+        for path in self.planetPaths {
+            lines.append((path.start.getPosition(), path.end.getPosition(), weight : path.distance))    
+        }
+        self.skLines.addChild(drawlines(lines: lines, lineWidth: 5, color: .darkGray))    
+    }
+    func setInitialCameFromLinesSKNodes(){
+        //we dont start with any cameFrom SKNodes
+        self.skCameFromLines.removeAllChildren()
+    }
+    func setInitialSKNodes(){
+        self.setInitialCameFromLinesSKNodes()
+        self.setInitialPlanetSKNodes() 
+        self.setInitialPlanetPathsSKNodes()
+    }
+    
+    func drawCameFromLines(){
+        guard let algorithm = self.algorithm else{return}
+        for x in algorithm.getCameFrom(){
+            if let from = x.value as? Planet, let to = keyToPlanet(key: x.key) {
+                let color = Planet.searchStateColors[to.searchState]!
+                let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: color)
+                self.skCameFromLines.addChild(arrow)
+            }
+        }        
+    }
+    func drawCompletePathLines(){
+        guard let algorithm = self.algorithm else{return}
+        if algorithm.pathExists(){
+            let complete_path = algorithm.getPath()
+            var from = complete_path[0]
+            for to in complete_path{
+                if let f = from as? Planet, let t = to as? Planet{   
+                    let arrow = drawArrow(from :f.position, to: t.position, lineWidth: 5, arrowSize: 10, color: .yellow)
+                    self.skCameFromLines.addChild(arrow)
+                    from = to
+                }
+                
+            }
+        }    
+    }
+
 }
