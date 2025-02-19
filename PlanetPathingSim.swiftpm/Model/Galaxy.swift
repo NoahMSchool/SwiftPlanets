@@ -29,7 +29,7 @@ class Galaxy : ObservableObject{
     var endPlanet : Planet?
     
     @Published var algorithm : BaseSearch?
-    var ship : Ship
+    var ship : ShipNode
     @Published var useWeights : Bool = true
     
     // These are the container SKNodes
@@ -49,7 +49,7 @@ class Galaxy : ObservableObject{
         self.skPlanets = SKNode()
         self.skLines = SKNode()
         self.skCameFromLines = SKNode()
-               self.ship = Ship()
+        self.ship = ShipNode()
         self.skStarryBackground = StarryBackgroundNode(size:1000, starCount: 1000)
         self.skStarryBackground.position = CGPoint(x: 0, y: 0)
         skShape.addChild(skPlanets)

@@ -1,9 +1,6 @@
 import SpriteKit
 
-
-
-
-class TextBubble : SKNode{
+class TextBubbleNode : SKNode{
     var labelText : SKLabelNode
     var border : SKShapeNode
     let minWidth : CGFloat = 5
@@ -22,8 +19,8 @@ class TextBubble : SKNode{
         
         let textSize = labelText.frame.size
         
-        var borderHeight = max(minHeight, min(textSize.height + padding, maxHeight))
-        var borderWidth = max(minWidth, min(textSize.width + padding, maxWidth))
+        let borderHeight = max(minHeight, min(textSize.height + padding, maxHeight))
+        let borderWidth = max(minWidth, min(textSize.width + padding, maxWidth))
         
         self.border = SKShapeNode(rect : CGRect(x: -borderWidth / 2, y: -borderHeight / 2, width: borderWidth, height: borderHeight), cornerRadius: 10)
         
@@ -43,5 +40,3 @@ class TextBubble : SKNode{
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-

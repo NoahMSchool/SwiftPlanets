@@ -1,6 +1,6 @@
 import SpriteKit
 
-class Ship{
+class ShipNode{
     var shape : SKSpriteNode
     init(){
         self.shape = SKSpriteNode(imageNamed: "Ship6")

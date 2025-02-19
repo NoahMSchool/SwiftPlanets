@@ -3,8 +3,8 @@ import SpriteKit
 class PlanetNode : SKNode{
     var planet : SKNode
     let border : SKShapeNode
-    let planetNameLabel : TextBubble
-    let planetUILabel : TextBubble
+    let planetNameLabel : TextBubbleNode
+    let planetUILabel : TextBubbleNode
     let planetColors: [UIColor] =  [
         UIColor(red: 0.5, green: 0.75, blue: 0.9, alpha: 1.0),
         UIColor(red: 0.4, green: 0.6, blue: 0.8, alpha: 1.0),
@@ -23,8 +23,8 @@ class PlanetNode : SKNode{
     init(planetName : String, borderRadius : CGFloat) {
         //self.planet = SKShapeNode(circleOfRadius: CGFloat(Int.random(in: planetSizeMin...planetSizeMax)))
         self.border = SKShapeNode(circleOfRadius: borderRadius)
-        self.planetNameLabel = TextBubble(textString: planetName)
-        self.planetUILabel = TextBubble(textString: "UILabel")
+        self.planetNameLabel = TextBubbleNode(textString: planetName)
+        self.planetUILabel = TextBubbleNode(textString: "UILabel")
         self.planet = SKNode()
         planetNameLabel.position = CGPoint(x: 0, y: 35)
         planetUILabel.position = CGPoint(x: 0, y: -35)
@@ -64,5 +64,5 @@ class PlanetNode : SKNode{
         
         
         return planetNode
-    }
+    }    
 }
