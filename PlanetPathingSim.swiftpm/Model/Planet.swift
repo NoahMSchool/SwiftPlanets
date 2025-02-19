@@ -27,13 +27,13 @@ class Planet : CustomDebugStringConvertible{
         }
     }
     
-    static let searchStateColors : [SearchState:UIColor] = [
+    static let SearchStateColors : [SearchState:UIColor] = [
         .unknown : .darkGray,
         .frontier : .cyan,
         .explored : .brown,
         .current : .white
     ]
-    static let waypointColors : [Waypoint : UIColor] = [
+    static let WaypointColors : [Waypoint : UIColor] = [
         .start : .green,
         .middle : .darkGray,
         .end : .yellow
@@ -67,11 +67,11 @@ class Planet : CustomDebugStringConvertible{
     }
     func updateSKPlanetNode(){
         print(name,searchState,waypoint)
-        shape.changeBorder(color: Planet.searchStateColors[searchState]!)
-        shape.setPlanetNameLabel(color: Planet.waypointColors[waypoint]!)
+        shape.changeBorder(color: Planet.SearchStateColors[searchState]!)
+        shape.setPlanetNameLabel(color: Planet.WaypointColors[waypoint]!)
     }
     var debugDescription: String {
-        return "Planet : \(name)"
+        return name
     }
     func setSearchState(searchState : SearchState){
         self.searchState = searchState
@@ -117,7 +117,7 @@ class Planet : CustomDebugStringConvertible{
                              end: CGPoint(x: self.position.x, y: self.position.y))
         let verticalSecond = (start: CGPoint(x: self.position.x, y: self.position.y), 
                               end: CGPoint(x: self.position.x, y: self.position.y+planetRadius))
-        var checkLines : [(start: CGPoint, end : CGPoint)] = [horizontalFirst, horizontalSecond, verticalFirst, verticalSecond]
+        let checkLines : [(start: CGPoint, end : CGPoint)] = [horizontalFirst, horizontalSecond, verticalFirst, verticalSecond]
         return checkLines
     }
 }
