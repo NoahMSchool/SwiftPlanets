@@ -19,12 +19,11 @@ class Planet : CustomDebugStringConvertible{
     var shape : PlanetNode
     var planetRadius : CGFloat = 20
     var neighbours : [(neighbour: Planet, weight: Double)] = []
-    var searchState : SearchState
-    {
-        didSet{
-            updateSKPlanetNode()            
-        }
-    }
+    
+    var costSoFar : Int? { didSet{updateSKPlanetNode() }}
+    var orderInFrontier : Int? { didSet{updateSKPlanetNode() }}
+    var orderInExplored : Int? { didSet{updateSKPlanetNode() }}
+    var searchState : SearchState { didSet{updateSKPlanetNode() }}
     
     static let SearchStateColors : [SearchState:UIColor] = [
         .unknown : .darkGray,
@@ -48,7 +47,6 @@ class Planet : CustomDebugStringConvertible{
         self.position = position
         self.name = name
         self.id = UUID()
-        
         self.shape = PlanetNode(position : position, planetName: self.name, borderRadius: planetRadius)
         
         
@@ -57,9 +55,19 @@ class Planet : CustomDebugStringConvertible{
         self.updateSKPlanetNode()
     }
     func updateSKPlanetNode(){
-        print(name,searchState,waypoint)
         shape.changeBorder(color: Planet.SearchStateColors[searchState]!)
-        shape.setPlanetNameLabel(color: Planet.WaypointColors[waypoint]!)
+        shape.setPlanetNameLabelColor(color: Planet.WaypointColors[waypoint]!)
+        var labelString = ""
+        if let costSoFar = costSoFar{
+            labelString += "Cost So Far : \(String(costSoFar))"
+        }
+        if let orderInExplored = orderInExplored{
+            labelString += "Order In Explored : \(String(orderInExplored))"
+        }
+        if let orderInFrontier = orderInFrontier{
+            labelString += "Order In Frontier : \(String(orderInFrontier))"
+        }
+        shape.setPlanetUILabel(label: labelString)
     }
     var debugDescription: String {
         return name
@@ -73,6 +81,9 @@ class Planet : CustomDebugStringConvertible{
 
     func clearState(){
         self.searchState = .unknown
+        self.orderInExplored = nil
+        self.orderInFrontier = nil
+        self.costSoFar = nil
     }
     
     func getShape()->SKNode{

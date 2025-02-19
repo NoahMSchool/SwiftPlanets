@@ -26,7 +26,7 @@ class PlanetNode : SKNode{
         self.planetNameLabel = TextBubbleNode(textString: planetName)
         self.planetNameLabel.position = CGPoint(x: 0, y: 35)
         
-        self.planetUILabel = TextBubbleNode(textString: "UILabel")
+        self.planetUILabel = TextBubbleNode(textString: "")
         self.planetUILabel.position = CGPoint(x: 0, y: -35)
 
         self.border = SKShapeNode(circleOfRadius: borderRadius)        
@@ -53,8 +53,11 @@ class PlanetNode : SKNode{
     func changeBorder(color : UIColor){
         border.strokeColor = color
     }
-    func setPlanetNameLabel(color : UIColor){
+    func setPlanetNameLabelColor(color : UIColor){
         self.planetNameLabel.border.strokeColor = color
+    }
+    func setPlanetUILabel(label : String){
+        self.planetUILabel.labelText.text = label
     }
     static func generatePlanet(baseColor: UIColor, accentColor: UIColor, size: CGFloat) -> SKNode {
         let planetNode = SKNode()

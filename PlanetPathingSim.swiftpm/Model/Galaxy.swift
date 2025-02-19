@@ -1,13 +1,17 @@
 import SpriteKit
 
 class Galaxy : ObservableObject{
-    @Published var name : String = "StarWars"
+    var name : String = "StarWars"
     
     //This controls the options in the dropdown in the user interface 
-    @Published var searchAlgoritm : [String] = ["BFS", "DFS", "A*", "Dijkstra"]
+    var searchAlgoritm : [String] = ["BFS", "DFS", "A*", "Dijkstra"]
     
     //These are variables that are bindings in the user interface that can be selected 
-    @Published var selectedAlgorithm : String = "Dijkstra"     
+    @Published var selectedAlgorithm : String = "Dijkstra"{
+        didSet{
+            resetAlgorithm()
+        }
+    }
     @Published var planetCount : Int{
         didSet{
             reset()
@@ -63,20 +67,7 @@ class Galaxy : ObservableObject{
         reset()
         
     }
-    
-    func reset(){        
-
-        //building galaxy and adding planet paths and setting neighbours of planets
-        self.planets = GalaxyBuilder.createRandomPlanets(planetCount: planetCount)
-        self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)        
-        self.setPlanetNeighbours()
-        
-        //adding planets and paths nodes so they can be displayed
-        self.setInitialSKNodes()
-        //getting random start and end planet
-        self.startPlanet = randomPlanet()
-        self.endPlanet = randomPlanet()
-        
+    func resetAlgorithm(){
         //check if we have a start and end position and if so start the search algorithm and place ship on start planet
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
             self.forwardAllowed = true
@@ -93,7 +84,23 @@ class Galaxy : ObservableObject{
             //frontier can be changed when intialising the algorithm
             updateFrontier()
             ship.setPosition(position: startPlanet.getPosition())
+            updateUI(hasAnimation: false)
         }
+    }
+    func reset(){        
+
+        //building galaxy and adding planet paths and setting neighbours of planets
+        self.planets = GalaxyBuilder.createRandomPlanets(planetCount: planetCount)
+        self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)        
+        self.setPlanetNeighbours()
+        
+        //adding planets and paths nodes so they can be displayed
+        self.setInitialSKNodes()
+        //getting random start and end planet
+        self.startPlanet = randomPlanet()
+        self.endPlanet = randomPlanet()
+        
+        resetAlgorithm()
     }
         
     // Look up a planet based on its key which is a UUID
@@ -117,8 +124,9 @@ class Galaxy : ObservableObject{
                 exploredCounter += 1
                 let weights = algorithm.getWeightSoFar()
                 if let weight = weights[x.id]{
-//                    x.setNumber(num: Int(weight))
+                    x.costSoFar = Int(weight)
                 }
+                x.orderInExplored = exploredCounter
                 x.setSearchState(searchState: .explored)
             }
         }
@@ -131,9 +139,9 @@ class Galaxy : ObservableObject{
                 counter += 1
                 let weights = algorithm.getWeightSoFar()
                 if let weight = weights[x.id]{
-                    //x.setNumber(num: Int(weight))
+                    x.costSoFar = Int(weight)
                 }
-                //x.setNumber(num: counter)
+                x.orderInFrontier = counter
                 x.setSearchState(searchState: .frontier)
             }
         }
@@ -180,9 +188,6 @@ class Galaxy : ObservableObject{
             x.setSearchState(searchState: .current)
             
         }
-        
-        //name = path.explanation -- TODO remove requirement for name
-        name = "something"
     }
     func forward(){
         guard let path = self.algorithm else{return}
