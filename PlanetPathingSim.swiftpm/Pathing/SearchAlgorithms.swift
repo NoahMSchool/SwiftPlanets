@@ -96,11 +96,11 @@ class BaseSearch{
     
     func forward(){
         if currentState.completed{
-            currentState.explanation = "Already Complete"
+            currentState.explanation = Explanations.getAlreadyCompleted()
             return
         }
         else if currentState.frontier.isEmpty{
-            currentState.explanation = "Nothing left to explore"
+            currentState.explanation = Explanations.getFullyExploredExplanation(current: currentState.current)
             currentState.completed = true
             return
         }
@@ -119,30 +119,31 @@ class BaseSearch{
                     
                     currentState.path = reconstructedPath.reversed()
                     currentState.pathExists = true
-                    currentState.explanation = "You have found the treasure at \(end)"
+                    currentState.explanation = Explanations.getCompletedExplanation(current: end)
+                    //currentState.explanation = "You have found the treasure at \(end)"
                     currentState.completed = true
                     return
                 }
                 }
             let weightToCurrent = currentState.weightSoFar[currentState.current.id] ?? 0            
-            currentState.explanation = "Getting Neighbours for \(currentState.current)"
+            //currentState.explanation = "Getting Neighbours for \(currentState.current)"
+            var justAdded : [any Traversable] = []
             for n in currentState.current.getNeighbours(){
                 let newWeight = weightToCurrent + n.weight
                 if shouldAddToFrontier(n : n, newWeight : newWeight){
-                    //if !currentState.frontier.contains(where: {$0.neighbour.isEqual(to: n.neighbour)}) || !shouldCheckFrontierBeforeAdding(){
                         currentState.frontier.append((neighbour: n.neighbour, weight: newWeight))
+                        justAdded.append(n.neighbour)
                         currentState.cameFrom[n.neighbour.id] = currentState.current
-                        currentState.weightSoFar[n.neighbour.id] = newWeight
-                        currentState.explanation += " adding \(n.neighbour) with new weght \(Int(newWeight))"
-                    
-                    //}
+                        currentState.weightSoFar[n.neighbour.id] = newWeight                    
                 }
             }
+            currentState.explanation = Explanations.getAddToFrontierExplanation(current: currentState.current, neighbours: justAdded)
             //added to frontier so can resort
             prioritizeFrontier()
             //TODO currently bug if frontier is empty it lets you do one more step
             if currentState.frontier.isEmpty{
-                currentState.explanation = "Nothing left to explore"
+
+                currentState.explanation = Explanations.getFullyExploredExplanation(current: currentState.current)
                 currentState.completed = true
             }
         }
@@ -252,3 +253,39 @@ class Dijkstra: BaseSearch{
         }
     }
 }
+
+struct Explanations{    
+    static func getAlreadyCompleted()->String{
+        return "Oops, already Completed"
+    }
+    static func getStartExplanation(current: any Traversable)->String{
+        return "You are at the planet \(current) and it is on the frontier"
+    }
+    static func getAddToFrontierExplanation(current : any Traversable, neighbours : [any Traversable])->String{
+        var neighbourListString = ""
+        if neighbours.count>1{
+            
+            for i in 0...neighbours.count-2 {
+                neighbourListString += "\(neighbours[i]), "
+            }
+            neighbourListString += "and \(neighbours[neighbours.count-1])"
+        }
+        else if neighbours.count == 1{
+            neighbourListString = "\(neighbours[0])"
+            return "You have explored the planet \(current) and have found the nearby planet \(neighbourListString) so are adding it to the frontier"
+        }
+        else{
+            return "You have explored the planet \(current) and have not found any other Planets"
+        }
+        return "You have explored the planet \(current) and have found the nearby planets \(neighbourListString) so are adding them to the frontier"
+    }
+    
+    static func getFullyExploredExplanation(current : any Traversable)->String{
+        return "You have explored the planet \(current) and all the planets on the frontier but have not found the treasure so there is no path"
+    }
+    
+    static func getCompletedExplanation(current : any Traversable)->String{
+        return "You have found the treasure at \(current)"
+    }
+}
+
