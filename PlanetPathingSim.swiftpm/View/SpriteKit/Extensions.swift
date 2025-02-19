@@ -10,11 +10,8 @@ extension CGPoint{
     }
 }
 
-//func noahCheckIntersection(l1 : (p1 : CGPoint, p2 : CGPoint), l2 : (p1 : CGPoint, p2 : CGPoint)){
-//    l1Equation = (grad : l1.p2.y-l1.p1.y/l1.p2.x-l1.p1.x, )
-//}
-
 func checkIntersections(p1: CGPoint, q1: CGPoint, p2: CGPoint, q2: CGPoint) -> Bool {
+    //using orientation algorithm to check if lines intersect
     func orientation(_ a: CGPoint, _ b: CGPoint, _ c: CGPoint) -> Int {
         let val = (b.y - a.y) * (c.x - b.x) - (b.x - a.x) * (c.y - b.y)
         return (val > 0) ? 1 : -1 // Clockwise or Counterclockwise

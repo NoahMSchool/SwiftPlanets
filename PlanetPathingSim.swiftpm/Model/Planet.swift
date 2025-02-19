@@ -18,7 +18,6 @@ class Planet : CustomDebugStringConvertible{
     var id : UUID
     var shape : PlanetNode
     var planetRadius : CGFloat = 20
-    var numberLabel : SKLabelNode
     var neighbours : [(neighbour: Planet, weight: Double)] = []
     var searchState : SearchState
     {
@@ -50,16 +49,8 @@ class Planet : CustomDebugStringConvertible{
         self.name = name
         self.id = UUID()
         
-        self.shape = PlanetNode(planetName: self.name, borderRadius: planetRadius)
-        self.shape.position = position
-        self.shape.zPosition = 1
+        self.shape = PlanetNode(position : position, planetName: self.name, borderRadius: planetRadius)
         
-        let numberlabel = SKLabelNode(text: "")
-        numberlabel.position = CGPoint(x: 0, y: -5)
-        numberlabel.fontSize = 15
-        numberlabel.fontColor = .white
-        self.numberLabel = numberlabel
-        self.shape.addChild(numberlabel)
         
         self.searchState = .unknown
         self.waypoint = .middle
@@ -79,11 +70,8 @@ class Planet : CustomDebugStringConvertible{
     func setWaypoint(waypoint : Waypoint){
         self.waypoint = waypoint
     }
-    func setNumber(num : Int){
-        self.numberLabel.text = String(num)
-    }
+
     func clearState(){
-        self.numberLabel.text = ""
         self.searchState = .unknown
     }
     

@@ -51,12 +51,13 @@ class Galaxy : ObservableObject{
         self.skCameFromLines = SKNode()
         self.ship = ShipNode()
         self.skStarryBackground = StarryBackgroundNode(size:1000, starCount: 1000)
-        self.skStarryBackground.position = CGPoint(x: 0, y: 0)
+        self.skStarryBackground.zPosition = 2
         skShape.addChild(skPlanets)
         skShape.addChild(skLines)
         skShape.addChild(skCameFromLines)
         skShape.addChild(ship.getShape())
         skShape.addChild(skStarryBackground)
+        
         ship.shape.zPosition = 10
         
         reset()
@@ -116,7 +117,7 @@ class Galaxy : ObservableObject{
                 exploredCounter += 1
                 let weights = algorithm.getWeightSoFar()
                 if let weight = weights[x.id]{
-                    x.setNumber(num: Int(weight))
+//                    x.setNumber(num: Int(weight))
                 }
                 x.setSearchState(searchState: .explored)
             }
@@ -130,7 +131,7 @@ class Galaxy : ObservableObject{
                 counter += 1
                 let weights = algorithm.getWeightSoFar()
                 if let weight = weights[x.id]{
-                    x.setNumber(num: Int(weight))
+                    //x.setNumber(num: Int(weight))
                 }
                 //x.setNumber(num: counter)
                 x.setSearchState(searchState: .frontier)

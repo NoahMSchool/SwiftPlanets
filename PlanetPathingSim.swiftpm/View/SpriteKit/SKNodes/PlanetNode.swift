@@ -20,23 +20,25 @@ class PlanetNode : SKNode{
         UIColor(red: 0.8, green: 0.6, blue: 0.9, alpha: 1.0)
     ]
     
-    init(planetName : String, borderRadius : CGFloat) {
-        //self.planet = SKShapeNode(circleOfRadius: CGFloat(Int.random(in: planetSizeMin...planetSizeMax)))
-        self.border = SKShapeNode(circleOfRadius: borderRadius)
+    init(position : CGPoint, planetName : String, borderRadius : CGFloat) {
+        self.planet = PlanetNode.generatePlanet(baseColor: planetColors.randomElement()!, accentColor: planetColors.randomElement()!, size: CGFloat(Int.random(in: 3...10)))
+        
         self.planetNameLabel = TextBubbleNode(textString: planetName)
+        self.planetNameLabel.position = CGPoint(x: 0, y: 35)
+        
         self.planetUILabel = TextBubbleNode(textString: "UILabel")
-        self.planet = SKNode()
-        planetNameLabel.position = CGPoint(x: 0, y: 35)
-        planetUILabel.position = CGPoint(x: 0, y: -35)
-        //        planet.fillColor = planetColors.randomElement()!
-        //planet.strokeColor = .clear
-        
-        //TODO make universal line width control
-        border.lineWidth = 2
-        border.fillColor = .black
+        self.planetUILabel.position = CGPoint(x: 0, y: -35)
+
+        self.border = SKShapeNode(circleOfRadius: borderRadius)        
+        self.border.lineWidth = 2
+        self.border.fillColor = .black        
+
         super.init()
+
+        self.position = position
+        self.zPosition = 1
         
-        self.planet = generatePlanet(baseColor: planetColors.randomElement()!, accentColor: planetColors.randomElement()!, size: CGFloat(Int.random(in: 3...10)))
+        
         addChild(border)        
         addChild(planet)
         addChild(planetUILabel)
@@ -54,13 +56,15 @@ class PlanetNode : SKNode{
     func setPlanetNameLabel(color : UIColor){
         self.planetNameLabel.border.strokeColor = color
     }
-    func generatePlanet(baseColor: UIColor, accentColor: UIColor, size: CGFloat) -> SKNode {
+    static func generatePlanet(baseColor: UIColor, accentColor: UIColor, size: CGFloat) -> SKNode {
         let planetNode = SKNode()
         let planetBody = SKShapeNode(circleOfRadius: size)
         planetBody.fillColor = baseColor
         planetBody.strokeColor = accentColor
         planetBody.glowWidth = 1.0
+        planetBody.zPosition = 4
         planetNode.addChild(planetBody)
+
         
         
         return planetNode
