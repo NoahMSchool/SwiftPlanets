@@ -12,8 +12,8 @@ struct HUDView : View{
                         GalaxySliders().environmentObject(galaxy)
                         GalaxyButtons().environmentObject(galaxy)
                         HStack{
-                            StringPicker(title : "Algorithm",choices : galaxy.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)                    
-                            StringPicker(title : "UILabelSelection", choices : galaxy.UILabelControls, selectedValue : $galaxy.selectedUILabel)
+                            SpacePicker(title : "Algorithm",choices : galaxy.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)                    
+                            SpacePicker(title : "UILabelSelection", choices : galaxy.UILabelControls, selectedValue : $galaxy.selectedUILabel)
                             PlanetCountInput().environmentObject(galaxy)
 
                         }

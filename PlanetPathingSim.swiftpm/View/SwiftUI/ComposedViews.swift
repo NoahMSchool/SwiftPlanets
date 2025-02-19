@@ -29,40 +29,19 @@ struct GalaxyButtons : View{
     @EnvironmentObject var galaxy : Galaxy
     var body : some View{
         HStack{
-            Button(action: {
+            SpaceButton(imageSystemName: "arrowtriangle.backward.fill", disabled: !galaxy.backwardAllowed){
                 galaxy.backward()
-            }) {
-                Image(systemName: "arrowtriangle.backward.fill")
-                    .font(.system(size: 24))   
-                    .foregroundColor(.white)   
-                    .padding()                 
-                    .background(galaxy.backwardAllowed ? .green : .red)                    
-                    .clipShape(Circle())       
             }
-            .disabled(!galaxy.backwardAllowed)
-            
-            Button(action: {
+
+            SpaceButton(imageSystemName: "arrowtriangle.forward.fill", disabled: !galaxy.forwardAllowed){
                 galaxy.forward()
-            }) {
-                Image(systemName: "arrowtriangle.forward.fill")
-                    .font(.system(size: 24))   
-                    .foregroundColor(.white)   
-                    .padding()                 
-                    .background(galaxy.forwardAllowed ? .green : .red)                    
-                    .clipShape(Circle())       
             }
-            .disabled(!galaxy.forwardAllowed)
-            Button(action: {
+            SpaceButton(imageSystemName: "arrow.3.trianglepath", disabled: false){
                 galaxy.reset()
-            }) {
-                Image(systemName: "arrow.3.trianglepath") 
-                    .font(.system(size: 24))   
-                    .foregroundColor(.white)   
-                    .padding()                 
-                    .background(Color.blue)    
-                    .clipShape(Circle())       
             }
-            
+            SpaceButton(imageSystemName: "hand.draw", disabled: false){
+                galaxy.updateUI(hasAnimation: false)
+            }
         }
         
     }
@@ -133,20 +112,3 @@ struct PlanetList : View{
     }
 }
 
-struct StringPicker : View{
-    @State var title : String
-    @State var choices : [String]
-    @Binding var selectedValue : String
-    var body: some View{
-        Picker(title, selection: $selectedValue){
-            ForEach (choices, id : \.self){
-                option in Text(option).tag(option)
-            }
-        }
-        
-        .pickerStyle(MenuPickerStyle())
-        
-        .background(Color(.systemBackground))
-        .cornerRadius(50)
-    }
-}
