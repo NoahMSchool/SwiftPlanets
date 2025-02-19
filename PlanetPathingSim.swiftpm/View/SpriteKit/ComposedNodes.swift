@@ -18,8 +18,8 @@ class PlanetNode : SKNode{
         UIColor(red: 0.75, green: 0.65, blue: 0.9, alpha: 1.0), // Soft Amethyst
         UIColor(red: 0.5, green: 0.8, blue: 0.7, alpha: 1.0),   // Ocean Teal
         UIColor(red: 0.8, green: 0.6, blue: 0.9, alpha: 1.0)    // Vibrant Orchid
-        ]
-
+    ]
+    
     init(planetName : String, borderRadius : CGFloat) {
         //self.planet = SKShapeNode(circleOfRadius: CGFloat(Int.random(in: planetSizeMin...planetSizeMax)))
         self.border = SKShapeNode(circleOfRadius: borderRadius)
@@ -28,7 +28,7 @@ class PlanetNode : SKNode{
         self.planet = SKNode()
         planetNameLabel.position = CGPoint(x: 0, y: 35)
         planetUILabel.position = CGPoint(x: 0, y: -35)
-//        planet.fillColor = planetColors.randomElement()!
+        //        planet.fillColor = planetColors.randomElement()!
         //planet.strokeColor = .clear
         
         //TODO make universal line width control
@@ -47,7 +47,7 @@ class PlanetNode : SKNode{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-   
+    
     func changeBorder(color : UIColor){
         border.strokeColor = color
     }
@@ -61,7 +61,7 @@ class PlanetNode : SKNode{
         planetBody.strokeColor = accentColor
         planetBody.glowWidth = 1.0
         planetNode.addChild(planetBody)
-              
+        
         
         return planetNode
     }
@@ -106,5 +106,31 @@ class TextBubble : SKNode{
         fatalError("init(coder:) has not been implemented")
     }
 }
-    
 
+
+class StarryBackround : SKNode{
+    var stars : SKNode
+    init(size : Int, starCount : Int){
+        self.stars = SKNode()
+        super.init()
+        self.stars = getStarryBackground(size : size, starCount : starCount)
+        addChild(self.stars)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    func getStarryBackground(size : Int, starCount : Int)->SKNode{
+        let stars = SKNode()
+        for i in 0...starCount{
+            let position = CGPoint(x: Int.random(in: -size...size), y: Int.random(in: -size...size))
+            
+            let star = SKShapeNode(circleOfRadius: 0.5)
+            star.glowWidth = 0.5
+            star.position = position
+            stars.addChild(star)
+        }
+        let centre = SKShapeNode(circleOfRadius: 10)
+        return stars
+    }
+}

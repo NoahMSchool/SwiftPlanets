@@ -33,10 +33,9 @@ class Galaxy : ObservableObject{
     @Published var useWeights : Bool = true
     
     // These are the container SKNodes
-    // TODO: Should rename them to make it more obvious they are SKNodes e.g. shapeSKNode
-    // TODO: Maybe add another top level node to contain all the planets
     var skShape : SKNode
     var skPlanets : SKNode
+    var skStarryBackround : SKNode
     var skLines : SKNode
     var skCameFromLines : SKNode
     // is skShape updating when skPlanets Change
@@ -50,12 +49,14 @@ class Galaxy : ObservableObject{
         self.skPlanets = SKNode()
         self.skLines = SKNode()
         self.skCameFromLines = SKNode()
-               self.ship = Ship() 
-        
+               self.ship = Ship()
+        self.skStarryBackround = StarryBackround(size:1000, starCount: 1000)
+        self.skStarryBackround.position = CGPoint(x: 0, y: 0)
         skShape.addChild(skPlanets)
         skShape.addChild(skLines)
         skShape.addChild(skCameFromLines)
         skShape.addChild(ship.getShape())
+        skShape.addChild(skStarryBackround)
         ship.shape.zPosition = 10
         
         reset()
@@ -93,7 +94,7 @@ class Galaxy : ObservableObject{
             ship.setPosition(position: startPlanet.getPosition())
         }
     }
-    
+        
     // Look up a planet based on its key which is a UUID
     func keyToPlanet(key : UUID) -> Planet?{
         for planet in planets {
@@ -285,7 +286,7 @@ extension Galaxy{
         guard let algorithm = self.algorithm else{return}
         for x in algorithm.getCameFrom(){
             if let from = x.value as? Planet, let to = keyToPlanet(key: x.key) {
-                let color = Planet.searchStateColors[to.searchState]!
+                let color = Planet.SearchStateColors[to.searchState]!
                 let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: color)
                 self.skCameFromLines.addChild(arrow)
             }

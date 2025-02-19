@@ -36,8 +36,8 @@ class GalaxyBuilder{
         var options : [CGPoint] = []
         let jitter = Int(spacing/10)
         let offset : Double = 50
-        for y in stride(from: 0, to: mapSize, by: spacing){
-            for x in stride(from: 0, to: mapSize, by: spacing){
+        for y in stride(from: -mapSize/2, to: mapSize/2, by: spacing){
+            for x in stride(from: -mapSize/2, to: mapSize/2, by: spacing){
                 options.append(CGPoint(x: x+offset, y: y+offset))
             }
         }
