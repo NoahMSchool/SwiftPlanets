@@ -6,18 +6,18 @@ class PlanetNode : SKNode{
     let planetNameLabel : TextBubble
     let planetUILabel : TextBubble
     let planetColors: [UIColor] =  [
-        UIColor(red: 0.5, green: 0.75, blue: 0.9, alpha: 1.0),  // Vibrant Sky Blue
-        UIColor(red: 0.4, green: 0.6, blue: 0.8, alpha: 1.0),   // Deep Cerulean
-        UIColor(red: 0.6, green: 0.8, blue: 0.5, alpha: 1.0),   // Lush Soft Green
-        UIColor(red: 0.85, green: 0.75, blue: 0.4, alpha: 1.0), // Golden Desert Sand
-        UIColor(red: 0.7, green: 0.5, blue: 0.9, alpha: 1.0),   // Mystic Violet
-        UIColor(red: 0.6, green: 0.7, blue: 0.85, alpha: 1.0),  // Pastel Periwinkle
-        UIColor(red: 0.85, green: 0.55, blue: 0.6, alpha: 1.0), // Soft Sunset Rose
-        UIColor(red: 0.55, green: 0.55, blue: 0.65, alpha: 1.0),// Twilight Gray
-        UIColor(red: 0.7, green: 0.85, blue: 0.75, alpha: 1.0), // Seafoam Green
-        UIColor(red: 0.75, green: 0.65, blue: 0.9, alpha: 1.0), // Soft Amethyst
-        UIColor(red: 0.5, green: 0.8, blue: 0.7, alpha: 1.0),   // Ocean Teal
-        UIColor(red: 0.8, green: 0.6, blue: 0.9, alpha: 1.0)    // Vibrant Orchid
+        UIColor(red: 0.5, green: 0.75, blue: 0.9, alpha: 1.0),
+        UIColor(red: 0.4, green: 0.6, blue: 0.8, alpha: 1.0),
+        UIColor(red: 0.6, green: 0.8, blue: 0.5, alpha: 1.0),
+        UIColor(red: 0.85, green: 0.75, blue: 0.4, alpha: 1.0),
+        UIColor(red: 0.7, green: 0.5, blue: 0.9, alpha: 1.0),
+        UIColor(red: 0.6, green: 0.7, blue: 0.85, alpha: 1.0),
+        UIColor(red: 0.85, green: 0.55, blue: 0.6, alpha: 1.0),
+        UIColor(red: 0.55, green: 0.55, blue: 0.65, alpha: 1.0),
+        UIColor(red: 0.7, green: 0.85, blue: 0.75, alpha: 1.0),
+        UIColor(red: 0.75, green: 0.65, blue: 0.9, alpha: 1.0),
+        UIColor(red: 0.5, green: 0.8, blue: 0.7, alpha: 1.0),
+        UIColor(red: 0.8, green: 0.6, blue: 0.9, alpha: 1.0)
     ]
     
     init(planetName : String, borderRadius : CGFloat) {
@@ -94,9 +94,11 @@ class TextBubble : SKNode{
         
         border.fillColor = .black
         border.strokeColor = .darkGray
-        border.lineWidth = 2
+        border.lineWidth = 1
         
         super.init()
+        border.zPosition = 2
+        labelText.zPosition = 3
         
         addChild(border)
         addChild(labelText)        

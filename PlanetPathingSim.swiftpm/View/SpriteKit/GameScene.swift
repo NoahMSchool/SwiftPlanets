@@ -38,9 +38,7 @@ class GameScene : SKScene{
         view.addGestureRecognizer(pinchGesture)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         view.addGestureRecognizer(panGesture)
-        let centreNode = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
-        centreNode.position = CGPoint(x: 0, y: 0)
-        addChild(centreNode)
+        
         
     }
     override func update(_ currentTime: TimeInterval) {
