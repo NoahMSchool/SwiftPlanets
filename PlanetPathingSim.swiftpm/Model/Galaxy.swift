@@ -1,32 +1,18 @@
 import SpriteKit
 
 class Galaxy : ObservableObject{
-    var name : String = "StarWars"
-    
-    //This controls the options in the dropdown in the user interface 
-    var searchAlgoritm : [String] = ["BFS", "DFS", "A*", "Dijkstra"]
-    
-    //These are variables that are bindings in the user interface that can be selected 
-    @Published var selectedAlgorithm : String = "Dijkstra"{
-        didSet{
-            resetAlgorithm()
-        }
-    }
-    @Published var planetCount : Int{
-        didSet{
-            reset()
-        }
-    }
-    @Published var maxDistance : Double{
-        didSet{
-            // When we change the distance we want to keep the planets but recalcute the path
-            self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)
-            self.setPlanetNeighbours()
-            self.setInitialPlanetPathsSKNodes()
-        }
-    }
+    //Published Settings bound to SwiftUI controls
+    @Published var selectedUILabel : String = "Cost" { didSet {updateUI(hasAnimation: false)}}    
+    @Published var selectedAlgorithm : String = "Dijkstra" { didSet{resetAlgorithm()}}
+    @Published var planetCount : Int { didSet {reset()}}
+    @Published var maxDistance : Double { didSet {recalculatePaths()}}
     @Published var forwardAllowed : Bool = true
     @Published var backwardAllowed : Bool = false
+    
+    //This controls the options in the dropdown in the user interface 
+    var searchAlgorithms : [String] = ["BFS", "DFS", "A*", "Dijkstra"]
+    var UILabelControls : [String] = ["Cost", "Frontier", "Explored"]
+    //These are variables that are bindings in the user interface that can be selected 
     
     var planets : [Planet]
     var startPlanet : Planet?
@@ -102,6 +88,12 @@ class Galaxy : ObservableObject{
         
         resetAlgorithm()
     }
+    func recalculatePaths(){
+        // When we change the distance we want to keep the planets but recalcute the path
+        self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)
+        self.setPlanetNeighbours()
+        self.setInitialPlanetPathsSKNodes()
+    }
         
     // Look up a planet based on its key which is a UUID
     func keyToPlanet(key : UUID) -> Planet?{
@@ -124,9 +116,13 @@ class Galaxy : ObservableObject{
                 exploredCounter += 1
                 let weights = algorithm.getWeightSoFar()
                 if let weight = weights[x.id]{
-                    x.costSoFar = Int(weight)
+                    if selectedUILabel == "Cost"{
+                        x.costSoFar = Int(weight)
+                    }
                 }
-                x.orderInExplored = exploredCounter
+                if selectedUILabel == "Explored"{
+                    x.orderInExplored = exploredCounter
+                }
                 x.setSearchState(searchState: .explored)
             }
         }
@@ -138,10 +134,15 @@ class Galaxy : ObservableObject{
             if let x = p as? Planet{
                 counter += 1
                 let weights = algorithm.getWeightSoFar()
+
                 if let weight = weights[x.id]{
-                    x.costSoFar = Int(weight)
+                    if selectedUILabel == "Cost"{
+                        x.costSoFar = Int(weight)
+                    }
                 }
-                x.orderInFrontier = counter
+                if selectedUILabel == "Frontier"{
+                    x.orderInFrontier = counter
+                }
                 x.setSearchState(searchState: .frontier)
             }
         }

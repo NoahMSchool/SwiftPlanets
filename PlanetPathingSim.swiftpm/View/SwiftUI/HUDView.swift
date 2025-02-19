@@ -11,17 +11,12 @@ struct HUDView : View{
                         ExplanationBlock().environmentObject(galaxy)
                         GalaxySliders().environmentObject(galaxy)
                         GalaxyButtons().environmentObject(galaxy)
-                        Picker("Search Algorithm", selection: $galaxy.selectedAlgorithm){
-                            ForEach (galaxy.searchAlgoritm, id : \.self){
-                                option in Text(option).tag(option)
-                            }
+                        HStack{
+                            StringPicker(title : "Algorithm",choices : galaxy.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)                    
+                            StringPicker(title : "UILabelSelection", choices : galaxy.UILabelControls, selectedValue : $galaxy.selectedUILabel)
+                            PlanetCountInput().environmentObject(galaxy)
+
                         }
-
-                        .pickerStyle(MenuPickerStyle())
-
-                        .background(Color(.systemBackground))
-                        .cornerRadius(50)
-                        PlanetCountInput().environmentObject(galaxy)
                     }
                     .padding(.vertical)
                     .border(.green, width: 10)
