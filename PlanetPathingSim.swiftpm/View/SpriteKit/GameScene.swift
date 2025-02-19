@@ -13,7 +13,7 @@ class GameScene : SKScene{
     var camPosition : CGPoint = CGPoint(x: 0, y: 0){
         didSet{
             cam.position = camPosition
-            galaxy?.skStarryBackround.position = CGPoint(x: camPosition.x/2, y: camPosition.y/2)
+            galaxy?.skStarryBackground.position = CGPoint(x: camPosition.x/2, y: camPosition.y/2)
         }
     }
     

@@ -35,7 +35,7 @@ class Galaxy : ObservableObject{
     // These are the container SKNodes
     var skShape : SKNode
     var skPlanets : SKNode
-    var skStarryBackround : SKNode
+    var skStarryBackground : SKNode
     var skLines : SKNode
     var skCameFromLines : SKNode
     // is skShape updating when skPlanets Change
@@ -50,13 +50,13 @@ class Galaxy : ObservableObject{
         self.skLines = SKNode()
         self.skCameFromLines = SKNode()
                self.ship = Ship()
-        self.skStarryBackround = StarryBackround(size:1000, starCount: 1000)
-        self.skStarryBackround.position = CGPoint(x: 0, y: 0)
+        self.skStarryBackground = StarryBackgroundNode(size:1000, starCount: 1000)
+        self.skStarryBackground.position = CGPoint(x: 0, y: 0)
         skShape.addChild(skPlanets)
         skShape.addChild(skLines)
         skShape.addChild(skCameFromLines)
         skShape.addChild(ship.getShape())
-        skShape.addChild(skStarryBackround)
+        skShape.addChild(skStarryBackground)
         ship.shape.zPosition = 10
         
         reset()
