@@ -23,7 +23,13 @@ class GameScene : SKScene{
         addChild(galaxy.getShape())
         addChild(cam)
         camera = cam
-        camPosition = CGPoint(x: 0, y: 0)
+        if let startPlanet = galaxy.startPlanet{
+            camPosition = startPlanet.position
+        }
+        else{
+            camPosition = CGPoint(x: 0, y: 0)
+
+        }
         
         let minX = -size.width/2, maxX = size.width/2
         let minY = -size.height/2, maxY = size.height/2
