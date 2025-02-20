@@ -5,7 +5,7 @@ struct HUDView : View{
     @EnvironmentObject var galaxy : Galaxy
     var body : some View{
         HStack(alignment: .bottom){
-                    PlanetList(title : "Frontier", planets : galaxy.getFrontierStrings())
+                    SpaceList(title : "Frontier", planets : galaxy.getFrontierStrings())
                     VStack{
                         Text(galaxy.getAlgorithmString())
                         ExplanationBlock().environmentObject(galaxy)
@@ -21,10 +21,11 @@ struct HUDView : View{
                     .padding(.vertical)
                     .border(.green, width: 10)
             
-                    PlanetList(title : "Explored", planets : galaxy.getExploredStrings())
+                    SpaceList(title : "Explored", planets : galaxy.getExploredStrings())
         }
         //.frame(height: 500)
         .font(.custom("ChalkDuster", size: 24))
+        .foregroundColor(.yellow)
     }
     
 }

@@ -95,20 +95,4 @@ struct PlanetCountInput : View{
     
 }
 
-struct PlanetList : View{
-    var title : String
-    var planets : [String]
-    var body : some View{        
-        NavigationStack{
-            List(planets, id: \.self) {planet in
-                Text(planet)
-            }
-            .navigationTitle(title + " " + String(planets.count))                
-        }
-        .frame(maxWidth: 250)
-        .scrollContentBackground(.hidden)
-        .border(.blue, width: 15)
-
-    }
-}
 
