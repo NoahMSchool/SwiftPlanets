@@ -1,11 +1,6 @@
 import SwiftUI
 import SpriteKit
 
-/*
- A SwiftUI view that renders a SpriteKit scene.
- https://developer.apple.com/documentation/spritekit/spriteview
- */
-
 struct SpriteKitView: View {
     @EnvironmentObject var galaxy : Galaxy
 

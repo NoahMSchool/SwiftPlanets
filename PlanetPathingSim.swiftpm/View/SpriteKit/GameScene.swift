@@ -23,13 +23,7 @@ class GameScene : SKScene{
         addChild(galaxy.getShape())
         addChild(cam)
         camera = cam
-        if let startPlanet = galaxy.startPlanet{
-            camPosition = startPlanet.position
-        }
-        else{
-            camPosition = CGPoint(x: 0, y: 0)
-
-        }
+        focusOnStart()
         
         let minX = -size.width/2, maxX = size.width/2
         let minY = -size.height/2, maxY = size.height/2
@@ -52,7 +46,17 @@ class GameScene : SKScene{
             //camPosition = galaxy.ship.shape.position
         }
     }
-        @objc func handlePan(_ sender: UIPanGestureRecognizer) {
+    func focusOnStart(){
+        guard let galaxy = galaxy else {return}
+        if let startPlanet = galaxy.startPlanet{
+            camPosition = startPlanet.position
+        }
+        else{
+            camPosition = CGPoint(x: 0, y: 0)
+            
+        }
+    }
+    @objc func handlePan(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         let sceneTranslation = CGPoint(x: -translation.x, y: translation.y)
         
