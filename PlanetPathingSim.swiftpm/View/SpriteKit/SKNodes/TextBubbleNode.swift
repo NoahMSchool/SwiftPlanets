@@ -16,24 +16,35 @@ class TextBubbleNode : SKNode{
         labelText.fontName = "ChalkDuster"
         labelText.verticalAlignmentMode = .center
         labelText.horizontalAlignmentMode = .center
-        
-        let textSize = labelText.frame.size
-        
-        let borderHeight = max(minHeight, min(textSize.height + padding, maxHeight))
-        let borderWidth = max(minWidth, min(textSize.width + padding, maxWidth))
-        
-        self.border = SKShapeNode(rect : CGRect(x: -borderWidth / 2, y: -borderHeight / 2, width: borderWidth, height: borderHeight), cornerRadius: 10)
-        
-        border.fillColor = .black
-        border.strokeColor = .darkGray
-        border.lineWidth = 1
+        self.border = SKShapeNode()
         
         super.init()
-        border.zPosition = 2
+        
+        recalculateBorderSize()
+        
         labelText.zPosition = 3
         
-        addChild(border)
         addChild(labelText)        
+    }
+    func changeLabelText(newText : String){
+        self.labelText.text = newText
+        recalculateBorderSize()
+    }
+    
+    func recalculateBorderSize(){
+        self.border.removeFromParent()
+        guard labelText.text != "" else{return}
+        let textSize = labelText.frame.size
+        let newBorderWidth = textSize.width+padding
+        let newBorderHeight = textSize.height+padding
+        let rectangle : CGRect = CGRect(x: -newBorderWidth/2, y: -newBorderHeight/2, width: newBorderWidth, height: newBorderHeight)
+        self.border = SKShapeNode(rect: rectangle, cornerRadius: 10)
+        self.border.fillColor = .black
+        self.border.strokeColor = .darkGray
+        self.border.lineWidth = 1
+        self.border.zPosition = 2
+
+        addChild(border)
     }
     
     required init?(coder aDecoder: NSCoder) {

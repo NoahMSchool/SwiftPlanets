@@ -57,7 +57,7 @@ class PlanetNode : SKNode{
         self.planetNameLabel.border.strokeColor = color
     }
     func setPlanetUILabel(label : String){
-        self.planetUILabel.labelText.text = label
+        self.planetUILabel.changeLabelText(newText: label)
     }
     static func generatePlanet(baseColor: UIColor, accentColor: UIColor, size: CGFloat) -> SKNode {
         let planetNode = SKNode()
@@ -67,8 +67,6 @@ class PlanetNode : SKNode{
         planetBody.glowWidth = 1.0
         planetBody.zPosition = 4
         planetNode.addChild(planetBody)
-
-        
         
         return planetNode
     }    
