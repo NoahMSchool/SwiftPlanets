@@ -229,8 +229,9 @@ class Galaxy : ObservableObject{
     }
     
     func getFrontierStrings()->[String]{
+        guard let algorithm = algorithm else {return []}
         var strings : [String] = []
-        for p in self.algorithm!.getWeightedFrontier(){
+        for p in algorithm.getWeightedFrontier(){
             if let planet = p.neighbour as? Planet{
                 strings.append(planet.name + " " + String(Int(p.weight)))
             }
@@ -238,8 +239,9 @@ class Galaxy : ObservableObject{
         return strings
     }
     func getExploredStrings()->[String]{
+        guard let algorithm = algorithm else {return []}
         var strings : [String] = []
-        for p in self.algorithm!.getExplored(){
+        for p in algorithm.getExplored(){
             if let planet = p as? Planet{
                 strings.append(planet.name)
             }
@@ -248,18 +250,14 @@ class Galaxy : ObservableObject{
     }
     
     func getExplanationString()->String{
-        guard let path = algorithm else {
-            return "No Path"
-        }
-        return path.getExplanation()
+        guard let algorithm = algorithm else {return "No Path"}
+        return algorithm.getExplanation()
         
         
     }
     func getAlgorithmString()->String{
-        guard let path = algorithm else {
-            return "No Algorithm"
-        }
-        return path.algorithm
+        guard let algorithm = algorithm else {return "No Algorithm"}
+        return algorithm.algorithm
     }
 }
 extension Galaxy{
