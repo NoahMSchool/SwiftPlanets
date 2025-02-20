@@ -83,8 +83,9 @@ class Galaxy : ObservableObject{
         //adding planets and paths nodes so they can be displayed
         self.setInitialSKNodes()
         //getting random start and end planet
-        self.startPlanet = randomPlanet()
-        self.endPlanet = randomPlanet()
+        
+        self.startPlanet = planets[0]
+        self.endPlanet = planets[1]
         
         resetAlgorithm()
     }
@@ -206,9 +207,6 @@ class Galaxy : ObservableObject{
         skShape
     }
     
-    func randomPlanet()->Planet?{
-        planets.randomElement()
-    }
     func clearPlanetState(){
         for planet in planets{
             planet.clearState()
