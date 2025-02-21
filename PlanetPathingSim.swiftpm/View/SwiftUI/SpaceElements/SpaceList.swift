@@ -10,11 +10,9 @@ struct SpaceList : View{
                 Text(planet)
             }
             .frame(maxHeight: 500)
-            .border(.green, width: 5)
         }
         .frame(maxWidth: 250)
         .scrollContentBackground(.hidden)
-        .border(.blue, width: 5)
         
     }
 }

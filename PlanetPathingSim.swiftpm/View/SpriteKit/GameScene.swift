@@ -1,5 +1,5 @@
 import SpriteKit
-import PlaygroundSupport
+// import PlaygroundSupport
 
 class GameScene : SKScene{
     var galaxy : Galaxy?
