@@ -35,7 +35,8 @@ class BaseSearch{
             backtrackPathFromPrevious: [],
             completed: false, 
             pathExists: false, 
-            explanation: "")
+            explanation: Explanations.getStartMessage()
+        )
     }
     func pathExists()->Bool{
         currentState.pathExists
@@ -254,7 +255,10 @@ class Dijkstra: BaseSearch{
     }
 }
 
-struct Explanations{    
+struct Explanations{  
+    static func getStartMessage()->String{
+        return "Ready to Explore"
+    }
     static func getAlreadyCompleted()->String{
         return "Oops, already Completed"
     }
