@@ -6,7 +6,7 @@ struct PlayingHUDView : View{
     var body: some View{
         Grid(alignment: .bottom){
             GridRow{
-                SpaceButton(imageSystemName: "chevron.backward", textLabel : "Main Menu", disabled: false, action: {print("back")})
+                SpaceButton(imageSystemName: "chevron.backward", textLabel : "Main Menu", disabled: false, action: {print("Back")})
                 TestButtons().gridCellColumns(3)
                 
             }

@@ -9,7 +9,8 @@ class Galaxy : ObservableObject{
     @Published var forwardAllowed : Bool = true
     @Published var backwardAllowed : Bool = false
     @Published var startMode : Bool = true
-    
+    @Published var isRunning = false
+
     //This controls the options in the dropdown in the user interface 
     var searchAlgorithms : [String] = ["BFS", "DFS", "A*", "Dijkstra"]
     var UILabelControls : [String] = ["Cost", "Frontier", "Explored"]
@@ -32,6 +33,24 @@ class Galaxy : ObservableObject{
     // is skShape updating when skPlanets Change
     var planetPaths : [(start : Planet, end : Planet, distance : Double)] = []
     
+    
+    func startLoop() {
+        isRunning = true
+        Task {
+            while isRunning {
+                await performTask()
+                try? await Task.sleep(nanoseconds: 2_000_000_000) // ✅ Waits 2 seconds
+            }
+        }
+    }
+    
+    func performTask() async {
+        await MainActor.run {
+            forward() 
+        }
+    }
+
+    
     init(){
         self.planets = []
         self.planetCount = 20
@@ -51,8 +70,7 @@ class Galaxy : ObservableObject{
         
         ship.shape.zPosition = 10
         
-        resetPlanets()
-        
+        resetPlanets()        
     }
 
     // Look up a planet based on its key which is a UUID
@@ -84,6 +102,7 @@ class Galaxy : ObservableObject{
     
     func resetAlgorithm(){
         //check if we have a start and end position and if so start the search algorithm and place ship on start planet
+        isRunning = false
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
             self.forwardAllowed = true
             self.backwardAllowed = false
@@ -121,7 +140,16 @@ class Galaxy : ObservableObject{
         }
         updateUI(hasAnimation: false)
     }
-
+    
+    func auto() {
+        if !isRunning{
+            startLoop()
+        } 
+        else{
+            isRunning = false
+        }
+    }
+    
     
     func recalculatePaths(){
         // When we change the distance we want to keep the planets but recalcute the path
@@ -187,6 +215,9 @@ class Galaxy : ObservableObject{
     }
     func updateUI(hasAnimation : Bool){  
         guard let algorithm = self.algorithm else{return}
+        if algorithm.completed(){
+            isRunning = false
+        }
         
         //to update buttons to allow forwards/backward
         backwardAllowed = !algorithm.history.isEmpty
