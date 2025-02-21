@@ -2,26 +2,37 @@ import SwiftUI
 
 struct HomeView : View{
     @EnvironmentObject var galaxy : Galaxy
-    @State private var navigateToGame = false
+    @State private var navigateToMain = false
+    @State private var navigateToAbout = false
+
     var body : some View{
         NavigationStack{
-            ZStack{
-                VStack{
-                    TitleName()
-                    HStack{
-                        
-                        LargeSpaceButton(imageSystemName: "play.fill", action: {navigateToGame.toggle()})
-                        //LargeSpaceButton(imageSystemName: "pause.fill", action: {navigateToGame.toggle()})
+            GeometryReader { geometry in
+                ZStack {
+                    StarryBackgroundView()
+                        .scaledToFill()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                    
+                    VStack{
+                        TitleName()
+                        HStack{
+                            
+                            LargeSpaceButton(text : "Start", imageSystemName: "play.fill", action: {navigateToMain.toggle()})
+                                .padding()
+                            LargeSpaceButton(text : "About", imageSystemName: "info.circle.fill", action: {navigateToAbout.toggle()})
+                                .padding()
+                        }
                     }
                     
                 }
+                .navigationDestination(isPresented: $navigateToMain){
+                    ContentView().environmentObject(galaxy)
+                }    
+                .navigationDestination(isPresented: $navigateToAbout){
+                    AboutView()    
+                }    
             }
-            .navigationDestination(isPresented: $navigateToGame){
-                ContentView().environmentObject(galaxy)
-            }
+            
         }
-        
     }
 }
-
-

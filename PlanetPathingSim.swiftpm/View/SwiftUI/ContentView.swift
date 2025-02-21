@@ -19,13 +19,12 @@ struct ContentView: View {
                     .environmentObject(galaxy)
                     .scaledToFill()
                     .frame(width: geometry.size.width, height: geometry.size.height)
-                    .ignoresSafeArea()
                 
                 HUDView
                     .environmentObject(galaxy)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    //.background(Color.white.opacity(0.1)) // Optional: Slight transparent background
-                    .ignoresSafeArea() // Ensure it overlays fully
+                    .padding()
+                    .border(.green, width: 5)
             }
         }
     }

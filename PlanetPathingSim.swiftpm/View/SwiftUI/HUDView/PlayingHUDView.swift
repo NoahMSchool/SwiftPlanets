@@ -6,69 +6,40 @@ struct PlayingHUDView : View{
     var body: some View{
         Grid(alignment: .bottom){
             GridRow{
-                Spacer()               
+                SpaceButton(imageSystemName: "chevron.backward", textLabel : "Main Menu", disabled: false, action: {print("back")})
+                TestButtons().gridCellColumns(3)
+                
             }
-            
+            //Color(.red)
+            Spacer()               
             GridRow{
+                
                 SpaceList(title : "Frontier", planets : galaxy.getFrontierStrings())
-                PlayingButtons().environmentObject(galaxy).gridCellColumns(3)
+                ButtonsAndExplanationBlock().environmentObject(galaxy).gridCellColumns(2)
                 SpaceList(title : "Explored", planets : galaxy.getExploredStrings())
             }
         }
-        .padding()
-        //.background(.white)
-    }
-}
-
-struct StartHUDView : View{
-    
-    @EnvironmentObject var galaxy : Galaxy
-    var body : some View{
-        HStack(alignment: .bottom){
-            VStack{
-                Text(galaxy.getAlgorithmString())
-                ExplanationBlock().environmentObject(galaxy)
-                GalaxySliders().environmentObject(galaxy)
-                GalaxyButtons().environmentObject(galaxy)
-                HStack{
-                    SpacePicker(title : "Algorithm",choices : galaxy.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)                    
-                    SpacePicker(title : "UILabelSelection", choices : galaxy.UILabelControls, selectedValue : $galaxy.selectedUILabel)
-                    PlanetCountInput().environmentObject(galaxy)
-                    
-                }
-            }
-            .padding(.vertical)
-            .border(.green, width: 10)
-        }
-        //.frame(height: 500)
-        .font(.custom("ChalkDuster", size: 24))
+        .font(.custom("ChalkDuster", size: 18))
         .foregroundColor(.yellow)
+        .padding()
+        //        .background(.white)
     }
-    
 }
 
 
-struct PlayingButtons : View{
+struct TestButtons : View{
     @EnvironmentObject var galaxy : Galaxy
     var body : some View{
         VStack{
-            ExplanationBlock().environmentObject(galaxy)
             HStack{
                 
-                SpaceButton(imageSystemName: "arrowtriangle.backward.fill", disabled: !galaxy.backwardAllowed){
-                    galaxy.backward()
+                SpaceButton(imageSystemName: "arrow.3.trianglepath", textLabel : "Reset", disabled: false){
+                    galaxy.resetPlanets()
                 }
-                
-                SpaceButton(imageSystemName: "arrowtriangle.forward.fill", disabled: !galaxy.forwardAllowed){
-                    galaxy.forward()
-                }
-                SpaceButton(imageSystemName: "arrow.3.trianglepath", disabled: false){
-                    galaxy.reset()
-                }
-                SpaceButton(imageSystemName: "hand.draw", disabled: false){
+                SpaceButton(imageSystemName: "hand.draw", textLabel : "Redraw", disabled: false){
                     galaxy.updateUI(hasAnimation: false)
                 }
-                SpaceButton(imageSystemName: "togglepower", disabled: false, action: {galaxy.startMode.toggle()})
+                SpaceButton(imageSystemName: "togglepower", textLabel : "Toggle", disabled: false, action: {galaxy.startMode.toggle()})
             }
         }
     }

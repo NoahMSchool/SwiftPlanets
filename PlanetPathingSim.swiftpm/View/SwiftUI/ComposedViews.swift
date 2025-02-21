@@ -5,12 +5,12 @@ import SwiftUI
 struct TitleName : View{
     var body : some View{
         HStack{
-            Text("Pathing Planets")
+            Text("Planetary Pathways")
                 .font(.custom("ChalkDuster", size: 72))
                 .foregroundColor(.yellow)
-            Image(systemName: "sparkles")
-                .imageScale(.large)
-                .foregroundColor(.gray) 
+//            Image(systemName: "sparkles")
+//                .imageScale(.large)
+//                .foregroundColor(.yellow) 
         }
     }
 }
@@ -20,20 +20,7 @@ struct GalaxyButtons : View{
     @EnvironmentObject var galaxy : Galaxy
     var body : some View{
         HStack{
-            SpaceButton(imageSystemName: "arrowtriangle.backward.fill", disabled: !galaxy.backwardAllowed){
-                galaxy.backward()
-            }
 
-            SpaceButton(imageSystemName: "arrowtriangle.forward.fill", disabled: !galaxy.forwardAllowed){
-                galaxy.forward()
-            }
-            SpaceButton(imageSystemName: "arrow.3.trianglepath", disabled: false){
-                galaxy.reset()
-            }
-            SpaceButton(imageSystemName: "hand.draw", disabled: false){
-                galaxy.updateUI(hasAnimation: false)
-            }
-            SpaceButton(imageSystemName: "togglepower", disabled: false, action: {galaxy.startMode.toggle()})
         }
         
     }

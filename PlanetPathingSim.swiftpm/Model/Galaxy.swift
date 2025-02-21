@@ -8,6 +8,7 @@ class Galaxy : ObservableObject{
     @Published var maxDistance : Double { didSet {recalculatePaths()}}
     @Published var forwardAllowed : Bool = true
     @Published var backwardAllowed : Bool = false
+    @Published var startMode : Bool = true
     
     //This controls the options in the dropdown in the user interface 
     var searchAlgorithms : [String] = ["BFS", "DFS", "A*", "Dijkstra"]

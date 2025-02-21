@@ -7,7 +7,7 @@ struct SpriteKitView: View {
     
     var scene: SKScene{
     
-        let scene = GameScene(size: CGSize(width: 1000, height: 1000))
+        let scene = MainScene(size: CGSize(width: 1000, height: 1000))
         scene.galaxy = galaxy
 
         return scene
