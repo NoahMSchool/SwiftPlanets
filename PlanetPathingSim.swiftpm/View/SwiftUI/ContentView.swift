@@ -22,9 +22,9 @@ struct ContentView: View {
                 
                 HUDView
                     .environmentObject(galaxy)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
                     .padding()
-                    .border(.green, width: 5)
+                    .border(.green)
             }
         }
     }

@@ -29,7 +29,7 @@ class Planet : CustomDebugStringConvertible{
     static let SearchStateColors : [SearchState:UIColor] = [
         .unknown : .darkGray,
         .frontier : .cyan,
-        .explored : .brown,
+        .explored : .white,
         .onPath : .yellow,
         .current : .white
     ]

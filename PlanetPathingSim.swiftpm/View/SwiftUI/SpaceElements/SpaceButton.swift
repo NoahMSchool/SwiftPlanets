@@ -10,7 +10,7 @@ struct SpaceButton : View{
         Button(action: action) {
             VStack{
                 Image(systemName: imageSystemName)
-                    .font(.system(size: 24))   
+                    .font(.system(size: 18))   
                     .foregroundColor(.black)  
                     .padding()                 
                     .background(disabled ? .gray : .yellow)                    
@@ -31,7 +31,7 @@ struct LargeSpaceButton : View{
     var body: some View{
         Button(action: action) {
             ZStack{
-                RoundedRectangle(cornerRadius: 25)
+                RoundedRectangle(cornerRadius: 40)
                     //.fill(Color.black)
                     .stroke(Color.yellow, lineWidth: 5)
                 HStack{

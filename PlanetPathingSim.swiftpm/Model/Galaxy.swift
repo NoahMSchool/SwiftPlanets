@@ -3,16 +3,17 @@ import SpriteKit
 class Galaxy : ObservableObject{
     //Published Settings bound to SwiftUI controls
     @Published var selectedUILabel : String = "Cost" { didSet {updateUI(hasAnimation: false)}}    
-    @Published var selectedAlgorithm : String = "Dijkstra" { didSet{resetAlgorithm()}}
+    @Published var selectedAlgorithm : String = "Dijkstra's Algorithm" { didSet{resetAlgorithm()}}
     @Published var planetCount : Int { didSet {resetPlanets()}}
     @Published var maxDistance : Double { didSet {recalculatePaths()}}
     @Published var forwardAllowed : Bool = true
     @Published var backwardAllowed : Bool = false
     @Published var startMode : Bool = true
+    @Published var shipSpeed = 0.25
     @Published var isRunning = false
 
     //This controls the options in the dropdown in the user interface 
-    var searchAlgorithms : [String] = ["BFS", "DFS", "A*", "Dijkstra"]
+    var searchAlgorithms : [String] = ["Breadth First Search", "Depth First Search", "A*", "Dijkstra's Algorithm"]
     var UILabelControls : [String] = ["Cost", "Frontier", "Explored"]
     //These are variables that are bindings in the user interface that can be selected 
     
@@ -39,7 +40,7 @@ class Galaxy : ObservableObject{
         Task {
             while isRunning {
                 await performTask()
-                try? await Task.sleep(nanoseconds: 2_000_000_000) // ✅ Waits 2 seconds
+                try? await Task.sleep(nanoseconds: 2500000000)
             }
         }
     }
@@ -110,9 +111,9 @@ class Galaxy : ObservableObject{
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
             switch selectedAlgorithm{
-            case "BFS" : self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
-            case "DFS" : self.algorithm = DepthFirst(start: startPlanet, end: endPlanet)
-            case "Dijkstra" : self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
+            case "Breadth First Search" : self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
+            case "Depth First Search" : self.algorithm = DepthFirst(start: startPlanet, end: endPlanet)
+            case "Dijkstra's Algorithm" : self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
             default: self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
             }
             //frontier can be changed when intialising the algorithm
@@ -228,7 +229,7 @@ class Galaxy : ObservableObject{
             //ship.setPosition(position: x.getPosition())
             let moveAction : SKAction
             if hasAnimation{
-                moveAction = moveMultipleNodes(planetOrder: algorithm.getPathFromPreviousToCurrent() as? [Planet] ?? [], duration: 0.25)
+                moveAction = moveMultipleNodes(planetOrder: algorithm.getPathFromPreviousToCurrent() as? [Planet] ?? [], duration: self.shipSpeed)
             }
             else{
                 moveAction = teleportNode(to: x.position)
@@ -303,6 +304,10 @@ class Galaxy : ObservableObject{
     func getAlgorithmString()->String{
         guard let algorithm = algorithm else {return "No Algorithm"}
         return algorithm.algorithm
+    }
+    func getMoveStep()->Int{
+        guard let algorithm = algorithm else {return 0}
+        return algorithm.history.count
     }
 }
 extension Galaxy{

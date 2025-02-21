@@ -9,9 +9,9 @@ struct SpaceList : View{
             List(planets, id: \.self) {planet in
                 Text(planet)
             }
-            .frame(maxHeight: 500)
+            //.frame(maxHeight: 400)
         }
-        .frame(maxWidth: 250)
+//        .frame(maxWidth: 250)
         .scrollContentBackground(.hidden)
         
     }

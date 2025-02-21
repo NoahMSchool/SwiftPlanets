@@ -7,7 +7,8 @@ struct ButtonsAndExplanationBlock : View{
         VStack{
             ExplanationBlock().environmentObject(galaxy)
                 .padding(.vertical)
-            HStack{
+
+               HStack{
                 SpaceButton(imageSystemName: "backward.end.alt.fill", textLabel : "Reset", disabled: !galaxy.backwardAllowed) {
                     galaxy.resetAlgorithm()
                 }
@@ -15,10 +16,6 @@ struct ButtonsAndExplanationBlock : View{
                 SpaceButton(imageSystemName: "backward.end.fill", textLabel : "Previous", disabled: !galaxy.backwardAllowed) {
                     galaxy.backward()
                     galaxy.isRunning = false
-                }
-                
-                SpaceButton(imageSystemName: galaxy.isRunning ? "pause.fill" : "arrowtriangle.forward.fill", textLabel: galaxy.isRunning ? "Pause" : "Play", disabled: !galaxy.forwardAllowed) {
-                    galaxy.auto()
                 }
                 
                 SpaceButton(imageSystemName: "forward.end.fill", textLabel : "Next", disabled: !galaxy.forwardAllowed){
@@ -29,7 +26,10 @@ struct ButtonsAndExplanationBlock : View{
                 SpaceButton(imageSystemName: "forward.end.alt.fill", textLabel: "Solve", disabled: !galaxy.forwardAllowed) {
                     galaxy.solve()
                 }
-
+                
+                SpaceButton(imageSystemName: galaxy.isRunning ? "pause.fill" : "arrowtriangle.forward.fill", textLabel: galaxy.isRunning ? "Pause" : "Auto", disabled: !galaxy.forwardAllowed) {
+                    galaxy.auto()
+                }.padding(.horizontal, 25)
             }
         }
         
@@ -39,14 +39,14 @@ struct ExplanationBlock : View{
     @EnvironmentObject var galaxy : Galaxy
     var body : some View{
         ZStack {
-            RoundedRectangle(cornerRadius: 30)
+            RoundedRectangle(cornerRadius: 40)
                 .stroke(.yellow, lineWidth: 5)
                 .fill(.black)
-                .opacity(0.75)
+                //.opacity(0.75)
             Text(galaxy.getExplanationString())
                 .padding(.horizontal)
         }
 
-        .frame(maxHeight: 250)
+        .frame(maxHeight: 100)
     }
 }

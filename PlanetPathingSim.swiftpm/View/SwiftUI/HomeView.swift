@@ -27,12 +27,17 @@ struct HomeView : View{
                 }
                 .navigationDestination(isPresented: $navigateToMain){
                     ContentView().environmentObject(galaxy)
+                        .navigationBarHidden(true)
                 }    
                 .navigationDestination(isPresented: $navigateToAbout){
-                    AboutView()    
+                    AboutView()  
+                        .navigationBarHidden(true)
+
                 }    
+                
             }
             
         }
+
     }
 }
