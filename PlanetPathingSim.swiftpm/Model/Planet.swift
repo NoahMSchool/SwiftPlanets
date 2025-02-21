@@ -5,6 +5,7 @@ class Planet : CustomDebugStringConvertible{
         case unknown
         case frontier
         case explored
+        case onPath
         case current
     }    
     enum Waypoint{
@@ -29,6 +30,7 @@ class Planet : CustomDebugStringConvertible{
         .unknown : .darkGray,
         .frontier : .cyan,
         .explored : .brown,
+        .onPath : .yellow,
         .current : .white
     ]
     static let WaypointColors : [Waypoint : UIColor] = [

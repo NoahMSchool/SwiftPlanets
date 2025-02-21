@@ -54,6 +54,34 @@ class Galaxy : ObservableObject{
         resetPlanets()
         
     }
+
+    // Look up a planet based on its key which is a UUID
+    func keyToPlanet(key : UUID) -> Planet?{
+        for planet in planets {
+            if planet.id == key{
+                return planet
+            }
+        }
+        return nil
+    }
+
+        func resetPlanets(){        
+
+        //building galaxy and adding planet paths and setting neighbours of planets
+        self.planets = GalaxyBuilder.createRandomPlanets(planetCount: planetCount)
+        self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)        
+        self.setPlanetNeighbours()
+        
+        //adding planets and paths nodes so they can be displayed
+        self.setInitialSKNodes()
+        //getting random start and end planet
+        
+        self.startPlanet = planets[0]
+        self.endPlanet = planets[1]
+        
+        resetAlgorithm()
+    }
+    
     func resetAlgorithm(){
         //check if we have a start and end position and if so start the search algorithm and place ship on start planet
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
@@ -74,39 +102,34 @@ class Galaxy : ObservableObject{
             updateUI(hasAnimation: false)
         }
     }
-    func resetPlanets(){        
-
-        //building galaxy and adding planet paths and setting neighbours of planets
-        self.planets = GalaxyBuilder.createRandomPlanets(planetCount: planetCount)
-        self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)        
-        self.setPlanetNeighbours()
-        
-        //adding planets and paths nodes so they can be displayed
-        self.setInitialSKNodes()
-        //getting random start and end planet
-        
-        self.startPlanet = planets[0]
-        self.endPlanet = planets[1]
-        
-        resetAlgorithm()
+    
+    func forward(){
+        guard let algorithm = self.algorithm else{return}
+        algorithm.forward() 
+        updateUI(hasAnimation: true)
     }
+    
+    func backward(){
+        guard let algorithm = self.algorithm else{return}
+        algorithm.backward() 
+        updateUI(hasAnimation: false)
+    }
+    func solve(){
+        guard let algorithm = self.algorithm else{return}
+        while !algorithm.completed(){
+            algorithm.forward()
+        }
+        updateUI(hasAnimation: false)
+    }
+
+    
     func recalculatePaths(){
         // When we change the distance we want to keep the planets but recalcute the path
         self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)
         self.setPlanetNeighbours()
         self.setInitialPlanetPathsSKNodes()
     }
-        
-    // Look up a planet based on its key which is a UUID
-    func keyToPlanet(key : UUID) -> Planet?{
-        for planet in planets {
-            if planet.id == key{
-                return planet
-            }
-        }
-        return nil
-    }
-    
+            
     // This steps through the search algorithm
     // TODO: Move most of this into a new functions which updates the galaxy based on the algorithn
     
@@ -192,18 +215,7 @@ class Galaxy : ObservableObject{
             
         }
     }
-    func forward(){
-        guard let path = self.algorithm else{return}
-        path.forward() 
-        updateUI(hasAnimation: true)
-    }
-    
-    func backward(){
-        guard let path = self.algorithm else{return}
-        path.backward() 
-        updateUI(hasAnimation: false)
-    }
-    
+        
     func getShape()->SKNode{
         skShape
     }
@@ -289,11 +301,14 @@ extension Galaxy{
     
     func drawCameFromLines(){
         guard let algorithm = self.algorithm else{return}
-        for x in algorithm.getCameFrom(){
-            if let from = x.value as? Planet, let to = keyToPlanet(key: x.key) {
-                let color = Planet.SearchStateColors[to.searchState]!
-                let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: color)
-                self.skCameFromLines.addChild(arrow)
+        if !algorithm.completed(){
+            
+            for x in algorithm.getCameFrom(){
+                if let from = x.value as? Planet, let to = keyToPlanet(key: x.key) {
+                    let color = Planet.SearchStateColors[to.searchState]!
+                    let arrow = drawArrow(from: from.position, to: to.position, lineWidth: 3, arrowSize: 10, color: color)
+                    self.skCameFromLines.addChild(arrow)
+                }
             }
         }        
     }
@@ -303,7 +318,8 @@ extension Galaxy{
             let complete_path = algorithm.getPath()
             var from = complete_path[0]
             for to in complete_path{
-                if let f = from as? Planet, let t = to as? Planet{   
+                if let f = from as? Planet, let t = to as? Planet{ 
+                    t.setSearchState(searchState: .onPath)
                     let arrow = drawArrow(from :f.position, to: t.position, lineWidth: 5, arrowSize: 10, color: .yellow)
                     self.skCameFromLines.addChild(arrow)
                     from = to

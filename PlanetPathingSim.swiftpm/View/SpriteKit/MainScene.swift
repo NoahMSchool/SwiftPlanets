@@ -4,7 +4,7 @@ import SpriteKit
 class MainScene : SKScene{
     var galaxy : Galaxy?
     let cam = SKCameraNode()
-    var camZoom : CGFloat = 1{
+    var camZoom : CGFloat = 2.0{
         didSet{
             cam.yScale = camZoom
             cam.xScale = camZoom
