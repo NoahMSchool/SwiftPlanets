@@ -4,7 +4,7 @@ class Galaxy : ObservableObject{
     //Published Settings bound to SwiftUI controls
     @Published var selectedUILabel : String = "Cost" { didSet {updateUI(hasAnimation: false)}}    
     @Published var selectedAlgorithm : String = "Dijkstra" { didSet{resetAlgorithm()}}
-    @Published var planetCount : Int { didSet {reset()}}
+    @Published var planetCount : Int { didSet {resetPlanets()}}
     @Published var maxDistance : Double { didSet {recalculatePaths()}}
     @Published var forwardAllowed : Bool = true
     @Published var backwardAllowed : Bool = false
@@ -50,7 +50,7 @@ class Galaxy : ObservableObject{
         
         ship.shape.zPosition = 10
         
-        reset()
+        resetPlanets()
         
     }
     func resetAlgorithm(){
@@ -73,7 +73,7 @@ class Galaxy : ObservableObject{
             updateUI(hasAnimation: false)
         }
     }
-    func reset(){        
+    func resetPlanets(){        
 
         //building galaxy and adding planet paths and setting neighbours of planets
         self.planets = GalaxyBuilder.createRandomPlanets(planetCount: planetCount)
@@ -252,6 +252,7 @@ class Galaxy : ObservableObject{
     func getExplanationString()->String{
         guard let algorithm = algorithm else {return "No Path"}
         return algorithm.getExplanation()
+
         
         
     }
