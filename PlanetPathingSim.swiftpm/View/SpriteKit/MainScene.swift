@@ -1,7 +1,7 @@
 import SpriteKit
 // import PlaygroundSupport
 
-class GameScene : SKScene{
+class MainScene : SKScene{
     var galaxy : Galaxy?
     let cam = SKCameraNode()
     var camZoom : CGFloat = 1{
@@ -73,7 +73,7 @@ class GameScene : SKScene{
             if sender.state == .changed || sender.state == .ended {
             let scale = cam.xScale/sender.scale      
                 
-                camZoom = max(0.5, min(scale, 1.5))
+                camZoom = max(0.25, min(scale, 2))
             sender.scale = 1.0
         }
     }
