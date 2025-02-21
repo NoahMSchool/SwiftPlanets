@@ -1,23 +1,32 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var galaxy : Galaxy
-        var body: some View {
-            GeometryReader{geometry in
+    @EnvironmentObject var galaxy: Galaxy
+    
+    @ViewBuilder
+    var HUDView: some View {
+        if !galaxy.startMode {
+            StartHUDView()
+        } else {
+            PlayingHUDView()
+        }
+    }
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                SpriteKitView()
+                    .environmentObject(galaxy)
+                    .scaledToFill()
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .ignoresSafeArea()
                 
-                    SpriteKitView().environmentObject(galaxy)
-                        .scaledToFill()
-                    //.aspectRatio(contentMode: .fit)
-                        .frame(maxWidth : .infinity, maxHeight: .infinity)
-                        //.border(.red, width: 10)
-                  
-                    HUDView().environmentObject(galaxy)
-                        .frame(maxWidth : .infinity, maxHeight: geometry.size.height*0.4)
-                        .minimumScaleFactor(0.5)
-                        .background(.white)
-                        .border(.cyan, width : 10)
-                        .opacity(0.6)
-                
+                HUDView
+                    .environmentObject(galaxy)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    //.background(Color.white.opacity(0.1)) // Optional: Slight transparent background
+                    .ignoresSafeArea() // Ensure it overlays fully
             }
         }
+    }
 }

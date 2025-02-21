@@ -1,11 +1,13 @@
 import SwiftUI
 
 
+
 struct TitleName : View{
     var body : some View{
         HStack{
             Text("Pathing Planets")
                 .font(.custom("ChalkDuster", size: 72))
+                .foregroundColor(.yellow)
             Image(systemName: "sparkles")
                 .imageScale(.large)
                 .foregroundColor(.gray) 
@@ -13,17 +15,6 @@ struct TitleName : View{
     }
 }
 
-struct ExplanationBlock : View{
-    @EnvironmentObject var galaxy : Galaxy
-    var body : some View{
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.blue)
-            Text(galaxy.getExplanationString())
-        }
-        .frame(maxWidth: 500, maxHeight: 250)
-    }
-}
 
 struct GalaxyButtons : View{
     @EnvironmentObject var galaxy : Galaxy
@@ -42,6 +33,7 @@ struct GalaxyButtons : View{
             SpaceButton(imageSystemName: "hand.draw", disabled: false){
                 galaxy.updateUI(hasAnimation: false)
             }
+            SpaceButton(imageSystemName: "togglepower", disabled: false, action: {galaxy.startMode.toggle()})
         }
         
     }
