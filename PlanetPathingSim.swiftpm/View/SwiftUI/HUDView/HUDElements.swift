@@ -30,7 +30,6 @@ struct ButtonsAndExplanationBlock : View{
                 SpaceButton(imageSystemName: galaxy.isRunning ? "pause.fill" : "arrowtriangle.forward.fill", textLabel: galaxy.isRunning ? "Pause" : "Auto", disabled: !galaxy.forwardAllowed) {
                     galaxy.auto()
                 }
-                //.padding(.horizontal, 25)
                 
             }
             
@@ -49,17 +48,9 @@ struct ExplanationBlock : View{
             Text(galaxy.getExplanationString())
                 .padding(.horizontal)
             
-        }
-        
-        //.frame(maxHeight: 100)
-        //    }
+        }        
     }
 }
-
-
-
-
-
 
 struct SettingsButton : View{
     @State private var showSettingsSheet = false
@@ -74,6 +65,33 @@ struct SettingsButton : View{
         .sheet(isPresented: $showSettingsSheet){
             SettingsView().environmentObject(galaxy)
             
+        }
+    }
+}
+
+struct GalaxySliders : View{
+    var planetCountRange: ClosedRange<Double> = 2.0...100.0
+    var maxDistanceRange: ClosedRange<Double> = 50.0...500.0
+    
+    @EnvironmentObject var galaxy : Galaxy
+    var body : some View{
+        VStack {
+            SpaceSlider(
+                title: "Number of Planets",
+                range: planetCountRange,
+                step: 1.0,
+                value: Binding(
+                    get: { Double(galaxy.planetCount) },
+                    set: { galaxy.planetCount = Int($0) }
+                )
+            )
+            
+            SpaceSlider(
+                title: "Max Fuel",
+                range: maxDistanceRange,
+                step: 10.0,
+                value: $galaxy.maxDistance
+            )
         }
     }
 }

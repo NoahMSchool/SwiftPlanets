@@ -1,22 +1,16 @@
 import SwiftUI
 
-struct SpaceNumberSelector : View{
-    //var numberRange : Range
-    @State var numberValue : Int
+struct SpaceSlider: View {
+    var title: String
+    var range: ClosedRange<Double>
+    var step: Double
+    @Binding var value: Double
     
-    var label : String
-    var body : some View{
-        VStack{
-            Text(label).modifier(SpaceText())
-            //            Slider(
-            //                value: Binding(
-            //                    get: { Double(galaxy.planetCount) },
-            //                    set: { galaxy.planetCount = Int($0) }
-            //                ),
-            //                in: Double(planetCountRange.lowerBound)...Double(planetCountRange.upperBound),
-            //                step: 1.0
-            //            )
-            //         }
+    var body: some View {
+        VStack {
+            Text("\(title): \(Int(value))")
+                .modifier(SpaceSubheading())
+            Slider(value: $value, in: range, step: step)
         }
     }
 }

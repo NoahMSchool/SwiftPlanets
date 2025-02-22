@@ -12,7 +12,7 @@ struct SpaceHeading: ViewModifier{
     func body(content: Content) -> some View {
         content
             .font(.custom("Chalkduster", size: 32))
-            //.foregroundColor(.yellow)
+            .foregroundColor(.yellow)
 
     }
 }
@@ -21,7 +21,7 @@ struct SpaceSubheading: ViewModifier{
     func body(content: Content) -> some View {
         content
             .font(.custom("Chalkduster", size: 20))
-            //.foregroundColor(.yellow)
+            .foregroundColor(.yellow)
 
     }
 }
@@ -31,7 +31,7 @@ struct SpaceText: ViewModifier{
     func body(content: Content) -> some View {
         content
             .font(.custom("Chalkduster", size: 14))
-            //.foregroundColor(.yellow)
+            .foregroundColor(.white)
 
     }
 }
