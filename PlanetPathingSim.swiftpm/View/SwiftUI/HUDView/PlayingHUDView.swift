@@ -32,7 +32,7 @@ struct TopPlayingHUDRow : View{
         SpaceButton(imageSystemName: "arrowshape.turn.up.backward.fill", textLabel : "Galaxy Builder", disabled: false){
             galaxy.startMode.toggle()        }
         VStack{
-            Text(galaxy.selectedAlgorithm)
+            Text("\(galaxy.selectedAlgorithm) Algorithm")
                 .modifier(SpaceHeading())
             Text(" Step Number : \(String(galaxy.getMoveStep()))")         
                 .modifier(SpaceSubheading())
