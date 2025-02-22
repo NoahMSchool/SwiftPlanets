@@ -1,8 +1,10 @@
 class Dijkstra: BaseSearch{
+    
     override init(start : any Traversable, end : any Traversable){
         super.init(start: start, end: end)
         self.algorithm = "Dijkstra"
     }
+    
     // For Dijkstra we need a priority queue
     override func prioritizeFrontier() {
         currentState.frontier = currentState.frontier.sorted{

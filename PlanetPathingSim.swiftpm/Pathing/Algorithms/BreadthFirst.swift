@@ -1,4 +1,5 @@
 class BreadthFirst: BaseSearch{
+    
     override init(start : any Traversable, end : any Traversable){
         super.init(start: start, end: end)
         self.algorithm = "Breadth First Search"

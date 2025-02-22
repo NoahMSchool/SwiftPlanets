@@ -1,11 +1,11 @@
-
 class DepthFirst: BaseSearch{
+    
     override init(start : any Traversable, end : any Traversable){
         super.init(start: start, end: end)
         self.algorithm = "Depth First Search"
     }
     
-    //Depth First this is a Stack
+    // Depth First this is a Stack so we remove last
     override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
         currentState.frontier.removeLast()
     }
