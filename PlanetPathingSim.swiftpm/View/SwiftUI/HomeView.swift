@@ -4,6 +4,7 @@ struct HomeView : View{
     @EnvironmentObject var galaxy : Galaxy
     @State private var navigateToMain = false
     @State private var navigateToAbout = false
+    
 
     var body : some View{
         NavigationStack{
@@ -33,9 +34,17 @@ struct HomeView : View{
                         .navigationBarHidden(true)
 
                 }  
-                
+                //SpaceColorPicker(selectedColor: )
             }
         }
+    }
+}
 
+struct SpaceColorPicker : View{
+    @Binding var selectedColor : Color
+
+    var body : some View{
+        Text("ColorPicker").modifier(SpaceHeading())
+        ColorPicker("Select", selection: $selectedColor)
     }
 }
