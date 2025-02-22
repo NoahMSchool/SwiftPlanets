@@ -13,7 +13,7 @@ struct ButtonsAndExplanationBlock : View{
                     galaxy.resetAlgorithm()
                 }
                 
-                SpaceButton(imageSystemName: "backward.end.fill", textLabel : "Previous", disabled: !galaxy.backwardAllowed) {
+                SpaceButton(imageSystemName: "backward.end.fill", textLabel : "Undo", disabled: !galaxy.backwardAllowed) {
                     galaxy.backward()
                     galaxy.isRunning = false
                 }

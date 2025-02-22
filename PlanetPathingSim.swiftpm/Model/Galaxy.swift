@@ -280,7 +280,7 @@ class Galaxy : ObservableObject{
         var strings : [String] = []
         for p in algorithm.getWeightedFrontier(){
             if let planet = p.neighbour as? Planet{
-                strings.append(planet.name + " " + String(Int(p.weight)))
+                strings.append(planet.name)
             }
         }
         return strings

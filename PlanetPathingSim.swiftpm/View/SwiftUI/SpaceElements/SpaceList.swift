@@ -8,12 +8,13 @@ struct SpaceList : View{
         VStack{
            Text(title)
                 .modifier(SpaceSubheading())
+                .foregroundColor(.green)
             List(planets, id: \.self) {planet in
                 Text(planet)
+                    .listRowBackground(color)
             }
-            //.frame(maxHeight: 400)
         }
-        .foregroundColor(color)
+        .modifier(SpaceText())
         .scrollContentBackground(.hidden)
         
     }

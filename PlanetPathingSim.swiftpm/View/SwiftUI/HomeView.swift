@@ -14,7 +14,7 @@ struct HomeView : View{
                         .frame(width: geometry.size.width, height: geometry.size.height)
                     
                     VStack{
-                        TitleName()
+                        TitleNameView()
                         HStack{
                             
                             LargeSpaceButton(text : "Start", imageSystemName: "play.fill", action: {navigateToMain.toggle()})
@@ -23,7 +23,6 @@ struct HomeView : View{
                                 .padding()
                         }
                     }
-                    
                 }
                 .navigationDestination(isPresented: $navigateToMain){
                     ContentView().environmentObject(galaxy)
@@ -33,10 +32,9 @@ struct HomeView : View{
                     AboutView()  
                         .navigationBarHidden(true)
 
-                }    
+                }  
                 
             }
-            
         }
 
     }

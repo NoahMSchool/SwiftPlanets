@@ -12,11 +12,11 @@ struct PlayingHUDView : View{
             GridRow{  
                 SpaceList(title : "Frontier",  color: .cyan, planets : galaxy.getFrontierStrings()).gridCellColumns(2)
                 ButtonsAndExplanationBlock().environmentObject(galaxy).gridCellColumns(3)
-                .padding(.horizontal)
-                SpaceList(title : "Explored", color: .orange, planets : galaxy.getExploredStrings()).gridCellColumns(2)
+                .padding(.horizontal, 55)
+                SpaceList(title : "Explored", color: .red, planets : galaxy.getExploredStrings()).gridCellColumns(2)
             }
             
-            .frame(maxHeight: 200)
+            .frame(maxHeight: 250)
         }
         .frame(maxWidth: .infinity)
     }
@@ -46,22 +46,5 @@ struct DebugButtons : View{
             SettingsView().environmentObject(galaxy)
 
         }
-    }
-}
-
-struct DebugGridCell<Content: View>: View {
-    let content: Content
-    
-    init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
-    
-    var body: some View {
-        content
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay(
-                Rectangle()
-                    .stroke(Color.red, lineWidth: 2) // ✅ Debug Border
-            )
     }
 }
