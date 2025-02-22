@@ -4,11 +4,14 @@ struct PlayingHUDView : View{
     @Environment (\.presentationMode) var presentationMode
     @EnvironmentObject var galaxy : Galaxy
     
-    var body: some View{
+    var body : some View{
         Grid(alignment: .bottom){
             GridRow{
-                SpaceButton(imageSystemName: "chevron.backward", textLabel : "Main Menu", disabled: false){
-                    presentationMode.wrappedValue.dismiss()
+                HStack{
+                    SpaceButton(imageSystemName: "chevron.backward", textLabel : "Main Menu", disabled: false){
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    Spacer()
                 }
                 VStack{
                     Text(galaxy.selectedAlgorithm)
@@ -27,17 +30,17 @@ struct PlayingHUDView : View{
             
             GridRow{
                 
-                SpaceList(title : "Frontier", planets : galaxy.getFrontierStrings())
+                SpaceList(title : "Frontier",  color: .cyan, planets : galaxy.getFrontierStrings())
                 ButtonsAndExplanationBlock().environmentObject(galaxy).gridCellColumns(2)
-                SpaceList(title : "Explored", planets : galaxy.getExploredStrings())
+                SpaceList(title : "Explored", color: .orange, planets : galaxy.getExploredStrings())
             }
             .frame(maxHeight: 200)
         }
-        .font(.custom("ChalkDuster", size: 14))
+        .font(.custom("ChalkDuster", size: 16))
         .foregroundColor(.yellow)
         .padding()
+        //.background(.white)
         .opacity(0.8)
-//                .background(.white)
     }
 }
 
@@ -51,13 +54,14 @@ struct DebugButtons : View{
                 SpaceButton(imageSystemName: "gearshape.fill", textLabel: "Settings", disabled : false){
                     showSettingsSheet = true
                 }
-                SpaceButton(imageSystemName: "arrow.3.trianglepath", textLabel : "Reset", disabled: false){
-                    galaxy.resetPlanets()
-                }
-                SpaceButton(imageSystemName: "hand.draw", textLabel : "Redraw", disabled: false){
-                    galaxy.updateUI(hasAnimation: false)
-                }
+//                SpaceButton(imageSystemName: "arrow.3.trianglepath", textLabel : "Reset", disabled: false){
+//                    galaxy.resetPlanets()
+//                }
+//                SpaceButton(imageSystemName: "hand.draw", textLabel : "Redraw", disabled: false){
+//                    galaxy.updateUI(hasAnimation: false)
+//                }
                 SpaceButton(imageSystemName: "togglepower", textLabel : "Toggle", disabled: false, action: {galaxy.startMode.toggle()})
+                
             }
         }
         .sheet(isPresented: $showSettingsSheet){

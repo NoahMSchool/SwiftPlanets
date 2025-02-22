@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SpaceList : View{
     var title : String
+    var color : Color
     var planets : [String]
     var body : some View{        
         VStack{
@@ -11,6 +12,7 @@ struct SpaceList : View{
             }
             //.frame(maxHeight: 400)
         }
+        .foregroundColor(color)
 //        .frame(maxWidth: 250)
         .scrollContentBackground(.hidden)
         

@@ -18,13 +18,12 @@ struct ContentView: View {
                 SpriteKitView()
                     .environmentObject(galaxy)
                     .scaledToFill()
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .frame(width: .infinity, height: .infinity)
                 
                 HUDView
                     .environmentObject(galaxy)
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .padding()
-                    .border(.green)
             }
         }
     }

@@ -29,7 +29,8 @@ struct ButtonsAndExplanationBlock : View{
                 
                 SpaceButton(imageSystemName: galaxy.isRunning ? "pause.fill" : "arrowtriangle.forward.fill", textLabel: galaxy.isRunning ? "Pause" : "Auto", disabled: !galaxy.forwardAllowed) {
                     galaxy.auto()
-                }.padding(.horizontal, 25)
+                }
+                //.padding(.horizontal, 25)
             }
         }
         

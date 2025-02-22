@@ -1,34 +1,8 @@
 import SwiftUI
 
 
-
-struct TitleName : View{
-    var body : some View{
-        HStack{
-            Text("Planetary Pathways")
-                .font(.custom("ChalkDuster", size: 72))
-                .foregroundColor(.yellow)
-//            Image(systemName: "sparkles")
-//                .imageScale(.large)
-//                .foregroundColor(.yellow) 
-        }
-    }
-}
-
-
-struct GalaxyButtons : View{
-    @EnvironmentObject var galaxy : Galaxy
-    var body : some View{
-        HStack{
-
-        }
-        
-    }
-}
-
-
 struct GalaxySliders : View{
-    var planetCountRange = 1...100
+    var planetCountRange = 2...100
     var maxDistanceRange = 50...500
     
     @EnvironmentObject var galaxy : Galaxy
@@ -41,7 +15,7 @@ struct GalaxySliders : View{
                 ),
                 in: Double(planetCountRange.lowerBound)...Double(planetCountRange.upperBound),
                 step: 1.0
-            ).frame(maxWidth: 500)
+            )//.frame(maxWidth: 500)
             Slider(
                 value: Binding(
                     get: { Double(galaxy.maxDistance) },
@@ -49,7 +23,7 @@ struct GalaxySliders : View{
                 ),
                 in: Double(maxDistanceRange.lowerBound)...Double(maxDistanceRange.upperBound),
                 step: 10
-            ).frame(maxWidth: 500)
+            )//.frame(maxWidth: 500)
             
         }
     }

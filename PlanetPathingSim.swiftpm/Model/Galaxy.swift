@@ -84,8 +84,10 @@ class Galaxy : ObservableObject{
         return nil
     }
 
-        func resetPlanets(){        
-
+    func resetPlanets(){        
+        if planetCount<2{
+            planetCount = 2
+        }
         //building galaxy and adding planet paths and setting neighbours of planets
         self.planets = GalaxyBuilder.createRandomPlanets(planetCount: planetCount)
         self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)        
