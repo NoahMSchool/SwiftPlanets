@@ -7,7 +7,7 @@ struct StartHUDView : View{
         Grid(alignment: .top){
             
             GridRow(alignment: .top){
-                TopHUDRow()
+                TopBuilderHUDRow()
                     .environmentObject(galaxy)
                     .frame(maxWidth: .infinity)
             }
@@ -16,7 +16,7 @@ struct StartHUDView : View{
             Spacer()
             
             GridRow{  
-                BottomStartHUDRow()
+                BottomBuilderHUDRow()
                     .environmentObject(galaxy)
                     .frame(maxWidth: .infinity)
             }
@@ -25,7 +25,27 @@ struct StartHUDView : View{
     }
 }
 
-struct BottomStartHUDRow : View {
+struct TopBuilderHUDRow : View{
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var galaxy : Galaxy
+    var body: some View{
+        SpaceButton(imageSystemName: "arrowshape.turn.up.backward.fill", textLabel : "Main Menu", disabled: false){
+            presentationMode.wrappedValue.dismiss()
+        }
+        VStack{
+            Text(galaxy.selectedAlgorithm)
+                .modifier(SpaceHeading())
+            Text(" Step Number : \(String(galaxy.getMoveStep()))")         
+                .modifier(SpaceSubheading())
+        }.gridCellColumns(5)
+        
+        DebugButtons()
+        
+    }
+}
+
+
+struct BottomBuilderHUDRow : View {
     @EnvironmentObject var galaxy : Galaxy
     var body: some View{
         

@@ -55,24 +55,6 @@ struct ExplanationBlock : View{
         //    }
     }
 }
-struct TopHUDRow : View{
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var galaxy : Galaxy
-    var body: some View{
-        SpaceButton(imageSystemName: "arrowshape.turn.up.backward.fill", textLabel : "Main Menu", disabled: false){
-            presentationMode.wrappedValue.dismiss()
-        }
-        VStack{
-            Text(galaxy.selectedAlgorithm)
-                .modifier(SpaceHeading())
-            Text(" Step Number : \(String(galaxy.getMoveStep()))")         
-                .modifier(SpaceSubheading())
-        }.gridCellColumns(5)
-        
-        DebugButtons()
-        
-    }
-}
 
 
 
