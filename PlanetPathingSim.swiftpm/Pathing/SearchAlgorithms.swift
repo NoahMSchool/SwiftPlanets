@@ -1,4 +1,6 @@
 import Foundation
+
+// This structure stores everything needed for the current state of an algorithm. It is put onto a stack for history
 struct AlgorithmState{
     var current: (any Traversable)
     var frontier : [(neighbour: any Traversable, weight: Double)]
@@ -10,8 +12,9 @@ struct AlgorithmState{
     var completed : Bool
     var pathExists : Bool
     var explanation : String
-
+    
 }
+
 class BaseSearch{
     let start : any Traversable
     let end : (any Traversable)?
@@ -44,10 +47,7 @@ class BaseSearch{
     func completed()->Bool{
         currentState.completed
     }
-    func getNextFrontier()->(neighbour: any Traversable, weight: Double){
-        // this should not have any logic as it is in base class
-        currentState.frontier.removeFirst()
-    }
+
     func storeHistory(){
         history.append(currentState)
     }
@@ -75,25 +75,6 @@ class BaseSearch{
     func getPathFromPreviousToCurrent()->[any Traversable]{
         self.currentState.backtrackPathFromPrevious
     }
-    func shouldCheckFrontierBeforeAdding()->Bool{
-        true
-    }
-    
-    func prioritizeFrontier(){
-        
-    }
-    
-    func shouldAddToFrontier(n : (neighbour : any Traversable, weight : Double), newWeight : Double)->Bool{
-        if let _ = currentState.weightSoFar[n.neighbour.id]{
-//            print("FALSE : already in weights SO far")
-            return false
-        }
-        else{
-  //          print("TRUE : not in wieghts so far")
-            return true
-            
-        }
-    }
     
     func forward(){
         if currentState.completed{
@@ -111,7 +92,7 @@ class BaseSearch{
             currentState.current = getNextFrontier().neighbour
             currentState.explored.append(currentState.current)
             calculatePathFromPreviousToCurrent(previousNode: previousNode)
-
+            
             
             if let end = end{
                 if end.isEqual(to : currentState.current){
@@ -125,17 +106,17 @@ class BaseSearch{
                     currentState.completed = true
                     return
                 }
-                }
+            }
             let weightToCurrent = currentState.weightSoFar[currentState.current.id] ?? 0            
             //currentState.explanation = "Getting Neighbours for \(currentState.current)"
             var justAdded : [any Traversable] = []
             for n in currentState.current.getNeighbours(){
                 let newWeight = weightToCurrent + n.weight
                 if shouldAddToFrontier(n : n, newWeight : newWeight){
-                        currentState.frontier.append((neighbour: n.neighbour, weight: newWeight))
-                        justAdded.append(n.neighbour)
-                        currentState.cameFrom[n.neighbour.id] = currentState.current
-                        currentState.weightSoFar[n.neighbour.id] = newWeight                    
+                    currentState.frontier.append((neighbour: n.neighbour, weight: newWeight))
+                    justAdded.append(n.neighbour)
+                    currentState.cameFrom[n.neighbour.id] = currentState.current
+                    currentState.weightSoFar[n.neighbour.id] = newWeight                    
                 }
             }
             currentState.explanation = Explanations.getAddToFrontierExplanation(current: currentState.current, neighbours: justAdded)
@@ -143,12 +124,13 @@ class BaseSearch{
             prioritizeFrontier()
             //TODO currently bug if frontier is empty it lets you do one more step
             if currentState.frontier.isEmpty{
-
+                
                 currentState.explanation = Explanations.getFullyExploredExplanation(current: currentState.current)
                 currentState.completed = true
             }
         }
     }
+    
     func getPathToStart(end: any Traversable)->[any Traversable]{
         var backwards: (any Traversable)? = end
         var reconstructedPath: [any Traversable] = []
@@ -189,69 +171,38 @@ class BaseSearch{
     func getCameFrom()->[UUID: (any Traversable)?]{
         currentState.cameFrom
     }
-        func getWeightSoFar()->[UUID: Double]{
-            currentState.weightSoFar
-        } 
-}
-
-class BreadthFirst: BaseSearch{
-    override init(start : any Traversable, end : any Traversable){
-        super.init(start: start, end: end)
-        self.algorithm = "Breadth First Search"
-    }
-    //Breadth First this is a queue
-    override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
+    func getWeightSoFar()->[UUID: Double]{
+        currentState.weightSoFar
+    } 
+    
+    
+    /***************************************************************
+     These are the functions we override to implement the different
+     algorithms
+     ****************************************************************/
+    // Get the next item from the frontier to explore
+    func getNextFrontier()->(neighbour: any Traversable, weight: Double){
         currentState.frontier.removeFirst()
     }
     
     
-}
-class DepthFirst: BaseSearch{
-    override init(start : any Traversable, end : any Traversable){
-        super.init(start: start, end: end)
-        self.algorithm = "Depth First Search"
+    // Reorder the frontier
+    func prioritizeFrontier(){
+        
     }
-    //Depth First this is a Stack
-    override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
-        currentState.frontier.removeLast()
-    }
-    override func getFrontier()->[any Traversable]
-    {
-        super.getFrontier().reversed()
-    }
-}
-
-
-
-class Dijkstra: BaseSearch{
-    override init(start : any Traversable, end : any Traversable){
-        super.init(start: start, end: end)
-        self.algorithm = "Dijkstra"
-    }
-    //Depth First this is a Stack
-    override func prioritizeFrontier() {
-        currentState.frontier = currentState.frontier.sorted{
-            return $0.weight<$1.weight
-        }
-    }
-    override func shouldAddToFrontier(n : (neighbour : any Traversable, weight : Double), newWeight : Double)->Bool{
-        if let existing = currentState.weightSoFar[n.neighbour.id]{
-            if existing > newWeight{
-            //    print("TRUE : existing weight less then ene waighst", existing, newWeight)
-                //TODO replace instead of inserting duplicate
-                return true
-            }
-            else{
-           //     print("False aready exists with lower weight", existing, newWeight)
-                return false
-            }
+    
+    // Check if we should add an item to the frontier
+    func shouldAddToFrontier(n : (neighbour : any Traversable, weight : Double), newWeight : Double)->Bool{
+        if let _ = currentState.weightSoFar[n.neighbour.id]{
+            //            print("FALSE : already in weights SO far")
+            return false
         }
         else{
-        //    print("Tru = not in frontier")
             return true
         }
     }
 }
+
 
 struct Explanations{  
     static func getStartMessage()->String{
