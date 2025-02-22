@@ -85,11 +85,11 @@ class BaseSearch{
     
     func shouldAddToFrontier(n : (neighbour : any Traversable, weight : Double), newWeight : Double)->Bool{
         if let _ = currentState.weightSoFar[n.neighbour.id]{
-            print("FALSE : already in weights SO far")
+//            print("FALSE : already in weights SO far")
             return false
         }
         else{
-            print("TRUE : not in wieghts so far")
+  //          print("TRUE : not in wieghts so far")
             return true
             
         }
@@ -233,23 +233,21 @@ class Dijkstra: BaseSearch{
         currentState.frontier = currentState.frontier.sorted{
             return $0.weight<$1.weight
         }
-        print(currentState.frontier)
     }
     override func shouldAddToFrontier(n : (neighbour : any Traversable, weight : Double), newWeight : Double)->Bool{
-        print(n.neighbour)
         if let existing = currentState.weightSoFar[n.neighbour.id]{
             if existing > newWeight{
-                print("TRUE : existing weight less then ene waighst", existing, newWeight)
+            //    print("TRUE : existing weight less then ene waighst", existing, newWeight)
                 //TODO replace instead of inserting duplicate
                 return true
             }
             else{
-                print("False aready exists with lower weight", existing, newWeight)
+           //     print("False aready exists with lower weight", existing, newWeight)
                 return false
             }
         }
         else{
-            print("Tru = not in frontier")
+        //    print("Tru = not in frontier")
             return true
         }
     }

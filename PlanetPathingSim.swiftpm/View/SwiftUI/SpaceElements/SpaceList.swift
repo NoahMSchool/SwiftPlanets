@@ -13,7 +13,6 @@ struct SpaceList : View{
             //.frame(maxHeight: 400)
         }
         .foregroundColor(color)
-//        .frame(maxWidth: 250)
         .scrollContentBackground(.hidden)
         
     }

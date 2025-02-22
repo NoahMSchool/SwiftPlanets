@@ -10,10 +10,6 @@ struct AboutView : View{
                         .scaledToFill()
                         .frame(width: geometry.size.width, height: geometry.size.height)
                     VStack(alignment: .leading){
-                        SpaceButton(imageSystemName: "chevron.backward", textLabel : "Main Menu", disabled: false){
-                            presentationMode.wrappedValue.dismiss()
-                        }
-
                         ScrollView(){
                             Text("About").font(.custom("ChalkDuster", size: 32))
                             Text("""

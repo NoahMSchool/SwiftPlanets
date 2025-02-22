@@ -3,7 +3,7 @@ import SpriteKit
 class ShipNode{
     var shape : SKSpriteNode
     init(){
-        self.shape = SKSpriteNode(imageNamed: "Ship6")
+        self.shape = SKSpriteNode(imageNamed: "SpaceExplorerShip")
         self.shape.size = CGSize(width: 50, height: 50)
         
         //self.shape = SKShapeNode(ellipseOf: CGSize(width: 25, height: 15))

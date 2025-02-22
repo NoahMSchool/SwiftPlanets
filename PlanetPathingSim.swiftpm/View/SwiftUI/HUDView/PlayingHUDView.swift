@@ -1,46 +1,38 @@
 import SwiftUI
 
 struct PlayingHUDView : View{
-    @Environment (\.presentationMode) var presentationMode
     @EnvironmentObject var galaxy : Galaxy
     
     var body : some View{
-        Grid(alignment: .bottom){
+        Grid{
             GridRow{
-                HStack{
-                    SpaceButton(imageSystemName: "chevron.backward", textLabel : "Main Menu", disabled: false){
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                    Spacer()
-                }
-                VStack{
-                    Text(galaxy.selectedAlgorithm)
-                        .font(.custom("ChalkDuster", size: 24))
-                    Text(" Step Number : \(String(galaxy.getMoveStep()))")         
-                        .font(.custom("ChalkDuster", size: 18))
-                }
-                .gridCellColumns(2)
-
-                         
-                DebugButtons()
+                TopHUDRow().environmentObject(galaxy)
             }
-
             Spacer()
-            
-            
             GridRow{
-                
-                SpaceList(title : "Frontier",  color: .cyan, planets : galaxy.getFrontierStrings())
-                ButtonsAndExplanationBlock().environmentObject(galaxy).gridCellColumns(2)
-                SpaceList(title : "Explored", color: .orange, planets : galaxy.getExploredStrings())
+                Spacer().gridCellColumns(3)
+                DebugButtons()
+                Spacer().gridCellColumns(3)
             }
+            
+            GridRow{  
+                DebugGridCell{
+                    SpaceList(title : "Frontier",  color: .cyan, planets : galaxy.getFrontierStrings()).gridCellColumns(2)
+                }
+                DebugGridCell{
+                    ButtonsAndExplanationBlock().environmentObject(galaxy).gridCellColumns(3)
+                }
+                .padding(.horizontal)
+                DebugGridCell{
+                    SpaceList(title : "Explored", color: .orange, planets : galaxy.getExploredStrings()).gridCellColumns(2)
+                    
+                }
+            }
+            
             .frame(maxHeight: 200)
         }
-        .font(.custom("ChalkDuster", size: 16))
-        .foregroundColor(.yellow)
-        .padding()
-        //.background(.white)
-        .opacity(0.8)
+        .frame(maxWidth: .infinity)
+        .border(Color.green)
     }
 }
 
@@ -68,5 +60,22 @@ struct DebugButtons : View{
             SettingsView().environmentObject(galaxy)
 
         }
+    }
+}
+
+struct DebugGridCell<Content: View>: View {
+    let content: Content
+    
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        content
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .overlay(
+                Rectangle()
+                    .stroke(Color.red, lineWidth: 2) // ✅ Debug Border
+            )
     }
 }

@@ -1,26 +1,51 @@
 import SwiftUI
 
 struct StartHUDView : View{
-    @Environment (\.presentationMode) var presentationMode
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : Galaxy    
     var body : some View{
-        HStack(alignment: .bottom){
-            VStack{
-                DebugButtons().environmentObject(galaxy)
-                Text(galaxy.getAlgorithmString())
-                GalaxySliders().environmentObject(galaxy)
-                GalaxyButtons().environmentObject(galaxy)
-                HStack{
-                    SpacePicker(title : "Algorithm",choices : galaxy.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)                    
-                    PlanetCountInput().environmentObject(galaxy)
-                    
-                }
+        Grid(alignment: .bottom){
+            GridRow{
+                TopHUDRow().environmentObject(galaxy)
             }
-            .padding(.vertical)
+            
+            Spacer()
+            
+            
+            GridRow{
+                Color(.green)
+                //ButtonsAndExplanationBlock().environmentObject(galaxy).gridCellColumns(2)
+                VStack{
+                    
+                    HStack{
+//                        PlanetCountInput().environmentObject(galaxy)
+                        GalaxySliders().environmentObject(galaxy)
+                    }
+                    
+                    
+                }.gridCellColumns(2)
+                Color(.red)
+            }
+            .frame(maxHeight: 200)
         }
-        //.frame(height: 500)
-        .font(.custom("ChalkDuster", size: 24))
-        .foregroundColor(.yellow)
     }
-    
 }
+    /*
+HStack(alignment: .bottom){
+    VStack{
+        DebugButtons().environmentObject(galaxy)
+        Text(galaxy.getAlgorithmString())
+        GalaxySliders().environmentObject(galaxy)
+        GalaxyButtons().environmentObject(galaxy)
+        HStack{
+            SpacePicker(title : "Algorithm",choices : galaxy.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)                    
+            
+        }
+    }
+    .padding(.vertical)
+}
+//.frame(height: 500)
+.font(.custom("ChalkDuster", size: 24))
+.foregroundColor(.yellow)
+}
+*/
+

@@ -7,8 +7,8 @@ struct ButtonsAndExplanationBlock : View{
         VStack{
             ExplanationBlock().environmentObject(galaxy)
                 .padding(.vertical)
-
-               HStack{
+            
+            HStack{
                 SpaceButton(imageSystemName: "backward.end.alt.fill", textLabel : "Reset", disabled: !galaxy.backwardAllowed) {
                     galaxy.resetAlgorithm()
                 }
@@ -31,9 +31,10 @@ struct ButtonsAndExplanationBlock : View{
                     galaxy.auto()
                 }
                 //.padding(.horizontal, 25)
+                
             }
+            
         }
-        
     }
 }
 struct ExplanationBlock : View{
@@ -43,11 +44,31 @@ struct ExplanationBlock : View{
             RoundedRectangle(cornerRadius: 40)
                 .stroke(.yellow, lineWidth: 5)
                 .fill(.black)
-                //.opacity(0.75)
+                .opacity(0.8)
+            
             Text(galaxy.getExplanationString())
                 .padding(.horizontal)
         }
-
-        .frame(maxHeight: 100)
+        
+        //.frame(maxHeight: 100)
+        //    }
+    }
+}
+struct TopHUDRow : View{
+    @Environment (\.presentationMode) var presentationMode
+    @EnvironmentObject var galaxy : Galaxy
+    var body: some View{
+        SpaceButton(imageSystemName: "arrowshape.turn.up.backward.fill", textLabel : "Main Menu", disabled: false){
+                presentationMode.wrappedValue.dismiss()
+        }
+        VStack{
+            Text(galaxy.selectedAlgorithm)
+                .font(.custom("ChalkDuster", size: 24))
+            Text(" Step Number : \(String(galaxy.getMoveStep()))")         
+                .font(.custom("ChalkDuster", size: 18))
+        }.gridCellColumns(5)
+        
+        DebugButtons()
+        
     }
 }

@@ -19,11 +19,16 @@ struct ContentView: View {
                     .environmentObject(galaxy)
                     .scaledToFill()
                     .frame(width: .infinity, height: .infinity)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
                 
                 HUDView
                     .environmentObject(galaxy)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    //.frame(width: geometry.size.width, height: geometry.size.height)
                     .padding()
+                    .font(.custom("ChalkDuster", size: 14))
+                    .foregroundColor(.yellow)
+                    //.background(.white)
+                    .opacity(0.8)
             }
         }
     }

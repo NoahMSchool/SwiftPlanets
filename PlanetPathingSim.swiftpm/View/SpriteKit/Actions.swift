@@ -53,3 +53,9 @@ func ringPulseAction(scaleBy : CGFloat) -> SKAction{
     let groupAction = SKAction.group([grow, fade])
     return groupAction
 }
+func fadeNodeColor(newColor : UIColor, duration : TimeInterval) -> SKAction{
+    let fadeOut = SKAction.fadeAlpha(to: 0.0, duration: duration / 2)
+    let fadeIn = SKAction.fadeAlpha(to: 1.0, duration: duration / 2)
+    let fadeInFadeOut = SKAction.sequence([fadeOut, fadeIn])
+    return fadeInFadeOut
+}
