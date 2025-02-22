@@ -90,6 +90,8 @@ class BaseSearch{
             let previousNode = currentState.current
             storeHistory()
             currentState.current = getNextFrontier().neighbour
+            // TODO: Don't add to explored twice
+            
             currentState.explored.append(currentState.current)
             calculatePathFromPreviousToCurrent(previousNode: previousNode)
             
@@ -101,8 +103,8 @@ class BaseSearch{
                     
                     currentState.path = reconstructedPath.reversed()
                     currentState.pathExists = true
-                    currentState.explanation = Explanations.getCompletedExplanation(current: end)
-                    //currentState.explanation = "You have found the treasure at \(end)"
+                    currentState.explanation = Explanations.getCompletedExplanation(current: end, exploreCount: currentState.explored.count)
+                    
                     currentState.completed = true
                     return
                 }
@@ -237,8 +239,8 @@ struct Explanations{
         return "You have explored the planet \(current) and all the planets on the frontier but have not found the treasure so there is no path"
     }
     
-    static func getCompletedExplanation(current : any Traversable)->String{
-        return "You have found the treasure at \(current)"
+    static func getCompletedExplanation(current : any Traversable, exploreCount : Int)->String{
+        return "You have found the treasure at \(current). You visited \(exploreCount) planets"
     }
 }
 
