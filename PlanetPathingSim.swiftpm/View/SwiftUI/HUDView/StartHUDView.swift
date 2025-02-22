@@ -33,13 +33,11 @@ struct TopBuilderHUDRow : View{
             presentationMode.wrappedValue.dismiss()
         }
         VStack{
-            Text(galaxy.selectedAlgorithm)
+            Text("Galaxy Builder")
                 .modifier(SpaceHeading())
-            Text(" Step Number : \(String(galaxy.getMoveStep()))")         
-                .modifier(SpaceSubheading())
         }.gridCellColumns(5)
         
-        DebugButtons()
+        SettingsButton()
         
     }
 }
@@ -55,7 +53,7 @@ struct BottomBuilderHUDRow : View {
             .gridCellColumns(2)
         
         LargeSpaceButton(text : "Start", imageSystemName: "play.fill") {
-            
+            galaxy.startMode.toggle()
         }
             .padding()
             .frame(maxWidth: .infinity)

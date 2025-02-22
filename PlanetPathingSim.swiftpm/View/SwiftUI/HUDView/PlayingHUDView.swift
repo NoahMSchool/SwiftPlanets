@@ -29,9 +29,8 @@ struct TopPlayingHUDRow : View{
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var galaxy : Galaxy
     var body: some View{
-        SpaceButton(imageSystemName: "arrowshape.turn.up.backward.fill", textLabel : "Main Menu", disabled: false){
-            presentationMode.wrappedValue.dismiss()
-        }
+        SpaceButton(imageSystemName: "arrowshape.turn.up.backward.fill", textLabel : "Galaxy Builder", disabled: false){
+            galaxy.startMode.toggle()        }
         VStack{
             Text(galaxy.selectedAlgorithm)
                 .modifier(SpaceHeading())
@@ -39,7 +38,7 @@ struct TopPlayingHUDRow : View{
                 .modifier(SpaceSubheading())
         }.gridCellColumns(5)
         
-        DebugButtons()
+        SettingsButton()
         
     }
 }

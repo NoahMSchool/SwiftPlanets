@@ -61,24 +61,15 @@ struct ExplanationBlock : View{
 
 
 
-struct DebugButtons : View{
+struct SettingsButton : View{
     @State private var showSettingsSheet = false
     @EnvironmentObject var galaxy : Galaxy
     var body : some View{
         VStack{
-            HStack{
-                SpaceButton(imageSystemName: "gearshape.fill", textLabel: "Settings", disabled : false){
-                    showSettingsSheet = true
-                }
-                //                SpaceButton(imageSystemName: "arrow.3.trianglepath", textLabel : "Reset", disabled: false){
-                //                    galaxy.resetPlanets()
-                //                }
-                //                SpaceButton(imageSystemName: "hand.draw", textLabel : "Redraw", disabled: false){
-                //                    galaxy.updateUI(hasAnimation: false)
-                //                }
-                SpaceButton(imageSystemName: "togglepower", textLabel : "Toggle", disabled: false, action: {galaxy.startMode.toggle()})
-                
+            SpaceButton(imageSystemName: "gearshape.fill", textLabel: "Settings", disabled : false){
+                showSettingsSheet = true
             }
+            
         }
         .sheet(isPresented: $showSettingsSheet){
             SettingsView().environmentObject(galaxy)
