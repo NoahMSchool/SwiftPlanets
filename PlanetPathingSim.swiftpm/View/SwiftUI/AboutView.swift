@@ -9,17 +9,19 @@ struct AboutView : View{
                 StarryBackgroundView()
                     .scaledToFill()
                     .frame(width: geometry.size.width, height: geometry.size.height)
-                VStack(alignment: .leading){
+                VStack(alignment: .center){
+                    Text("About")
+                        .modifier(SpaceHeading())
                     ScrollView(){
-                        Text("About")
-                            .modifier(SpaceHeading())
-                        
                         Text("""
                             Planetary Pathways is an interatctive pathfinding simulator that aims to display different search algorithms in a fun way using planets
                             """)
                     }
+                    .modifier(SpaceText())
                     .frame(maxWidth: 500)
-                    
+                    LargeSpaceButton(text: "Main Menu", imageSystemName: "arrowshape.turn.up.backward.fill", action: {presentationMode.wrappedValue.dismiss()})
+                        .padding(.vertical, 50)
+
                 }
             }
         }
