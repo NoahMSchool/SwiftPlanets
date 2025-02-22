@@ -11,6 +11,8 @@ struct SpaceSlider: View {
             Text("\(title): \(Int(value))")
                 .modifier(SpaceSubheading())
             Slider(value: $value, in: range, step: step)
+                .tint(.yellow)
+
         }
     }
 }

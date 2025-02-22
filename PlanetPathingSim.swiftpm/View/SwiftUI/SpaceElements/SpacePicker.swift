@@ -14,13 +14,13 @@ struct SpacePicker : View{
                 }
             }
             .pickerStyle(.wheel)
-            .modifier(SpaceSubheading())
+            .modifier(SpaceText())
 
             .padding()
         }
         .padding()
-        .background(Color(.systemBackground))
-        .opacity(0.8)
+        .background(Color(.black))
+        .border(Color.yellow)
         .cornerRadius(40)
     }
 }
