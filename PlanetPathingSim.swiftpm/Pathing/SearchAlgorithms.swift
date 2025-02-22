@@ -47,7 +47,7 @@ class BaseSearch{
     func completed()->Bool{
         currentState.completed
     }
-
+    
     func storeHistory(){
         history.append(currentState)
     }
@@ -90,9 +90,11 @@ class BaseSearch{
             let previousNode = currentState.current
             storeHistory()
             currentState.current = getNextFrontier().neighbour
-            // TODO: Don't add to explored twice
             
-            currentState.explored.append(currentState.current)
+            // Don't add to explored twice
+            if !currentState.explored.contains(where: { $0.id == currentState.current.id }) {
+                currentState.explored.append(currentState.current)
+            }            
             calculatePathFromPreviousToCurrent(previousNode: previousNode)
             
             
