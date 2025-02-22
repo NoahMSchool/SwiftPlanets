@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AboutView : View{
-    @Environment (\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode
 
     var body : some View{
         GeometryReader { geometry in
