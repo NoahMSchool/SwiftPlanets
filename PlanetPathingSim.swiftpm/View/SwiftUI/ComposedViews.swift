@@ -8,6 +8,7 @@ struct GalaxySliders : View{
     @EnvironmentObject var galaxy : Galaxy
     var body : some View{
         VStack{
+            Text("Number of Planets: \(galaxy.planetCount)")
             Slider(
                 value: Binding(
                     get: { Double(galaxy.planetCount) },
@@ -16,6 +17,8 @@ struct GalaxySliders : View{
                 in: Double(planetCountRange.lowerBound)...Double(planetCountRange.upperBound),
                 step: 1.0
             )//.frame(maxWidth: 500)
+
+            Text("Max Fuel: \(Int(galaxy.maxDistance / 25))")
             Slider(
                 value: Binding(
                     get: { Double(galaxy.maxDistance) },

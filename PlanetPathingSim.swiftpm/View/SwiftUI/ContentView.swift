@@ -25,6 +25,7 @@ struct ContentView: View {
                     .padding()
                     .opacity(0.8)
                     .modifier(SpaceText())
+                    .frame(width: .infinity, height: .infinity)
             }
         }
     }
