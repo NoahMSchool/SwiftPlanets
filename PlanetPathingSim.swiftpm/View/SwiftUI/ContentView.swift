@@ -5,7 +5,7 @@ struct ContentView: View {
     
     @ViewBuilder
     var HUDView: some View {
-        if !galaxy.startMode {
+        if galaxy.startMode {
             StartHUDView()
         } else {
             PlayingHUDView()
