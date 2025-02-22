@@ -22,6 +22,9 @@ class BaseSearch{
     var currentState : AlgorithmState
     var history: [AlgorithmState]
     
+    class func getDescription()->String{
+        return "yoyo"
+    }    
     
     init(start : any Traversable, end : any Traversable){
         self.algorithm = "No algorithm"

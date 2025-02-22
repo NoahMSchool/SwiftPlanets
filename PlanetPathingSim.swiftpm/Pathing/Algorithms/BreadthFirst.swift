@@ -1,5 +1,5 @@
 class BreadthFirst: BaseSearch{
-    
+
     override init(start : any Traversable, end : any Traversable){
         super.init(start: start, end: end)
         self.algorithm = "Breadth First Search"
@@ -10,5 +10,8 @@ class BreadthFirst: BaseSearch{
         currentState.frontier.removeFirst()
     }
     
+    override class func getDescription()->String{
+        return "Breadth First Search"
+    }    
     
 }
