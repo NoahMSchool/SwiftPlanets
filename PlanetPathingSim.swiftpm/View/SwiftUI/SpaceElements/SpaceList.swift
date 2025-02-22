@@ -6,7 +6,8 @@ struct SpaceList : View{
     var planets : [String]
     var body : some View{        
         VStack{
-           Text(title) 
+           Text(title)
+                .modifier(SpaceSubheading())
             List(planets, id: \.self) {planet in
                 Text(planet)
             }

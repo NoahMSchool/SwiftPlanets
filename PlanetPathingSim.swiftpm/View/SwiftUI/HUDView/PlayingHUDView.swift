@@ -9,30 +9,16 @@ struct PlayingHUDView : View{
                 TopHUDRow().environmentObject(galaxy)
             }
             Spacer()
-            GridRow{
-                Spacer().gridCellColumns(3)
-                DebugButtons()
-                Spacer().gridCellColumns(3)
-            }
-            
             GridRow{  
-                DebugGridCell{
-                    SpaceList(title : "Frontier",  color: .cyan, planets : galaxy.getFrontierStrings()).gridCellColumns(2)
-                }
-                DebugGridCell{
-                    ButtonsAndExplanationBlock().environmentObject(galaxy).gridCellColumns(3)
-                }
+                SpaceList(title : "Frontier",  color: .cyan, planets : galaxy.getFrontierStrings()).gridCellColumns(2)
+                ButtonsAndExplanationBlock().environmentObject(galaxy).gridCellColumns(3)
                 .padding(.horizontal)
-                DebugGridCell{
-                    SpaceList(title : "Explored", color: .orange, planets : galaxy.getExploredStrings()).gridCellColumns(2)
-                    
-                }
+                SpaceList(title : "Explored", color: .orange, planets : galaxy.getExploredStrings()).gridCellColumns(2)
             }
             
             .frame(maxHeight: 200)
         }
         .frame(maxWidth: .infinity)
-        .border(Color.green)
     }
 }
 

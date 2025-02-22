@@ -5,7 +5,8 @@ struct SettingsView : View{
     @EnvironmentObject var galaxy : Galaxy
     var body : some View{
         VStack{
-            SpaceLargeText(textString: "Settings")
+            Text("Settings")
+                .modifier(SpaceHeading())
             ScrollView{
                 Text(galaxy.selectedAlgorithm)
                 SpacePicker(title : "UILabelSelection", choices : galaxy.UILabelControls, selectedValue : $galaxy.selectedUILabel)

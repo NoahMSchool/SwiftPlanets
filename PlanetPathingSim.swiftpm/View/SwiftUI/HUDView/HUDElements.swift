@@ -48,6 +48,7 @@ struct ExplanationBlock : View{
             
             Text(galaxy.getExplanationString())
                 .padding(.horizontal)
+            
         }
         
         //.frame(maxHeight: 100)
@@ -63,9 +64,9 @@ struct TopHUDRow : View{
         }
         VStack{
             Text(galaxy.selectedAlgorithm)
-                .font(.custom("ChalkDuster", size: 24))
+                .modifier(SpaceHeading())
             Text(" Step Number : \(String(galaxy.getMoveStep()))")         
-                .font(.custom("ChalkDuster", size: 18))
+                .modifier(SpaceSubheading())
         }.gridCellColumns(5)
         
         DebugButtons()
