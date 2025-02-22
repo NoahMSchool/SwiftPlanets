@@ -4,47 +4,43 @@ struct PlayingHUDView : View{
     @EnvironmentObject var galaxy : Galaxy
     
     var body : some View{
-        Grid{
-            GridRow{
-                TopHUDRow().environmentObject(galaxy)
-            }
-            Spacer()
-            GridRow{  
-                SpaceList(title : "Frontier",  color: .cyan, planets : galaxy.getFrontierStrings()).gridCellColumns(2)
-                ButtonsAndExplanationBlock().environmentObject(galaxy).gridCellColumns(3)
-                .padding(.horizontal, 55)
-                SpaceList(title : "Explored", color: .red, planets : galaxy.getExploredStrings()).gridCellColumns(2)
-            }
+        Grid(alignment: .top){
             
-            .frame(maxHeight: 250)
+            GridRow(alignment: .top){
+                TopHUDRow()
+                    .environmentObject(galaxy)
+                    .frame(maxWidth: .infinity)
+            }
+            .frame(maxWidth: .infinity)            
+            
+            Spacer()
+            
+            GridRow{  
+                BottomPlayingHUDRow()
+                    .environmentObject(galaxy)
+                    .frame(maxWidth: .infinity)
+            }
+            .frame(maxWidth: .infinity, maxHeight: 200)
         }
-        .frame(maxWidth: .infinity)
     }
 }
 
-
-struct DebugButtons : View{
-    @State private var showSettingsSheet = false
+struct BottomPlayingHUDRow : View {
     @EnvironmentObject var galaxy : Galaxy
-    var body : some View{
-        VStack{
-            HStack{
-                SpaceButton(imageSystemName: "gearshape.fill", textLabel: "Settings", disabled : false){
-                    showSettingsSheet = true
-                }
-//                SpaceButton(imageSystemName: "arrow.3.trianglepath", textLabel : "Reset", disabled: false){
-//                    galaxy.resetPlanets()
-//                }
-//                SpaceButton(imageSystemName: "hand.draw", textLabel : "Redraw", disabled: false){
-//                    galaxy.updateUI(hasAnimation: false)
-//                }
-                SpaceButton(imageSystemName: "togglepower", textLabel : "Toggle", disabled: false, action: {galaxy.startMode.toggle()})
-                
-            }
-        }
-        .sheet(isPresented: $showSettingsSheet){
-            SettingsView().environmentObject(galaxy)
 
-        }
+    var body: some View{
+        
+        SpaceList(title : "Frontier",  color: .cyan, planets : galaxy.getFrontierStrings())
+            .frame(maxWidth: .infinity)
+            .gridCellColumns(2)
+        
+        ButtonsAndExplanationBlock().environmentObject(galaxy)
+            .frame(maxWidth: .infinity)
+            .gridCellColumns(3)
+        
+        SpaceList(title : "Explored", color: .orange, planets : galaxy.getExploredStrings())
+            .frame(maxWidth: .infinity)
+            .gridCellColumns(2)
+
     }
 }

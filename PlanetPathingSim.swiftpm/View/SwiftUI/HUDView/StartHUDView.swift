@@ -1,31 +1,49 @@
 import SwiftUI
 
 struct StartHUDView : View{
-    @EnvironmentObject var galaxy : Galaxy    
+    @EnvironmentObject var galaxy : Galaxy
+    
     var body : some View{
-        Grid(alignment: .bottom){
-            GridRow{
-                TopHUDRow().environmentObject(galaxy)
+        Grid(alignment: .top){
+            
+            GridRow(alignment: .top){
+                TopHUDRow()
+                    .environmentObject(galaxy)
+                    .frame(maxWidth: .infinity)
             }
+            .frame(maxWidth: .infinity)            
             
             Spacer()
             
-            
-            GridRow{
-                Color(.green)
-                //ButtonsAndExplanationBlock().environmentObject(galaxy).gridCellColumns(2)
-                VStack{
-                    
-                    HStack{
-//                        PlanetCountInput().environmentObject(galaxy)
-                        GalaxySliders().environmentObject(galaxy)
-                    }
-                    
-                    
-                }.gridCellColumns(2)
-                Color(.red)
+            GridRow{  
+                BottomStartHUDRow()
+                    .environmentObject(galaxy)
+                    .frame(maxWidth: .infinity)
             }
-            .frame(maxHeight: 200)
+            .frame(maxWidth: .infinity, maxHeight: 200)
         }
     }
 }
+
+struct BottomStartHUDRow : View {
+    @EnvironmentObject var galaxy : Galaxy
+    var body: some View{
+        
+        // Color(.blue)
+        GalaxySliders().environmentObject(galaxy)
+            .frame(maxWidth: .infinity)
+            .gridCellColumns(2)
+        
+        LargeSpaceButton(text : "Start", imageSystemName: "play.fill") {
+            
+        }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .gridCellColumns(3)
+        
+        Color(.red)
+            .frame(maxWidth: .infinity)
+            .gridCellColumns(2)
+    }
+}
+
