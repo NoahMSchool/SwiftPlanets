@@ -41,7 +41,7 @@ struct BottomStartHUDRow : View {
             .frame(maxWidth: .infinity)
             .gridCellColumns(3)
         
-        Color(.red)
+         SpacePicker(title : "Search Algo", choices : galaxy.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)
             .frame(maxWidth: .infinity)
             .gridCellColumns(2)
     }
