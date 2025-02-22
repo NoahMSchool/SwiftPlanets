@@ -8,10 +8,11 @@ struct SpaceList : View{
         VStack{
            Text(title)
                 .modifier(SpaceSubheading())
-                .foregroundColor(.green)
+                .foregroundColor(color)
             List(planets, id: \.self) {planet in
                 Text(planet)
                     .listRowBackground(color)
+                    .foregroundColor(.black)
             }
         }
         .modifier(SpaceText())
