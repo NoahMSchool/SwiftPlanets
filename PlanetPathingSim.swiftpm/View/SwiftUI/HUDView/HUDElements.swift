@@ -78,5 +78,11 @@ struct GalaxySliders : View{
         }
         .padding()
 
+        ZStack{
+            RoundedRectangle(cornerSize: CGSize(width: 40, height: 40))
+                .stroke(.yellow, lineWidth: 5)
+                .fill(.black)
+            
+                    }
     }
 }

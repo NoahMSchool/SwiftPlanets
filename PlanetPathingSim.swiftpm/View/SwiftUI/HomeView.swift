@@ -4,6 +4,7 @@ struct HomeView : View{
     @EnvironmentObject var galaxy : Galaxy
     @State private var navigateToMain = false
     @State private var navigateToAbout = false
+    @State private var navigateToAlgorithms = false
     
 
     var body : some View{
@@ -16,11 +17,13 @@ struct HomeView : View{
                     
                     VStack{
                         TitleNameView()
+                        LargeSpaceButton(text : "Start", imageSystemName: "play.fill", action: {navigateToMain.toggle()})
+                            .padding()
                         HStack{
-                            
-                            LargeSpaceButton(text : "Start", imageSystemName: "play.fill", action: {navigateToMain.toggle()})
-                                .padding()
                             LargeSpaceButton(text : "About", imageSystemName: "info.circle.fill", action: {navigateToAbout.toggle()})
+                                .padding()
+                            
+                            LargeSpaceButton(text : "Algorithms", imageSystemName: "map.fill", action: {navigateToAlgorithms.toggle()})
                                 .padding()
                         }
                     }
@@ -34,7 +37,12 @@ struct HomeView : View{
                         .navigationBarHidden(true)
 
                 }  
-                //SpaceColorPicker(selectedColor: )
+                .navigationDestination(isPresented: $navigateToAlgorithms){
+                    AlgorithmsView()  
+                        .navigationBarHidden(true)
+                    
+                }  
+                
             }
         }
     }
