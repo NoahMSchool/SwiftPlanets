@@ -45,6 +45,12 @@ class PlanetNode : SKNode{
         addChild(planetNameLabel)
         
     }
+    func hidePlanetLabel(){
+        self.planetNameLabel.isHidden = true
+    }
+    func showPlanetLabel(){
+        self.planetNameLabel.isHidden = false
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

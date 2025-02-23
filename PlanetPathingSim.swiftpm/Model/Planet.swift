@@ -70,6 +70,12 @@ class Planet : CustomDebugStringConvertible{
             labelString += "Frontier Order : \(String(orderInFrontier))"
         }
         shape.setPlanetUILabel(label: labelString)
+        if searchState == .unknown && waypoint == .middle {
+            self.shape.hidePlanetLabel()
+        }
+        else{
+            self.shape.showPlanetLabel()
+        }
     }
     var debugDescription: String {
         return name

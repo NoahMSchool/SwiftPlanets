@@ -67,7 +67,7 @@ struct BottomPlayingHUDRow : View {
             .frame(maxWidth: .infinity)
             .gridCellColumns(3)
         
-        SpaceList(title : "Explored", color: .orange, planets : galaxy.getExploredStrings())
+        SpaceList(title : "Explored", color: .red, planets : galaxy.getExploredStrings())
             .frame(maxWidth: .infinity)
             .gridCellColumns(2)
 
