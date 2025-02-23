@@ -12,6 +12,7 @@ class Galaxy : ObservableObject{
     @Published var shipSpeed = 0.25
     @Published var isRunning = false
     @Published var focusOnShip = false
+    @Published var focusOnCenter = false
     @Published var lockOnShip = false
 
     static let algorithmTypes: [String: BaseSearch.Type] = [

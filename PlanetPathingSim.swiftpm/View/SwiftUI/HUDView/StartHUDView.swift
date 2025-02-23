@@ -38,8 +38,9 @@ struct TopBuilderHUDRow : View{
         }.gridCellColumns(5)
         
         VStack{
-            SettingsButton()
-            
+            SpaceButton(imageSystemName: "location.fill", textLabel: "Recenter", disabled: false){
+                galaxy.focusOnCenter = true
+            }
         }
         
     }

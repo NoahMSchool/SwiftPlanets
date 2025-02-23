@@ -40,7 +40,6 @@ struct TopPlayingHUDRow : View{
                 .modifier(SpaceSubheading())
         }.gridCellColumns(5)
         VStack{
-            SettingsButton()
             SpaceButton(imageSystemName: "location.fill", textLabel: "Focus On Ship", disabled: false){
                 galaxy.focusOnShip = true  
             }
@@ -58,7 +57,6 @@ struct BottomPlayingHUDRow : View {
     @EnvironmentObject var galaxy : Galaxy
 
     var body: some View{
-        
         SpaceList(title : "Frontier",  color: .cyan, planets : galaxy.getFrontierStrings())
             .frame(maxWidth: .infinity)
             .gridCellColumns(2)

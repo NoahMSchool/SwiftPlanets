@@ -46,6 +46,10 @@ class MainScene : SKScene{
             focusOnShip()
             galaxy.focusOnShip = false
         }
+        if galaxy.focusOnCenter{
+            focusOnCenter()
+            galaxy.focusOnCenter = false
+        }
         if galaxy.lockOnShip{
             camPosition = galaxy.ship.shape.position
         }
@@ -59,6 +63,16 @@ class MainScene : SKScene{
         self.galaxy?.skStarryBackground.run(bgMoveAction)
         camZoom = 1
     }
+    func focusOnCenter(){
+        guard let galaxy = galaxy else {return}
+        print(galaxy.ship.shape.position)
+        let camMoveAction = moveNode(to: CGPoint(x: 0,y: 0), duration: 1)
+        let bgMoveAction = moveNode(to: CGPoint(x: 0, y: 0), duration: 1)
+        cam.run(camMoveAction)
+        self.galaxy?.skStarryBackground.run(bgMoveAction)
+        camZoom = 1
+    }
+
     @objc func handlePan(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         let sceneTranslation = CGPoint(x: -translation.x, y: translation.y)

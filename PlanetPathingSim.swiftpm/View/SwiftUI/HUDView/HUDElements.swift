@@ -52,23 +52,6 @@ struct ExplanationBlock : View{
     }
 }
 
-struct SettingsButton : View{
-    @State private var showSettingsSheet = false
-    @EnvironmentObject var galaxy : Galaxy
-    var body : some View{
-        VStack{
-            SpaceButton(imageSystemName: "gearshape.fill", textLabel: "Settings", disabled : false){
-                showSettingsSheet = true
-            }
-            
-        }
-        .sheet(isPresented: $showSettingsSheet){
-            SettingsView().environmentObject(galaxy)
-            
-        }
-    }
-}
-
 struct GalaxySliders : View{
     var planetCountRange: ClosedRange<Double> = 2.0...100.0
     var maxDistanceRange: ClosedRange<Double> = 50.0...500.0
