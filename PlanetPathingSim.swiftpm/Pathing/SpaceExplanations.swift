@@ -34,8 +34,8 @@ struct Explanations{
         return "You have explored the planet \(current) and all the planets on the frontier but have not found the treasure so there is no path"
     }
     
-    static func getCompletedExplanation(current : any Traversable, exploreCount : Int)->String{
-        return "You have found the treasure at \(current). You visited \(exploreCount) planets"
+    static func getCompletedExplanation(current : any Traversable, exploreCount : Int, cost: Int)->String{
+        return "You have found the treasure at \(current). You visited \(exploreCount) planets at a cost of \(cost)"
     }
 }
 
