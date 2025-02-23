@@ -4,7 +4,7 @@ class GreedyBestFirst: BaseSearch{
     }
     
     override class func getDescription()->String{
-        return "Uses only the heuristic (estimated distance) to the goal. Faster than Dijkstra but may not find the optimal path, depending on the heuristic."
+        return "Greedy Best First Search uses a priority queue only the heuristic (the estimated distance to the goal). It is faster than Dijkstra but may not find the optimal path, depending on the heuristic."
     }  
     
     override class func useHeuristic()->Bool{

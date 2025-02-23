@@ -5,7 +5,7 @@ class BreadthFirst: BaseSearch{
     }
     
     override class func getDescription()->String{
-        return "Explores all neighbors first before moving deeper. Ignores edge weights. Takes the shortest number of edges to reach the goal."
+        return "Breadth First Search uses a queue data structure meaning the first planets to be discovered will be the first one to be exploreed. It will explores all neighbors first before moving deeper. It ignores edge weights and takes the shortest number of edges to reach the goal but not always the shortest path."
     }  
     
 }

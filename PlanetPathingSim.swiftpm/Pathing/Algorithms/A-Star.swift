@@ -5,7 +5,7 @@ class AStar: BaseSearch{
   }
 
     override class func getDescription()->String{
-        return "Uses both the heuristic and actual cost added together. More optimal than Greedy BFS - it will always return the optimal path unless the heuristic is very inaccurate."
+        return "A* was developed at the Stanford Research Institute in 1968. It is a combination of Dijkstra and Greedy BFS, It uses a priority queue combining both the heuristic and actual cost added together. It is more optimal than Greedy BFS - it will always return the optimal path unless the heuristic is very inaccurate."
     }  
     
     override class func useHeuristic()->Bool{

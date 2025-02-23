@@ -4,7 +4,7 @@ class Dijkstra: BaseSearch{
     }
     
     override class func getDescription()->String{
-        return "Finds the shortest weighted path from start to goal. Uses a priority queue to explore the lowest-cost path first. Will always find shortest path by cost."
+        return "Dijkstra's Algorithm was created by Edsger Dijkstra in 1956. It always finds the shortest weighted path from start to goal. It uses a priority queue to explore the lowest-cost path first."
     }  
     
     override class func usesWeights()->Bool{
