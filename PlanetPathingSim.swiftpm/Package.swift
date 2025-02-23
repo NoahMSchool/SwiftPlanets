@@ -8,17 +8,17 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "Rambo",
+    name: "Planetary Pathways",
     platforms: [
         .iOS("17.5")
     ],
     products: [
         .iOSApplication(
-            name: "Rambo",
+            name: "Planetary Pathways",
             targets: ["AppModule"],
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .moon),
+            appIcon: .asset("AppIcon"),
             accentColor: .presetColor(.yellow),
             supportedDeviceFamilies: [
                 .pad,

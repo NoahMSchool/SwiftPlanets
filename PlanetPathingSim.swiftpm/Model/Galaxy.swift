@@ -11,6 +11,7 @@ class Galaxy : ObservableObject{
     @Published var startMode : Bool = true
     @Published var shipSpeed = 0.25
     @Published var isRunning = false
+    @Published var focusOnShip = false
 
     //This controls the options in the dropdown in the user interface 
     var searchAlgorithms : [String] = ["Breadth First Search", "Depth First Search", "Dijkstra", "Greedy Best First Search", "A*"]
@@ -53,7 +54,7 @@ class Galaxy : ObservableObject{
     
     init(){
         self.planets = []
-        self.planetCount = 20
+        self.planetCount = 25
         self.maxDistance = 250
         self.skShape = SKNode()
         self.skPlanets = SKNode()
@@ -243,7 +244,7 @@ class Galaxy : ObservableObject{
             //ship.setPosition(position: x.getPosition())
             let moveAction : SKAction
             if hasAnimation{
-                moveAction = moveMultipleNodes(planetOrder: algorithm.getPathFromPreviousToCurrent() as? [Planet] ?? [], duration: self.shipSpeed)
+                moveAction = moveShipMultipleNodes(planetOrder: algorithm.getPathFromPreviousToCurrent() as? [Planet] ?? [], duration: self.shipSpeed)
             }
             else{
                 moveAction = teleportNode(to: x.position)
