@@ -11,7 +11,6 @@ struct SettingsView : View{
                     .modifier(SpaceHeading())
                 ScrollView{
                     
-                    SpacePicker(title : "UILabelSelection", choices : galaxy.UILabelControls, selectedValue : $galaxy.selectedUILabel)
                 }
                 LargeSpaceButton(text: "Done", imageSystemName: "", action: {dismiss()})
             }

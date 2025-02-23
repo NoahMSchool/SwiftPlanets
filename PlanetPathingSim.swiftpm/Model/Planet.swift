@@ -61,13 +61,13 @@ class Planet : CustomDebugStringConvertible{
         shape.setPlanetNameLabelColor(color: Planet.WaypointColors[waypoint]!)
         var labelString = ""
         if let costSoFar = costSoFar{
-            labelString += "Cost So Far : \(String(costSoFar))"
+            labelString += "Cost : \(String(costSoFar))"
         }
         if let orderInExplored = orderInExplored{
-            labelString += "Order In Explored : \(String(orderInExplored))"
+            labelString += "Explored Order : \(String(orderInExplored))"
         }
         if let orderInFrontier = orderInFrontier{
-            labelString += "Order In Frontier : \(String(orderInFrontier))"
+            labelString += "Frontier Order : \(String(orderInFrontier))"
         }
         shape.setPlanetUILabel(label: labelString)
     }

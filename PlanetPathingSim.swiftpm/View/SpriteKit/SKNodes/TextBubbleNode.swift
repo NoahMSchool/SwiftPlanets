@@ -12,7 +12,7 @@ class TextBubbleNode : SKNode{
     init(textString: String) {
         self.labelText = SKLabelNode(text: textString)        
         
-        labelText.fontSize = 8
+        labelText.fontSize = 12
         labelText.fontName = "ChalkDuster"
         labelText.verticalAlignmentMode = .center
         labelText.horizontalAlignmentMode = .center

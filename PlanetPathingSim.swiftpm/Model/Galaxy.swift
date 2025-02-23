@@ -13,8 +13,7 @@ class Galaxy : ObservableObject{
     @Published var isRunning = false
 
     //This controls the options in the dropdown in the user interface 
-    var searchAlgorithms : [String] = ["Breadth First Search", "Depth First Search", "Dijkstra", "Greedy BFS", "A*"]
-    var UILabelControls : [String] = ["Cost", "Frontier", "Explored"]
+    var searchAlgorithms : [String] = ["Breadth First Search", "Depth First Search", "Dijkstra", "Greedy Best First Search", "A*"]
     //These are variables that are bindings in the user interface that can be selected 
     
     var planets : [Planet]
@@ -117,13 +116,20 @@ class Galaxy : ObservableObject{
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
             switch selectedAlgorithm{
-            case "Breadth First Search" : self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
-            case "Depth First Search" : self.algorithm = DepthFirst(start: startPlanet, end: endPlanet)
-            case "Dijkstra" : self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
-            case "Greedy BFS" : self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
-            case "A*" : self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
-            default: self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
+            case "Breadth First Search" : 
+                self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
+            case "Depth First Search" : 
+                self.algorithm = DepthFirst(start: startPlanet, end: endPlanet)
+            case "Dijkstra" : 
+                self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
+            case "Greedy Best First Search" : 
+                self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
+            case "A*" : 
+                self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
+            default: 
+                self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
             }
+            self.selectedUILabel = self.algorithm!.usesWeights ? "Cost" : "Frontier"
             //frontier can be changed when intialising the algorithm
             updateFrontier()
             ship.setPosition(position: startPlanet.getPosition())

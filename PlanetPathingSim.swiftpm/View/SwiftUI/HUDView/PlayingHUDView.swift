@@ -30,7 +30,9 @@ struct TopPlayingHUDRow : View{
     @EnvironmentObject var galaxy : Galaxy
     var body: some View{
         SpaceButton(imageSystemName: "arrowshape.turn.up.backward.fill", textLabel : "Galaxy Builder", disabled: false){
-            galaxy.startMode.toggle()        }
+            galaxy.resetAlgorithm()
+            galaxy.startMode.toggle()
+        }
         VStack{
             Text("\(galaxy.selectedAlgorithm) Algorithm")
                 .modifier(SpaceHeading())

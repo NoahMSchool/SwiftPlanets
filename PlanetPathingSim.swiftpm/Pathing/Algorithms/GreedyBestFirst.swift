@@ -1,9 +1,10 @@
-class Dijkstra: BaseSearch{
+class GreedyBestFirst: BaseSearch{
     override init(start : any Traversable, end : any Traversable){
         
         super.init(start: start, end: end)
         self.usesWeights = true
-        self.algorithm = "Dijkstra"
+        self.useHeuristic = true
+        self.algorithm = "Greedy Best First Search"
     }
     
     // For Dijkstra we need a priority queue
