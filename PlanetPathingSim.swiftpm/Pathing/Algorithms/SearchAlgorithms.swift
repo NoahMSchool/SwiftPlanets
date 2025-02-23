@@ -117,7 +117,11 @@ class BaseSearch{
                     
                     currentState.path = reconstructedPath.reversed()
                     currentState.pathExists = true
-                    currentState.explanation = Explanations.getCompletedExplanation(current: end, exploreCount: currentState.explored.count)
+                    currentState.explanation = Explanations.getCompletedExplanation(
+                        current: end, 
+                        exploreCount: currentState.explored.count,
+                        cost: Int(currentState.weightSoFar[end.id] ?? 0)
+                    )
                     
                     currentState.completed = true
                     return
