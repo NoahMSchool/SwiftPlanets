@@ -41,12 +41,13 @@ class MainScene : SKScene{
         
     }
     override func update(_ currentTime: TimeInterval) {
-        if let galaxy = galaxy{
-            //camPosition = galaxy.ship.shape.position
-            if galaxy.focusOnShip{
-                focusOnShip()
-                galaxy.focusOnShip = false
-            }
+        guard let galaxy = galaxy else {return}
+        if galaxy.focusOnShip{
+            focusOnShip()
+            galaxy.focusOnShip = false
+        }
+        if galaxy.lockOnShip{
+            camPosition = galaxy.ship.shape.position
         }
     }
     func focusOnShip(){
@@ -56,13 +57,12 @@ class MainScene : SKScene{
         let bgMoveAction = moveNode(to: CGPoint(x: galaxy.ship.shape.position.x/2, y: galaxy.ship.shape.position.y/2), duration: 1)
         cam.run(camMoveAction)
         self.galaxy?.skStarryBackground.run(bgMoveAction)
-
         camZoom = 1
     }
     @objc func handlePan(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         let sceneTranslation = CGPoint(x: -translation.x, y: translation.y)
-        
+        galaxy?.lockOnShip = false
         if sender.state == .began || sender.state == .changed {
             camPosition = CGPoint(
                 x: cam.position.x + sceneTranslation.x,

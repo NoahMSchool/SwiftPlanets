@@ -12,6 +12,7 @@ class Galaxy : ObservableObject{
     @Published var shipSpeed = 0.25
     @Published var isRunning = false
     @Published var focusOnShip = false
+    @Published var lockOnShip = false
 
     //This controls the options in the dropdown in the user interface 
     var searchAlgorithms : [String] = ["Breadth First Search", "Depth First Search", "Dijkstra", "Greedy Best First Search", "A*"]

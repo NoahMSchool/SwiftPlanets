@@ -41,9 +41,13 @@ struct TopPlayingHUDRow : View{
         }.gridCellColumns(5)
         VStack{
             SettingsButton()
-            SpaceButton(imageSystemName: "location.fill", textLabel: "Focus", disabled: false){
-                galaxy.focusOnShip = true    
+            SpaceButton(imageSystemName: "location.fill", textLabel: "Focus On Ship", disabled: false){
+                galaxy.focusOnShip = true  
             }
+            SpaceButton(imageSystemName: galaxy.lockOnShip ? "lock.open.fill" : "lock.fill", textLabel: "Lock On Ship", disabled: false){
+                galaxy.lockOnShip.toggle()
+            }
+            
         }
         
     }

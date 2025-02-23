@@ -6,7 +6,7 @@ struct SpaceList : View{
     var planets : [String]
     var body : some View{        
         VStack{
-           Text(title)
+            Text("\(title) (\(planets.count)) ")
                 .modifier(SpaceSubheading())
                 .foregroundColor(color)
             List(planets, id: \.self) {planet in

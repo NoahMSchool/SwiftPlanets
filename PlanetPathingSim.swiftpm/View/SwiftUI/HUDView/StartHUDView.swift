@@ -39,9 +39,7 @@ struct TopBuilderHUDRow : View{
         
         VStack{
             SettingsButton()
-            SpaceButton(imageSystemName: "location.fill", textLabel: "Focus", disabled: false){
-                galaxy.focusOnShip = true    
-            }
+            
         }
         
     }
