@@ -4,7 +4,7 @@ class Dijkstra: BaseSearch{
     }
     
     override class func getDescription()->String{
-        return "Finds the shortest weighted path from start to goal. Uses a priority queue to explore the lowest-cost path first. Will find shortest path by cost"
+        return "Finds the shortest weighted path from start to goal. Uses a priority queue to explore the lowest-cost path first. Will always find shortest path by cost."
     }  
     
     override class func usesWeights()->Bool{

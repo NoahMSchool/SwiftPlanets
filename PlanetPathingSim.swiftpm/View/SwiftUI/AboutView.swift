@@ -14,12 +14,13 @@ struct AboutView : View{
                     Text("About")
                         .modifier(SpaceHeading())
                     ScrollView(){
+                       
                         Text("""
-                            Planetary Pathways is an interactive pathfinding simulator that aims to display different search algorithms in a fun way using planets
-                            
-                            Something about the heuristic - it simply takes the distance between two planets. This will be quite accurate for the random graphs but not for the pre-made Tree and Square graphs.
-                            
-                            Something about the colour coding of the Explored and Frontier, and how the labels show the order. The two lists at the bottom of the HUD also show the order of these data structures
+                            Planetary Pathways is an interactive pathfinding simulator that aims to display different search algorithms in a fun way using planets.
+                            """)
+                        
+                        Text("""
+                            If you have any suggestions, comments or improvements, please email me at noahkmarks@icloud.com
                             """)
                                                 
                     }

@@ -5,7 +5,7 @@ class AStar: BaseSearch{
   }
 
     override class func getDescription()->String{
-        return "Uses both the heuristic and actual cost. More optimal than Greedy BFS - it will always return the optimal path"
+        return "Uses both the heuristic and actual cost added together. More optimal than Greedy BFS - it will always return the optimal path unless the heuristic is very inaccurate."
     }  
     
     override class func useHeuristic()->Bool{
