@@ -129,12 +129,12 @@ class Galaxy : ObservableObject{
             endPlanet.waypoint = .end
             
             if let algorithmType = Galaxy.algorithmTypes[selectedAlgorithm] {
+                self.selectedUILabel = algorithmType.usesWeights() ? "Cost" : "Frontier"
                 self.algorithm = algorithmType.init(start: startPlanet, end: endPlanet)
             } else {
                 self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet) // Default
             }
             
-            self.selectedUILabel = self.algorithm!.usesWeights ? "Cost" : "Frontier"
             //frontier can be changed when intialising the algorithm
             updateFrontier()
             ship.setPosition(position: startPlanet.getPosition())

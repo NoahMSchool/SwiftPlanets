@@ -2,9 +2,19 @@ class GreedyBestFirst: BaseSearch{
     required init(start : any Traversable, end : any Traversable){
         
         super.init(start: start, end: end)
-        self.usesWeights = true
-        self.useHeuristic = true
+        
     }
+    
+    override class func useHeuristic()->Bool{
+        return true
+    }
+    override class func usesWeights()->Bool{
+        return true
+    }
+    
+    override class func getDescription()->String{
+        return "Uses only the heuristic (estimated distance) to the goal. Faster than Dijkstra but may not find the optimal path, depending on the heuristic"
+    }  
     
     // For Dijkstra we need a priority queue
     override func prioritizeFrontier() {

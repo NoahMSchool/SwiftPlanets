@@ -10,7 +10,7 @@ class BreadthFirst: BaseSearch{
     }
     
     override class func getDescription()->String{
-        return "Breadth First Search"
+        return "Explores all neighbors first before moving deeper. Ignores edge weights. Takes the shortest number of edges to reach the goal."
     }    
     
 }
