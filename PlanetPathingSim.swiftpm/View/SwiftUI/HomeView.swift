@@ -27,6 +27,10 @@ struct HomeView : View{
                                 .padding()
                         }
                         
+                        Text("Version 1.0.0") 
+                            .font(.custom("Chalkduster", size: 12))
+                            .foregroundColor(.yellow)
+                        
                     }
                 }
                 .navigationDestination(isPresented: $navigateToMain){
