@@ -187,7 +187,9 @@ class Galaxy : ObservableObject{
     
     func recalculatePaths(){
         // When we change the distance we want to keep the planets but recalcute the path
-        self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)
+        let myBuilder = Galaxy.builderTypes[selectedBuilder] ?? RandomGalaxyBuilder.self
+        
+        self.planetPaths = myBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)
         self.setPlanetNeighbours()
         self.setInitialPlanetPathsSKNodes()
     }
