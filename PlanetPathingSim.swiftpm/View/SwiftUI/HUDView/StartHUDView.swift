@@ -63,7 +63,7 @@ struct BottomBuilderHUDRow : View {
             .frame(maxWidth: .infinity)
             .gridCellColumns(3)
         
-         SpacePicker(title : "Select Algorithm", choices : galaxy.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)
+         SpacePicker(title : "Select Algorithm", choices : Galaxy.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)
             .frame(maxWidth: .infinity)
             .gridCellColumns(2)
     }

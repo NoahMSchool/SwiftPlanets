@@ -1,10 +1,17 @@
 class Dijkstra: BaseSearch{
-    override init(start : any Traversable, end : any Traversable){
+    required init(start : any Traversable, end : any Traversable){
         
         super.init(start: start, end: end)
-        self.usesWeights = true
-        self.algorithm = "Dijkstra"
     }
+
+    
+    override class func usesWeights()->Bool{
+        return true
+    }
+    
+    override class func getDescription()->String{
+        return "Finds the shortest weighted path from start to goal. Uses a priority queue to explore the lowest-cost path first. Will find shortest path by cost"
+    }    
     
     // For Dijkstra we need a priority queue
     override func prioritizeFrontier() {

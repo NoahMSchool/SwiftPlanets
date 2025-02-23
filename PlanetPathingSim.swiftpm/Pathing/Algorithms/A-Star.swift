@@ -1,11 +1,19 @@
 class AStar: BaseSearch{
-    override init(start : any Traversable, end : any Traversable){
+    required init(start : any Traversable, end : any Traversable){
         
         super.init(start: start, end: end)
-        self.usesWeights = true
-        self.useHeuristic = true
-        self.algorithm = "A*"
+  }
+
+    override class func useHeuristic()->Bool{
+        return true
     }
+    override class func usesWeights()->Bool{
+        return true
+    }   
+    
+    override class func getDescription()->String{
+        return "Uses both the heuristic and actual cost. More optimal than Greedy BFS - it will always return the optimal path"
+    }  
     
     // For Dijkstra we need a priority queue
     override func prioritizeFrontier() {

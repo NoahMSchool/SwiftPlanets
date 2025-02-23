@@ -1,8 +1,7 @@
 class BreadthFirst: BaseSearch{
     
-    override init(start : any Traversable, end : any Traversable){
+    required init(start : any Traversable, end : any Traversable){
         super.init(start: start, end: end)
-        self.algorithm = "Breadth First Search"
     }
     
     //Breadth First this is a queue
@@ -11,7 +10,7 @@ class BreadthFirst: BaseSearch{
     }
     
     override class func getDescription()->String{
-        return "Breadth First Search"
+        return "Explores all neighbors first before moving deeper. Ignores edge weights. Takes the shortest number of edges to reach the goal."
     }    
     
 }
