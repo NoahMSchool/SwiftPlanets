@@ -141,7 +141,8 @@ class BaseSearch{
             }
             currentState.explanation = Explanations.getAddToFrontierExplanation(current: currentState.current, neighbours: justAdded)
             //added to frontier so can resort
-            prioritizeFrontier()
+
+            prioritizeAndDedupeFrontier()
             //TODO currently bug if frontier is empty it lets you do one more step
             if currentState.frontier.isEmpty{
                 
@@ -205,6 +206,18 @@ class BaseSearch{
         currentState.frontier.removeFirst()
     }
     
+    // For some algorithms we need a priority
+   func prioritizeAndDedupeFrontier() {
+        
+       currentState.frontier.sort { $0.weight < $1.weight }
+       
+       var seen: Set<UUID> = []  
+       currentState.frontier = currentState.frontier.filter { entry in
+           let id = entry.neighbour.id  
+           return seen.insert(id).inserted  
+       }
+       
+    }
     
     // Reorder the frontier
     func prioritizeFrontier(){
