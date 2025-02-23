@@ -197,8 +197,6 @@ class Galaxy : ObservableObject{
     }
             
     // This steps through the search algorithm
-    // TODO: Move most of this into a new functions which updates the galaxy based on the algorithn
-    
     func updateExplored(){
         guard let algorithm = self.algorithm else{return}
         var exploredCounter : Int = 0

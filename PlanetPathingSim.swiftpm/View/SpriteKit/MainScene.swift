@@ -56,7 +56,6 @@ class MainScene : SKScene{
     }
     func focusOnShip(){
         guard let galaxy = galaxy else {return}
-        print(galaxy.ship.shape.position)
         let camMoveAction = moveNode(to: galaxy.ship.shape.position, duration: 1)
         let bgMoveAction = moveNode(to: CGPoint(x: galaxy.ship.shape.position.x/2, y: galaxy.ship.shape.position.y/2), duration: 1)
         cam.run(camMoveAction)
@@ -64,7 +63,6 @@ class MainScene : SKScene{
     }
     func focusOnCenter(){
         guard let galaxy = galaxy else {return}
-        print(galaxy.ship.shape.position)
         let camMoveAction = moveNode(to: CGPoint(x: 0,y: 0), duration: 1)
         let bgMoveAction = moveNode(to: CGPoint(x: 0, y: 0), duration: 1)
         cam.run(camMoveAction)

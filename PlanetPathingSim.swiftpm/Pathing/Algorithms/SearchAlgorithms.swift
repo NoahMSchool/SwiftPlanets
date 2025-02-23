@@ -147,10 +147,10 @@ class BaseSearch{
                 }
             }
             currentState.explanation = Explanations.getAddToFrontierExplanation(current: currentState.current, neighbours: justAdded)
+            
             //added to frontier so can resort
-
             prioritizeAndDedupeFrontier()
-            //TODO currently bug if frontier is empty it lets you do one more step
+            
             if currentState.frontier.isEmpty{
                 
                 currentState.explanation = Explanations.getFullyExploredExplanation(current: currentState.current)
@@ -248,8 +248,6 @@ class BaseSearch{
     func shouldAddToFrontier(n : (neighbour : any Traversable, weight : Double), newWeight : Double)->Bool{
         if let existing = currentState.weightSoFar[n.neighbour.id]{
             if existing > newWeight{
-                print("YOYOYYOYOYO")
-                currentState.explanation += "TOTOTOTO"
                 return true
             }
             else{
