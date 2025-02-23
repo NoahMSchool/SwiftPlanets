@@ -26,20 +26,20 @@ struct AlgorithmsView: View {
                             HStack {
                                 Text("Use Weights")
                                 //Image(systemName: algorithmType.usesWeights() ? "checkmark.circle.fill" : "xmark.circle.fill")
-                                  //  .foregroundColor(algorithmType.usesWeights() ? .green : .red)
+                                //  .foregroundColor(algorithmType.usesWeights() ? .green : .red)
                             }
                             HStack {
                                 Text("Use Heuristic")
                                 //Image(systemName: algorithmType.useHeuristic() ? "checkmark.circle.fill" : "xmark.circle.fill")
-                                    //.foregroundColor(algorithmType.useHeuristic() ? .green : .red)
+                                //.foregroundColor(algorithmType.useHeuristic() ? .green : .red)
                             }
                         }
                     }.modifier(SpaceText())
                         .frame(maxWidth: 500)
-                             
+                    
                     LargeSpaceButton(text: "Main Menu", imageSystemName: "arrowshape.turn.up.backward.fill", action: {presentationMode.wrappedValue.dismiss()})
                         .padding(.vertical, 50)
-
+                    
                 }
             }
         }
@@ -47,5 +47,7 @@ struct AlgorithmsView: View {
     }
     
 }
-                             
+
+
+
 

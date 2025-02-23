@@ -54,7 +54,7 @@ struct ExplanationBlock : View{
 
 struct GalaxySliders : View{
     var planetCountRange: ClosedRange<Double> = 2.0...100.0
-    var maxDistanceRange: ClosedRange<Double> = 50.0...500.0
+    var maxDistanceRange: ClosedRange<Double> = 1.0...20.0
     
     @EnvironmentObject var galaxy : Galaxy
     var body : some View{
@@ -72,17 +72,16 @@ struct GalaxySliders : View{
             SpaceSlider(
                 title: "Max Fuel",
                 range: maxDistanceRange,
-                step: 10.0,
-                value: $galaxy.maxDistance
+                step: 0.5,
+                // value: $galaxy.maxDistance
+                value: Binding(
+                    get: { Double(galaxy.maxDistance / 25) },
+                    set: { galaxy.maxDistance = $0 * 25 }
+                )
             )
         }
         .padding()
 
-        ZStack{
-            RoundedRectangle(cornerSize: CGSize(width: 40, height: 40))
-                .stroke(.yellow, lineWidth: 5)
-                .fill(.black)
-            
-                    }
+       
     }
 }
