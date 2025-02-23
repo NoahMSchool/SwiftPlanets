@@ -148,6 +148,8 @@ class Galaxy : ObservableObject{
             } else {
                 self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet) // Default
             }
+            // Recreate the paths in case we don't want weights any more
+            self.setInitialPlanetPathsSKNodes()
             
             //frontier can be changed when intialising the algorithm
             updateFrontier()
@@ -352,8 +354,17 @@ extension Galaxy{
         self.skLines.removeAllChildren()
         var lines : [(start : CGPoint, end : CGPoint, weight : Double?)] = []
         for path in self.planetPaths {
-            lines.append((path.start.getPosition(), path.end.getPosition(), weight : path.distance))    
+            var weight = path.distance
+            
+            if let algorithmType = Galaxy.algorithmTypes[selectedAlgorithm] {
+                if !algorithmType.usesWeights() {
+                    weight = 0
+                }
+            }
+            
+            lines.append((path.start.getPosition(), path.end.getPosition(), weight : weight))    
         }
+
         self.skLines.addChild(drawlines(lines: lines, lineWidth: 5, color: .darkGray))    
     }
     func setInitialCameFromLinesSKNodes(){
