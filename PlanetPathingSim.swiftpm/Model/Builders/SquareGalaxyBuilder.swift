@@ -1,20 +1,7 @@
 import CoreGraphics
 
 class SquareGalaxyBuilder : GalaxyBuilder {
-    /*
-     A --(1)--> B --(4)--> E
-     |          |         |
-     (3)        (2)       (1)
-     |          |         |
-     v          v         v
-     C --(1)--> D --(5)--> F
-     |                    |
-     (7)                   (2)
-     |                    |
-     v                    v
-     G --(3)--> H <--(2)-- I
-     
-     */
+  
     override class func createRandomPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
         
         let PA = Planet(position: CGPoint(x:-200,y:200), name: "Planet A")        
