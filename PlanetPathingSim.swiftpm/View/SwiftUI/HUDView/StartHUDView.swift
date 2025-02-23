@@ -71,7 +71,7 @@ struct BottomBuilderHUDRow : View {
                     Text("Square Galaxy is a test galaxy that will provide a different result for each search algorithm making it suitable for comparing the different pathfinding algorithms").padding()
                 }
                 else if galaxy.selectedBuilder == "Tree"{
-                    Text("Tree Galaxy is the classic tree you will use at school for traversal algorithms").padding()
+                    Text("Tree Galaxy is a simple directed graph where each planet has paths to child planets following a hierarchy structure").padding()
         
                 }
                 else{
@@ -82,7 +82,7 @@ struct BottomBuilderHUDRow : View {
         }
         .gridCellColumns(2)
 
-        LargeSpaceButton(text : "Start", imageSystemName: "play.fill") {
+        LargeSpaceButton(text : "Begin Search", imageSystemName: "play.fill") {
             galaxy.startMode.toggle()
             galaxy.focusOnShip = true
         }
