@@ -1,6 +1,6 @@
 class DepthFirst: BaseSearch{
     
-    override init(start : any Traversable, end : any Traversable){
+    required init(start : any Traversable, end : any Traversable){
         super.init(start: start, end: end)
         self.algorithm = "Depth First Search"
     }

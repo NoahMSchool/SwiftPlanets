@@ -1,5 +1,5 @@
 class GreedyBestFirst: BaseSearch{
-    override init(start : any Traversable, end : any Traversable){
+    required init(start : any Traversable, end : any Traversable){
         
         super.init(start: start, end: end)
         self.usesWeights = true

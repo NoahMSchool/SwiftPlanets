@@ -12,8 +12,19 @@ class Galaxy : ObservableObject{
     @Published var shipSpeed = 0.25
     @Published var isRunning = false
 
+    let algorithmTypes: [String: BaseSearch.Type] = [
+        "Breadth First Search": BreadthFirst.self,
+        "Depth First Search": DepthFirst.self,
+        "Dijkstra": Dijkstra.self,
+        "Greedy Best First Search": GreedyBestFirst.self,
+        "A*": AStar.self
+    ]
+    
     //This controls the options in the dropdown in the user interface 
-    var searchAlgorithms : [String] = ["Breadth First Search", "Depth First Search", "Dijkstra", "Greedy Best First Search", "A*"]
+    var searchAlgorithms: [String] {
+        return Array(algorithmTypes.keys)
+    }  
+    
     //These are variables that are bindings in the user interface that can be selected 
     
     var planets : [Planet]
@@ -107,6 +118,7 @@ class Galaxy : ObservableObject{
     }
     
     func resetAlgorithm(){
+        
         //check if we have a start and end position and if so start the search algorithm and place ship on start planet
         isRunning = false
         if let startPlanet = startPlanet, let endPlanet = endPlanet{
@@ -115,20 +127,13 @@ class Galaxy : ObservableObject{
             
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
-            switch selectedAlgorithm{
-            case "Breadth First Search" : 
-                self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
-            case "Depth First Search" : 
-                self.algorithm = DepthFirst(start: startPlanet, end: endPlanet)
-            case "Dijkstra" : 
-                self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
-            case "Greedy Best First Search" : 
-                self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
-            case "A*" : 
-                self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
-            default: 
-                self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
+            
+            if let algorithmType = algorithmTypes[selectedAlgorithm] {
+                self.algorithm = algorithmType.init(start: startPlanet, end: endPlanet)
+            } else {
+                self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet) // Default
             }
+            
             self.selectedUILabel = self.algorithm!.usesWeights ? "Cost" : "Frontier"
             //frontier can be changed when intialising the algorithm
             updateFrontier()

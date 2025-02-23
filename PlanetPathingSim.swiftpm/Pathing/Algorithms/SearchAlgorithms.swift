@@ -28,7 +28,7 @@ class BaseSearch{
         return "yoyo"
     }    
     
-    init(start : any Traversable, end : any Traversable){
+    required init(start : any Traversable, end : any Traversable){
         self.algorithm = "No algorithm"
         self.start = start
         self.end = end
