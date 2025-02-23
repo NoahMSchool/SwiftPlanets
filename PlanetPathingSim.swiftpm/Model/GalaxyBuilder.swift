@@ -31,7 +31,7 @@ class GalaxyBuilder{
     ]
     
     // Takes in a grid and a planetCount and generates a list of planets
-    static func createRandomPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
+    class func createRandomPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
         var planets : [Planet] = []
         var options : [CGPoint] = []
         let jitter = Int(spacing/10)
@@ -60,7 +60,7 @@ class GalaxyBuilder{
     }
     
     //gets lines from planets to help prevent paths going through planets
-    static func getPlanetCheckLines(planets : [Planet])->[(start: CGPoint,end:  CGPoint)]{
+    class func getPlanetCheckLines(planets : [Planet])->[(start: CGPoint,end:  CGPoint)]{
         var checkLines : [(start: CGPoint, end: CGPoint)] = []
         for planet in planets{
             checkLines+=planet.getCheckLines()
@@ -69,7 +69,7 @@ class GalaxyBuilder{
     }
     
     //Takes list of planets and max distance and returns a array of tuples of weighted paths
-    static func calculatePlanetPaths(planets : [Planet], maxDistance : CGFloat)->[(start : Planet, end : Planet, distance : Double)]{
+    class func calculatePlanetPaths(planets : [Planet], maxDistance : CGFloat)->[(start : Planet, end : Planet, distance : Double)]{
         var finalPaths : [(start : Planet, end : Planet, distance : Double)] = []
         let planetCheckLines = GalaxyBuilder.getPlanetCheckLines(planets: planets)
         

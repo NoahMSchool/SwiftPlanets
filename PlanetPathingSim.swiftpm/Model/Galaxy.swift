@@ -88,9 +88,13 @@ class Galaxy : ObservableObject{
         if planetCount<2{
             planetCount = 2
         }
+        
+        var myBuilder: GalaxyBuilder.Type = GalaxyBuilder.self
+        
         //building galaxy and adding planet paths and setting neighbours of planets
-        self.planets = GalaxyBuilder.createRandomPlanets(planetCount: planetCount)
-        self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)        
+        self.planets = myBuilder.createRandomPlanets(planetCount: planetCount)
+        self.planetPaths = myBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)        
+        
         self.startPlanet = planets.first
         self.endPlanet = planets.last
         
