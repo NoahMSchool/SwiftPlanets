@@ -5,22 +5,29 @@ struct SpacePicker : View{
     @State var choices : [String]
     @Binding var selectedValue : String
     var body: some View{
-        VStack{
-            
-            Text(title).modifier(SpaceSubheading())
-            Picker(title, selection: $selectedValue){
-                ForEach (choices, id : \.self){
-                    option in Text(option).tag(option)
+        ZStack{
+            RoundedRectangle(cornerSize: CGSize(width: 40, height: 40))
+                .stroke(Color.yellow, lineWidth: 5)
+                .fill(.black)
+            VStack{
+                
+                Text(title).modifier(SpaceSubheading())
+                Picker(title, selection: $selectedValue){
+                    ForEach (choices, id : \.self){
+                        option in Text(option)
+                            .font(.custom("Chalkduster", size: 20))
+                            .foregroundColor(.yellow)
+                            .tag(option)
+                    }
                 }
-            }
-            .pickerStyle(.wheel)
-            .modifier(SpaceText())
+                
+                .pickerStyle(.wheel)
 
+                .padding()
+            }
             .padding()
+            
+
         }
-        .padding()
-        .background(Color(.black))
-        .border(Color.yellow)
-        .cornerRadius(40)
     }
 }

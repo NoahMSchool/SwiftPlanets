@@ -40,11 +40,3 @@ struct HomeView : View{
     }
 }
 
-struct SpaceColorPicker : View{
-    @Binding var selectedColor : Color
-
-    var body : some View{
-        Text("ColorPicker").modifier(SpaceHeading())
-        ColorPicker("Select", selection: $selectedColor)
-    }
-}
