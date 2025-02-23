@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct AboutView : View{
-
+    
     @Environment(\.presentationMode) var presentationMode
-
+    
     var body : some View{
         GeometryReader { geometry in
             ZStack {
@@ -25,7 +25,11 @@ struct AboutView : View{
                     .frame(maxWidth: 500)
                     LargeSpaceButton(text: "Main Menu", imageSystemName: "arrowshape.turn.up.backward.fill", action: {presentationMode.wrappedValue.dismiss()})
                         .padding(.vertical, 50)
-
+                }
+            }
+        }
+    }
+}
 struct AboutAlgorithmsView: View {
     
     var body: some View {
