@@ -21,6 +21,10 @@ class BaseSearch{
     var currentState : AlgorithmState
     var history: [AlgorithmState]
      
+    /****************
+     These are class level functions with information about the algorithms. They
+     are used on the abour page
+     ***************/
     class func useHeuristic()->Bool{
         return false
     }
@@ -127,13 +131,16 @@ class BaseSearch{
                     return
                 }
             }
-            let weightToCurrent = currentState.weightSoFar[currentState.current.id] ?? 0            
-            //currentState.explanation = "Getting Neighbours for \(currentState.current)"
+                       
             var justAdded : [any Traversable] = []
+            
             for n in currentState.current.getNeighbours(){
-                let newWeight = weightToCurrent + n.weight
+                let newWeight = getNewWeight (n: n)
+                let queuePriority = getQueuePriority(n : n, to:end!)                      
+                
+                // let newWeight = weightToCurrent + n.weight
                 if shouldAddToFrontier(n : n, newWeight : newWeight){
-                    currentState.frontier.append((neighbour: n.neighbour, weight: newWeight))
+                    currentState.frontier.append((neighbour: n.neighbour, weight: queuePriority))
                     justAdded.append(n.neighbour)
                     currentState.cameFrom[n.neighbour.id] = currentState.current
                     currentState.weightSoFar[n.neighbour.id] = newWeight                    
@@ -141,7 +148,8 @@ class BaseSearch{
             }
             currentState.explanation = Explanations.getAddToFrontierExplanation(current: currentState.current, neighbours: justAdded)
             //added to frontier so can resort
-            prioritizeFrontier()
+
+            prioritizeAndDedupeFrontier()
             //TODO currently bug if frontier is empty it lets you do one more step
             if currentState.frontier.isEmpty{
                 
@@ -201,21 +209,52 @@ class BaseSearch{
      algorithms
      ****************************************************************/
     // Get the next item from the frontier to explore
+    // By default this is a queue
     func getNextFrontier()->(neighbour: any Traversable, weight: Double){
         currentState.frontier.removeFirst()
     }
     
-    
-    // Reorder the frontier
-    func prioritizeFrontier(){
+    // For some algorithms we need a priority
+   func prioritizeAndDedupeFrontier() {
         
+       currentState.frontier.sort { $0.weight < $1.weight }
+       
+       var seen: Set<UUID> = []  
+       currentState.frontier = currentState.frontier.filter { entry in
+           let id = entry.neighbour.id  
+           return seen.insert(id).inserted  
+       }
+       
     }
     
-    // Check if we should add an item to the frontier
+    // Get the new weight. We add 1 if not using weights
+    func getNewWeight(n : (neighbour : any Traversable, weight : Double)) -> Double {
+        let weightToCurrent = currentState.weightSoFar[currentState.current.id] ?? 0   
+        
+        if Self.usesWeights() {
+            return weightToCurrent + n.weight        
+        } else {
+            return weightToCurrent + 1                        
+        }
+    }
+    
+    // Get the new priority for the frontier queue. We pass in the end node so we can use the heuristic if we want to. The default gives them all the same
+    func getQueuePriority(n : (neighbour : any Traversable, weight : Double), to: any Traversable) -> Double {        
+        return 0
+    }
+    
+    // Decide if we should re-add to the frontier. We do this if we
+    // don't have it yet or we have a new weight
     func shouldAddToFrontier(n : (neighbour : any Traversable, weight : Double), newWeight : Double)->Bool{
-        if let _ = currentState.weightSoFar[n.neighbour.id]{
-            //            print("FALSE : already in weights SO far")
-            return false
+        if let existing = currentState.weightSoFar[n.neighbour.id]{
+            if existing > newWeight{
+                print("YOYOYYOYOYO")
+                currentState.explanation += "TOTOTOTO"
+                return true
+            }
+            else{
+                return false
+            }
         }
         else{
             return true
