@@ -91,15 +91,15 @@ class Galaxy : ObservableObject{
         //building galaxy and adding planet paths and setting neighbours of planets
         self.planets = GalaxyBuilder.createRandomPlanets(planetCount: planetCount)
         self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)        
+        self.startPlanet = planets.first
+        self.endPlanet = planets.last
+        
         self.setPlanetNeighbours()
         
         //adding planets and paths nodes so they can be displayed
         self.setInitialSKNodes()
         //getting random start and end planet
-        
-        self.startPlanet = planets[0]
-        self.endPlanet = planets[1]
-        
+                
         resetAlgorithm()
     }
     

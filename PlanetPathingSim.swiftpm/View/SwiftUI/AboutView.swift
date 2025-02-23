@@ -14,7 +14,7 @@ struct AboutView : View{
                         .modifier(SpaceHeading())
                     ScrollView(){
                         Text("""
-                            Planetary Pathways is an interatctive pathfinding simulator that aims to display different search algorithms in a fun way using planets
+                            Planetary Pathways is an interactive pathfinding simulator that aims to display different search algorithms in a fun way using planets
                             """)
                         Text(BreadthFirst.getDescription())
                         Text(DepthFirst.getDescription())
