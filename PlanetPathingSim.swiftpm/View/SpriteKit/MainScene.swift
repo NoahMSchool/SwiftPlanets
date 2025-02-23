@@ -61,7 +61,6 @@ class MainScene : SKScene{
         let bgMoveAction = moveNode(to: CGPoint(x: galaxy.ship.shape.position.x/2, y: galaxy.ship.shape.position.y/2), duration: 1)
         cam.run(camMoveAction)
         self.galaxy?.skStarryBackground.run(bgMoveAction)
-        camZoom = 1
     }
     func focusOnCenter(){
         guard let galaxy = galaxy else {return}
@@ -70,7 +69,6 @@ class MainScene : SKScene{
         let bgMoveAction = moveNode(to: CGPoint(x: 0, y: 0), duration: 1)
         cam.run(camMoveAction)
         self.galaxy?.skStarryBackground.run(bgMoveAction)
-        camZoom = 1
     }
 
     @objc func handlePan(_ sender: UIPanGestureRecognizer) {
