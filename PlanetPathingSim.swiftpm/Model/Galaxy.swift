@@ -3,7 +3,7 @@ import SpriteKit
 class Galaxy : ObservableObject{
     //Published Settings bound to SwiftUI controls
     @Published var selectedUILabel : String = "Cost" { didSet {updateUI(hasAnimation: false)}}    
-    @Published var selectedAlgorithm : String = "Dijkstra's Algorithm" { didSet{resetAlgorithm()}}
+    @Published var selectedAlgorithm : String = "Breadth First Search" { didSet{resetAlgorithm()}}
     @Published var planetCount : Int { didSet {resetPlanets()}}
     @Published var maxDistance : Double { didSet {recalculatePaths()}}
     @Published var forwardAllowed : Bool = true
@@ -13,7 +13,7 @@ class Galaxy : ObservableObject{
     @Published var isRunning = false
 
     //This controls the options in the dropdown in the user interface 
-    var searchAlgorithms : [String] = ["Breadth First Search", "Depth First Search", "A*", "Dijkstra's Algorithm"]
+    var searchAlgorithms : [String] = ["Breadth First Search", "Depth First Search", "Dijkstra", "Greedy BFS", "A*"]
     var UILabelControls : [String] = ["Cost", "Frontier", "Explored"]
     //These are variables that are bindings in the user interface that can be selected 
     
@@ -119,7 +119,9 @@ class Galaxy : ObservableObject{
             switch selectedAlgorithm{
             case "Breadth First Search" : self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
             case "Depth First Search" : self.algorithm = DepthFirst(start: startPlanet, end: endPlanet)
-            case "Dijkstra's Algorithm" : self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
+            case "Dijkstra" : self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
+            case "Greedy BFS" : self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
+            case "A*" : self.algorithm = Dijkstra(start: startPlanet, end: endPlanet)
             default: self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet)
             }
             //frontier can be changed when intialising the algorithm
