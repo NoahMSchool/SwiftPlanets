@@ -23,7 +23,7 @@ I used SwiftUI for the app structure and navigational elements as I wanted it to
 
 I wrote the Pathing Algorithms to be independent of the Planets and Galaxies so that they could be used for any problem that needed them. This is done using the Traversable Protocol I created, which only needs 2 functions - getNeighbours() which returns a weighted set of paths and the heuristic().
 
-I discovered that it is much more difficult to write these in a way that allow you to step forward and backwards through the algorithm that it is to simply solve the graph. I used a stack of State objects to implement the History Undo function.
+I discovered that it is much more difficult to write these in a way that allow you to step forward and backwards through the algorithm that it is to simply solve the graph. I used a stack of State objects to implement the History Undo function. I wanted the controls to be similar to controls on an audio or video player.
 
 I made base classes for the GalaxyBuilder and SearchAlgorithm which had subclasses for the different builders and algorithms.
  
