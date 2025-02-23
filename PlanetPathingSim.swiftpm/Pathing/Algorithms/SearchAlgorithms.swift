@@ -18,18 +18,16 @@ struct AlgorithmState{
 class BaseSearch{
     let start : any Traversable
     let end : (any Traversable)?
-    var algorithm : String
     var currentState : AlgorithmState
     var history: [AlgorithmState]
     var usesWeights = false
     var useHeuristic = false
     
     class func getDescription()->String{
-        return "yoyo"
+        return "No Description"
     }    
     
     required init(start : any Traversable, end : any Traversable){
-        self.algorithm = "No algorithm"
         self.start = start
         self.end = end
         self.history = []

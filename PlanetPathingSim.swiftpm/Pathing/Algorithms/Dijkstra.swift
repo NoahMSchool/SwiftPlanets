@@ -3,7 +3,6 @@ class Dijkstra: BaseSearch{
         
         super.init(start: start, end: end)
         self.usesWeights = true
-        self.algorithm = "Dijkstra"
     }
     
     // For Dijkstra we need a priority queue

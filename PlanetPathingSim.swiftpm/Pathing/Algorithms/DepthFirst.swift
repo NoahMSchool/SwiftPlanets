@@ -2,7 +2,6 @@ class DepthFirst: BaseSearch{
     
     required init(start : any Traversable, end : any Traversable){
         super.init(start: start, end: end)
-        self.algorithm = "Depth First Search"
     }
     
     // Depth First this is a Stack so we remove last

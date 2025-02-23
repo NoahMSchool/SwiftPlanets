@@ -4,7 +4,6 @@ class AStar: BaseSearch{
         super.init(start: start, end: end)
         self.usesWeights = true
         self.useHeuristic = true
-        self.algorithm = "A*"
     }
     
     // For Dijkstra we need a priority queue

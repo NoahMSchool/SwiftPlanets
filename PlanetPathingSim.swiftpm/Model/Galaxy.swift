@@ -12,7 +12,7 @@ class Galaxy : ObservableObject{
     @Published var shipSpeed = 0.25
     @Published var isRunning = false
 
-    let algorithmTypes: [String: BaseSearch.Type] = [
+    static let algorithmTypes: [String: BaseSearch.Type] = [
         "Breadth First Search": BreadthFirst.self,
         "Depth First Search": DepthFirst.self,
         "Dijkstra": Dijkstra.self,
@@ -21,7 +21,7 @@ class Galaxy : ObservableObject{
     ]
     
     //This controls the options in the dropdown in the user interface 
-    var searchAlgorithms: [String] {
+    static var searchAlgorithms: [String] {
         return Array(algorithmTypes.keys)
     }  
     
@@ -99,7 +99,7 @@ class Galaxy : ObservableObject{
             planetCount = 2
         }
         
-        var myBuilder: GalaxyBuilder.Type = GalaxyBuilder.self
+        let myBuilder: GalaxyBuilder.Type = GalaxyBuilder.self
         
         //building galaxy and adding planet paths and setting neighbours of planets
         self.planets = myBuilder.createRandomPlanets(planetCount: planetCount)
@@ -128,7 +128,7 @@ class Galaxy : ObservableObject{
             startPlanet.waypoint = .start
             endPlanet.waypoint = .end
             
-            if let algorithmType = algorithmTypes[selectedAlgorithm] {
+            if let algorithmType = Galaxy.algorithmTypes[selectedAlgorithm] {
                 self.algorithm = algorithmType.init(start: startPlanet, end: endPlanet)
             } else {
                 self.algorithm = BreadthFirst(start: startPlanet, end: endPlanet) // Default
@@ -320,10 +320,7 @@ class Galaxy : ObservableObject{
         
         
     }
-    func getAlgorithmString()->String{
-        guard let algorithm = algorithm else {return "No Algorithm"}
-        return algorithm.algorithm
-    }
+   
     func getMoveStep()->Int{
         guard let algorithm = algorithm else {return 0}
         return algorithm.history.count

@@ -4,7 +4,6 @@ class GreedyBestFirst: BaseSearch{
         super.init(start: start, end: end)
         self.usesWeights = true
         self.useHeuristic = true
-        self.algorithm = "Greedy Best First Search"
     }
     
     // For Dijkstra we need a priority queue
