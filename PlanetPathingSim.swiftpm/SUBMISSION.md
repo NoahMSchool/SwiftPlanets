@@ -9,6 +9,7 @@ Planetary Pathways is an interactive pathfinding simulator that aims to display 
 
 I did not include any third party libraries or code, only Apple Libraries.
 I developed in the Swift Playground app on a Mac. I used GitHub and GitHub DeskTop for source control. You can see the code and progress on GitHub: https://github.com/NoahMSchool/SwiftPlanets
+I created the App Icon using Procreate on my iPad
 
 ###  Describe the user experience you were aiming for and why you chose the frameworks you used to achieve it. If you used AI tools, provide details about how and why they were used (500 words)
 
@@ -25,8 +26,8 @@ I have not done this yet, but I hope to do this once I have finished my A Levels
 
 Before this project I had not used Swift before. I had been mainly Python. I had to learn
 - Protocols - Identifiable, Equatable, ObservableObject. I created Traversable so my graph code is generic
-- Optionals  - a new way of thinking
-- SwiftUI - Navigation Stack, Sheets, Grids any more
+- Optionals  - a new way of thinking for me
+- SwiftUI - Bindings, Navigation Stack, Sheets, Grids any more
 - SprikeKit - shapes, animations
 - Line Segment intersection algorithm 
 I am studying the algorithms in my A-Level Computer Science course
