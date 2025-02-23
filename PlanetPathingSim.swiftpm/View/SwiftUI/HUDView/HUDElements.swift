@@ -58,30 +58,25 @@ struct GalaxySliders : View{
     
     @EnvironmentObject var galaxy : Galaxy
     var body : some View{
-        ZStack{
-            RoundedRectangle(cornerSize: CGSize(width: 40, height: 40))
-                .stroke(.yellow, lineWidth: 5)
-                .fill(.black)
+        VStack {
+            SpaceSlider(
+                title: "Number of Planets",
+                range: planetCountRange,
+                step: 1.0,
+                value: Binding(
+                    get: { Double(galaxy.planetCount) },
+                    set: { galaxy.planetCount = Int($0) }
+                )
+            )
             
-            VStack {
-                SpaceSlider(
-                    title: "Number of Planets",
-                    range: planetCountRange,
-                    step: 1.0,
-                    value: Binding(
-                        get: { Double(galaxy.planetCount) },
-                        set: { galaxy.planetCount = Int($0) }
-                    )
-                )
-                
-                SpaceSlider(
-                    title: "Max Fuel",
-                    range: maxDistanceRange,
-                    step: 10.0,
-                    value: $galaxy.maxDistance
-                )
-            }
-            .padding()
+            SpaceSlider(
+                title: "Max Fuel",
+                range: maxDistanceRange,
+                step: 10.0,
+                value: $galaxy.maxDistance
+            )
         }
+        .padding()
+
     }
 }

@@ -20,7 +20,7 @@ struct PlayingHUDView : View{
                     .environmentObject(galaxy)
                     .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity, maxHeight: 250)
+            .frame(maxWidth: .infinity, maxHeight: 280)
         }
     }
 }

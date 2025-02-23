@@ -20,7 +20,7 @@ struct StartHUDView : View{
                     .environmentObject(galaxy)
                     .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity, maxHeight: 200)
+            .frame(maxWidth: .infinity, maxHeight: 280)
         }
     }
 }
@@ -50,12 +50,38 @@ struct TopBuilderHUDRow : View{
 struct BottomBuilderHUDRow : View {
     @EnvironmentObject var galaxy : Galaxy
     var body: some View{
+        VStack{
+            HStack{
+                SpaceButton(imageSystemName: "square.fill", textLabel: "Square", disabled: false){
+                    galaxy.selectedBuilder = "Square"
+                }
+                SpaceButton(imageSystemName: "dice.fill", textLabel: "Random", disabled: false){
+                    galaxy.selectedBuilder = "Random"
+                }
+                SpaceButton(imageSystemName: "tree.fill", textLabel: "Tree", disabled: false){
+                    galaxy.selectedBuilder = "Tree"
+                }
+                
+            }
+            ZStack{
+                RoundedRectangle(cornerSize: CGSize(width: 40, height: 40))
+                    .stroke(.yellow, lineWidth: 5)
+                    .fill(.black)
+                if galaxy.selectedBuilder == "Square"{
+                    Text("Square Galaxy is a test galaxy that will provide a different result for each search algorithm making it suitable for comparing the different pathfinding algorithms").padding()
+                }
+                else if galaxy.selectedBuilder == "Tree"{
+                    Text("Tree Galaxy is the classic tree you will use at school for traversal algorithms").padding()
         
-        // Color(.blue)
-        GalaxySliders().environmentObject(galaxy)
-            .frame(maxWidth: .infinity)
-            .gridCellColumns(2)
-        
+                }
+                else{
+                    GalaxySliders().environmentObject(galaxy)
+                        .frame(maxWidth: .infinity)
+                } 
+            }
+        }
+        .gridCellColumns(2)
+
         LargeSpaceButton(text : "Start", imageSystemName: "play.fill") {
             galaxy.startMode.toggle()
             galaxy.focusOnShip = true
@@ -67,6 +93,7 @@ struct BottomBuilderHUDRow : View {
          SpacePicker(title : "Select Algorithm", choices : Galaxy.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)
             .frame(maxWidth: .infinity)
             .gridCellColumns(2)
+        
     }
 }
 

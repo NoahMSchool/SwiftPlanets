@@ -4,6 +4,7 @@ class Galaxy : ObservableObject{
     //Published Settings bound to SwiftUI controls
     @Published var selectedUILabel : String = "Cost" { didSet {updateUI(hasAnimation: false)}}    
     @Published var selectedAlgorithm : String = "Breadth First Search" { didSet{resetAlgorithm()}}
+    @Published var selectedBuilder : String = "Random" { didSet{resetPlanets()}}
     @Published var planetCount : Int { didSet {resetPlanets()}}
     @Published var maxDistance : Double { didSet {recalculatePaths()}}
     @Published var forwardAllowed : Bool = true
@@ -21,6 +22,11 @@ class Galaxy : ObservableObject{
         "Dijkstra": Dijkstra.self,
         "Greedy Best First Search": GreedyBestFirst.self,
         "A*": AStar.self
+    ]
+    static let builderTypes: [String: GalaxyBuilder.Type] = [
+        "Random": RandomGalaxyBuilder.self,
+        "Tree": TreeGalaxyBuilder.self,
+        "Square": SquareGalaxyBuilder.self
     ]
     
     //This controls the options in the dropdown in the user interface 
@@ -107,10 +113,7 @@ class Galaxy : ObservableObject{
         if planetCount<2{
             planetCount = 2
         }
-        
-        // let myBuilder: GalaxyBuilder.Type = SquareGalaxyBuilder.self
-        let myBuilder: GalaxyBuilder.Type = TreeGalaxyBuilder.self
-        // let myBuilder: GalaxyBuilder.Type = RandomGalaxyBuilder.self
+        let myBuilder = Galaxy.builderTypes[selectedBuilder] ?? RandomGalaxyBuilder.self
         
         //building galaxy and adding planet paths and setting neighbours of planets
         self.planets = myBuilder.createRandomPlanets(planetCount: planetCount)
