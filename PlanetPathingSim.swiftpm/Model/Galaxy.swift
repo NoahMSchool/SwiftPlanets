@@ -107,7 +107,9 @@ class Galaxy : ObservableObject{
             planetCount = 2
         }
         
-        let myBuilder: GalaxyBuilder.Type = SquareGalaxyBuilder.self
+        // let myBuilder: GalaxyBuilder.Type = SquareGalaxyBuilder.self
+        let myBuilder: GalaxyBuilder.Type = TreeGalaxyBuilder.self
+        // let myBuilder: GalaxyBuilder.Type = RandomGalaxyBuilder.self
         
         //building galaxy and adding planet paths and setting neighbours of planets
         self.planets = myBuilder.createRandomPlanets(planetCount: planetCount)
