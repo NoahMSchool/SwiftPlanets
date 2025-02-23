@@ -6,5 +6,6 @@ protocol Traversable: Identifiable {
     
     func getNeighbours()->[(neighbour : any Traversable, weight : Double)]
     func isEqual(to other: any Traversable) -> Bool
+    func heuristic(to end: any Traversable) -> Double
     
 }

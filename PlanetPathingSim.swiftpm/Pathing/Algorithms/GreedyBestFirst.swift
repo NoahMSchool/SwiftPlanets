@@ -16,7 +16,7 @@ class GreedyBestFirst: BaseSearch{
         return "Uses only the heuristic (estimated distance) to the goal. Faster than Dijkstra but may not find the optimal path, depending on the heuristic"
     }  
     
-    // For Dijkstra we need a priority queue
+    // For Greedy we need a priority queue
     override func prioritizeFrontier() {
         currentState.frontier = currentState.frontier.sorted{
             return $0.weight<$1.weight
@@ -24,6 +24,7 @@ class GreedyBestFirst: BaseSearch{
     }
     
     override func shouldAddToFrontier(n : (neighbour : any Traversable, weight : Double), newWeight : Double)->Bool{
+        
         if let existing = currentState.weightSoFar[n.neighbour.id]{
             if existing > newWeight{
                 //    print("TRUE : existing weight less then ene waighst", existing, newWeight)

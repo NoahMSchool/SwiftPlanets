@@ -80,7 +80,7 @@ class Planet : CustomDebugStringConvertible{
     func setWaypoint(waypoint : Waypoint){
         self.waypoint = waypoint
     }
-
+    
     func clearState(){
         self.searchState = .unknown
         self.orderInExplored = nil
@@ -137,5 +137,14 @@ extension Planet : Traversable{
     func getNeighbours() -> [(neighbour: any Traversable, weight: Double)] {
         self.neighbours
     }    
+    
+    func heuristic(to end: any Traversable) -> Double {
+        if let end = end as? Planet{
+            let distance = CGPoint.findDistance(c1: self.position, c2: end.position)
+            return distance/25
+        }
+        return 0
+    }
+    
 }
 
