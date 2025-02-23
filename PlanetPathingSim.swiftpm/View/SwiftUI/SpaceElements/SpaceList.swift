@@ -11,8 +11,9 @@ struct SpaceList : View{
                 .foregroundColor(color)
             List(planets, id: \.self) {planet in
                 Text(planet)
+                    .modifier(SpaceText())
+                    .foregroundColor(.white)
                     .listRowBackground(color)
-                    .foregroundColor(.black)
             }
         }
         .modifier(SpaceText())

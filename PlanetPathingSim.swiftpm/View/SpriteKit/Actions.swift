@@ -7,7 +7,7 @@ func createPulsingAction(scaleAmount: CGFloat, duration: TimeInterval) -> SKActi
     return SKAction.repeatForever(sequence)
 }
 
-func moveNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction {
+func moveShipNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction {
     
     let dy = to.y-from.y
     let dx = to.x-from.x
@@ -34,13 +34,13 @@ func teleportNode(to : CGPoint) -> SKAction {
 }
 
 
-func moveMultipleNodes(planetOrder: [Planet], duration: TimeInterval) -> SKAction{
+func moveShipMultipleNodes(planetOrder: [Planet], duration: TimeInterval) -> SKAction{
     var groupMove : [SKAction] = []
     if planetOrder.count>1{
 //        let singleDuration = duration/TimeInterval(planetOrder.count)
         let singleDuration = duration
         for i in 0...planetOrder.count-2{
-            groupMove.append(moveNode(from: planetOrder[i].position, to: planetOrder[i+1].position, duration: singleDuration))
+            groupMove.append(moveShipNode(from: planetOrder[i].position, to: planetOrder[i+1].position, duration: singleDuration))
         }
     }
     let finalMove = SKAction.sequence(groupMove)
@@ -59,3 +59,12 @@ func fadeNodeColor(newColor : UIColor, duration : TimeInterval) -> SKAction{
     let fadeInFadeOut = SKAction.sequence([fadeOut, fadeIn])
     return fadeInFadeOut
 }
+
+func moveNode(to : CGPoint, duration: TimeInterval) -> SKAction {
+    
+    let moveAction = SKAction.move(to: to, duration: duration)
+    moveAction.timingMode = .easeInEaseOut
+    
+    return moveAction
+}
+

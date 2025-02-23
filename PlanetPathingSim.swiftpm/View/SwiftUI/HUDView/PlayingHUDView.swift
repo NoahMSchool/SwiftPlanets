@@ -20,7 +20,7 @@ struct PlayingHUDView : View{
                     .environmentObject(galaxy)
                     .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity, maxHeight: 200)
+            .frame(maxWidth: .infinity, maxHeight: 250)
         }
     }
 }
@@ -39,8 +39,12 @@ struct TopPlayingHUDRow : View{
             Text(" Step Number : \(String(galaxy.getMoveStep()))")         
                 .modifier(SpaceSubheading())
         }.gridCellColumns(5)
-        
-        SettingsButton()
+        VStack{
+            SettingsButton()
+            SpaceButton(imageSystemName: "location.fill", textLabel: "Focus", disabled: false){
+                galaxy.focusOnShip = true    
+            }
+        }
         
     }
 }

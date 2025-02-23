@@ -18,6 +18,6 @@ class ShipNode{
     }
     func moveToPosition(position: CGPoint){
         
-        self.shape.run(moveNode(from: self.shape.position, to: position, duration: 0.5))
+        self.shape.run(moveShipNode(from: self.shape.position, to: position, duration: 0.5))
     }
 }

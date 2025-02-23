@@ -37,7 +37,12 @@ struct TopBuilderHUDRow : View{
                 .modifier(SpaceHeading())
         }.gridCellColumns(5)
         
-        SettingsButton()
+        VStack{
+            SettingsButton()
+            SpaceButton(imageSystemName: "location.fill", textLabel: "Focus", disabled: false){
+                galaxy.focusOnShip = true    
+            }
+        }
         
     }
 }
@@ -54,6 +59,7 @@ struct BottomBuilderHUDRow : View {
         
         LargeSpaceButton(text : "Start", imageSystemName: "play.fill") {
             galaxy.startMode.toggle()
+            galaxy.focusOnShip = true
         }
             .padding()
             .frame(maxWidth: .infinity)

@@ -4,7 +4,7 @@ import SpriteKit
 class MainScene : SKScene{
     var galaxy : Galaxy?
     let cam = SKCameraNode()
-    var camZoom : CGFloat = 2.0{
+    var camZoom : CGFloat = 10.0{
         didSet{
             cam.yScale = camZoom
             cam.xScale = camZoom
@@ -23,7 +23,6 @@ class MainScene : SKScene{
         addChild(galaxy.getShape())
         addChild(cam)
         camera = cam
-        focusOnStart()
         
         let minX = -size.width/2, maxX = size.width/2
         let minY = -size.height/2, maxY = size.height/2
@@ -44,17 +43,21 @@ class MainScene : SKScene{
     override func update(_ currentTime: TimeInterval) {
         if let galaxy = galaxy{
             //camPosition = galaxy.ship.shape.position
+            if galaxy.focusOnShip{
+                focusOnShip()
+                galaxy.focusOnShip = false
+            }
         }
     }
-    func focusOnStart(){
+    func focusOnShip(){
         guard let galaxy = galaxy else {return}
-        if let startPlanet = galaxy.startPlanet{
-            camPosition = startPlanet.position
-        }
-        else{
-            camPosition = CGPoint(x: 0, y: 0)
-            
-        }
+        print(galaxy.ship.shape.position)
+        let camMoveAction = moveNode(to: galaxy.ship.shape.position, duration: 1)
+        let bgMoveAction = moveNode(to: CGPoint(x: galaxy.ship.shape.position.x/2, y: galaxy.ship.shape.position.y/2), duration: 1)
+        cam.run(camMoveAction)
+        self.galaxy?.skStarryBackground.run(bgMoveAction)
+
+        camZoom = 1
     }
     @objc func handlePan(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
