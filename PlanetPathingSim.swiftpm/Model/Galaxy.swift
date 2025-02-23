@@ -231,7 +231,6 @@ class Galaxy : ObservableObject{
                         x.costSoFar = Int(weight)
                     }
                 }
-                if selectedUILabel == "Frontier"{
                     x.orderInFrontier = counter
                 }
                 x.setSearchState(searchState: .frontier)
@@ -315,7 +314,11 @@ class Galaxy : ObservableObject{
         var strings : [String] = []
         for p in algorithm.getWeightedFrontier(){
             if let planet = p.neighbour as? Planet{
-                strings.append(planet.name)
+                var str = planet.name
+                if (p.weight > 0) {
+                    str +=  " (\(Int(p.weight)))"
+                }
+                strings.append(str)
             }
         }
         return strings
