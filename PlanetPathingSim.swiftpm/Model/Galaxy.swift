@@ -329,7 +329,11 @@ class Galaxy : ObservableObject{
         var strings : [String] = []
         for p in algorithm.getExplored(){
             if let planet = p as? Planet{
-                strings.append(planet.name)
+                var str = planet.name
+                if (planet.costSoFar ?? 0 > 0) {
+                    str +=  " (\(Int(planet.costSoFar ?? 0)))"
+                }
+                strings.append(str)
             }
         }
         return strings
