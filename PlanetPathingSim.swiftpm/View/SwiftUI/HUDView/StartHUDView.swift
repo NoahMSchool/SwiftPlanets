@@ -67,6 +67,7 @@ struct BottomBuilderHUDRow : View {
                 RoundedRectangle(cornerSize: CGSize(width: 40, height: 40))
                     .stroke(.yellow, lineWidth: 5)
                     .fill(.black)
+                
                 if galaxy.selectedBuilder == "Square"{
                     Text("Square Galaxy is a test galaxy that will provide a different result for each search algorithm making it suitable for comparing the different pathfinding algorithms").padding()
                 }
