@@ -231,6 +231,7 @@ class Galaxy : ObservableObject{
                         x.costSoFar = Int(weight)
                     }
                 }
+                if selectedUILabel == "Frontier"{
                     x.orderInFrontier = counter
                 }
                 x.setSearchState(searchState: .frontier)
@@ -347,6 +348,7 @@ class Galaxy : ObservableObject{
         return algorithm.history.count
     }
 }
+
 extension Galaxy{
     func setInitialPlanetSKNodes(){
         self.skPlanets.removeAllChildren()
