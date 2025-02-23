@@ -4,17 +4,19 @@ class SquareGalaxyBuilder : GalaxyBuilder {
   
     override class func createRandomPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
         
-        let PA = Planet(position: CGPoint(x:-200,y:200), name: "Planet A")        
-        let PB = Planet(position: CGPoint(x:0,y:200), name: "Planet B")
-        let PC = Planet(position: CGPoint(x:-100,y:000), name: "Planet C")
-        let PD = Planet(position: CGPoint(x:100,y:000), name: "Planet D")
-        let PE = Planet(position: CGPoint(x:200,y:200), name: "Planet E")
-        let PF = Planet(position: CGPoint(x:200,y:000), name: "Planet F")
-        let PG = Planet(position: CGPoint(x:0,y:-100), name: "Planet G")
-        let PH = Planet(position: CGPoint(x:0,y:-200), name: "Planet H")
-        let PX = Planet(position: CGPoint(x:-200,y:0), name: "Planet X") 
-        let PY = Planet(position: CGPoint(x:-200,y:-200), name: "Planet Y")
-        let PI = Planet(position: CGPoint(x:200,y:-200), name: "Planet I")
+        var planetNamesShuffled = planetNames.shuffled()
+
+        let PA = Planet(position: CGPoint(x:-200,y:200), name: planetNamesShuffled.removeFirst())        
+        let PB = Planet(position: CGPoint(x:0,y:200), name: planetNamesShuffled.removeFirst())
+        let PC = Planet(position: CGPoint(x:-100,y:000), name: planetNamesShuffled.removeFirst())
+        let PD = Planet(position: CGPoint(x:100,y:000), name: planetNamesShuffled.removeFirst())
+        let PE = Planet(position: CGPoint(x:200,y:200), name: planetNamesShuffled.removeFirst())
+        let PF = Planet(position: CGPoint(x:200,y:000), name: planetNamesShuffled.removeFirst())
+        let PG = Planet(position: CGPoint(x:0,y:-100), name: planetNamesShuffled.removeFirst())
+        let PH = Planet(position: CGPoint(x:0,y:-200), name: planetNamesShuffled.removeFirst())
+        let PX = Planet(position: CGPoint(x:-200,y:0), name: planetNamesShuffled.removeFirst()) 
+        let PY = Planet(position: CGPoint(x:-200,y:-200), name: planetNamesShuffled.removeFirst())
+        let PI = Planet(position: CGPoint(x:200,y:-200), name: planetNamesShuffled.removeFirst())
         
         let planets = [PA, PB, PC, PD, PE, PF, PG, PH, PX, PY, PI]
         
