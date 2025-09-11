@@ -11,14 +11,6 @@ protocol Traversable: Identifiable {
 }
 ```
 
-
-
-
-
-
-
-## Analysis
-
  ### Mindmap
 
 ```mermaid
@@ -209,3 +201,23 @@ My game will be played on either a computer, tablet or a mobile device
 | Does my project provide an entertaining game like experience for the user | To keep the player engaged and means they will keep on playing the game |
 | Does my project educate the player on different ideas that could be used in space exploration | So the game can also teach the player something |
 | Does my project make the user aware of common algorithms used in games | To get the player more interested in how the game works to create interest in computer science |
+
+
+# Write Up
+
+## Analysis
+
+## Design
+
+## Developing A coded Solution
+
+## Evaluation
+
+
+https://www.ocr.org.uk/Images/324587-project-setting-guidance.pdf
+https://www.ocr.org.uk/images/170844-specification-accredited-a-level-gce-computer-science-h446.pdf
+
+
+
+
+
