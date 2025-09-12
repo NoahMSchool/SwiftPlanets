@@ -202,10 +202,38 @@ My game will be played on either a computer, tablet or a mobile device
 | Does my project educate the player on different ideas that could be used in space exploration | So the game can also teach the player something |
 | Does my project make the user aware of common algorithms used in games | To get the player more interested in how the game works to create interest in computer science |
 
-
 # Write Up
 
 ## Analysis
+
+### Project Definition
+
+I am making an educational tool that aims to create a fun way for anyone to learn about graphing algorithms through space.
+I will do this in the form of an app using Swift and SwiftUI using the Model View Controller Design Pattern.
+
+### Problem Recognition
+
+The problem I am solving is the lack of fun ways to learn about certain Computer Science (CS) concepts, more specifically graphing algorithms.
+
+From experience I have noticed that when looking for resources online to help learn a new concept there are a separation between the engaging resources which are often videos using creative analogies and the interactive tools used to model them which are often boring and difficult to use and stuck in the browser. This could be due to the relative difficulty to make a program compared to a video.
+
+I want to bridge that gap by creating a graphing algorithm simulator that uses a fun analogy of Space to keep the user engaged. From my research you will later see I beleve that space is an engaging subject for many people interested in computer science and even if they are not it is still a fun tool that they do not have to use
+
+### Stakeholders and Audience
+
+My audience is anyone who is interested in learning about CS. This could be anyone from the age of 8 to 80 who is interested. This may seem like quite a broad audience due to the wide age range I can slightly narrow it down to those who are more STEM focused.
+
+Specifically I am targeting a younger audience as they are the future generation, and I want to create interest among the younger generation as they are still deciding what they are going to do with their lives. It is also true that this age group spends lots of time on mobile applications and playing video games so this may appeal more to them.
+
+Therefore I feel like an app is the most accessible form to this audience
+
+My stakeholders are mostly Students studying graphing algorithms for the first time in A-Level CS aswell as some GCSE students and some adults, as my goal is to make this tool accessible to people not activelly studying computer science.
+
+I have interviewed these stakeholders and I aim to use this data to tailor the experience to be more engaging across my audience. I am going to refer back to these users as I develop the app.
+
+
+
+
 
 ## Design
 
