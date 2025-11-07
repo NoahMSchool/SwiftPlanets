@@ -1,5 +1,3 @@
-# A level Comp-Sci Writeup 
-
 ```swift
 protocol Traversable: Identifiable {
     // This property requirement comes from Identifiable.
@@ -33,11 +31,13 @@ root((Problem))
 
 <!-- TODO: Mention Computer Science (CS) abbreviation -->
 
+# A level Comp-Sci Writeup 
+
+## Analysis
 
 ### Project Definition
 
 I am making an educational tool that aims to create a fun way for anyone to learn about graphing algorithms through space.
-
 I will do this in the form of an app using Swift and SwiftUI using the Model View Controller Design Pattern.
 
 ### Problem Recognition
@@ -60,7 +60,7 @@ My stakeholders are mostly Students studying graphing algorithms for the first t
 
 I have interviewed these stakeholders and I aim to use this data to tailor the experience to be more engaging across my audience. I am going to refer back to these users as I develop the app.
 
-#### Questionnaire for target market
+### Questionnaire for target market
 
 | **Which of the following subjects do you find most engaging. (Space, )** |     |
 | --- |     | --- |
@@ -84,7 +84,7 @@ Control
 
 #### What I did
 
-I have selected a few educational tools that aimed to create an interactive way to learn something. I played these games and noted down the parts that I liked and disliked about them.
+I have selected a few educational tools that aimed to create an interactive way to learn something. I tried out these tools and noted down the parts that I liked and disliked about them.
 
 ##### Game 1: Graph Online**
 
@@ -92,7 +92,7 @@ This is a graphing simulator I found online. It lets you create a graph manually
 
 I thought it was frustrating making a graph manually and thought it would be especially not useful if this was your first time encountering a graph you may not know what graph to make
 
-##### Game 2: Outlanders
+##### Game 2: 
 
 **Game 3: Phet Simulations**
 
@@ -101,8 +101,6 @@ This was not a graphing simulator but it is an educational tool making learning 
 I loved using this and found it very useful but one thing I would have liked is if it added a creative twist to it to keep the user engaged. I may want to use an anlaogy of some sort to make the program more relatable to use
 
 **Other Games**
-
-From clash royale I like how units are managed as instead of being directly controlled by the
 
 **Game Research Takeaways**
 
@@ -230,9 +228,6 @@ Therefore I feel like an app is the most accessible form to this audience
 My stakeholders are mostly Students studying graphing algorithms for the first time in A-Level CS aswell as some GCSE students and some adults, as my goal is to make this tool accessible to people not activelly studying computer science.
 
 I have interviewed these stakeholders and I aim to use this data to tailor the experience to be more engaging across my audience. I am going to refer back to these users as I develop the app.
-
-
-
 
 
 ## Design
