@@ -50,13 +50,27 @@
 
 ---
 
-## 2. Analysis (12 marks)
+## 2. Analysis (10 marks)
 
 **Suggested length:** ~700–1000 words
 
-### 2.1 Problem Definition
-
+### 2.1 Problem Definition 
 Describe the real-world problem or scenario and why it is suitable for a computational solution.
+
+
+Elplain how graph algorithms is a classic computer science problem
+Interactive tools are suited for a computer program
+Learning tools are more accessible for computers
+Can remember state and go forward and backwards on the algorithm
+algorithm to generate graphs
+
+I am making an educational tool that aims to create a fun way for anyone to learn about graphing algorithms through space.
+I will do this in the form of an app using Swift and SwiftUI using the Model View Controller Design Pattern.
+
+The problem I am solving is the lack of fun ways to learn about certain Computer Science (CS) concepts, more specifically graphing algorithms.
+From experience I have noticed that when looking for resources online to help learn a new concept there are a separation between the engaging resources which are often videos using creative analogies and the interactive tools used to model them which are often boring and difficult to use and stuck in the browser. This could be due to the relative difficulty to make a program compared to a video.
+
+I want to bridge that gap by creating a graphing algorithm simulator that uses a fun analogy of Space to keep the user engaged. From my research you will later see I beleve that space is an engaging subject for many people interested in computer science and even if they are not it is still a fun tool that they do not have to use
 
 ### 2.2 Stakeholders and User Needs
 
@@ -78,7 +92,7 @@ Numbered, testable criteria (SC1, SC2, …) that you will revisit in Testing and
 
 ---
 
-## 3. Design (12 marks)
+## 3. Design (15 marks)
 
 **Suggested length:** ~800–1200 words
 
@@ -148,7 +162,7 @@ Discuss what the results show about correctness, robustness, and reliability.
 
 ---
 
-## 6. Evaluation (11 marks)
+## 6. Evaluation (20 marks)
 
 **Suggested length:** ~500–800 words
 
