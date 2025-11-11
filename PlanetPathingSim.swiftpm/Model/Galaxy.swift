@@ -269,10 +269,9 @@ class Galaxy : ObservableObject{
             else{
                 moveAction = teleportNode(to: x.position)
             }
-            //if there is no action make empty action so the closure still runs
-            let actionToRun = moveAction ?? SKAction.run {}
 
-            ship.shape.run(actionToRun){[self] in 
+
+            ship.shape.run(moveAction){[self] in 
                 if hasAnimation{
                     x.pulseRing(outerDistance: self.maxDistance)    
                 }
