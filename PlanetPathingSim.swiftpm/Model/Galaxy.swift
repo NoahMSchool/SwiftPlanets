@@ -31,13 +31,7 @@ class Galaxy : ObservableObject{
     
     //This controls the options in the dropdown in the user interface 
     static var searchAlgorithms: [String] {
-        return [
-            "Breadth First Search",
-            "Depth First Search",
-            "Dijkstra",
-            "Greedy Best First Search",
-            "A*"
-        ]
+        return Array(algorithmTypes.keys)
     }  
     
     //These are variables that are bindings in the user interface that can be selected 
