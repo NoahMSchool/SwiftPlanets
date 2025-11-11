@@ -293,15 +293,6 @@ class Galaxy : ObservableObject{
         }
     }
     
-    func getPlanetNeighbours(planet : Planet)->[(neighbour: Planet, weight: Double)]{
-        var neighbours : [(neighbour: Planet, weight: Double)] = []
-        for p in self.planetPaths{
-            if p.start.isEqual(to: planet){
-                neighbours.append((neighbour: p.end, weight: p.distance))
-            }
-        }
-        return neighbours
-    }
     func setPlanetNeighbours(){
         for p in self.planetPaths{
             p.start.addNeighbour(path: (neighbour: p.end, weight: p.distance))
