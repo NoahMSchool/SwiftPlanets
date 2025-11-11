@@ -1,6 +1,6 @@
 import SpriteKit
 
-class Planet : CustomDebugStringConvertible{
+class Planet{
     enum SearchState{
         case unknown
         case frontier
@@ -78,9 +78,7 @@ class Planet : CustomDebugStringConvertible{
             self.shape.showPlanetLabel()
         }
     }
-    var debugDescription: String {
-        return name
-    }
+
     func setSearchState(searchState : SearchState){
         self.searchState = searchState
     }
@@ -130,6 +128,12 @@ class Planet : CustomDebugStringConvertible{
     }
 }
 
+//to conform to CustomDebugStringConvertible for useful debug 
+extension Planet : CustomDebugStringConvertible{   
+    var debugDescription: String {
+        return name
+    }
+}
 //to conform to Traversable
 extension Planet : Traversable{
     func isEqual(to other: any Traversable) -> Bool {
