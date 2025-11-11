@@ -62,7 +62,6 @@ class MainScene : SKScene{
         self.galaxy?.skStarryBackground.run(bgMoveAction)
     }
     func focusOnCenter(){
-        guard let galaxy = galaxy else {return}
         let camMoveAction = moveNode(to: CGPoint(x: 0,y: 0), duration: 1)
         let bgMoveAction = moveNode(to: CGPoint(x: 0, y: 0), duration: 1)
         cam.run(camMoveAction)
