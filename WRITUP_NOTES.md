@@ -133,4 +133,18 @@
 
 * Identified and justified measurable success criteria for the proposed
 
-  
+## Design - 15 marks
+
+* Broken the problem down systematically into a series of smaller problems suitable for computational solutions, explaining and justifying the process.
+
+* Defined in detail the structure of the solution to be developed.
+
+* Described the solution fully using appropriate and accurate algorithms justifying how these algorithms form a complete solution to the problem.
+
+* Described, justifying choices made, the usability features to be included in the solution.
+
+* Identified and justified the key variables / data structures / classes (as appropriate to the proposed solution) justifying and explaining any necessary validation.
+
+* Identified and justified the test data to be used during the iterative development of the solution.
+
+* Identified and justified any further data to be used in the post development phase
