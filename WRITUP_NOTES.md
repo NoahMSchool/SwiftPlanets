@@ -113,10 +113,13 @@
 *(This file is a paraphrase/summary to help you plan; always refer to OCR’s official PDFs when marking or submitting.)*
 
 
+--- 
+--- 
+--- 
 
 ## Analysis - 10 marks
 
-Described and justified the features that make the problem solvable by computational methods, explaining why it is amenable to a computational approach.
+* Described and justified the features that make the problem solvable by computational methods, explaining why it is amenable to a computational approach.
 
 * Identified suitable stakeholders for the project and described them explaining how they will make use of the proposed solution and why it is appropriate to their needs.
 
