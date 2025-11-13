@@ -114,4 +114,20 @@
 
 
 
+## Analysis - 10 marks
 
+Described and justified the features that make the problem solvable by computational methods, explaining why it is amenable to a computational approach.
+
+* Identified suitable stakeholders for the project and described them explaining how they will make use of the proposed solution and why it is appropriate to their needs.
+
+* Researched the problem in depth looking at existing solutions to similar problems, identifying and justifying suitable approaches based on this research.
+
+* Identified the essential features of the proposed computational solution explaining these choices.
+
+* Identified and explained with justification any limitations of the proposed solution.
+
+* Specified and justified the requirements for the solution including (as appropriate) any hardware and software requirements.
+
+* Identified and justified measurable success criteria for the proposed
+
+  
