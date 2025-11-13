@@ -299,6 +299,9 @@ root((Problem))
 
 <!-- TODO: Mention Computer Science (CS) abbreviation -->
 
+
+
+
 # A level Comp-Sci Writeup 
 
 ## Analysis
@@ -348,8 +351,7 @@ Control
 
 ### Analysing Other Solutions
 
-** I have selected a few educational tools that aimed to create an interactive way to learn something. I tried out these tools and noted down the parts that I liked and disliked about them.
- **
+**I have selected a few educational tools that aimed to create an interactive way to learn something. I tried out these tools and noted down the parts that I liked and disliked about them.**
 
 #### Solution 1: Graph Online
 
