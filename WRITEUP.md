@@ -306,48 +306,48 @@ root((Problem))
 
 ## Analysis
 
-### Project Recognition
-
-I am making an educational tool that aims to create a fun way for anyone to learn about graphing algorithms through space.
-I will do this in the form of an app using Swift and SwiftUI using the Model View Controller Design Pattern.
+### Problem Recognition
 
 The problem I am solving is the lack of fun ways to learn about certain Computer Science (CS) concepts, more specifically graphing algorithms.
+Interactive simualtion's are usefull tools for learning as they can walk you through new concepts especially for STEM and Computer Science. Good learning also comes from relatable analogies and creative teaching methods. The flexibility of Coding allows you to express this creativity through a program. Therefore a computer simulation a suitible method to teach a topic like graphing algorithms 
 
 From experience I have noticed that when looking for resources online to help learn a new concept there are a separation between the engaging resources which are often videos using creative analogies and the interactive tools used to model them which are often boring and difficult to use and stuck in the browser. This could be due to the relative difficulty to make a program compared to a video
+I want to bridge that gap by creating a graphing algorithm simulator that uses a fun analogy of Space to keep the user engaged. From my research you will later see I beleve that space is an engaging subject for many people interested in computer science and even if they are not it is still a fun different way to 
 
-I want to bridge that gap by creating a graphing algorithm simulator that uses a fun analogy of Space to keep the user engaged. From my research you will later see I beleve that space is an engaging subject for many people interested in computer science and even if they are not it is still a fun tool that they do not have to use
+Graphing algorithms are often found to be a difficult topic for Computer Science Students as they have not been exposed to these concepts before.
+I will make a educational tool that aims to create a fun way for anyone to learn about graphing algorithms through space.
+I will do this in the form of an app using Swift and SwiftUI.
 
 ### Stakeholders and Audience
 
 My audience is anyone who is interested in learning about CS. This could be anyone from the age of 8 to 80 who is interested. This may seem like quite a broad audience due to the wide age range but I can slightly narrow it down to those who are more STEM focused.
-
-Specifically I am targeting a younger audience as they are the future generation, and I want to create interest among the younger generation as they are still deciding what they are going to do with their lives. It is also true that this age group spends lots of time on mobile applications and playing video games so this may appeal more to them.
+Specifically I am targeting a younger audience as they are the future generation, and I want to create interest among the younger generation as they are still deciding what they are going to do with their lives. It is also true that this age group spends lots of time on mobile applications, playing video games or using computers so this may appeal more to them.
 
 Therefore I feel like an app is the most accessible form to this audience
 
 My stakeholders are mostly Students studying graphing algorithms for the first time in A-Level CS aswell as some GCSE students and some adults, as my goal is to make this tool accessible to people not activelly studying computer science.
 
-I have interviewed these stakeholders and I aim to use this data to tailor the experience to be more engaging across my audience. I am going to refer back to these users as I develop the app.
+I have interviewed these stakeholders and I aim to use this data to tailor the experience to be more engaging across my audience. I am going to refer back to these users as I develop the program.
 
 ### Questionnaire for target market
 
-| **Which of the following subjects do you find most engaging. (Space, )** |     |
-| --- |     | --- |
-| Stakeholder 1: |     |
+| **Which of the following subjects would you find most engaging for a learning tool.** |Space, Geographical or City|
+| --- | --- |
+| Stakeholder 1: Rambo| City |
 | Stakeholder 2: Noah | Space |
-| Stakeholder 3 |     |
+| Stakeholder 3 : Rocco |Geographical Landscape|
 
 | **When using a tool to learn a new subject would you rather have more freedom or a more guided path** |     |
-| --- |     | --- |
-| Stakeholder 1: |     |
+| --- || --- |
+| Stakeholder 1: Rambo | More control would be nice b    |
 | Stakeholder 2: Noah | I would like both, maybe you could start with a more guided approach and then once you are more familliar you could be given more control |
-| Stakeholder 3 |     |
+| Stakeholder 3 : Rocco | I would rather be goided at the start as I can find the options overwhelming    |
 
 #### Client Questionnaire takeaways
 
-Space
+I beleve a Space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM so were already facinated by space.
 
-Control
+I think it is importaint to have at least a slow introduction into the algorithms. From research of other games I found the solutions that had an easy onboarding to be more useful. My stakeholders backed this up.
 
 ### Analysing Other Solutions
 
