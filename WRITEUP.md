@@ -318,6 +318,32 @@ Graphing algorithms are often found to be a difficult topic for Computer Science
 I will make a educational tool that aims to create a fun way for anyone to learn about graphing algorithms through space.
 I will do this in the form of an app using Swift and SwiftUI.
 
+### Analysing Other Solutions
+
+**I have selected a few educational tools that aimed to create an interactive way to learn something. I tried out these tools and noted down the parts that I liked and disliked about them.**
+
+#### Solution 1: Graph Online
+
+This is a graphing simulator I found online. It lets you create a graph manually
+
+I thought it was frustrating making a graph manually and thought it would be especially not useful if this was your first time encountering a graph you may not know what graph to make.
+I found the options overwhelming and did not focus on anything specific. I thought It was more suitable for people more experienced with the basics. I want my project to be accessable to people who do not know what a graph is.
+
+#### Solution 2: 
+
+
+#### Solution 3: PhET Simulations
+
+This is not a graphing simulator but it is an educational tool making learning interesting.
+There are lots of different high quality simulations on this platform. 
+PhET Is a non profit organisation founded by Carl Weiman. They have made their own framework for making simulations
+
+I loved using this and found it very useful but one thing I would have liked is if it added a creative twist to it to keep the user engaged. As this is a large platform with lots of pI may want to use an anlaogy of some sort to make the program more relatable to use.
+
+#### Research Takeaways
+
+The main things I took away is that I wanted to make the program approachable and relatable to the user, intuitive to use and not rely on any knowledge fromthe user, this would make it accessible to my whole audience which is anyone seeking to learn about graphing algorihms
+
 ### Stakeholders and Audience
 
 My audience is anyone who is interested in learning about CS. This could be anyone from the age of 8 to 80 who is interested. This may seem like quite a broad audience due to the wide age range but I can slightly narrow it down to those who are more STEM focused.
@@ -349,41 +375,8 @@ I beleve a Space analogy will be the most suitable for the audience. This makes 
 
 I think it is importaint to have at least a slow introduction into the algorithms. From research of other games I found the solutions that had an easy onboarding to be more useful. My stakeholders backed this up.
 
-### Analysing Other Solutions
 
-**I have selected a few educational tools that aimed to create an interactive way to learn something. I tried out these tools and noted down the parts that I liked and disliked about them.**
-
-#### Solution 1: Graph Online
-
-This is a graphing simulator I found online. It lets you create a graph manually
-
-I thought it was frustrating making a graph manually and thought it would be especially not useful if this was your first time encountering a graph you may not know what graph to make.
-I found the options overwhelming and did not focus on anything specific. I thought It was more suitable for people more experienced with the basics. I want my project to be accessable to people who do not know what a graph is.
-
-#### Solution 2: 
-
-
-
-#### Solution 3: PhET Simulations
-
-This is not a graphing simulator but it is an educational tool making learning interesting.
-There are lots of different high quality simulations on this platform. 
-PhET Is a non profit organisation founded by Carl Weiman. They have made their own framework for making simulations
-
-I loved using this and found it very useful but one thing I would have liked is if it added a creative twist to it to keep the user engaged. As this is a large platform with lots of pI may want to use an anlaogy of some sort to make the program more relatable to use.
-
-
-
-#### Research Takeaways
-
-The main things I took away is that I wanted to make the program approachable and relatable to the user, intuitive to use and not rely on any knowledge fromthe user, this would make it accessible to my whole audience which is anyone seeking to learn about graphing algorihms
-
-
-**Game Research Takeaways**
-
-The main things I took away is that I wanted to make the program approachable and relatable to the user, intuitive to use and not rely on any knowledge fromthe user, this would make it accessible to my whole audience which is anyone seeking to learn about graphing algorihms
-
-**Features of Proposed solution**
+### Features of Proposed solution
 
 | **Object** | **Overview** | **Update Logic** | **Render** |
 | --- | --- | --- | --- |
@@ -393,7 +386,7 @@ I am going to make a game that simulates how a species (that could be humans) wo
 
 Through this I aim to show the player aspects of space travel and expose them do different computer science concepts. This will not be a super accurate simulation and may not be entirely factually correct. The main goal is to expose and spark interest in these fields.
 
-**Limitations of Solution**
+### Limitations of Solution
 
 It may not be a very accurate simulation of the universe as there are many factors that are likely not included. Humans have not even explored another planet, so we do not know what it takes to explore a universe.
 
