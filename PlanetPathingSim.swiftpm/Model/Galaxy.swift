@@ -110,7 +110,7 @@ class Galaxy : ObservableObject{
         let myBuilder = Galaxy.builderTypes[selectedBuilder] ?? RandomGalaxyBuilder.self
         
         //building galaxy and adding planet paths and setting neighbours of planets
-        self.planets = myBuilder.createRandomPlanets(planetCount: planetCount)
+        self.planets = myBuilder.createPlanets(planetCount: planetCount)
         self.planetPaths = myBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)        
         
         self.startPlanet = planets.first

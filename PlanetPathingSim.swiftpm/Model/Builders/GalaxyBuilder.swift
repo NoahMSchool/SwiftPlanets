@@ -31,7 +31,7 @@ class GalaxyBuilder{
     ]
     
     // Takes in a grid and a planetCount and generates a list of planets
-    class func createRandomPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
+    class func createPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
         return []
     }
   

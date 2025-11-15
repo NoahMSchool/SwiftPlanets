@@ -3,7 +3,7 @@ import CoreGraphics
 class RandomGalaxyBuilder : GalaxyBuilder {
   
     // Takes in a grid and a planetCount and generates a list of planets
-    override class func createRandomPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
+    override class func createPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
         var planets : [Planet] = []
         var options : [CGPoint] = []
         let jitter = Int(spacing/10)

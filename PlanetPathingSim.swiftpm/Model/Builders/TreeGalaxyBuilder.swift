@@ -2,7 +2,7 @@ import CoreGraphics
 
 class TreeGalaxyBuilder: GalaxyBuilder {
     
-    override class func createRandomPlanets(planetCount: Int, spacing: Double = 100, mapSize: Double = 1000) -> [Planet] {
+    override class func createPlanets(planetCount: Int, spacing: Double = 100, mapSize: Double = 1000) -> [Planet] {
         
         var planetNamesShuffled = planetNames.shuffled()
 
