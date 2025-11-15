@@ -473,6 +473,40 @@ My game will be played on either a computer, tablet or a mobile device
 
 ## Design
 
+```mermaid
+
+---
+config:
+  look: neo
+  layout: dagre
+  theme: redux-color
+title: Top Level Entity Relationship Diagram
+---
+erDiagram
+	direction TB
+	GALAXY {
+	}
+	PLANET {
+	}
+	SHIP {
+	}
+	BUILDER {
+	}
+	ALGORITHM {
+	}
+	TRAVERSABLE {
+	}
+	GALAXY||--|{PLANET:"has"
+	GALAXY||--||SHIP:"owns"
+	SHIP||--||PLANET:"located_on"
+	GALAXY||--||BUILDER:"generated_by"
+	GALAXY||--||ALGORITHM:"uses"
+	PLANET||--||TRAVERSABLE:"implements"
+	ALGORITHM||--|{TRAVERSABLE:"operates_on"
+
+```
+
+
 ## Developing A coded Solution
 
 ## Evaluation
