@@ -113,5 +113,38 @@
 *(This file is a paraphrase/summary to help you plan; always refer to OCR’s official PDFs when marking or submitting.)*
 
 
+--- 
+--- 
+--- 
 
+## Analysis - 10 marks
 
+* Described and justified the features that make the problem solvable by computational methods, explaining why it is amenable to a computational approach.
+
+* Identified suitable stakeholders for the project and described them explaining how they will make use of the proposed solution and why it is appropriate to their needs.
+
+* Researched the problem in depth looking at existing solutions to similar problems, identifying and justifying suitable approaches based on this research.
+
+* Identified the essential features of the proposed computational solution explaining these choices.
+
+* Identified and explained with justification any limitations of the proposed solution.
+
+* Specified and justified the requirements for the solution including (as appropriate) any hardware and software requirements.
+
+* Identified and justified measurable success criteria for the proposed
+
+## Design - 15 marks
+
+* Broken the problem down systematically into a series of smaller problems suitable for computational solutions, explaining and justifying the process.
+
+* Defined in detail the structure of the solution to be developed.
+
+* Described the solution fully using appropriate and accurate algorithms justifying how these algorithms form a complete solution to the problem.
+
+* Described, justifying choices made, the usability features to be included in the solution.
+
+* Identified and justified the key variables / data structures / classes (as appropriate to the proposed solution) justifying and explaining any necessary validation.
+
+* Identified and justified the test data to be used during the iterative development of the solution.
+
+* Identified and justified any further data to be used in the post development phase
