@@ -473,6 +473,11 @@ My game will be played on either a computer, tablet or a mobile device
 
 ## Design
 
+### System Overview / Architecture
+
+**Explain diagram and high level of components, Model veiw controller**
+
+
 ```mermaid
 
 ---
