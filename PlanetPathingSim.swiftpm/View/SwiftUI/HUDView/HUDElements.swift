@@ -2,7 +2,7 @@ import SwiftUI
 
 //Playing Elements
 struct ButtonsAndExplanationBlock : View{
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : GameController
     var body : some View{
         VStack{
             ExplanationBlock().environmentObject(galaxy)
@@ -37,7 +37,7 @@ struct ButtonsAndExplanationBlock : View{
     }
 }
 struct ExplanationBlock : View{
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : GameController
     var body : some View{
         ZStack {
             RoundedRectangle(cornerRadius: 40)
@@ -56,7 +56,7 @@ struct GalaxySliders : View{
     var planetCountRange: ClosedRange<Double> = 2.0...100.0
     var maxDistanceRange: ClosedRange<Double> = 1.0...20.0
     
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : GameController
     var body : some View{
         VStack {
             SpaceSlider(

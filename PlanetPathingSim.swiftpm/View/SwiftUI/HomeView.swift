@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomeView : View{
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : GameController
     @State private var navigateToMain = false
     @State private var navigateToAlgorithms = false
     @State private var navigateToInstructions = false

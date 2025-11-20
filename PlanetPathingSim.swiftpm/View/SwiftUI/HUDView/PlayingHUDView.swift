@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PlayingHUDView : View{
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : GameController
     
     var body : some View{
         Grid(alignment: .top){
@@ -27,7 +27,7 @@ struct PlayingHUDView : View{
 
 struct TopPlayingHUDRow : View{
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : GameController
     var body: some View{
         SpaceButton(imageSystemName: "arrowshape.turn.up.backward.fill", textLabel : "Galaxy Builder", disabled: false){
             galaxy.resetAlgorithm()
@@ -54,7 +54,7 @@ struct TopPlayingHUDRow : View{
 
 
 struct BottomPlayingHUDRow : View {
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : GameController
 
     var body: some View{
         SpaceList(title : "Frontier",  color: .cyan, planets : galaxy.getFrontierStrings())

@@ -20,8 +20,8 @@ struct AlgorithmsView: View {
                         Text("The Heuristic used for the more complex algorithms measures the distance on the map as the spaceship flies. This is very accurate for the random galaxies, but less so for the Tree and Square Test galaxies, which makes it more interesting!")
                             .padding()
                         
-                        ForEach(Galaxy.searchAlgorithms, id: \.self) { algorithm in
-                            if let algorithmType = Galaxy.algorithmTypes[algorithm] {
+                        ForEach(GameController.searchAlgorithms, id: \.self) { algorithm in
+                            if let algorithmType = GameController.algorithmTypes[algorithm] {
                                 //Image(systemName: algorithmType.getIcon()) 
                                 Text(algorithm).modifier(SpaceSubheading())
                                     .padding()

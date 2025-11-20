@@ -2,7 +2,7 @@ import SwiftUI
 import SpriteKit
 
 struct SpriteKitView: View {
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : GameController
 
     
     var scene: SKScene{

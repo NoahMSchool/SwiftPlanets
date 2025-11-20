@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct StartHUDView : View{
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : GameController
     
     var body : some View{
         Grid(alignment: .top){
@@ -27,7 +27,7 @@ struct StartHUDView : View{
 
 struct TopBuilderHUDRow : View{
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : GameController
     var body: some View{
         SpaceButton(imageSystemName: "arrowshape.turn.up.backward.fill", textLabel : "Main Menu", disabled: false){
             presentationMode.wrappedValue.dismiss()
@@ -48,7 +48,7 @@ struct TopBuilderHUDRow : View{
 
 
 struct BottomBuilderHUDRow : View {
-    @EnvironmentObject var galaxy : Galaxy
+    @EnvironmentObject var galaxy : GameController
     var body: some View{
         VStack{
             HStack{
@@ -91,7 +91,7 @@ struct BottomBuilderHUDRow : View {
             .frame(maxWidth: .infinity)
             .gridCellColumns(3)
         
-         SpacePicker(title : "Select Algorithm", choices : Galaxy.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)
+         SpacePicker(title : "Select Algorithm", choices : GameController.searchAlgorithms, selectedValue : $galaxy.selectedAlgorithm)
             .frame(maxWidth: .infinity)
             .gridCellColumns(2)
         

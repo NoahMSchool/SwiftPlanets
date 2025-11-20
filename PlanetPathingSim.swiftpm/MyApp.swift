@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct MyApp: App {
-    @StateObject var galaxy = Galaxy()
+    @StateObject var galaxy = GameController()
 
     var body: some Scene {
         WindowGroup {

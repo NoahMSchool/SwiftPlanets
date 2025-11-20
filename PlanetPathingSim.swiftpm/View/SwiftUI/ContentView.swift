@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var galaxy: Galaxy
+    @EnvironmentObject var galaxy: GameController
     
     @ViewBuilder
     var HUDView: some View {

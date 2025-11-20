@@ -2,7 +2,7 @@ import SpriteKit
 // import PlaygroundSupport
 
 class MainScene : SKScene{
-    var galaxy : Galaxy?
+    var galaxy : GameController?
     let cam = SKCameraNode()
     var camZoom : CGFloat = 10.0{
         didSet{
