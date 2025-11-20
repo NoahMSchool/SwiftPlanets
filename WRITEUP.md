@@ -473,11 +473,111 @@ My game will be played on either a computer, tablet or a mobile device
 
 ## Design
 
+```mermaid
+
+---
+config:
+  look: neo
+  layout: dagre
+  theme: redux-color
+title: Top Level Entity Relationship Diagram
+---
+erDiagram
+	direction TB
+	GALAXY {
+	}
+	PLANET {
+	}
+	SHIP {
+	}
+	BUILDER {
+	}
+	ALGORITHM {
+	}
+	TRAVERSABLE {
+	}
+	GALAXY||--|{PLANET:"has"
+	GALAXY||--||SHIP:"owns"
+	SHIP||--||PLANET:"located_on"
+	GALAXY||--||BUILDER:"generated_by"
+	GALAXY||--||ALGORITHM:"uses"
+	PLANET||--||TRAVERSABLE:"implements"
+	ALGORITHM||--|{TRAVERSABLE:"operates_on"
+
+```
+
+```mermaid
+
+---
+config:
+  look: neo
+title: Use of Inheritance Galaxy Builder
+---
+classDiagram
+        class GalaxyBuilder{
+            createPlanets(planetCount, spacing, mapSize)
+            calculatePlanetPaths(maxDistance)
+            planetNames : Array[string]
+        }
+    class RandomGalaxyBuilder{
+    }
+    class SquareGalaxyBuilder{
+    }
+    class TreeGalaxyBuilder{
+    }
+    GalaxyBuilder <|-- RandomGalaxyBuilder
+    GalaxyBuilder <|-- SquareGalaxyBuilder
+    GalaxyBuilder <|-- TreeGalaxyBuilder
+```
+```mermaid
+
+---
+title : Use of Inheritance BaseSearch
+---
+
+
+classDiagram
+        class BaseSearch{
+            start : Traversable
+            end : Traversable
+
+            useWeights : Bool
+            useHeuristic : Bool
+
+            getQueuePriority()
+        }
+
+        class Traversable{
+
+        }
+        class AlgorithmState{
+            current : Traversable
+            frontier : Array[neighbour: Traversable, weight: Double]
+            explored : [Traversable]
+            cameFrom : [UUID: (Traversable)?] = [:]
+            weightSoFar : [UUID: Double] = [:]
+            path : [Traversable] = []
+            backtrackPathFromPrevious : [Traversable] = []
+            completed : Bool
+            pathExists : Bool
+            explanation : String
+        }
+        BaseSearch <|-- Dijkstra
+        BaseSearch <|-- AStar
+        BaseSearch <|-- BreadthFirst
+        BaseSearch <|-- DepthFirst
+        BaseSearch <|-- GreedyBestFirst
+        BaseSearch *-- Traversable
+        BaseSearch *-- AlgorithmState
+```
+
+
 ## Developing A coded Solution
 
 ## Evaluation
 
 ## Sources
+
 
 
 https://www.ocr.org.uk/Images/324587-project-setting-guidance.pdf
