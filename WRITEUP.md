@@ -394,39 +394,35 @@ It may be hard to show how the algorithms involved work so the game can only edu
 
 I may not have the capacity to add lots of levels so it may be limited to a tutorial and a main level.
 
-**How it may be solved with computational methods**
+## Using Computational Methods in the solution
 
-**Thinking Abstractly**
+## Thinking Abstractly
 
-I am going to break the game down into sub-systems to make it easier to write
 
 I am going to use AI generated 2D sprites as this will not be time consuming and will be easy to implement while also providing an appealing aesthetic.
 
-As I am making a simulation, I need to consider which features to keep to make the simulation at least somewhat accurate. This is also a game so I am not making an ultra-realistic simulation so I am able to remove things without making the program useless to the user.
+As My graphing simulator is set in space, I need to consider which features to keep to make the simulation at least somewhat accurate. This is a graphing simulator not an ultra-realistic space simulation so I am able to remove things without making the program useless to the user.
+I will abstract lots of details of space and simplify it to just a graph with a few aesthetic objects in the backround for visual appeal.
 
-I have looked at many aspects of space and noticed that there are many extra ideas that seem unnecessary and will overcomplicate the program. For example, adding planet Orbits would mean the nodes on the graph would have to move around. This not only complicates the development of the game but also adds extra complexities the user has to manage which would be frustrating , for example orbits would mean that the ships would have to wait for the travel window before they can move between planets.
+I have looked at many aspects of space and noticed that there are many extra ideas that seem unnecessary and will overcomplicate the program. For example, adding planet Orbits would mean the nodes on the graph would have to move around. This not only complicates the development of the game but also adds extra complexities the user has to manage which would be frustrating, for example orbits would mean that the shortest path would be constantly changing. This would confuse the user which is a problem for an introduction to the subject.
 
-I might also simplify events, like an asteroid belts may stop ships from traveling in a specific zone and not allow the user to build special ships that can travel through these zones.
+I am going to remove aspects that do not add much value to the experience.
 
-There are also features that although would make it more realistic, they are negligable, for example travel time on a planet or gravity affecting the path of a ship.
+## Thinking Ahead
 
-I am going to remove many aspects that I think do not add much value to the simulation or just overcomplicate things.
+## Thinking Procedurally
 
-**Thinking Ahead**
+I am going to break the game down into sub-systems to make it easier to write.
+I will use a top down design when designing the archtecture
 
-My Program will require that
 
-**Thinking Procedurally**
+### Thinking Logically
 
-Model
+### Thinking Concurrently
 
-**Tree diagram of components**
+Lots of parts of my program will hapen at the same time. The ship will need to move, the galaxy will need to be generated, the paths will need to be found
 
-**Thinking Logically**
-
-**Thinking Concurrently**
-
-**Choosing a Framework**
+## Choosing a Framework
 
 | **Platform** | **Description** | **Pros** | **Cons** |
 | --- | --- | --- | --- |
