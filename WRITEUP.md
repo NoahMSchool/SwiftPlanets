@@ -292,15 +292,12 @@ root((Problem))
     Cause E
 ```
 
-| **Name :**<br><br>Noah Marks | **Candidate Number :** |
+| **Name :**<br><br>Noah Marks | **Candidate Number : 1146** |
 | --- | --- |
-| **Agenda :**<br><br>Engaging Graphing Simulator | **Centre Number :** |
+| **Agenda :**<br><br>Engaging Graphing Simulator | **Centre Number :*10132* |
 
 
 <!-- TODO: Mention Computer Science (CS) abbreviation -->
-
-
-
 
 # A level Comp-Sci Writeup 
 
@@ -327,10 +324,9 @@ I will do this in the form of an app using Swift and SwiftUI.
 This is a graphing simulator I found online. It lets you create a graph manually
 
 I thought it was frustrating making a graph manually and thought it would be especially not useful if this was your first time encountering a graph you may not know what graph to make.
-I found the options overwhelming and did not focus on anything specific. I thought It was more suitable for people more experienced with the basics. I want my project to be accessable to people who do not know what a graph is.
+I found the options overwhelming and did not focus on anything specific. I thought It was more suitable for people more experienced with the basics. I want my project to be accessable to people who do not even know what a graph is.
 
 #### Solution 2: 
-
 
 #### Solution 3: PhET Simulations
 
@@ -342,7 +338,7 @@ I loved using this and found it very useful but one thing I would have liked is 
 
 #### Research Takeaways
 
-The main things I took away is that I wanted to make the program approachable and relatable to the user, intuitive to use and not rely on any knowledge fromthe user, this would make it accessible to my whole audience which is anyone seeking to learn about graphing algorihms
+The main things I took away is that I wanted to make the program approachable and relatable to the user, intuitive to use and not rely on any knowledge fromthe user, this would make it accessible to my whole audience which is anyone seeking to learn about graphing algorihms. It 
 
 ### Stakeholders and Audience
 
@@ -365,9 +361,16 @@ I have interviewed these stakeholders and I aim to use this data to tailor the e
 
 | **When using a tool to learn a new subject would you rather have more freedom or a more guided path** |     |
 | --- || --- |
-| Stakeholder 1: Rambo | More control would be nice b    |
+| Stakeholder 1: Rambo | More control would be nice but it should be easy/intuitive to use |
 | Stakeholder 2: Noah | I would like both, maybe you could start with a more guided approach and then once you are more familliar you could be given more control |
-| Stakeholder 3 : Rocco | I would rather be goided at the start as I can find the options overwhelming    |
+| Stakeholder 3 : Rocco | I would rather be guided at the start as I can find the options overwhelming    |
+
+| **Which of the following analogies do you find most relatable and interisting : Space, CityMap, RuralMap** |     |
+| --- || --- |
+| Stakeholder 1: Rambo | I would love a space analogy |
+| Stakeholder 2: Noah | The ruralMap would be cool but also the Space |
+| Stakeholder 3 : Rocco | The Industrial Map would be cool but also the Space |
+
 
 #### Client Questionnaire takeaways
 
@@ -378,13 +381,38 @@ I think it is importaint to have at least a slow introduction into the algorithm
 
 ### Features of Proposed solution
 
-| **Object** | **Overview** | **Update Logic** | **Render** |
-| --- | --- | --- | --- |
-|     |     |     |     |
+#### Usability
 
-I am going to make a game that simulates how a species (that could be humans) would explore the galaxy. You will start as a simple species that has taken control of their planet. The player will then make decisions to help them explore their solar system. Once they have done this they will have to lead their interstellar species into conquering the galaxy.
+**Menu with Navigation across screens**
+My app should allow the user to navigate between different screens. This should be intuitive and the user should not get lost.
 
-Through this I aim to show the player aspects of space travel and expose them do different computer science concepts. This will not be a super accurate simulation and may not be entirely factually correct. The main goal is to expose and spark interest in these fields.
+**Clean Design**
+I will make the apearance of the app minimal with clear controls.
+
+Creation of graph
+
+#### Performance
+The simulation should be able to run on lower end older hardware. This will make it more accesable to more people.
+The program should not abruptly crass
+
+#### Bugs/Exploits
+There should not be any Major bugs or exploits in the program.
+As this would confuse/mislead the user.
+
+#### Information/Teaching
+
+As this is an educational tool everything needs to be factually correct.
+After and during development.
+
+I will also make small quality of life improvements that make explanations more true to what is actually happening
+
+** Move into design   show tree of navigation **
+These screens should include:
+* Menu (for selection)
+* How to use (explains how to use the program)
+* About Graphs (Teaches the user about graphs using a text page (not the simulation)
+* Graph/Galaxy Builder (Allows the user to create/select/generate graph)
+* Simulation (Performs the Graph Traversal Algorithms on the generated graph
 
 ### Limitations of Solution
 
@@ -394,10 +422,9 @@ It may be hard to show how the algorithms involved work so the game can only edu
 
 I may not have the capacity to add lots of levels so it may be limited to a tutorial and a main level.
 
-## Using Computational Methods in the solution
+### Using Computational Methods in the solution
 
-## Thinking Abstractly
-
+#### Thinking Abstractly
 
 I am going to use AI generated 2D sprites as this will not be time consuming and will be easy to implement while also providing an appealing aesthetic.
 
@@ -408,21 +435,21 @@ I have looked at many aspects of space and noticed that there are many extra ide
 
 I am going to remove aspects that do not add much value to the experience.
 
-## Thinking Ahead
+#### Thinking Ahead
 
-## Thinking Procedurally
+#### Thinking Procedurally
 
 I am going to break the game down into sub-systems to make it easier to write.
 I will use a top down design when designing the archtecture
 
 
-### Thinking Logically
+#### Thinking Logically
 
-### Thinking Concurrently
+#### Thinking Concurrently
 
 Lots of parts of my program will hapen at the same time. The ship will need to move, the galaxy will need to be generated, the paths will need to be found
 
-## Choosing a Framework
+### Choosing a Framework
 
 | **Platform** | **Description** | **Pros** | **Cons** |
 | --- | --- | --- | --- |
@@ -432,7 +459,7 @@ Lots of parts of my program will hapen at the same time. The ship will need to m
 | Pygame | Pygame is a simple 2D graphics library that uses python. | I can write the game in python which has easy syntax and is quite lightweight. | It is very basic so I will have to program algorithms like shortest path from scratch |
 | Defold | Defold is a simple Game Engine that uses Lua |     |     |
 
-**Choice**
+#### Choice
 
 The main three contenders are Swift / SpriteKit, Pygame and Godot.
 
@@ -440,36 +467,37 @@ After considering the benefits and drawbacks of each framework I have swift for 
 
 However this will mean that the app can only be played on apple devices, this could be a good start as they are popular with my audience. I found it is also quite difficult to have an android version aswell as I would need to rewrite it due to the specific frameworks I have selected. It may have been more accessible if I made a webapp
 
-**System Requirements**
+### System Requirements
+#### Hardware
 
-My game will be played on either a computer, tablet or a mobile device
-
-**Hardware**
+My game will be played on either a computer, tablet or a mobile device.
+As I am using SwiftUI it will have to be an apple device such as an iPad, Mac or iPhone
 
 | **Requirement** | **Reason** |
 | --- | --- |
 | Computer Mouse or touchscreen | Used for selecting objects and playing the game |
 
-**Software**
+#### Software
 
 | **Requirement** | **Reason** |
 | --- | --- |
-| Runs macOS, iOS, iPadOS | As my project is running on apple platforms, the user will need to have to have an apple device |
+| Runs macOS, iOS, iPadOS | Swift, SwiftUI and SpriteKit only works on these operating systems |
 
-**Success Criteria**
+### Success Criteria
 
 | **Criteria** | **Reason** |
-| --- | --- |
-| Does my project simulate how a potential interstellar species may expand within the universe |     |
-| Does my project provide an engaging tutorial that serves as an introduction to the core mechanics of the game | So players can easily get started and understand how to play the game |
-| Does my project provide an entertaining game like experience for the user | To keep the player engaged and means they will keep on playing the game |
-| Does my project educate the player on different ideas that could be used in space exploration | So the game can also teach the player something |
-| Does my project make the user aware of common algorithms used in games | To get the player more interested in how the game works to create interest in computer science |
+| Teach what a graphing algorithm is | The  |
+| Show the uses of graphing algorithms | The user should know what graph graphs and graph traversal algorithms are used for (e.g maps)|
+| Simulate a variety of graphing algorithms on a variety of graphs | I need to show that there is a range of graphing algorithms that are used and their benifits and drawbacks. A variety of graphs will be better as different algorithms work better for different graphs |
 
 
 ## Design
 
 ### System Overview / Architecture
+
+| **Object** | **Overview** | **Update Logic** | **Render** |
+| --- | --- | --- | --- |
+|     |     |     |     |
 
 **Explain diagram and high level of components, Model veiw controller**
 
