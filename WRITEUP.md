@@ -406,14 +406,6 @@ After and during development.
 
 I will also make small quality of life improvements that make explanations more true to what is actually happening
 
-** Move into design   show tree of navigation **
-These screens should include:
-* Menu (for selection)
-* How to use (explains how to use the program)
-* About Graphs (Teaches the user about graphs using a text page (not the simulation)
-* Graph/Galaxy Builder (Allows the user to create/select/generate graph)
-* Simulation (Performs the Graph Traversal Algorithms on the generated graph
-
 ### Limitations of Solution
 
 It may not be a very accurate simulation of the universe as there are many factors that are likely not included. Humans have not even explored another planet, so we do not know what it takes to explore a universe.
@@ -493,13 +485,72 @@ As I am using SwiftUI it will have to be an apple device such as an iPad, Mac or
 
 ## Design
 
+### Problem Decomposition
+
+### Use of Algorithms
+
+
 ### System Overview / Architecture
+
+I will use the Model View Controller design pattern to separate the components of my app.
+
+**Explain diagram and high level of components, Model veiw controller**
+
+### Model (Data Structures)
+As I am using the Model View Controller Pattern I am going to keep the data in the Model.
+This will ensure there is a single source of truth which ensures consistancy of data.
+I am going to use an Observable Object which is a *"A type of object with a publisher that emits before the object has changed."*
+This means when changing the objects properties it will update any views using the data.
+
+### View (User Interface)
+As I am going to allow the user to navigate around different Views.
+I am going to use SwiftUI's Navigation stack for this.
+As I want to have control and stylise my app I am not going to be using Apples built in components and will heavily customise them.
+
+These screens should include:
+* Menu (for selection)
+* How to use (explains how to use the program)
+* About Graphs (Teaches the user about graphs using a text page (not the simulation)
+* Graph/Galaxy Builder (Allows the user to create/select/generate graph)
+* Simulation (Performs the Graph Traversal Algorithms on the generated graph
+
+Here is a Graph of the views that the user can move between
+
+
+### Controller (Program Logic)
+
+### Algorithms
+
+#### Graph Algorithms
+
+#### Undo/Redo Stack
+One of my requirements is that the user should be able to replay the steps of the algorithm
+Anouther Requirement is that my program is efficeint to optimise performance on less powerful devices.
+To implement this I am going to use a stack that stores the state.
+
+I will create a data structure that saves the state of the algorithm
+When Moving forwards a step I wil push the importaint data of the algorithms state onto a stack.
+When Undoing a step I will pop the top of the stack and 
+However for this I need to reacalculate the steps when going forwards but not backwards.
+To fix this I could make anouther stack that stores the next instructions
+together these two stacks and current state will store all the possible states of the algorithm.
+When moving forwards I will pop the current state from the forwards stack and when going backwards I will push the current state on the forwards stack.
+
+This will mean I calculate all the possible states at the start.
+
+| **Option** | **Description** | **Benifits** | **Drawbacks** |
+| --- | --- | --- | --- |
+|     | Un |     |     |
+### Test Data
+
+### Further Data
+
+
+### Objects
 
 | **Object** | **Overview** | **Update Logic** | **Render** |
 | --- | --- | --- | --- |
 |     |     |     |     |
-
-**Explain diagram and high level of components, Model veiw controller**
 
 
 ```mermaid
