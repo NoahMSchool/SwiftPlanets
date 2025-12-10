@@ -513,9 +513,15 @@ These screens should include:
 * About Graphs (Teaches the user about graphs using a text page (not the simulation)
 * Graph/Galaxy Builder (Allows the user to create/select/generate graph)
 * Simulation (Performs the Graph Traversal Algorithms on the generated graph
-
-Here is a Graph of the views that the user can move between
-
+Here is a short graph of how these screens will interact
+```mermaid
+stateDiagram-v2
+    Menu --> Instructions
+    GalaxyBuilder --> Simulation
+    Simulation --> GalaxyBuilder
+    Menu --> Information
+    Menu --> GalaxyBuilder
+```
 
 ### Controller (Program Logic)
 
