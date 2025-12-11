@@ -8,6 +8,12 @@ protocol Traversable: Identifiable {
     func heuristic(to end: any Traversable) -> Double
     
 }
+
+// Example of comparitor implementedx as a closure
+let sortedPaths = potentialPaths.sorted {
+            return $0.distance<$1.distance
+        }
+
 ```
 
 
