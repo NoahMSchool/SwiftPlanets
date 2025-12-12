@@ -228,6 +228,8 @@ I am going to use an Observable Object which is a *"A type of object with a publ
 This means when changing the objects properties it will update any views using the data.
 
 ### View (User Interface)
+
+#### Navigation
 As I am going to allow the user to navigate around different Views.
 I am going to use SwiftUI's Navigation stack for this.
 As I want to have control and stylise my app I am not going to be using Apples built in components and will heavily customise them.
@@ -254,12 +256,19 @@ stateDiagram-v2
     Menu --> GalaxyBuilder
     GalaxyBuilder --> Menu
 ```
+#### Adaptability
+The User Interface needs to be able to adapt to different screen sizes. Although iPads are all the same 4:3 aspect ratio they can be rotated to be in portrait and my app still needs to work. It should also work on Mac's, iPhones and Headsets. If it is being windowed the size should adapt similar to a web page
+I therefore should make sure my app can adjust the size and locations of UI elements to fit and not obscure the screen.
 
 ### Controller (Program Logic)
 
 ### Algorithms
 
+Throught the program I will use variety of algorithms
+
 #### Graph Algorithms
+
+
 
 #### Undo/Redo Stack
 One of my requirements is that the user should be able to replay the steps of the algorithm
@@ -390,12 +399,78 @@ classDiagram
 ```
 
 
-## Developing A coded Solution
+## Development
+
+### Random Galaxy Generation
+#### CheckLines
+After Creating the random galaxy generator I realised there were lots of intersections of edges in the graph. The edges went through planets. This looked ugly and could be confusing to the user.
+
+In order to delete edges and I need to decide which edges to delete.
+I decided to keep the shorter edges and remove the longer edges that intersect with the shorter edges.
+
+To fix the Lines going through planets  I thought of putting edges across the planet nodes. This meant that when an edge passed through a planet it would be deleted.
+However when developing this I encountered a bug that caused edges that ... to be deleted
+The fix to this was to put 4 edges from the centre of the planet to the circumference.
+
+Here is a function on the planet that returns the checklines
+```swift
+func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
+        let horizontalFirst = (start: CGPoint(x: self.position.x-planetRadius, y: self.position.y), 
+                               end: CGPoint(x: self.position.x, y: self.position.y))
+        let horizontalSecond = (start: CGPoint(x: self.position.x, y: self.position.y), 
+                                end: CGPoint(x: self.position.x+planetRadius, y: self.position.y))
+        
+        let verticalFirst = (start: CGPoint(x: self.position.x, y: self.position.y-planetRadius), 
+                             end: CGPoint(x: self.position.x, y: self.position.y))
+        let verticalSecond = (start: CGPoint(x: self.position.x, y: self.position.y), 
+                              end: CGPoint(x: self.position.x, y: self.position.y+planetRadius))
+        let checkLines : [(start: CGPoint, end : CGPoint)] = [horizontalFirst, horizontalSecond, verticalFirst, verticalSecond]
+        return checkLines
+    }
+```
+#### Intersection Algorithm using Orientation
+
+Here is the create Planets for random galaxy
+```swift
+override class func createPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
+        var planets : [Planet] = []
+        var options : [CGPoint] = []
+        let jitter = Int(spacing/10)
+        let offset : Double = 50
+        for y in stride(from: -mapSize/2, to: mapSize/2, by: spacing){
+            for x in stride(from: -mapSize/2, to: mapSize/2, by: spacing){
+                options.append(CGPoint(x: x+offset, y: y+offset))
+            }
+        }
+        options = options.shuffled()
+        var planetNamesShuffled = planetNames.shuffled()
+        
+        for i in 0...min(planetCount, options.count)-1{
+            var name = "No Name \(i)"
+            if !planetNamesShuffled.isEmpty{
+                name = planetNamesShuffled.removeFirst()
+            }
+            var offsetPos = options[i]
+            offsetPos.x += CGFloat(Int.random(in: -jitter...jitter))
+            offsetPos.y += CGFloat(Int.random(in: -jitter...jitter))
+            
+            let planet = Planet(position: offsetPos, name: name)
+            planets.append(planet)
+        }
+        return planets
+    }
+
+```
+
+### Adaptive User Interface
+
 
 ## Evaluation
 
 ## Sources
 
+Orientation Algorithm For Line Intersection
+https://www.geeksforgeeks.org/dsa/check-if-two-given-line-segments-intersect/
 
 
 https://www.ocr.org.uk/Images/324587-project-setting-guidance.pdf
