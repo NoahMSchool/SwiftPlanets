@@ -78,20 +78,20 @@ I have interviewed these stakeholders and I aim to use this data to tailor the e
 
 ### Questionnaire for target market
 
-| **Which of the following subjects would you find most engaging for a learning tool.** |Space, Geographical or City|
+| **Which of the following subjects would you find most engaging for a learning tool.** | Space, Geographical or City |
 | --- | --- |
 | Stakeholder 1: Rambo| City |
 | Stakeholder 2: Noah | Space |
-| Stakeholder 3 : Rocco |Geographical Landscape|
+| Stakeholder 3 : Rocco | Geographical Landscape |
 
-| **When using a tool to learn a new subject would you rather have more freedom or a more guided path** |     |
-| --- || --- |
+| **When using a tool to learn a new subject would you rather.** | more freedom or a more guided path |
+| --- | --- |
 | Stakeholder 1: Rambo | More control would be nice but it should be easy/intuitive to use |
 | Stakeholder 2: Noah | I would like both, maybe you could start with a more guided approach and then once you are more familliar you could be given more control |
-| Stakeholder 3 : Rocco | I would rather be guided at the start as I can find the options overwhelming    |
+| Stakeholder 3 : Rocco | I would rather be guided at the start as I can find the options overwhelming |
 
-| **Which of the following analogies do you find most relatable and interisting : Space, CityMap, RuralMap** |     |
-| --- || --- |
+| **Which of the following analogies do you find most relatable and interisting** | Space, A Map (City or Rural) |
+| --- | --- |
 | Stakeholder 1: Rambo | I would love a space analogy |
 | Stakeholder 2: Noah | The ruralMap would be cool but also the Space |
 | Stakeholder 3 : Rocco | The Industrial Map would be cool but also the Space |
