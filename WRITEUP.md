@@ -288,7 +288,11 @@ This will mean I calculate all the possible states at the start.
 | **Option** | **Description** | **Benifits** | **Drawbacks** |
 | --- | --- | --- | --- |
 |     | Un |     |     |
+
 ### Test Data
+
+When writing the algorithms In order to debug and ensure they are working as intended I will need to make graphs that will produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. When developing I will compare the state with the expected state to make sure they work.
+These test graphs looked more strange as the length of the paths were not what determined the weight. In my random graph generation the weights will be proportional to the distance between the nodes (with some random noise for variation).
 
 ### Further Data
 
@@ -402,6 +406,7 @@ classDiagram
 ## Development
 
 ### Random Galaxy Generation
+
 #### CheckLines
 After Creating the random galaxy generator I realised there were lots of intersections of edges in the graph. The edges went through planets. This looked ugly and could be confusing to the user.
 
@@ -461,6 +466,22 @@ override class func createPlanets(planetCount: Int, spacing : Double = 100, mapS
     }
 
 ```
+
+### Implementing Search Algorithms
+
+I made my Search Algorithms all inherit from a Generic BaseSearch class.
+This acted partly like a protocol as it defined the functions the child classes should have. However the base search implemnted some basic generic functionality that was overriden when neccessary.
+
+#### Undo/Redo Stack
+
+I made a stack to store the histor
+
+#### Algorithm Backtracking
+
+After implementing the search algorithms I realised algorithms that used backtracking would do large jumps across the graph. I thought this was unclear and may be confusing for my target audience. I wanted to implement a feature that showed the nodes the spaceship backtracks to on the way to the next node.
+To do this I made each node store the node which the ship came from.
+
+
 
 ### Adaptive User Interface
 
