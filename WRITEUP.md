@@ -149,8 +149,10 @@ As My graphing simulator is set in space, I need to consider which features to k
 I will abstract lots of details of space and simplify it to just a graph with a few aesthetic objects in the backround for visual appeal.
 
 I have looked at many aspects of space and noticed that there are many extra ideas that seem unnecessary and will overcomplicate the program. For example, adding planet Orbits would mean the nodes on the graph would have to move around. This not only complicates the development of the game but also adds extra complexities the user has to manage which would be frustrating, for example orbits would mean that the shortest path would be constantly changing. This would confuse the user which is a problem for an introduction to the subject.
+Even though this may be unreasistic my planets are just going to be floating in space scattered randomly on a 2D plane.
 
 I am going to remove aspects that do not add much value to the experience.
+This might include 
 
 #### Thinking Ahead
 
@@ -405,35 +407,20 @@ classDiagram
 
 ## Development
 
-### Random Galaxy Generation
+### Stage One - **Random Galaxy Generation**
 
-#### CheckLines
-After Creating the random galaxy generator I realised there were lots of intersections of edges in the graph. The edges went through planets. This looked ugly and could be confusing to the user.
+#### Generation
 
-In order to delete edges and I need to decide which edges to delete.
-I decided to keep the shorter edges and remove the longer edges that intersect with the shorter edges.
+My first task was to randomly generate a graph/galaxy. This would consists of nodes/planets and edges which connect the path.
 
-To fix the Lines going through planets  I thought of putting edges across the planet nodes. This meant that when an edge passed through a planet it would be deleted.
-However when developing this I encountered a bug that caused edges that ... to be deleted
-The fix to this was to put 4 edges from the centre of the planet to the circumference.
+* My objectives is that each galaxy should feel random and different. 
+* You should have some control over the graph structure without having to micromanage nodes
+* Select the Number of nodes in the graph and lengths of paths
+* The graph should look visually appealing and look like a galaxy
 
-Here is a function on the planet that returns the checklines
-```swift
-func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
-        let horizontalFirst = (start: CGPoint(x: self.position.x-planetRadius, y: self.position.y), 
-                               end: CGPoint(x: self.position.x, y: self.position.y))
-        let horizontalSecond = (start: CGPoint(x: self.position.x, y: self.position.y), 
-                                end: CGPoint(x: self.position.x+planetRadius, y: self.position.y))
-        
-        let verticalFirst = (start: CGPoint(x: self.position.x, y: self.position.y-planetRadius), 
-                             end: CGPoint(x: self.position.x, y: self.position.y))
-        let verticalSecond = (start: CGPoint(x: self.position.x, y: self.position.y), 
-                              end: CGPoint(x: self.position.x, y: self.position.y+planetRadius))
-        let checkLines : [(start: CGPoint, end : CGPoint)] = [horizontalFirst, horizontalSecond, verticalFirst, verticalSecond]
-        return checkLines
-    }
-```
-#### Intersection Algorithm using Orientation
+I started by using a nested for loop to create a square grid of possible positions for a planet and I added these to a array. I need to select a fixed number of positions from this list of positions. To do this I randomised the order of the planets array and selected the first planetCount of this array.
+
+I then
 
 Here is the create Planets for random galaxy
 ```swift
@@ -467,10 +454,45 @@ override class func createPlanets(planetCount: Int, spacing : Double = 100, mapS
 
 ```
 
-### Implementing Search Algorithms
+#### CheckLines
+After Creating the random galaxy generator I realised there were lots of intersections of edges in the graph. The edges went through planets. This looked ugly and could be confusing to the user.
+
+In order to delete edges and I need to decide which edges to delete.
+I decided to keep the shorter edges and remove the longer edges that intersect with the shorter edges.
+
+To fix the Lines going through planets  I thought of putting edges across the planet nodes. This meant that when an edge passed through a planet it would be deleted.
+However when developing this I encountered a bug that caused edges that ... to be deleted
+The fix to this was to put 4 edges from the centre of the planet to the circumference.
+
+Here is a function on the planet that returns the checklines
+```swift
+func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
+        let horizontalFirst = (start: CGPoint(x: self.position.x-planetRadius, y: self.position.y), 
+                               end: CGPoint(x: self.position.x, y: self.position.y))
+        let horizontalSecond = (start: CGPoint(x: self.position.x, y: self.position.y), 
+                                end: CGPoint(x: self.position.x+planetRadius, y: self.position.y))
+        
+        let verticalFirst = (start: CGPoint(x: self.position.x, y: self.position.y-planetRadius), 
+                             end: CGPoint(x: self.position.x, y: self.position.y))
+        let verticalSecond = (start: CGPoint(x: self.position.x, y: self.position.y), 
+                              end: CGPoint(x: self.position.x, y: self.position.y+planetRadius))
+        let checkLines : [(start: CGPoint, end : CGPoint)] = [horizontalFirst, horizontalSecond, verticalFirst, verticalSecond]
+        return checkLines
+    }
+```
+#### Intersection Algorithm using Orientation
+
+To check if two lines intersect I did some research online and found an algorithm that uses orientation to check if two lines intersect. I used an article from GeeksforGeeks to help understand the concepts before implementing it
+
+To deterimine the orientation of a line I used the sign of the cross product.
+Here is the code I used to check two lines intersect
+
+#### Minor improvements to prior stages
+
+### Stage Two - **Implementing Search Algorithms**
 
 I made my Search Algorithms all inherit from a Generic BaseSearch class.
-This acted partly like a protocol as it defined the functions the child classes should have. However the base search implemnted some basic generic functionality that was overriden when neccessary.
+This acted partly like a protocol as it defined the functions the child classes should have. However the base search implemented some basic generic functionality that was overriden when neccessary.
 
 #### Undo/Redo Stack
 
@@ -481,9 +503,15 @@ I made a stack to store the histor
 After implementing the search algorithms I realised algorithms that used backtracking would do large jumps across the graph. I thought this was unclear and may be confusing for my target audience. I wanted to implement a feature that showed the nodes the spaceship backtracks to on the way to the next node.
 To do this I made each node store the node which the ship came from.
 
+#### Minor improvements to prior stages
 
+### Stage Four - **Adaptive User Interface**
 
-### Adaptive User Interface
+My User Interface needs to adapt and scale to fit different sized screens by looking consistant. visible and unintrusive for different devices. During this stage I used my ipad mini a lot for testing and tested using different window sizes on my laptop. 
+Overall I found this to be harder than expected.
+
+#### Minor improvements to prior stages
+
 
 
 ## Evaluation
