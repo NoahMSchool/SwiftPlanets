@@ -214,6 +214,60 @@ As I am using SwiftUI it will have to be an apple device such as an iPad, Mac or
 
 ### Problem Decomposition
 
+I have broken down my problem into the following subcomponents
+
+#### Subcomonent One : Random Galaxy/Graph generation
+Generates a undirected graph that the algorithms can operate on and the spacship can move between. Each node will be a planet in the graph which knows its neighbours. I will start simpler by using an unweighted graph (or all the weights equal to one) and then add weights later for neccessary algorithms. To keep with the analogy I will call the weights fuel needed.
+This will also include choosing a start planet and an end planet. The graph does not neccessarily have to be solvable 
+
+Input:
+Number of Planets, Connection Length
+Output:
+Graph with connected nodes or planets
+
+Validation:
+At least two planets and up to a sensible limit which will be decided.
+The start and end planets should not be the same planet.
+
+Learnings (things added later)
+Non random test galaxies
+
+Implemnt in future
+The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly and start planet has neighbours
+
+
+
+#### Subcomonent One : Traversal Algorithms
+* Next I will make a simple graph traversal algorithm such as Breadth First Search and Depth Firt Search to traverse the graph and find a path from the start to the finish.
+It will record neccessary data such as the queue or stack of nodes to visit next aswell as the visited nodes.
+I plan to then implement the rest of the algorithms in the A-level specification after including dijkstra and A* using a heuristic of distance to target..
+I will not have a UI at this stage but plan to visualise data in the console or debugger.
+Validation
+
+Input:
+A graph
+Output: 
+A solved graph storing the backtrace path taken to get from start to finish it should also be able to report if it is solvable
+Validation:
+
+#### Subcomonent Two : Algorithm Control
+It is easier to just solve the algorithm instantly however I want the user to see each stage of the solving along with the state of the variables being used at this time. The user should be able to easily use this to make a trace table for the solving of the algorithm. This is because this is meant to be a learning tool not just a graph solver.
+The ability to undo and redo
+
+
+Input:
+Graph algorithm
+
+Output:
+Step by step state of graph algorithm
+Validation:
+Not Undo at the first stage and redo at the last stage
+
+#### Subcomonent Two : Algorithm Visualisation
+
+
+#### User Interface
+
 ### Use of Algorithms
 
 
@@ -262,6 +316,10 @@ stateDiagram-v2
 The User Interface needs to be able to adapt to different screen sizes. Although iPads are all the same 4:3 aspect ratio they can be rotated to be in portrait and my app still needs to work. It should also work on Mac's, iPhones and Headsets. If it is being windowed the size should adapt similar to a web page
 I therefore should make sure my app can adjust the size and locations of UI elements to fit and not obscure the screen.
 
+### Validation of input data
+
+
+
 ### Controller (Program Logic)
 
 ### Algorithms
@@ -296,7 +354,7 @@ This will mean I calculate all the possible states at the start.
 When writing the algorithms In order to debug and ensure they are working as intended I will need to make graphs that will produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. When developing I will compare the state with the expected state to make sure they work.
 These test graphs looked more strange as the length of the paths were not what determined the weight. In my random graph generation the weights will be proportional to the distance between the nodes (with some random noise for variation).
 
-### Further Data
+### Further Post Development Test Data
 
 
 ### Objects
