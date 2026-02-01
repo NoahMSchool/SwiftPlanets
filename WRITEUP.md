@@ -231,6 +231,7 @@ The start and end planets should not be the same planet.
 
 Learnings (things added later)
 Non random test galaxies
+Edges should not intersect as it makes it hard to visualise. This is why i introduced the checklines
 
 Implemnt in future
 The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly and start planet has neighbours
