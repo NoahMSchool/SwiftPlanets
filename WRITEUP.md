@@ -220,54 +220,55 @@ I have broken down my problem into the following subcomponents
 Generates a undirected graph that the algorithms can operate on and the spacship can move between. Each node will be a planet in the graph which knows its neighbours. I will start simpler by using an unweighted graph (or all the weights equal to one) and then add weights later for neccessary algorithms. To keep with the analogy I will call the weights fuel needed.
 This will also include choosing a start planet and an end planet. The graph does not neccessarily have to be solvable 
 
-Input:
-Number of Planets, Connection Length
-Output:
-Graph with connected nodes or planets
-
-Validation:
-At least two planets and up to a sensible limit which will be decided.
-The start and end planets should not be the same planet.
-
+Input:	Number of Planets, Connection Length
+Output:	Graph with connected nodes or planets
+Validation:	At least two planets and up to a sensible limit which will be decided.	The start and end planets should not be the same planet.
 Learnings (things added later)
 Non random test galaxies
 Edges should not intersect as it makes it hard to visualise. This is why i introduced the checklines
-
-Implemnt in future
+Implemnt in future: 
 The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly and start planet has neighbours
 
+#### Subcomonent Two : Graph Rendering
 
+Now that I have a graph which are nodes that store their positions and know their neighbours I need a way to visualise them
+The first part of this is to add circles to the correct coordinates and lines showing the connections for edges.
+The graph also needs to give an interface that alows external classes to access the colors of nodes and edges aswell as other effects and info about the node. This will mean that when writing the algorithm it will be easy to change the visuals for the user.
 
-#### Subcomonent One : Traversal Algorithms
+#### Subcomonent Three : Algorithm Solving
 * Next I will make a simple graph traversal algorithm such as Breadth First Search and Depth Firt Search to traverse the graph and find a path from the start to the finish.
 It will record neccessary data such as the queue or stack of nodes to visit next aswell as the visited nodes.
 I plan to then implement the rest of the algorithms in the A-level specification after including dijkstra and A* using a heuristic of distance to target..
 I will not have a UI at this stage but plan to visualise data in the console or debugger.
-Validation
 
-Input:
-A graph
-Output: 
-A solved graph storing the backtrace path taken to get from start to finish it should also be able to report if it is solvable
 Validation:
+Input: A graph
+Output: A solved graph storing the backtrace path taken to get from start to finish it should also be able to report if it is solvable
 
-#### Subcomonent Two : Algorithm Control
-It is easier to just solve the algorithm instantly however I want the user to see each stage of the solving along with the state of the variables being used at this time. The user should be able to easily use this to make a trace table for the solving of the algorithm. This is because this is meant to be a learning tool not just a graph solver.
+
+#### Subcomonent Four : Algorithm Control
+The first part of the problem is just solving the algorithm instantly however I want the user to see each stage of the solving along with the state of the variables being used at this time. The user should be able to easily use this to make a trace table for the solving of the algorithm. This is because this is meant to be a learning tool not just a graph solver.
 The ability to undo and redo
-
 
 Input:
 Graph algorithm
-
 Output:
 Step by step state of graph algorithm
 Validation:
 Not Undo at the first stage and redo at the last stage
 
-#### Subcomonent Two : Algorithm Visualisation
+#### Subcomonent Five : Algorithm Visualisation
+
+Now that I have data for all the states of the algorithm I need to be able to display it to the user.
+In this section I will heavily use the interface I created for the graph changing colors.
+I will also create lists and other UI elements to help display algorithm state and other factors.
+I am also going to add a spaceship that shows the current node
+
+#### Subcomponent Six : User Interface
+
+This component is not to do with the main program but is about the app as a whole. I want a easily navigatable UI that will show all the different screens and should be intuitive to use
 
 
-#### User Interface
 
 ### Use of Algorithms
 
