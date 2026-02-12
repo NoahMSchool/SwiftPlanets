@@ -46,12 +46,26 @@ I will do this in the form of an app using Swift and SwiftUI.
 
 #### Solution 1: Graph Online
 
-This is a graphing simulator I found online. It lets you create a graph manually
+<img width="1067" height="820" alt="image" src="https://github.com/user-attachments/assets/e6c11fa0-cad3-4ecf-a0de-d02985504591" />
 
-I thought it was frustrating making a graph manually and thought it would be especially not useful if this was your first time encountering a graph you may not know what graph to make.
+This is a graphing simulator I found online. 
+It lets you create a graph manually
+The UI was quite tedious 
+I thought it was frustrating making a graph manually and thought it would be especially not useful if this was your first time encountering a graph you may not know what graph to make.  
 I found the options overwhelming and did not focus on anything specific. I thought It was more suitable for people more experienced with the basics. I want my project to be accessable to people who do not even know what a graph is.
+It did not show you the steps of the algorithm and just solved it
 
-#### Solution 2: 
+
+#### Solution 2: TUM Shortest Path Algorithm
+<img width="1211" height="745" alt="image" src="https://github.com/user-attachments/assets/b8c4fa64-73b3-4a83-9e5d-fe228275d1a5" />
+
+The University of Munich made a graphing algorithm visualisation and learning tool that I enjoyed
+
+I liked how there were different tabs which separated learning about the algorithm, creating the graph and running the algorithm.
+I liked the detailed descriptions of the steps and the visual colouring of the nodes an edges I found this to be importaing for the algorithm.
+The graph creation was better than graph online and there started with a simple graph thay you could extend but still was quite limiting
+My main complaint is that the program was not very engaging. The user had to read long paragraphs of text and the app was not ugly but wasnt super visually appealing.
+It also did not have many of the simpler graph traversal alogrithm and only shortest path.
 
 #### Solution 3: PhET Simulations
 
@@ -155,6 +169,8 @@ I am going to remove aspects that do not add much value to the experience.
 This might include 
 
 #### Thinking Ahead
+In each of the subcomponents of my game I am going to decide what are the inputs and outputs of my the function
+
 
 #### Thinking Procedurally
 
@@ -163,6 +179,8 @@ I will use a top down design when designing the archtecture
 
 
 #### Thinking Logically
+My App is going to be event driven so will do things in a logical order step by step.
+I have to write lots of algorithms of varying complexity.
 
 #### Thinking Concurrently
 
