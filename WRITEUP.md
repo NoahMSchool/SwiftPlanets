@@ -232,23 +232,14 @@ As I am using SwiftUI it will have to be an apple device such as an iPad, Mac or
 
 ### Problem Decomposition
 
-I have broken down my problem into the following subcomponents
+I have broken down my problem into the following subcomponents.
+When deveoping I will do sprints for each of these components.
 
 #### Subcomonent One : Random Galaxy/Graph generation
 Generates a undirected graph that the algorithms can operate on and the spacship can move between. Each node will be a planet in the graph which knows its neighbours. I will start simpler by using an unweighted graph (or all the weights equal to one) and then add weights later for neccessary algorithms. To keep with the analogy I will call the weights fuel needed.
 This will also include choosing a start planet and an end planet. The graph does not neccessarily have to be solvable 
 
-Input:	Number of Planets, Connection Length
-Output:	Graph with connected nodes or planets
-Validation:	At least two planets and up to a sensible limit which will be decided.	The start and end planets should not be the same planet.
-Learnings (things added later)
-Non random test galaxies
-Edges should not intersect as it makes it hard to visualise. This is why i introduced the checklines
-Implemnt in future: 
-The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly and start planet has neighbours
-
 #### Subcomonent Two : Graph Rendering
-
 Now that I have a graph which are nodes that store their positions and know their neighbours I need a way to visualise them
 The first part of this is to add circles to the correct coordinates and lines showing the connections for edges.
 The graph also needs to give an interface that alows external classes to access the colors of nodes and edges aswell as other effects and info about the node. This will mean that when writing the algorithm it will be easy to change the visuals for the user.
@@ -259,36 +250,98 @@ It will record neccessary data such as the queue or stack of nodes to visit next
 I plan to then implement the rest of the algorithms in the A-level specification after including dijkstra and A* using a heuristic of distance to target..
 I will not have a UI at this stage but plan to visualise data in the console or debugger.
 
-Validation:
-Input: A graph
-Output: A solved graph storing the backtrace path taken to get from start to finish it should also be able to report if it is solvable
-
-
 #### Subcomonent Four : Algorithm Control
 The first part of the problem is just solving the algorithm instantly however I want the user to see each stage of the solving along with the state of the variables being used at this time. The user should be able to easily use this to make a trace table for the solving of the algorithm. This is because this is meant to be a learning tool not just a graph solver.
 The ability to undo and redo
 
-Input:
-Graph algorithm
-Output:
-Step by step state of graph algorithm
-Validation:
-Not Undo at the first stage and redo at the last stage
-
 #### Subcomonent Five : Algorithm Visualisation
-
 Now that I have data for all the states of the algorithm I need to be able to display it to the user.
 In this section I will heavily use the interface I created for the graph changing colors.
 I will also create lists and other UI elements to help display algorithm state and other factors.
 I am also going to add a spaceship that shows the current node
 
 #### Subcomponent Six : User Interface
-
 This component is not to do with the main program but is about the app as a whole. I want a easily navigatable UI that will show all the different screens and should be intuitive to use
 
 
+### In depth components of Solution
+Here is an in depth summary of the components of my solution
 
-### Use of Algorithms
+#### Graph Generation
+##### Inputs
+Number of Planets, Connection Length
+##### Outputs
+Graph with connected nodes or planets
+##### Validation
+At least two planets and up to a sensible limit which will be decided.	The start and end planets should not be the same planet.
+
+
+
+Learnings (things added later)
+Non random test galaxies
+Edges should not intersect as it makes it hard to visualise. This is why i introduced the checklines
+Implemnt in future: 
+The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly and start planet has neighbours
+
+#### Graph Rendering 
+##### Inputs
+##### Outputs
+##### Validation
+
+
+#### Algorithm Solving
+##### Inputs
+A graph
+##### Outputs
+A solved graph storing the backtrace path taken to get from start to finish it should also be able to report if it is solvable
+##### Validation
+
+
+#### Algorithm Control
+##### Inputs
+Graph Algorithm
+##### Outputs
+Step by step state of graph algorithm
+##### Validation
+Not Undo at the first stage and redo at the last stage
+
+##### Undo/Redo Stack
+One of my requirements is that the user should be able to replay the steps of the algorithm
+Anouther Requirement is that my program is efficeint to optimise performance on less powerful devices.
+To implement this I am going to use a stack that stores the state.
+
+I will create a data structure that saves the state of the algorithm
+When Moving forwards a step I wil push the importaint data of the algorithms state onto a stack.
+When Undoing a step I will pop the top of the stack and 
+However for this I need to reacalculate the steps when going forwards but not backwards.
+To fix this I could make anouther stack that stores the next instructions
+together these two stacks and current state will store all the possible states of the algorithm.
+When moving forwards I will pop the current state from the forwards stack and when going backwards I will push the current state on the forwards stack.
+
+This will mean I calculate all the possible states at the start.
+
+| **Option** | **Description** | **Benifits** | **Drawbacks** |
+| --- | --- | --- | --- |
+|     | Un |     |     |
+
+
+#### Algorithm Visualisation
+##### Inputs
+A graph that provides an interactive interface, UI elements
+The Algorithm State
+##### Outputs
+A visual display of the state of the algorithm
+##### Validation
+
+
+#### User Interface
+##### Inputs
+##### Outputs
+##### Validation
+
+
+
+
 
 
 ### System Overview / Architecture
@@ -297,15 +350,15 @@ I will use the Model View Controller design pattern to separate the components o
 
 **Explain diagram and high level of components, Model veiw controller**
 
-### Model (Data Structures)
+#### Model (Data Structures)
 As I am using the Model View Controller Pattern I am going to keep the data in the Model.
 This will ensure there is a single source of truth which ensures consistancy of data.
 I am going to use an Observable Object which is a *"A type of object with a publisher that emits before the object has changed."*
 This means when changing the objects properties it will update any views using the data.
 
-### View (User Interface)
+#### View (User Interface)
 
-#### Navigation
+##### Navigation
 As I am going to allow the user to navigate around different Views.
 I am going to use SwiftUI's Navigation stack for this.
 As I want to have control and stylise my app I am not going to be using Apples built in components and will heavily customise them.
@@ -332,42 +385,33 @@ stateDiagram-v2
     Menu --> GalaxyBuilder
     GalaxyBuilder --> Menu
 ```
-#### Adaptability
+##### Adaptability
 The User Interface needs to be able to adapt to different screen sizes. Although iPads are all the same 4:3 aspect ratio they can be rotated to be in portrait and my app still needs to work. It should also work on Mac's, iPhones and Headsets. If it is being windowed the size should adapt similar to a web page
 I therefore should make sure my app can adjust the size and locations of UI elements to fit and not obscure the screen.
 
-### Validation of input data
+##### Validation of input data
+
+#### Controller (Program Logic)
 
 
-
-### Controller (Program Logic)
 
 ### Algorithms
 
 Throught the program I will use variety of algorithms
+#### Simple Algorithms
+##### Sorting
+
 
 #### Graph Algorithms
+##### Breadth First Search (BFS)
+
+##### Depth First Search (DFS)
+
+##### Dijkstra's shortest path
+
+##### A* shortests path
 
 
-
-#### Undo/Redo Stack
-One of my requirements is that the user should be able to replay the steps of the algorithm
-Anouther Requirement is that my program is efficeint to optimise performance on less powerful devices.
-To implement this I am going to use a stack that stores the state.
-
-I will create a data structure that saves the state of the algorithm
-When Moving forwards a step I wil push the importaint data of the algorithms state onto a stack.
-When Undoing a step I will pop the top of the stack and 
-However for this I need to reacalculate the steps when going forwards but not backwards.
-To fix this I could make anouther stack that stores the next instructions
-together these two stacks and current state will store all the possible states of the algorithm.
-When moving forwards I will pop the current state from the forwards stack and when going backwards I will push the current state on the forwards stack.
-
-This will mean I calculate all the possible states at the start.
-
-| **Option** | **Description** | **Benifits** | **Drawbacks** |
-| --- | --- | --- | --- |
-|     | Un |     |     |
 
 ### Test Data
 
