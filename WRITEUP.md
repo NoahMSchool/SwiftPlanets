@@ -237,17 +237,19 @@ When deveoping I will do sprints for each of these components.
 
 TODO: Put in Hierarchy Diagram
 
+#### Subcomponents
 At a very high level, this are the six subcomponents I'm going to divide the problem into:
+
 * **Graph generation** : This generates a random graph of planets for algorithms to solve
-* **Graph rendering** - this will be a UI compontent that will show the graph visually as planets in a galaxy
-* **Algorithm Solving** - this will implement all the Graph Traversal algorithms from A Level Computer Science
-* **Algorithm Control** - this will store the state of an algorithm to allow users to step back and forwards through the solution
-* **Algorithm Visualisation** - this is add more information to the graph rendering interface to show progress through the algorithm
-* **User Interface** - this is how the user interacts with the app and navigates between the screens
+* **Graph rendering** : this will be a UI compontent that will show the graph visually as planets in a galaxy
+* **Algorithm Solving** : this will implement all the Graph Traversal algorithms from A Level Computer Science
+* **Algorithm Control** : this will store the state of an algorithm to allow users to step back and forwards through the solution
+* **Algorithm Visualisation** : this is add more information to the graph rendering interface to show progress through the algorithm
+* **User Interface** : this is how the user interacts with the app and navigates between the screens
 
 
 ### In depth components of Solution
-Here is an in depth summary of the components of my solution
+Here is an in depth summary of each of the components of my solution
  
 #### Subcomponent One : Random Galaxy/Graph generation
 ##### Description
@@ -269,21 +271,22 @@ The start and end planets should be a reasonable distance from each other to pre
 
 
 #### Subcomponent Two : Graph Rendering
+##### Description
 Now that I have a graph which are nodes that store their positions and know their neighbours I need a way to visualise them
 The first part of this is to add circles to the correct coordinates and lines showing the connections for edges.
 The graph also needs to give an interface that alows external classes to access the colors of nodes and edges aswell as other effects and info about the node. This will mean that when writing the algorithm it will be easy to change the visuals for the user.
 
 #### Subcomponent Three : Algorithm Solving
+##### Description
+I will make a simple graph traversal algorithm such as Breadth First Search and Depth Firt Search to traverse the graph and find a path from the start to the finish.
+It will record neccessary data such as the queue or stack of nodes to visit next aswell as the visited nodes.
+I plan to then implement the rest of the algorithms in the A-level specification including dijkstra and A* using a heuristic of distance to target.
+I will not have a UI at this stage but plan to visualise data in the console or debugger.
 ##### Inputs
 A graph
 ##### Outputs
 A solved graph storing the backtrace path taken to get from start to finish it should also be able to report if it is solvable
 ##### Validation
-
-Next I will make a simple graph traversal algorithm such as Breadth First Search and Depth Firt Search to traverse the graph and find a path from the start to the finish.
-It will record neccessary data such as the queue or stack of nodes to visit next aswell as the visited nodes.
-I plan to then implement the rest of the algorithms in the A-level specification after including dijkstra and A* using a heuristic of distance to target..
-I will not have a UI at this stage but plan to visualise data in the console or debugger.
 
 #### Subcomponent Four : Algorithm Control
 ##### Description
@@ -332,7 +335,7 @@ A visual display of the state of the algorithm
 
 #### Subcomponent Six : User Interface
 ##### Description
-This component is not to do with the main program but is about the app as a whole. I want a easily navigatable UI that will show all the different screens and should be intuitive to use
+This component is not to do with the main program but is about the app as a whole. I want a easily navigatable UI that will show all the different screens and should be intuitive to use.
 ##### Inputs
 ##### Outputs
 ##### Validation
