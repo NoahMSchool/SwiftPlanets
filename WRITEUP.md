@@ -190,10 +190,10 @@ Lots of parts of my program will hapen at the same time. The ship will need to m
 
 | **Platform** | **Description** | **Pros** | **Cons** |
 | --- | --- | --- | --- |
-| Unity/Unreal | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine. | I could make the game 3D however my game<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine meaning I will not have to code these elements. However this will mean that I have less control over the game which is a negative. | A game engine can be overly complex for my simple game, they are best for games involving more complex graphics |
+| Unity/Unreal | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine. | I could make the game 3D however my game<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine meaning I will not have to code these elements. However this will mean that I have less control over the program which is a negative. | A game engine can be overly complex for my simple game, they are best for games involving more complex graphics |
 | Godot | Godot is a lightweight Game engine used for both 2D and 3D games | Very lightweight and simple to use.<br><br>I can write in GDScript which is a simple language based of python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms |     |
-| Swift / SpriteKit | Swift is Apples programming language and SpriteKitis a simple graphics API I could use with it to make my game. SpriteKit is still feature ritch and powerful with their Node System and SKActions. | I could make my game work on all apple devices such as tablets and phones which is a more convenient way.<br><br>It will be more efficient as swift is statically typed meaning it will be more optimised by the compiler | The game will not be playable on other platforms like android or windows as will be exclusively iOS. |
-| Pygame | Pygame is a simple 2D graphics library that uses python. | I can write the game in python which has easy syntax and is quite lightweight. | It is very basic so I will have to program algorithms like shortest path from scratch |
+| Swift / SpriteKit | Swift is Apples programming language and SpriteKitis a simple graphics API I could use with it to make my game. SpriteKit is still feature ritch and powerful with their Node System and SKActions. | I could make my app work on all apple devices such as tablets and phones which is a more convenient way.<br><br>It will be more efficient as swift is statically typed meaning it will be more optimised by the compiler | The game will not be playable on other platforms like android or windows as will be exclusively iOS. |
+| Pygame | Pygame is a simple 2D graphics library that uses python. | I can write the project in python which has easy syntax and is quite lightweight. | It is very basic so I will have to program algorithms like shortest path from scratch |
 | Defold | Defold is a simple Game Engine that uses Lua |     |     |
 
 #### Choice
@@ -228,14 +228,28 @@ As I am using SwiftUI it will have to be an apple device such as an iPad, Mac or
 | Simulate a variety of graphing algorithms on a variety of graphs | I need to show that there is a range of graphing algorithms that are used and their benifits and drawbacks. A variety of graphs will be better as different algorithms work better for different graphs |
 
 
+
 ## Design
 
 ### Problem Decomposition
-
 I have broken down my problem into the following subcomponents.
 When deveoping I will do sprints for each of these components.
 
-TODO: Put in Hierarchy Diagram
+#### Hierachy Diagram 
+```mermaid
+
+flowchart LR
+    Program --> GraphGeneration
+    Program --> GraphRendering
+    Program --> AlgorithmSolving
+    Program --> AlgorithmControl
+    Program --> AlgorithmVisualisation
+    Program --> UserInterface
+
+    %%AlgorithmControl ---> |uses| AlgorithmSolving
+    %%AlgorithmVisualisation ---> |uses| AlgorithmControl
+    %%AlgorithmVisualisation ---> |uses| GraphRendering
+```
 
 #### Subcomponents
 At a very high level, this are the six subcomponents I'm going to divide the problem into:
@@ -248,10 +262,10 @@ At a very high level, this are the six subcomponents I'm going to divide the pro
 * **User Interface** : this is how the user interacts with the app and navigates between the screens
 
 
-### In depth components of Solution
+### In depth structure of components of Solution
 Here is an in depth summary of each of the components of my solution
  
-#### Subcomponent One : Random Galaxy/Graph generation
+#### Subcomponent One : Graph generation
 ##### Description
 Generates a undirected graph that the algorithms can operate on and the spacship can move between. Each node will be a planet in the graph which knows its neighbours. I will start simpler by using an unweighted graph (or all the weights equal to one) and then add weights later for neccessary algorithms. To keep with the analogy I will call the weights fuel needed.
 This will also include choosing a start planet and an end planet. The graph does not neccessarily have to be solvable 
@@ -275,6 +289,13 @@ The start and end planets should be a reasonable distance from each other to pre
 Now that I have a graph which are nodes that store their positions and know their neighbours I need a way to visualise them
 The first part of this is to add circles to the correct coordinates and lines showing the connections for edges.
 The graph also needs to give an interface that alows external classes to access the colors of nodes and edges aswell as other effects and info about the node. This will mean that when writing the algorithm it will be easy to change the visuals for the user.
+##### Inputs
+A graph Datastructure that stores nodes and edges
+##### Outputs
+A visual display of the graph that appears like planets in a galaxy with lines showing the edges. All text labels should be readable.
+This graph should be able to change using code so it can also be used as a tool to display what is happening during the graph traversal
+##### Validation
+The nodes and edges in the graph is in valid locations and are linked correcly. The graph rendering will assume that the graph is valid and will render even if nodes are in incorrect locations.
 
 #### Subcomponent Three : Algorithm Solving
 ##### Description
@@ -283,21 +304,106 @@ It will record neccessary data such as the queue or stack of nodes to visit next
 I plan to then implement the rest of the algorithms in the A-level specification including dijkstra and A* using a heuristic of distance to target.
 I will not have a UI at this stage but plan to visualise data in the console or debugger.
 ##### Inputs
-A graph
+A graph and a chosen algorithm
 ##### Outputs
 A solved graph storing the backtrace path taken to get from start to finish it should also be able to report if it is solvable
 ##### Validation
+There should be a start and and end node and an algorithm to use needs to be selected
+
 
 #### Subcomponent Four : Algorithm Control
 ##### Description
 The first part of the problem is just solving the algorithm instantly however I want the user to see each stage of the solving along with the state of the variables being used at this time. The user should be able to easily use this to make a trace table for the solving of the algorithm. This is because this is meant to be a learning tool not just a graph solver.
 The ability to undo and redo
 ##### Inputs
-Graph Algorithm
+Graph Algorithm 
 ##### Outputs
 Step by step state of graph algorithm
 ##### Validation
 Not Undo at the first stage and redo at the last stage
+
+#### Subcomponent Five : Algorithm Visualisation
+##### Description
+Now that I have data for all the states of the algorithm I need to be able to display it to the user.
+In this section I will heavily use the interface I created for the graph changing colors.
+I will also create lists and other UI elements to help display algorithm state and other factors.
+I am also going to add a spaceship that shows the current node
+##### Inputs
+A graph that provides a interface for changing visuals, UI elements
+The Algorithm State
+##### Outputs
+A visual display of the state of the algorithm
+##### Validation
+
+
+#### Subcomponent Six : User Interface
+##### Description
+This component is not to do with the main program but is about the app as a whole. I want a easily navigatable UI that will show all the different screens and should be intuitive to use.
+This is not just putting the screens together but also covers the creation of these UI elements. I am going to use reusable components which will save time in development, increase performance and create a consistant User Interface
+##### Inputs
+
+##### Outputs
+
+##### Validation
+
+
+### System Overview / Architecture
+
+I will use the Model View Controller design pattern to separate the components of my app.
+
+**Explain diagram and high level of components, Model veiw controller**
+
+#### Model (Data Structures)
+As I am using the Model View Controller Pattern I am going to keep the data in the Model.
+This will ensure there is a single source of truth which ensures consistancy of data.
+I am going to use an Observable Object which is a *"A type of object with a publisher that emits before the object has changed."*
+This means when changing the objects properties it will update any views using the data.
+
+##### The Models include :
+* Graph Genearation
+* Algorithm Solving
+* Alogorithm Control
+
+#### View (User Interface)
+The Views Provides a GUI for the user to see and interact with the program. 
+For this I will need to use a graphcs library. I am going to be using two, SpriteKit and SwiftUI.
+**Spritekit** is 
+**SwiftUI** is Apples declaritive
+
+##### The Views include :
+* Graph Rendering
+* Algorithm Visualisation
+
+#### Controller (Program Logic)
+
+The controler while was not included in the subcomponents is still a large section of the program. It provides a bridge between the Models and the views and is essential for the program to run.
+I am going to use swiftUI observable object which is an an object that will notify and update observers when it changes
+
+### Implementation of Subcomponnets
+
+#### Subcomponent One : Graph generation : Model
+As this is not to do with the graphics I do not need to use any graphics libraries however It will use coordinates. This will be provided to the graph rendering component which will use SpriteKit to render it
+
+#### Subcomponent Two : Graph rendering : View
+For rendering the Graph I am going to use Spritekit
+
+##### Planets/Nodes
+The planets are going to be rendered using filled circles which are randomly selected from the planets. They will have a custom border whose color can be changed.
+The planets will have labels below them which should be readable. These will be used to show the name of which planet it is as the names will be used in other places.
+
+##### Edges/Paths
+The edges will be represented by lines
+There should be a text box on the lines which will be used represent the weight. This should also be readable and the graph rendering is not responsable for what is in the text box, It just needs to be able to be changed.
+
+
+#### Subcomponent Three : Algorithm Solving : Model
+
+##### Breadth First Search (BFS)
+##### Depth First Search (DFS)
+##### Dijkstra's shortest path
+##### A* shortests path
+
+#### Subcomponent Four : Algorithm Control : Model
 
 ##### Undo/Redo Stack
 One of my requirements is that the user should be able to replay the steps of the algorithm
@@ -318,42 +424,9 @@ This will mean I calculate all the possible states at the start.
 | --- | --- | --- | --- |
 |     | Un |     |     |
 
+#### Subcomponent Five : Algorithm Visualisation : View
 
-#### Subcomponent Five : Algorithm Visualisation
-##### Description
-Now that I have data for all the states of the algorithm I need to be able to display it to the user.
-In this section I will heavily use the interface I created for the graph changing colors.
-I will also create lists and other UI elements to help display algorithm state and other factors.
-I am also going to add a spaceship that shows the current node
-##### Inputs
-A graph that provides a interface for changing visuals, UI elements
-The Algorithm State
-##### Outputs
-A visual display of the state of the algorithm
-##### Validation
-
-
-#### Subcomponent Six : User Interface
-##### Description
-This component is not to do with the main program but is about the app as a whole. I want a easily navigatable UI that will show all the different screens and should be intuitive to use.
-##### Inputs
-##### Outputs
-##### Validation
-
-
-### System Overview / Architecture
-
-I will use the Model View Controller design pattern to separate the components of my app.
-
-**Explain diagram and high level of components, Model veiw controller**
-
-#### Model (Data Structures)
-As I am using the Model View Controller Pattern I am going to keep the data in the Model.
-This will ensure there is a single source of truth which ensures consistancy of data.
-I am going to use an Observable Object which is a *"A type of object with a publisher that emits before the object has changed."*
-This means when changing the objects properties it will update any views using the data.
-
-#### View (User Interface)
+#### Subcomponent Six : User Interface : View
 
 ##### Navigation
 As I am going to allow the user to navigate around different Views.
@@ -387,27 +460,6 @@ The User Interface needs to be able to adapt to different screen sizes. Although
 I therefore should make sure my app can adjust the size and locations of UI elements to fit and not obscure the screen.
 
 ##### Validation of input data
-
-#### Controller (Program Logic)
-
-
-
-### Algorithms
-
-Throught the program I will use variety of algorithms
-#### Simple Algorithms
-##### Sorting
-
-
-#### Graph Algorithms
-##### Breadth First Search (BFS)
-
-##### Depth First Search (DFS)
-
-##### Dijkstra's shortest path
-
-##### A* shortests path
-
 
 
 ### Test Data
