@@ -385,7 +385,9 @@ I am going to use swiftUI observable object which is an an object that will noti
 As this is not to do with the graphics I do not need to use any graphics libraries however It will use coordinates. This will be provided to the graph rendering component which will use SpriteKit to render it
 
 #### Subcomponent Two : Graph rendering : View
-For rendering the Graph I am going to use Spritekit
+
+### SpriteKit
+For rendering the Graph I am going to use Spritekit.
 
 ##### Planets/Nodes
 The planets are going to be rendered using filled circles which are randomly selected from the planets. They will have a custom border whose color can be changed.
@@ -425,8 +427,27 @@ This will mean I calculate all the possible states at the start.
 |     | Un |     |     |
 
 #### Subcomponent Five : Algorithm Visualisation : View
+To display progress of the algorithm 
+
+##### Spaceship
+The spaceship Is going to be the object that traverses the graph. It will place emphasis on the current node being visited.
+I am going to use SpriteKits SKSpriteNode which allows me to put 2D textures on a object.
+
+##### Frontier and Explored Lists
+As well as UI elements it is importaint to show text based info. I want to show the lists of nodes that have been visited and are next to be visited.
+This will show
+
+##### Explanation Boxes
+To Tie all the Visualisation together I am going to have a text box.
+This will explain what is happening in each of the steps of the algorithm. I will premake a selection of strings that allow me to insert specific information in the correct location (such as the node name).
+I will also give the ability for the user to swap between Space Explanations (which use space vocab to increase engagement such as: Galaxy, Planet, Path) and a more Technically accurite Graph Explanations (which uses words like graph, node, edge).
 
 #### Subcomponent Six : User Interface : View
+All of the User Interface is going to be made with SwiftUI.
+
+```SwiftUI is a declarative framework for building user interfaces for iOS, iPadOS, watchOS, tvOS, visionOS and macOS, developed by Apple Inc```
+
+This will mean that my UI will adapt to all screen sizes with little effort!
 
 ##### Navigation
 As I am going to allow the user to navigate around different Views.
@@ -578,7 +599,7 @@ classDiagram
 
 ## Development
 
-### Stage One - **Random Galaxy Generation**
+### Stage One/Two : Random Galaxy Generation/Rendering
 
 #### Generation
 
@@ -652,7 +673,6 @@ func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
     }
 ```
 #### Intersection Algorithm using Orientation
-
 To check if two lines intersect I did some research online and found an algorithm that uses orientation to check if two lines intersect. I used an article from GeeksforGeeks to help understand the concepts before implementing it
 
 To deterimine the orientation of a line I used the sign of the cross product.
@@ -660,26 +680,59 @@ Here is the code I used to check two lines intersect
 
 #### Minor improvements to prior stages
 
-### Stage Two - **Implementing Search Algorithms**
+
+
+
+### Stage Three - **Implementing Search Algorithms**
 
 I made my Search Algorithms all inherit from a Generic BaseSearch class.
 This acted partly like a protocol as it defined the functions the child classes should have. However the base search implemented some basic generic functionality that was overriden when neccessary.
 
-#### Undo/Redo Stack
+#### Minor improvements to prior stages
 
-I made a stack to store the histor
+
+
+### Stage Four : Algorithm Control
+
+#### Undo/Redo Stack
+I made an UNDO stack to store the history of the algorithm.
+
+When I went forward in the algorithm I created an object that stored all the key variables of the algorithm state. This is similar to how the contents of the registors are pushed onto a stack when there is an interupt.
+
+Different to design I did not include a redo Stack that stored the future stages. The argument that it is less efficient I dont think is a problem as it is only being done on event and the calculations are actually not that big.
+
+
+
+### Stage Five : Algorithm Visualisation
+This stage was taking longer than expected and I found a few improvements I found neccessary aswell as using a new part of spritekit SKActions which allowed me to animate things
+
+#### Ship
+The Ship turned out to be more of a UI element than an actual object that I expected.
+
+#### Heirachy of SpriteKit elements
+
+#### SKActions
+To create animations in the program I used SKActions.
 
 #### Algorithm Backtracking
-
 After implementing the search algorithms I realised algorithms that used backtracking would do large jumps across the graph. I thought this was unclear and may be confusing for my target audience. I wanted to implement a feature that showed the nodes the spaceship backtracks to on the way to the next node.
 To do this I made each node store the node which the ship came from.
 
 #### Minor improvements to prior stages
 
-### Stage Four - **Adaptive User Interface**
+
+
+
+### Stage Six : User Interface
 
 My User Interface needs to adapt and scale to fit different sized screens by looking consistant. visible and unintrusive for different devices. During this stage I used my ipad mini a lot for testing and tested using different window sizes on my laptop. 
 Overall I found this to be harder than expected.
+
+###
+
+#### Heirachy of SwiftUI elements
+Similar to SpriteKit I used reusable components to save development time and increase consistancy in the UI. 
+
 
 #### Minor improvements to prior stages
 
