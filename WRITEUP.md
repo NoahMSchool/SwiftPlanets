@@ -283,7 +283,6 @@ Implemnt in future:
 The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly and start planet has neighbours
 
 
-
 #### Subcomponent Two : Graph Rendering
 ##### Description
 Now that I have a graph which are nodes that store their positions and know their neighbours I need a way to visualise them
@@ -399,10 +398,21 @@ There should be a text box on the lines which will be used represent the weight.
 
 
 #### Subcomponent Three : Algorithm Solving : Model
+For the search algorithms I realised they are not that different from each other. They all have a list of nodes to visit and the nodes they have visited. The only difference is the order they are visited in.
 
+##### General Search
+I will implement a general search class that the other algorithms will inherit from 
 ##### Breadth First Search (BFS)
+Breadth First Search uses a standard First In First Out queue.
+
 ##### Depth First Search (DFS)
+Depth First Search uses a Last In First Out stack.
+
 ##### Dijkstra's shortest path
+Dijkstra uses a priority queue. The condition is the node that the selected node is is the node with the current shortest distance to get to. This ensures it will not go to the 
+Assuming there are no negative weights this will always return the shortest path
+
+
 ##### A* shortests path
 
 #### Subcomponent Four : Algorithm Control : Model
@@ -685,8 +695,44 @@ Here is the code I used to check two lines intersect
 
 ### Stage Three - **Implementing Search Algorithms**
 
+#### Traversable protocol
+As I want my code to be generic to any graph. I defined a protocol that nodes in a graph must conform to. The functions are quite simple and is a requirement for any graph to be traversed so it should not be that hard to adapt some other graphs protocol to work with this.
+This means that my search algorithms should work on any graph that conforms to this protocol.
+In my case the Planets are the nodes so they conform to **Traversable**
+
+```swift
+protocol Traversable: Identifiable {
+    // This property requirement comes from Identifiable.
+    var id: UUID { get }
+
+    func getNeighbours()->[(neighbour : any Traversable, weight : Double)]
+    func heuristic(to end: any Traversable) -> Double   
+    func isEqual(to other: any Traversable) -> Bool
+}
+```
+The functions that are required are:
+* **getNeighbours** which should return the nodes that a node is connected to. These will be added to the frontier list
+* **heuristic** will give a the chosen heuristic to guide the search. In my case this was the distance to the target node as the crow flies.
+* **isEqual** will alow two nodes to be compared to check if two nodes are the same so the program knows if the graph has been solved when (current node == target node).
+
+
+#### BaseSearch
 I made my Search Algorithms all inherit from a Generic BaseSearch class.
 This acted partly like a protocol as it defined the functions the child classes should have. However the base search implemented some basic generic functionality that was overriden when neccessary.
+
+#### Breath First Search
+#### Depth First Search
+#### Dijkstra
+
+#### A*
+
+For A* the priority function was still extreamly simple
+```swift
+getNewWeight(n: n) + n.neighbour.heuristic(to: to) ```
+
+#### Greedy Best First Search (Bonus)
+When implementing the algorithms I realised there was one more algorithm that would be easy to implement due to my flexible structure. Greedy (BFS) is not in the A-Level spec I thought would complete the program as it is an algorithm that only used the heuristic
+
 
 #### Minor improvements to prior stages
 
@@ -698,8 +744,24 @@ This acted partly like a protocol as it defined the functions the child classes 
 I made an UNDO stack to store the history of the algorithm.
 
 When I went forward in the algorithm I created an object that stored all the key variables of the algorithm state. This is similar to how the contents of the registors are pushed onto a stack when there is an interupt.
+This is the AlgorithmState Object I created. It stores a the simple data aswell as dictionaries of all the nodes and the relevant data.
+```swift
+struct AlgorithmState{
+    var current: (any Traversable)
+    var frontier : [(neighbour: any Traversable, weight: Double)]
+    var explored : [any Traversable]
+    var cameFrom : [UUID: (any Traversable)?] = [:]
+    var weightSoFar : [UUID: Double] = [:]
+    var path : [any Traversable] = []
+    var backtrackPathFromPrevious : [any Traversable] = []
+    var completed : Bool
+    var pathExists : Bool
+    var explanation : String
+}
+```
 
 Different to design I did not include a redo Stack that stored the future stages. The argument that it is less efficient I dont think is a problem as it is only being done on event and the calculations are actually not that big.
+
 
 
 
@@ -735,7 +797,7 @@ Similar to SpriteKit I used reusable components to save development time and inc
 
 
 #### Minor improvements to prior stages
-
+§
 
 
 ## Evaluation
