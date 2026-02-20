@@ -401,19 +401,32 @@ There should be a text box on the lines which will be used represent the weight.
 For the search algorithms I realised they are not that different from each other. They all have a list of nodes to visit and the nodes they have visited. The only difference is the order they are visited in.
 
 ##### General Search
-I will implement a general search class that the other algorithms will inherit from 
+I will implement a general search class that the other algorithms will inherit from this will have the core functinality that all the search algorithms require
 ##### Breadth First Search (BFS)
-Breadth First Search uses a standard First In First Out queue.
+Breadth First Search uses a standard First In First Out queue. This will provide a broad search so will go to the nodes closer before going to further away nodes
 
 ##### Depth First Search (DFS)
 Depth First Search uses a Last In First Out stack.
+This will provide a deep search that will go until it hits a dead end then backtrack.
+I am using a Pre-Order Traversal so it will start at the root then go left then right.
 
 ##### Dijkstra's shortest path
-Dijkstra uses a priority queue. The condition is the node that the selected node is is the node with the current shortest distance to get to. This ensures it will not go to the 
-Assuming there are no negative weights this will always return the shortest path
+Dijkstra uses a priority queue. The condition is the node that the selected node is is the node with the current shortest distance to get to. This ensures it will not go to the a node until there are no other nodes that are closer. This guarantees that there will be no shorter path to the next node via other nodes. Assuming there are no negative weights this will always return the shortest path.
+
+##### A* shortest path
+A* uses a priority queue based on a combination (A 50/50 split) between the closest node and a given Heuristic. The heuristic that I am going to use is the distance as the crow flies to the target node from the current node.
+
+##### Greedy Best First Search (Bonus)
+When researching the algorithms I found there was one more algorithm that would complete the program. Although Greedy (BFS) is not in the A-Level spec it has the same core idea of the others as it uses a prioriy queue which only has
 
 
-##### A* shortests path
+Here is a summary table of the algorithms : 
+
+| **GalaxyBuilder** | BFS |	DFS	| Greedy BFS |	Djiskstra |	AStar |
+| **Frontier Data Structure** | Queue | Stack | Priority Queue | Priority Queue| Priority Queue |
+| **Use Weights** | --- | --- | Y | Y | Y |
+| **Use Heuristic** | --- | --- | Y | --- | Y |
+| **Priority Function** | --- |	--- | Heuristic | Weight | Heuristic + Weight |
 
 #### Subcomponent Four : Algorithm Control : Model
 
@@ -466,10 +479,11 @@ As I want to have control and stylise my app I am not going to be using Apples b
 
 These screens should include:
 * Menu (for selection)
+* Settings (changing preferences for user such as ship speed, space/graph descriptions, planet names, I will use a swiftUI element called a sheet which will provide a semi-transparent popup overlay to allow the user to see the content while changing the settings)
 * How to use (explains how to use the program)
 * About Graphs (Teaches the user about graphs using a text page (not the simulation)
 * Graph/Galaxy Builder (Allows the user to create/select/generate graph)
-* Simulation (Performs the Graph Traversal Algorithms on the generated graph
+* Simulation (Where the program performs the Graph Traversal Algorithms on the generated graph
 Here is a short graph of how these screens will interact
 ```mermaid
 stateDiagram-v2
@@ -485,6 +499,12 @@ stateDiagram-v2
 
     Menu --> GalaxyBuilder
     GalaxyBuilder --> Menu
+
+	GalaxyBuilder --> Settings
+	Simulation --> Settings
+	Settings --> GalaxyBuilder
+	Settings --> Simulation
+
 ```
 ##### Adaptability
 The User Interface needs to be able to adapt to different screen sizes. Although iPads are all the same 4:3 aspect ratio they can be rotated to be in portrait and my app still needs to work. It should also work on Mac's, iPhones and Headsets. If it is being windowed the size should adapt similar to a web page
@@ -712,7 +732,7 @@ protocol Traversable: Identifiable {
 ```
 The functions that are required are:
 * **getNeighbours** which should return the nodes that a node is connected to. These will be added to the frontier list
-* **heuristic** will give a the chosen heuristic to guide the search. In my case this was the distance to the target node as the crow flies.
+* **heuristic** will give a the chosen heuristic to guide the search. In my case this was the absolute distance to the target.
 * **isEqual** will alow two nodes to be compared to check if two nodes are the same so the program knows if the graph has been solved when (current node == target node).
 
 
@@ -728,10 +748,11 @@ This acted partly like a protocol as it defined the functions the child classes 
 
 For A* the priority function was still extreamly simple
 ```swift
-getNewWeight(n: n) + n.neighbour.heuristic(to: to) ```
+getNewWeight(n: n) + n.neighbour.heuristic(to: to)
+```
 
-#### Greedy Best First Search (Bonus)
-When implementing the algorithms I realised there was one more algorithm that would be easy to implement due to my flexible structure. Greedy (BFS) is not in the A-Level spec I thought would complete the program as it is an algorithm that only used the heuristic
+#### Greedy Best First Search 
+
 
 
 #### Minor improvements to prior stages
@@ -790,7 +811,19 @@ To do this I made each node store the node which the ship came from.
 My User Interface needs to adapt and scale to fit different sized screens by looking consistant. visible and unintrusive for different devices. During this stage I used my ipad mini a lot for testing and tested using different window sizes on my laptop. 
 Overall I found this to be harder than expected.
 
-###
+The Screens that I included were the Menu Screen, Graph screen, How to use screen and a Algorithms Descriptions screen.
+I did not include a settings page as I did not find there were many controls in the program so I didn't think it was neccessary.
+
+#### Menu Screen
+
+#### Graph Screen
+
+#### How to use Screen
+
+#### Algorithms Descriptions Page
+
+
+
 
 #### Heirachy of SwiftUI elements
 Similar to SpriteKit I used reusable components to save development time and increase consistancy in the UI. 
