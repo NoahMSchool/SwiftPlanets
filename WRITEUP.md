@@ -190,8 +190,8 @@ Lots of parts of my program will hapen at the same time. The ship will need to m
 
 | **Platform** | **Description** | **Pros** | **Cons** |
 | --- | --- | --- | --- |
-| Unity/Unreal | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine. | I could make the game 3D however my game<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine meaning I will not have to code these elements. However this will mean that I have less control over the program which is a negative. | A game engine can be overly complex for my simple game, they are best for games involving more complex graphics |
-| Godot | Godot is a lightweight Game engine used for both 2D and 3D games | Very lightweight and simple to use.<br><br>I can write in GDScript which is a simple language based of python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms |     |
+| Unity/Unreal | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine. | I could make the program 3D however my game<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine meaning I will not have to code these elements. However this will mean that I have less control over the program which is a negative. | A game engine like this can be overly complex for my program , they are designed for video games involving more complex graphics |
+| Godot | Godot is a lightweight Game engine used for both 2D and 3D games | Very lightweight and simple to use.<br><br>I can write in GDScript which is a simple language similar of python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms including ios devices|     |
 | Swift / SpriteKit | Swift is Apples programming language and SpriteKitis a simple graphics API I could use with it to make my game. SpriteKit is still feature ritch and powerful with their Node System and SKActions. | I could make my app work on all apple devices such as tablets and phones which is a more convenient way.<br><br>It will be more efficient as swift is statically typed meaning it will be more optimised by the compiler | The game will not be playable on other platforms like android or windows as will be exclusively iOS. |
 | Pygame | Pygame is a simple 2D graphics library that uses python. | I can write the project in python which has easy syntax and is quite lightweight. | It is very basic so I will have to program algorithms like shortest path from scratch |
 | Defold | Defold is a simple Game Engine that uses Lua |     |     |
@@ -200,9 +200,9 @@ Lots of parts of my program will hapen at the same time. The ship will need to m
 
 The main three contenders are Swift / SpriteKit, Pygame and Godot.
 
-After considering the benefits and drawbacks of each framework I have swift for my project. I will specifically be using SpriteKit for the game's graphics and SwiftUI for the controls and User Interface. I like the simplicity of this as it means I have more control over my game. Another main factor in my decision means I can program it in swift which is a strongly typed language meaning great efficiency compared to something like using python with pygame which was a close second choice. I prefer this over a game engine which would require me to code in C# or C++ which are more complex.
+After considering the benefits and drawbacks of each framework I have decided to use swift for my project. I will specifically be using SpriteKit for the graphics and SwiftUI for the controls and User Interface. I like the simplicity of this as it means I have more control over my game. Another main factor in my decision means I can program it in swift which is a strongly typed language meaning great efficiency compared to something like using python with pygame which was a close second choice. I prefer this over a game engine which would require me to code in C# or C++ which are more complex.
 
-However this will mean that the app can only be played on apple devices, this could be a good start as they are popular with my audience. I found it is also quite difficult to have an android version aswell as I would need to rewrite it due to the specific frameworks I have selected. It may have been more accessible if I made a webapp
+However this will mean that the app can only be played on apple devices, this could be a good start as they are popular with my audience. I found it is also quite difficult to have an android version aswel as I would need to rewrite it due to the specific frameworks I have selected. It may be more accessible if I make a webapp
 
 ### System Requirements
 #### Hardware
@@ -340,10 +340,13 @@ A visual display of the state of the algorithm
 This component is not to do with the main program but is about the app as a whole. I want a easily navigatable UI that will show all the different screens and should be intuitive to use.
 This is not just putting the screens together but also covers the creation of these UI elements. I am going to use reusable components which will save time in development, increase performance and create a consistant User Interface
 ##### Inputs
-
+Buttons that The user can press. Menus the user can sellect
 ##### Outputs
+Affect program when buttons are pressed or items are selected by calling functions or updating variables.
+Give a visual interface of the program
 
 ##### Validation
+The views should only allow for valid inputs such as selecting objects that exist or numbers in a correct range. 
 
 
 ### System Overview / Architecture
@@ -386,7 +389,7 @@ As this is not to do with the graphics I do not need to use any graphics librari
 #### Subcomponent Two : Graph rendering : View
 
 ### SpriteKit
-For rendering the Graph I am going to use Spritekit.
+For rendering the Graph I am going to use Spritekit. Spritekit is 
 
 ##### Planets/Nodes
 The planets are going to be rendered using filled circles which are randomly selected from the planets. They will have a custom border whose color can be changed.
@@ -814,16 +817,70 @@ Overall I found this to be harder than expected.
 The Screens that I included were the Menu Screen, Graph screen, How to use screen and a Algorithms Descriptions screen.
 I did not include a settings page as I did not find there were many controls in the program so I didn't think it was neccessary.
 
+#### SwiftUI Reusable Components
+##### Space Text
+To save time developing the program and to increase the consistancy of the UI across the user interface I used reuasable components such as buttons, sliders and text.
+
+I started by creating a custom view modifier that could change the text in a view. A view modifier in switui is function that can change aspects of a view. I made my own custom modifers which could make elements in my custom style. I made three for basic text, headings and subheadings. When making them I was just using built in view modifiers but my custom one just packeged them together so I can change all elements using this modifier by just changing the modifier. 
+Here is the text modifier
+```swift
+struct SpaceText: ViewModifier{
+    func body(content: Content) -> some View {
+        content
+            .font(.custom("Chalkduster", size: 14))
+            .foregroundColor(.white)
+    }
+}
+```
+Here is an example of them being used
+```swift Text("this is a subheading").modifier(SpaceSubheading()) ```
+##### Space Buttons
+I made two stylised buttons that I could reuse. These are custom small SwiftUI views that I can reuse. They use the standard swiftUI buttons but apply further styling. This includes adding the spaceText modifier I already created.
+SwiftUI buttons take in a closure which is a function that is called when they are pressed. This meant my buttons had to take in a closure and then relay it to the button I use in the view.
+For the larger buttons I wanted to pass in text to them
+```swift LargeSpaceButton(text : "Big Button", imageSystemName: "airtag", action: {callFuntion()}) ```
+
 #### Menu Screen
 
 #### Graph Screen
 
 #### How to use Screen
+This is a screen that shows the user how to interact with the program incase they are confuesd. It tells them what the colors mean and the stack
 
 #### Algorithms Descriptions Page
+The start of my algorithms page is is generic to all the algorithms. Similar to how I realised how similar the algorithms core concepts really are I wanted to amplify this in the descriptions.
 
+For the algorithm description I wrote it so the information is not stored as text strings in the page.
+but are accessed from the algorithm object itself. I loop through all the algorithms and then display their individual descriptions. This way if I add new algorithms I dont need to edit the descriptions page but if I add a description to the algorithm object it will just update the page automatically.
 
+Here is the code in the algorithm descriptions page that loops through all the algorithms and adds the descriptions to the page
+```swift
+ForEach(GameController.searchAlgorithms, id: \.self) { algorithm in
+	if let algorithmType = GameController.algorithmTypes[algorithm] {
+		//Image(systemName: algorithmType.getIcon()) 
+		Text(algorithm).modifier(SpaceSubheading())
+			.padding()
+		Text(algorithmType.getDescription())
+		HStack {
+			Text("Use Weights")
+			Image(systemName: algorithmType.usesWeights() ? "checkmark.circle.fill" : "xmark.circle.fill")
+				.foregroundColor(algorithmType.usesWeights() ? .green : .red)
+		}
+		HStack {
+			Text("Use Heuristic")
+			Image(systemName: algorithmType.useHeuristic() ? "checkmark.circle.fill" : "xmark.circle.fill")
+			.foregroundColor(algorithmType.useHeuristic() ? .green : .red)
+	}
+	}
+}
+```
 
+Here is an example of the algorithms get description function which is in the algorithms class. this function is overriden by each algorithm 
+```swift
+override class func getDescription()->String{
+        return "Dijkstra's Algorithm was created by Edsger Dijkstra in 1956. It always finds the shortest weighted path from start to goal. It uses a priority queue to explore the lowest-cost path first."
+    }  
+```
 
 #### Heirachy of SwiftUI elements
 Similar to SpriteKit I used reusable components to save development time and increase consistancy in the UI. 
@@ -834,6 +891,20 @@ Similar to SpriteKit I used reusable components to save development time and inc
 
 
 ## Evaluation
+
+#### Subcomponent One : Graph generation
+Learnings (things added later)
+Non random test galaxies
+Edges should not intersect as it makes it hard to visualise. This is why i introduced the checklines
+Implemnt in future: 
+The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly and start planet has neighbours
+
+#### Subcomponent Two : Graph Rendering
+#### Subcomponent Three : Algorithm Solving
+#### Subcomponent Four : Algorithm Control
+#### Subcomponent Five : Algorithm Visualisation
+#### Subcomponent Six : User Interface
+
 
 ## Sources
 
