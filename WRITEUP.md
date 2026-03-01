@@ -821,7 +821,8 @@ I did not include a settings page as I did not find there were many controls in 
 ##### Space Text
 To save time developing the program and to increase the consistancy of the UI across the user interface I used reuasable components such as buttons, sliders and text.
 
-I started by creating a custom view modifier that could change the text in a view. A view modifier in switui is function that can change aspects of a view. I made my own custom modifers which could make elements in my custom style. I made three for basic text, headings and subheadings. When making them I was just using built in view modifiers but my custom one just packeged them together so I can change all elements using this modifier by just changing the modifier. 
+I started by creating a custom view modifier that could change the text in a view. A view modifier in switui is function that can change aspects of a view. I made my own custom modifers which could make elements in my custom style. I made three for basic text, headings and subheadings. When making them I was just using built in view modifiers but my custom one just packaged them together so I can change all elements using this modifier by just changing the modifier. For the font I used a system font called"chalkduster" which is preinstalled on most new iOS devices.
+
 Here is the text modifier
 ```swift
 struct SpaceText: ViewModifier{
@@ -834,15 +835,33 @@ struct SpaceText: ViewModifier{
 ```
 Here is an example of them being used
 ```swift Text("this is a subheading").modifier(SpaceSubheading()) ```
+I also made a title View which was a fixed string I could use from the title screen
+
 ##### Space Buttons
 I made two stylised buttons that I could reuse. These are custom small SwiftUI views that I can reuse. They use the standard swiftUI buttons but apply further styling. This includes adding the spaceText modifier I already created.
 SwiftUI buttons take in a closure which is a function that is called when they are pressed. This meant my buttons had to take in a closure and then relay it to the button I use in the view.
 For the larger buttons I wanted to pass in text to them
-```swift LargeSpaceButton(text : "Big Button", imageSystemName: "airtag", action: {callFuntion()}) ```
+```swift 
+        SpaceButton(imageSystemName: "moon", textLabel: "SpaceStyle", disabled: false, action: {print("hello there")})
+        LargeSpaceButton(text: "SpaceIsBig", imageSystemName: "star", action: {print("spaceIsBig")})
+ ```
+<img width="251" height="225" alt="image" src="https://github.com/user-attachments/assets/82fde299-3d98-4bce-95fc-3ce84f15b713" />
+
+##### SpaceList
+This and the remaining componets are primarily used for the HUD for the algorithm Control
+##### SpaceSlider
+##### SpacePicker
 
 #### Menu Screen
+This is the first screen that is shown on launch so it should allow the user to navigate from here to the rest of the program. I did this by passing the closures to change the state of the 
+The Main Menu Screen was made up of The main title text which was defined in the spaceText and Three Large Space Buttons 
 
-#### Graph Screen
+<img width="622" height="347" alt="image" src="https://github.com/user-attachments/assets/187e5d8b-58a2-48d6-bb88-78cb56637585" />
+
+
+#### Graph Genaration Screen
+
+#### Graph Solving Screen
 
 #### How to use Screen
 This is a screen that shows the user how to interact with the program incase they are confuesd. It tells them what the colors mean and the stack
