@@ -399,7 +399,6 @@ The planets will have labels below them which should be readable. These will be 
 The edges will be represented by lines
 There should be a text box on the lines which will be used represent the weight. This should also be readable and the graph rendering is not responsable for what is in the text box, It just needs to be able to be changed.
 
-
 #### Subcomponent Three : Algorithm Solving : Model
 For the search algorithms I realised they are not that different from each other. They all have a list of nodes to visit and the nodes they have visited. The only difference is the order they are visited in.
 
@@ -475,6 +474,11 @@ All of the User Interface is going to be made with SwiftUI.
 
 This will mean that my UI will adapt to all screen sizes with little effort!
 
+##### Adaptability
+The User Interface needs to be able to adapt to different screen sizes. Although iPads are all the same 4:3 aspect ratio they can be rotated to be in portrait and my app still needs to work. It should also work on Mac's, iPhones and Headsets. If it is being windowed the size should adapt similar to a web page
+I therefore should make sure my app can adjust the size and locations of UI elements to fit and not obscure the screen.
+##### Validation of input data
+
 ##### Navigation
 As I am going to allow the user to navigate around different Views.
 I am going to use SwiftUI's Navigation stack for this.
@@ -484,7 +488,7 @@ These screens should include:
 * Menu (for selection)
 * Settings (changing preferences for user such as ship speed, space/graph descriptions, planet names, I will use a swiftUI element called a sheet which will provide a semi-transparent popup overlay to allow the user to see the content while changing the settings)
 * How to use (explains how to use the program)
-* About Graphs (Teaches the user about graphs using a text page (not the simulation)
+* About Graphs/Algorithms (Teaches the user about graphs using a text page (not the simulation)
 * Graph/Galaxy Builder (Allows the user to create/select/generate graph)
 * Simulation (Where the program performs the Graph Traversal Algorithms on the generated graph
 Here is a short graph of how these screens will interact
@@ -509,11 +513,22 @@ stateDiagram-v2
 	Settings --> Simulation
 
 ```
-##### Adaptability
-The User Interface needs to be able to adapt to different screen sizes. Although iPads are all the same 4:3 aspect ratio they can be rotated to be in portrait and my app still needs to work. It should also work on Mac's, iPhones and Headsets. If it is being windowed the size should adapt similar to a web page
-I therefore should make sure my app can adjust the size and locations of UI elements to fit and not obscure the screen.
 
-##### Validation of input data
+
+##### Menu Screen
+This is the Screen that the user will start with. The user should be able to navigate to all the other screens from here
+##### About Graphs/Algorithms
+This is going to be a scrollable text screen that will tell the user about the algorithms
+##### How to use screen
+Like the about screen this is going to be a scrollable screen with not much interaction.
+##### Settings View
+This is not so much going to be a separate screen but will be placed on top of the current view. This will always be the galaxy builder or simlation as it is only accessible via these pages.
+I am going to use a swiftUI element called a sheet which allows me to overlay the settings view on top of the current view, this will allow me to keep the background visible while changing settings to keep the context of the graph.
+##### Graph Genaratian
+This will contain the SpriteKit View
+
+##### Simulation
+This will contain the SpriteKit View
 
 
 ### Test Data
