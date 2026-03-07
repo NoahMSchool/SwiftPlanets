@@ -807,21 +807,45 @@ Different to design I did not include a redo Stack that stored the future stages
 ### Stage Five : Algorithm Visualisation
 This stage was taking longer than expected and I found a few improvements I found neccessary aswell as using a new part of spritekit SKActions which allowed me to animate things
 
-#### Ship
-The Ship turned out to be more of a UI element than an actual object that I expected.
-
 #### Heirachy of SpriteKit elements
+#### Starry Background
+This was a spritekit view I created for aesthtic reasons. It's algorithm was random so each starry background is different. The alogrithm is vry simple as it simply randomly places stars a random number of times. I used some of spriteKits effects like glow which gave a glow around the border.
+This code is the code that generates the stars and puts it under the stars node which is added to the spritekit gametree.
+``` swift
+let stars = SKNode()
+        for _ in 0...starCount{
+
+            let position = CGPoint(x: Int.random(in: -size...size), y: Int.random(in: -size...size)) // Randomly Generates Position
+            let star = SKShapeNode(circleOfRadius: 0.5)
+            star.glowWidth = 0.5
+            star.position = position
+            stars.addChild(star)
+        }
+```
+
+##### Text Bubble
+To put UI elemnts over the spritekit scene turned out to be difficult and not the best way to do it. Instead I created my own SpriteKit elements which I could reuse. This inherited from SKNode and uses a lebelNode for text and a shapeNode for the border.
+The size of the border is not passed in but is calculated to fit the passed text. This means it is easy to use this uiElement. The text can be changed and this simply will recalcualte the border size
+
+##### ShipNode
+The Ship turned out to be more of a UI element than an actual object that I expected. I used a SKspriteNode for this, these are nodes that take in an image which should be in the projects filesystem
+
 
 #### SKActions
 To create animations in the program I used SKActions.
+SKActions are a class that allows me to transition properties and run actions one after each other.
+This is how I added all the animations and moving elements in my game, it is not only for animations but is also used for moving nodes and can even run code. I used this for these purposes.
+
+##### ShipRingPulse
+I added a pulse for when the ship explores a planet. The radius is dependant on the ships shortest distance so the ships it can travel too. Hopefully this makes it more obvious what planets are added to the frontier
+##### NodeTeleport
+##### MoveShipNode
 
 #### Algorithm Backtracking
 After implementing the search algorithms I realised algorithms that used backtracking would do large jumps across the graph. I thought this was unclear and may be confusing for my target audience. I wanted to implement a feature that showed the nodes the spaceship backtracks to on the way to the next node.
 To do this I made each node store the node which the ship came from.
 
 #### Minor improvements to prior stages
-
-
 
 
 ### Stage Six : User Interface
