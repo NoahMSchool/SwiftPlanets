@@ -11,15 +11,15 @@ protocol Traversable: Identifiable {
 
 // Example of comparitor implementedx as a closure
 let sortedPaths = potentialPaths.sorted {
-            return $0.distance<$1.distance
-        }
+    return $0.distance<$1.distance
+}
 
 ```
 
 
-| **Name :**<br><br>Noah Marks | **Candidate Number : 1146** |
-| --- | --- |
-| **Agenda :**<br><br>Engaging Graphing Simulator | **Centre Number :*10132* |
+| **Name :**<br><br>Noah Marks                    | **Candidate Number : 1146** |
+| ----------------------------------------------- | --------------------------- |
+| **Agenda :**<br><br>Engaging Graphing Simulator | **Centre Number :*10132*    |
 
 
 <!-- TODO: Mention Computer Science (CS) abbreviation -->
@@ -31,22 +31,20 @@ let sortedPaths = potentialPaths.sorted {
 ### Problem Recognition
 
 The problem I am solving is the lack of fun ways to learn about certain Computer Science (CS) concepts, more specifically graphing algorithms.
-Interactive simualtion's are usefull tools for learning as they can walk you through new concepts especially for STEM and Computer Science. Good learning also comes from relatable analogies and creative teaching methods. The flexibility of Coding allows you to express this creativity through a program. Therefore a computer simulation a suitible method to teach a topic like graphing algorithms 
+Interactive simulations are useful tools for learning as they can walk you through new concepts especially for STEM and Computer Science. Good learning also comes from relatable analogies and creative teaching methods. The flexibility of Coding allows you to express this creativity through a program. Therefore a computer simulation a suitable method to teach a topic like graphing algorithms 
 
-From experience I have noticed that when looking for resources online to help learn a new concept there are a separation between the engaging resources which are often videos using creative analogies and the interactive tools used to model them which are often boring and difficult to use and stuck in the browser. This could be due to the relative difficulty to make a program compared to a video
-I want to bridge that gap by creating a graphing algorithm simulator that uses a fun analogy of Space to keep the user engaged. From my research you will later see I beleve that space is an engaging subject for many people interested in computer science and even if they are not it is still a fun different way to 
+From experience I have noticed that when looking for resources online to help learn a new concept there are a separation between the engaging resources which are often videos using creative analogies and the interactive tools used to model them which are often boring and difficult to use and stuck in the browser. This could be due to the relative difficulty to make a program compared to a video.
+I want to bridge that gap by creating a graphing algorithm simulator that uses a fun analogy of Space to keep the user engaged. From my research you will later see I believe that space is an engaging subject for many people interested in computer science and even if they are not it is still a fun different way to explore the algorithms.
 
-Graphing algorithms are often found to be a difficult topic for Computer Science Students as they have not been exposed to these concepts before.
-I will make a educational tool that aims to create a fun way for anyone to learn about graphing algorithms through space.
-I will do this in the form of an app using Swift and SwiftUI.
+Graphing algorithms are often found to be a difficult topic for Computer Science Students as they have not been exposed to these concepts before. I will make a educational tool that aims to create a fun way for anyone to learn about graphing algorithms through space. I will do this in the form of an app using Swift and SwiftUI.
 
 ### Analysing Other Solutions
 
-**I have selected a few educational tools that aimed to create an interactive way to learn something. I tried out these tools and noted down the parts that I liked and disliked about them.**
+I have selected a few educational tools that aimed to create an interactive way to learn something. I tried out these tools and noted down the parts that I liked and disliked about them.
 
-#### Solution 1: Graph Online
+#### Solution 1: Graph Online [[https://graphonline.top/]]
 
-<img width="1067" height="820" alt="image" src="https://github.com/user-attachments/assets/e6c11fa0-cad3-4ecf-a0de-d02985504591" />
+<img width="80%"  alt="Graph Online" src="https://github.com/user-attachments/assets/e6c11fa0-cad3-4ecf-a0de-d02985504591" />
 
 This is a graphing simulator I found online. 
 It lets you create a graph manually
@@ -55,19 +53,19 @@ I thought it was frustrating making a graph manually and thought it would be esp
 I found the options overwhelming and did not focus on anything specific. I thought It was more suitable for people more experienced with the basics. I want my project to be accessable to people who do not even know what a graph is.
 It did not show you the steps of the algorithm and just solved it
 
+#### Solution 2: TUM Shortest Path [[https://algorithms.discrete.ma.tum.de/spp/]]
 
-#### Solution 2: TUM Shortest Path Algorithm
-<img width="1211" height="745" alt="image" src="https://github.com/user-attachments/assets/b8c4fa64-73b3-4a83-9e5d-fe228275d1a5" />
+<img width="80%" alt="TUM Shortest Path Algorithm" src="https://github.com/user-attachments/assets/b8c4fa64-73b3-4a83-9e5d-fe228275d1a5" />
 
 The University of Munich made a graphing algorithm visualisation and learning tool that I enjoyed
 
 I liked how there were different tabs which separated learning about the algorithm, creating the graph and running the algorithm.
 I liked the detailed descriptions of the steps and the visual colouring of the nodes an edges I found this to be importaing for the algorithm.
 The graph creation was better than graph online and there started with a simple graph thay you could extend but still was quite limiting
-My main complaint is that the program was not very engaging. The user had to read long paragraphs of text and the app was not ugly but wasnt super visually appealing.
-It also did not have many of the simpler graph traversal alogrithm and only shortest path.
+My main complaint is that the program was not very engaging. The user had to read long paragraphs of text and the app was not ugly but wasn't super visually appealing.
+It also did not have many of the simpler graph traversal algorithms and only shortest path.
 
-#### Solution 3: PhET Simulations
+#### Solution 3: PhET Simulations ([[https://phet.colorado.edu/]])
 
 This is not a graphing simulator but it is an educational tool making learning interesting.
 There are lots of different high quality simulations on this platform. 
@@ -84,25 +82,25 @@ The main things I took away is that I wanted to make the program approachable an
 My audience is anyone who is interested in learning about CS. This could be anyone from the age of 8 to 80 who is interested. This may seem like quite a broad audience due to the wide age range but I can slightly narrow it down to those who are more STEM focused.
 Specifically I am targeting a younger audience as they are the future generation, and I want to create interest among the younger generation as they are still deciding what they are going to do with their lives. It is also true that this age group spends lots of time on mobile applications, playing video games or using computers so this may appeal more to them.
 
-Therefore I feel like an app is the most accessible form to this audience
+Therefore I feel like an app is the most accessible form to this audience.
 
-My stakeholders are mostly Students studying graphing algorithms for the first time in A-Level CS aswell as some GCSE students and some adults, as my goal is to make this tool accessible to people not activelly studying computer science.
+My stakeholders are mostly Students studying graphing algorithms for the first time in A-Level CS as well as some GCSE students and some adults, as my goal is to make this tool accessible to people not actively studying computer science.
 
 I have interviewed these stakeholders and I aim to use this data to tailor the experience to be more engaging across my audience. I am going to refer back to these users as I develop the program.
 
 ### Questionnaire for target market
 
 | **Which of the following subjects would you find most engaging for a learning tool.** | Space, Geographical or City |
-| --- | --- |
-| Stakeholder 1: Rambo| City |
-| Stakeholder 2: Noah | Space |
-| Stakeholder 3 : Rocco | Geographical Landscape |
+| ------------------------------------------------------------------------------------- | --------------------------- |
+| Stakeholder 1: Rambo                                                                  | City                        |
+| Stakeholder 2: Noah                                                                   | Space                       |
+| Stakeholder 3 : Rocco                                                                 | Geographical Landscape      |
 
-| **When using a tool to learn a new subject would you rather.** | more freedom or a more guided path |
-| --- | --- |
-| Stakeholder 1: Rambo | More control would be nice but it should be easy/intuitive to use |
-| Stakeholder 2: Noah | I would like both, maybe you could start with a more guided approach and then once you are more familliar you could be given more control |
-| Stakeholder 3 : Rocco | I would rather be guided at the start as I can find the options overwhelming |
+| **When using a tool to learn a new subject would you rather.** | more freedom or a more guided path                                                                                                        |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Stakeholder 1: Rambo                                           | More control would be nice but it should be easy/intuitive to use                                                                         |
+| Stakeholder 2: Noah                                            | I would like both, maybe you could start with a more guided approach and then once you are more familliar you could be given more control |
+| Stakeholder 3 : Rocco                                          | I would rather be guided at the start as I can find the options overwhelming                                                              |
 
 | **Which of the following analogies do you find most relatable and interisting** | Space, A Map (City or Rural) |
 | --- | --- |
@@ -110,13 +108,11 @@ I have interviewed these stakeholders and I aim to use this data to tailor the e
 | Stakeholder 2: Noah | The ruralMap would be cool but also the Space |
 | Stakeholder 3 : Rocco | The Industrial Map would be cool but also the Space |
 
-
 #### Client Questionnaire takeaways
 
-I beleve a Space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM so were already facinated by space.
+I believe a Space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM so were already fascinated by space.
 
-I think it is importaint to have at least a slow introduction into the algorithms. From research of other games I found the solutions that had an easy onboarding to be more useful. My stakeholders backed this up.
-
+I think it is important to have at least a slow introduction into the algorithms. From research of other games I found the solutions that had an easy onboarding to be more useful. My stakeholders backed this up.
 
 ### Features of Proposed solution
 
@@ -126,13 +122,13 @@ I think it is importaint to have at least a slow introduction into the algorithm
 My app should allow the user to navigate between different screens. This should be intuitive and the user should not get lost.
 
 **Clean Design**
-I will make the apearance of the app minimal with clear controls.
+I will make the appearance of the app minimal with clear controls.
 
 Creation of graph
 
 #### Performance
-The simulation should be able to run on lower end older hardware. This will make it more accesable to more people.
-The program should not abruptly crass
+The simulation should be able to run on lower end older hardware. This will make it more accessible to more people.
+The program should not abruptly crash
 
 #### Bugs/Exploits
 There should not be any Major bugs or exploits in the program.
@@ -147,7 +143,7 @@ I will also make small quality of life improvements that make explanations more 
 
 ### Limitations of Solution
 
-It may not be a very accurate simulation of the universe as there are many factors that are likely not included. Humans have not even explored another planet, so we do not know what it takes to explore a universe.
+It may not be a very accurate simulation of the universe as there are many factors that are likely not included. Humans have not even explored another planet (apart from a rover on Mars), so we do not know what it takes to explore a universe.
 
 It may be hard to show how the algorithms involved work so the game can only educate the user on if they exist.
 
@@ -171,12 +167,10 @@ This might include
 #### Thinking Ahead
 In each of the subcomponents of my game I am going to decide what are the inputs and outputs of my the function
 
-
 #### Thinking Procedurally
 
 I am going to break the game down into sub-systems to make it easier to write.
-I will use a top down design when designing the archtecture
-
+I will use a top down design when designing the architecture.
 
 #### Thinking Logically
 My App is going to be event driven so will do things in a logical order step by step.
@@ -188,21 +182,21 @@ Lots of parts of my program will hapen at the same time. The ship will need to m
 
 ### Choosing a Framework
 
-| **Platform** | **Description** | **Pros** | **Cons** |
-| --- | --- | --- | --- |
-| Unity/Unreal | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine. | I could make the program 3D however my game<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine meaning I will not have to code these elements. However this will mean that I have less control over the program which is a negative. | A game engine like this can be overly complex for my program , they are designed for video games involving more complex graphics |
-| Godot | Godot is a lightweight Game engine used for both 2D and 3D games | Very lightweight and simple to use.<br><br>I can write in GDScript which is a simple language similar of python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms including ios devices|     |
-| Swift / SpriteKit | Swift is Apples programming language and SpriteKitis a simple graphics API I could use with it to make my game. SpriteKit is still feature ritch and powerful with their Node System and SKActions. | I could make my app work on all apple devices such as tablets and phones which is a more convenient way.<br><br>It will be more efficient as swift is statically typed meaning it will be more optimised by the compiler | The game will not be playable on other platforms like android or windows as will be exclusively iOS. |
-| Pygame | Pygame is a simple 2D graphics library that uses python. | I can write the project in python which has easy syntax and is quite lightweight. | It is very basic so I will have to program algorithms like shortest path from scratch |
-| Defold | Defold is a simple Game Engine that uses Lua |     |     |
+| **Platform**                                | **Description**                                                                                                                                                                                     | **Pros**                                                                                                                                                                                                                                       | **Cons**                                                                                                                                                                                                                                                             |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Unity](https://unity.com/)/Unreal          | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine.                                                                              | I could make the program 3D however my game<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine meaning I will not have to code these elements.  | A game engine like this can be overly complex for my program , they are designed for video games involving more complex graphics. <br><br>I will have less control over the program if it is using pre-backed functions which means I don't write as many algorithms |
+| [Godot](https://godotengine.org/)           | Godot is a lightweight Game engine used for both 2D and 3D games                                                                                                                                    | Very lightweight and simple to use.<br><br>I can write in GDScript which is a simple language similar of python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms including ios devices | Like Unity, this is probably overkill<br><br>Too many functions provided in the framework so less algorithms to write                                                                                                                                                |
+| [Swift](https://www.swift.org/) / SpriteKit | Swift is Apples programming language and SpriteKitis a simple graphics API I could use with it to make my game. SpriteKit is still feature ritch and powerful with their Node System and SKActions. | I could make my app work on all Apple devices such as tablets and phones which is a more convenient for my target audience.<br><br>It will be more efficient as Swift is statically typed meaning it will be more optimised by the compiler    | The game will not be playable on other platforms like Android or Windows as will be exclusively iOS.                                                                                                                                                                 |
+| [Pygame](https://www.pygame.org/)<br>       | Pygame is a simple 2D graphics library that uses python.                                                                                                                                            | I can write the project in Python which has easy syntax and is quite lightweight.                                                                                                                                                              | It is very basic so I will have to program all user interface components from scratch                                                                                                                                                                                |
+
 
 #### Choice
 
 The main three contenders are Swift / SpriteKit, Pygame and Godot.
 
-After considering the benefits and drawbacks of each framework I have decided to use swift for my project. I will specifically be using SpriteKit for the graphics and SwiftUI for the controls and User Interface. I like the simplicity of this as it means I have more control over my game. Another main factor in my decision means I can program it in swift which is a strongly typed language meaning great efficiency compared to something like using python with pygame which was a close second choice. I prefer this over a game engine which would require me to code in C# or C++ which are more complex.
+After considering the benefits and drawbacks of each framework I have decided to use Swift for my project. I will specifically be using SpriteKit for the graphics and SwiftUI for the controls and User Interface. I like the simplicity of this as it means I have more control over my game. Another main factor in my decision means I can program it in Swift which is a strongly typed language meaning great efficiency compared to something like using python with Pygame which was a close second choice. I prefer this over a game engine which would require me to code in C# or C++ which are more complex.
 
-However this will mean that the app can only be played on apple devices, this could be a good start as they are popular with my audience. I found it is also quite difficult to have an android version aswel as I would need to rewrite it due to the specific frameworks I have selected. It may be more accessible if I make a webapp
+However this will mean that the app can only be played on Apple devices, this could be a good start as they are popular with my audience. I found it is also quite difficult to have an Android version as I would need to rewrite it due to the specific frameworks I have selected. It may be more accessible if I make a Web App but Swift does not allow this.
 
 ### System Requirements
 #### Hardware
@@ -221,19 +215,17 @@ As I am using SwiftUI it will have to be an apple device such as an iPad, Mac or
 | Runs macOS, iOS, iPadOS | Swift, SwiftUI and SpriteKit only works on these operating systems |
 
 ### Success Criteria
-
 | **Criteria** | **Reason** |
-| Teach what a graphing algorithm is | The  |
-| Show the uses of graphing algorithms | The user should know what graph graphs and graph traversal algorithms are used for (e.g maps)|
-| Simulate a variety of graphing algorithms on a variety of graphs | I need to show that there is a range of graphing algorithms that are used and their benifits and drawbacks. A variety of graphs will be better as different algorithms work better for different graphs |
-
-
+| --- | --- |
+| Teach what a graph algorithm is | The user needs a clear foundation before exploring specific algorithms. |
+| Show the uses of graph algorithms | The user should understand real-world uses of graph and graph traversal algorithms (for example, maps and routing). |
+| Simulate a variety of graph algorithms on different graphs | This demonstrates that different algorithms have different strengths and weaknesses, and that performance depends on graph structure. |
 
 ## Design
 
 ### Problem Decomposition
 I have broken down my problem into the following subcomponents.
-When deveoping I will do sprints for each of these components.
+When developing I will do sprints for each of these components.
 
 #### Hierachy Diagram 
 ```mermaid
@@ -446,13 +438,15 @@ A* uses a priority queue based on a combination (A 50/50 split) between the clos
 When researching the algorithms I found there was one more algorithm that would complete the program. Although Greedy (BFS) is not in the A-Level spec it has the same core idea of the others as it uses a prioriy queue which only has
 
 
-Here is a summary table of the algorithms : 
+Here is a summary table of the algorithms and the features they use:
 
-| **GalaxyBuilder** | BFS |	DFS	| Greedy BFS |	Djiskstra |	AStar |
-| **Frontier Data Structure** | Queue | Stack | Priority Queue | Priority Queue| Priority Queue |
-| **Use Weights** | --- | --- | Y | Y | Y |
-| **Use Heuristic** | --- | --- | Y | --- | Y |
-| **Priority Function** | --- |	--- | Heuristic | Weight | Heuristic + Weight |
+| Feature | GalaxyBuilder | BFS | DFS | Greedy BFS | Dijkstra | A* |
+| --- | --- | --- | --- | --- | --- | --- |
+| Frontier Data Structure | Queue | Stack | Priority Queue | Priority Queue | Priority Queue | Priority Queue |
+| Use Weights | --- | --- | --- | Y | Y | Y |
+| Use Heuristic | --- | --- | --- | Y | --- | Y |
+| Priority Function | --- | --- | --- | Heuristic | Weight | Heuristic + Weight |
+
 
 #### Subcomponent Four : Algorithm Control : Model
 
@@ -461,7 +455,7 @@ When writing the algorithm
 
 ##### Undo/Redo Stack
 One of my requirements is that the user should be able to replay the steps of the algorithm
-Anouther Requirement is that my program is efficeint to optimise performance on less powerful devices.
+Another Requirement is that my program is efficeint to optimise performance on less powerful devices.
 To implement this I am going to use a stack that stores the state.
 
 I will create a data structure that saves the state of the algorithm
@@ -785,7 +779,6 @@ The functions that are required are:
 * **heuristic** will give a the chosen heuristic to guide the search. In my case this was the absolute distance to the target.
 * **isEqual** will alow two nodes to be compared to check if two nodes are the same so the program knows if the graph has been solved when (current node == target node).
 
-
 #### BaseSearch
 I made my Search Algorithms all inherit from a Generic BaseSearch class.
 This acted partly like a protocol as it defined the functions the child classes should have. However the base search implemented some basic generic functionality that was overriden when neccessary.
@@ -796,7 +789,7 @@ This acted partly like a protocol as it defined the functions the child classes 
 
 #### A*
 
-For A* the priority function was still extreamly simple
+For A* the priority function was still extremely simple:
 ```swift
 getNewWeight(n: n) + n.neighbour.heuristic(to: to)
 ```
@@ -804,9 +797,7 @@ getNewWeight(n: n) + n.neighbour.heuristic(to: to)
 #### Greedy Best First Search 
 
 
-
 #### Minor improvements to prior stages
-
 
 
 ### Stage Four : Algorithm Control
@@ -831,13 +822,10 @@ struct AlgorithmState{
 }
 ```
 
-Different to design I did not include a redo Stack that stored the future stages. The argument that it is less efficient I dont think is a problem as it is only being done on event and the calculations are actually not that big.
-
-
-
+Different to design I did not include a redo Stack that stored the future stages. The argument that it is less efficient I do not think is a problem as it is only being done on event and the calculations are actually not that big.
 
 ### Stage Five : Algorithm Visualisation
-This stage was taking longer than expected and I found a few improvements I found neccessary aswell as using a new part of spritekit SKActions which allowed me to animate things
+This stage was taking longer than expected and I found a few improvements I found necessary as well as using a new part of SpriteKit SKActions which allowed me to animate things
 
 #### Heirachy of SpriteKit elements
 
@@ -898,14 +886,15 @@ I also made a title View which was a fixed string I could use from the title scr
 I made two stylised buttons that I could reuse. These are custom small SwiftUI views that I can reuse. They use the standard swiftUI buttons but apply further styling. This includes adding the spaceText modifier I already created.
 SwiftUI buttons take in a closure which is a function that is called when they are pressed. This meant my buttons had to take in a closure and then relay it to the button I use in the view.
 For the larger buttons I wanted to pass in text to them
+
 ```swift 
-        SpaceButton(imageSystemName: "moon", textLabel: "SpaceStyle", disabled: false, action: {print("hello there")})
-        LargeSpaceButton(text: "SpaceIsBig", imageSystemName: "star", action: {print("spaceIsBig")})
- ```
+SpaceButton(imageSystemName: "moon", textLabel: "SpaceStyle", disabled: false, action: {print("hello there")})
+LargeSpaceButton(text: "SpaceIsBig", imageSystemName: "star", action: {print("spaceIsBig")})
+```
 <img width="251" height="225" alt="image" src="https://github.com/user-attachments/assets/82fde299-3d98-4bce-95fc-3ce84f15b713" />
 
 ##### SpaceList
-This and the remaining componets are primarily used for the HUD for the algorithm Control
+This and the remaining components are primarily used for the HUD for the algorithm Control
 ##### SpaceSlider
 ##### SpacePicker
 
@@ -924,12 +913,13 @@ This is a screen that shows the user how to interact with the program incase the
 It also shows the user the controls and how to interact with the program.
 
 #### Algorithms Descriptions Page
-The start of my algorithms page is is generic to all the algorithms. Similar to how I realised how similar the algorithms core concepts really are I wanted to amplify this in the descriptions.
+The start of my algorithms page is generic to all the algorithms. Similar to how I realised how similar the algorithms core concepts really are I wanted to amplify this in the descriptions.
 
 For the algorithm description I wrote it so the information is not stored as text strings in the page.
 but are accessed from the algorithm object itself. I loop through all the algorithms and then display their individual descriptions. This way if I add new algorithms I dont need to edit the descriptions page but if I add a description to the algorithm object it will just update the page automatically.
 
-Here is the code in the algorithm descriptions page that loops through all the algorithms and adds the descriptions to the page
+Here is the code in the algorithm descriptions page that loops through all the algorithms and adds the descriptions to the page:
+
 ```swift
 ForEach(GameController.searchAlgorithms, id: \.self) { algorithm in
 	if let algorithmType = GameController.algorithmTypes[algorithm] {
@@ -968,13 +958,16 @@ I found this to be the most challenging part of creating the UI.
 #### Minor improvements to prior stages
 
 ##### Starry Background
-This is a bonus SpriteKitview I created for decorative reasons. It uses spriteKit to create a nice starry background for the screens. It's algorithm was random so each starry background is different. The alogrithm is vry simple as it simply randomly places stars a random number in a random position in a given range for a set number of iterations. I used some of spriteKits effects like glow which gave a glow around the border on the individual stars which were just small dots/circles.
-This code is the code that generates the stars and puts it under the stars node which is added to the spritekit gametree.
+This is a bonus SpriteKitView I created for decorative reasons. It uses spriteKit to create a nice starry background for the screens. It's algorithm was random so each starry background is different. The alogrithm is vry simple as it simply randomly places stars a random number in a random position in a given range for a set number of iterations. I used some of spriteKits effects like glow which gave a glow around the border on the individual stars which were just small dots/circles.
+
+This code is the code that generates the stars and puts it under the stars node which is added to the SpriteKit game tree.
 ``` swift
 let stars = SKNode()
         for _ in 0...starCount{
-
-            let position = CGPoint(x: Int.random(in: -size...size), y: Int.random(in: -size...size)) // Randomly Generates Position
+			// Randomly Generates Position
+            let position = CGPoint(
+	            x: Int.random(in: -size...size), 
+	            y: Int.random(in: -size...size)) 
             let star = SKShapeNode(circleOfRadius: 0.5)
             star.glowWidth = 0.5
             star.position = position
@@ -989,7 +982,8 @@ This is shown behind all the screens
 Learnings (things added later)
 Non random test galaxies
 Edges should not intersect as it makes it hard to visualise. This is why i introduced the checklines
-Implemnt in future: 
+
+Implement in future: 
 The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly and start planet has neighbours
 
 #### Subcomponent Two : Graph Rendering
@@ -1003,11 +997,10 @@ The start and end planets should be a reasonable distance from each other to pre
 #### Subcomponent Six : User Interface
 
 ##### Text Based SwiftUI pages
-One small thing was I found the text/image based information pages to be quite static and boring. One reason being that I used images in theses screens which were simply screenshots It may have been better if I used small spritekit windows in the swiftUI view to make it more interactive. This would futureproof it too as if I updated the gameplay screens it will automatically update in the screenshots instead of me having to take new screenshots.
+One small thing was I found the text/image based information pages to be quite static and boring. One reason being that I used images in theses screens which were simply screenshots It may have been better if I used small SpriteKit windows in the swiftUI view to make it more interactive. This would future-proof it too as if I updated the gameplay screens it will automatically update in the screenshots instead of me having to take new screenshots.
 This also meant that the starry background in the screenshots would move relative to the starry background in the page which was a small issue but still could be better.
 
-I also thought the text and UI components did not optimise space particularly well. The back button limited the available screan real estate. To do this better I would have overlayed the UI componets and used transparent images. 
-
+I also thought the text and UI components did not optimise space particularly well. The back button limited the available screen real estate. To do this better I would have overlayed the UI components and used transparent images. 
 
 ## Sources
 
