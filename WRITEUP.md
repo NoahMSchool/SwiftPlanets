@@ -274,7 +274,7 @@ Number of Planets, Connection Length
 ##### Outputs
 Graph with connected nodes or planets
 ##### Validation
-At least two planets and up to a sensible limit which will be decided.	The start and end planets should not be the same planet.
+At least two planets and up to a sensible limit which will be decided.	The start and end planets should not be the same planet. Planets should not be too close to each other or go on top of each other.
 
 Learnings (things added later)
 Non random test galaxies
@@ -344,7 +344,6 @@ Buttons that The user can press. Menus the user can sellect
 ##### Outputs
 Affect program when buttons are pressed or items are selected by calling functions or updating variables.
 Give a visual interface of the program
-
 ##### Validation
 The views should only allow for valid inputs such as selecting objects that exist or numbers in a correct range. 
 
@@ -368,9 +367,18 @@ This means when changing the objects properties it will update any views using t
 
 #### View (User Interface)
 The Views Provides a GUI for the user to see and interact with the program. 
+
 For this I will need to use a graphcs library. I am going to be using two, SpriteKit and SwiftUI.
-**Spritekit** is 
-**SwiftUI** is Apples declaritive
+SpriteKit will be used for the areas where I need more control such as drawing graphs and custom animations.
+SwiftUI is going to be used for the overall app and navigation between screens
+**Spritekit** 
+```SpriteKit is a general-purpose framework for drawing shapes, particles, text, images, and video in two dimensions.```
+SpriteKit is imperitive so I have control over exactly what is being rendered. It has a 2D coordinate system and allows me to place nodes in precise positions and draw shapes. This is importaint as I have control so I can draw graphs exacly how I want.
+
+**SwiftUI**
+```SwiftUI is a declarative framework for building user interfaces for iOS, iPadOS, watchOS, tvOS, visionOS and macOS, developed by Apple Inc```
+Declaritive programming languages are higher level than imperitive so it uses Abstraction so I dont need to worry about the low level how the UI is created.
+This will mean that my UI will adapt to all screen sizes with little effort! This is because I define what I want the UI to look like and it will generate it so it is not generated with a particular screen size in mind. 
 
 ##### The Views include :
 * Graph Rendering
@@ -384,11 +392,19 @@ I am going to use swiftUI observable object which is an an object that will noti
 ### Implementation of Subcomponnets
 
 #### Subcomponent One : Graph generation : Model
-As this is not to do with the graphics I do not need to use any graphics libraries however It will use coordinates. This will be provided to the graph rendering component which will use SpriteKit to render it
+As this is not to do with the graphics I do not need to use any graphics libraries however It will use coordinates. This will be provided to the graph rendering component which will use SpriteKit to render it.
+
+I decided that the graphs I use are going to be undirected meaning there is no one way relationships between nodes, I think this is simpler for someone new to graphs. The graphs are going to be weighted however as algorithms like dijkstra and A* are more suitable for weighted graphs. My graphs are not required to be fully connected so it is possible that the graphs are unsolvable. I think this is importaint as it exposes the user to the case that algorithm finishes on the case that it has not found a path to the target node.
+
+I need to create some algorithm that I use to generate a 2D graph that fits the requirements:
+* The nodes should not be too close or on top of each other
+* The nodes are distributed roughly evenly but still look random.
+* Most graphs created should be solvable
+* The connected nodes should be based on the distance between the nodes.
 
 #### Subcomponent Two : Graph rendering : View
 
-### SpriteKit
+##### SpriteKit
 For rendering the Graph I am going to use Spritekit. Spritekit is 
 
 ##### Planets/Nodes
@@ -403,7 +419,15 @@ There should be a text box on the lines which will be used represent the weight.
 For the search algorithms I realised they are not that different from each other. They all have a list of nodes to visit and the nodes they have visited. The only difference is the order they are visited in.
 
 ##### General Search
-I will implement a general search class that the other algorithms will inherit from this will have the core functinality that all the search algorithms require
+I will implement a general search class that the other algorithms will inherit from this will have the core functinality that all the search algorithms require.
+The way these search algorithms work is:
+
+1. They have a (priority)queue/stack to decide what is the next node to visit and visit that node.
+2. They add this node to a visited list so the algorithm knows not to return.
+3. They check if they are on the target node, if so then they have found the target and the search has been completed.
+4. If not they see which nodes are connected to the current node and add them to the queue/stack, first checking if they are not there already using the list of already visited nodes
+5. Then continue back to step 1 until the target node is found or the nodes to visit list is empty which means that the node could not be found. (Maybe the start and end are not connected)
+
 ##### Breadth First Search (BFS)
 Breadth First Search uses a standard First In First Out queue. This will provide a broad search so will go to the nodes closer before going to further away nodes
 
@@ -432,6 +456,9 @@ Here is a summary table of the algorithms :
 
 #### Subcomponent Four : Algorithm Control : Model
 
+##### Solving Step By Step
+When writing the algorithm 
+
 ##### Undo/Redo Stack
 One of my requirements is that the user should be able to replay the steps of the algorithm
 Anouther Requirement is that my program is efficeint to optimise performance on less powerful devices.
@@ -445,14 +472,14 @@ To fix this I could make anouther stack that stores the next instructions
 together these two stacks and current state will store all the possible states of the algorithm.
 When moving forwards I will pop the current state from the forwards stack and when going backwards I will push the current state on the forwards stack.
 
-This will mean I calculate all the possible states at the start.
+This will mean I calculate all the possible states at the start and the algorithms dont need to be run every step.
 
 | **Option** | **Description** | **Benifits** | **Drawbacks** |
 | --- | --- | --- | --- |
 |     | Un |     |     |
 
 #### Subcomponent Five : Algorithm Visualisation : View
-To display progress of the algorithm 
+This componnet is very importaint which is to display progress of the algorithm to the user. This needs to be well done as it it the main purpose of the program.
 
 ##### Spaceship
 The spaceship Is going to be the object that traverses the graph. It will place emphasis on the current node being visited.
@@ -460,19 +487,23 @@ I am going to use SpriteKits SKSpriteNode which allows me to put 2D textures on 
 
 ##### Frontier and Explored Lists
 As well as UI elements it is importaint to show text based info. I want to show the lists of nodes that have been visited and are next to be visited.
-This will show
 
+The list of nodes to visit is the frontier. This is the queue/stack/priority queue that the algorithm uses to select the next node to visit.
+The list of visited node is the visited. This is a list of the nodes that have already been visited. I could add information next to these about the weight to get to it so far or the node it came from for more information.
 ##### Explanation Boxes
 To Tie all the Visualisation together I am going to have a text box.
-This will explain what is happening in each of the steps of the algorithm. I will premake a selection of strings that allow me to insert specific information in the correct location (such as the node name).
+This will explain what is happening in each of the steps of the algorithm. It will say what the algorithm is acctually doing while it is happening to help the user understand.
+I will premake a selection of strings that allow me to insert specific information in the correct location (such as the node name).
 I will also give the ability for the user to swap between Space Explanations (which use space vocab to increase engagement such as: Galaxy, Planet, Path) and a more Technically accurite Graph Explanations (which uses words like graph, node, edge).
+
+##### Planet and Path Colouring
+As the user Is looking at the graph for most of their time using the program the graph should also show the state of the algorithm.
+These will be the same colours as I coloured the lists for the frontier and the visited. I am going to highlight different nodes and color code them based off their significance.
+I am going to do this using the graph's interface i will create
 
 #### Subcomponent Six : User Interface : View
 All of the User Interface is going to be made with SwiftUI.
 
-```SwiftUI is a declarative framework for building user interfaces for iOS, iPadOS, watchOS, tvOS, visionOS and macOS, developed by Apple Inc```
-
-This will mean that my UI will adapt to all screen sizes with little effort!
 
 ##### Adaptability
 The User Interface needs to be able to adapt to different screen sizes. Although iPads are all the same 4:3 aspect ratio they can be rotated to be in portrait and my app still needs to work. It should also work on Mac's, iPhones and Headsets. If it is being windowed the size should adapt similar to a web page
@@ -518,7 +549,8 @@ stateDiagram-v2
 ##### Menu Screen
 This is the Screen that the user will start with. The user should be able to navigate to all the other screens from here
 ##### About Graphs/Algorithms
-This is going to be a scrollable text screen that will tell the user about the algorithms
+This is going to be a scrollable text screen that will tell the user about the algorithms.
+It is going to also contain images and tables to compare the algorithms as they are not too different from one anouther.
 ##### How to use screen
 Like the about screen this is going to be a scrollable screen with not much interaction.
 ##### Settings View
@@ -808,20 +840,6 @@ Different to design I did not include a redo Stack that stored the future stages
 This stage was taking longer than expected and I found a few improvements I found neccessary aswell as using a new part of spritekit SKActions which allowed me to animate things
 
 #### Heirachy of SpriteKit elements
-#### Starry Background
-This was a spritekit view I created for aesthtic reasons. It's algorithm was random so each starry background is different. The alogrithm is vry simple as it simply randomly places stars a random number of times. I used some of spriteKits effects like glow which gave a glow around the border.
-This code is the code that generates the stars and puts it under the stars node which is added to the spritekit gametree.
-``` swift
-let stars = SKNode()
-        for _ in 0...starCount{
-
-            let position = CGPoint(x: Int.random(in: -size...size), y: Int.random(in: -size...size)) // Randomly Generates Position
-            let star = SKShapeNode(circleOfRadius: 0.5)
-            star.glowWidth = 0.5
-            star.position = position
-            stars.addChild(star)
-        }
-```
 
 ##### Text Bubble
 To put UI elemnts over the spritekit scene turned out to be difficult and not the best way to do it. Instead I created my own SpriteKit elements which I could reuse. This inherited from SKNode and uses a lebelNode for text and a shapeNode for the border.
@@ -897,13 +915,13 @@ The Main Menu Screen was made up of The main title text which was defined in the
 
 <img width="622" height="347" alt="image" src="https://github.com/user-attachments/assets/187e5d8b-58a2-48d6-bb88-78cb56637585" />
 
-
 #### Graph Genaration Screen
 
 #### Graph Solving Screen
 
 #### How to use Screen
-This is a screen that shows the user how to interact with the program incase they are confuesd. It tells them what the colors mean and the stack
+This is a screen that shows the user how to interact with the program incase they are confuesd. It tells them what the colors codes mean and what the stacks and other UI elements represent.
+It also shows the user the controls and how to interact with the program.
 
 #### Algorithms Descriptions Page
 The start of my algorithms page is is generic to all the algorithms. Similar to how I realised how similar the algorithms core concepts really are I wanted to amplify this in the descriptions.
@@ -941,12 +959,29 @@ override class func getDescription()->String{
 ```
 
 #### Heirachy of SwiftUI elements
-Similar to SpriteKit I used reusable components to save development time and increase consistancy in the UI. 
+Similar to SpriteKit I used reusable components to save development time and increase consistancy in the UI.
+
+#### Making it adapt to screen size.
+I found this to be the most challenging part of creating the UI. 
 
 
 #### Minor improvements to prior stages
-§
 
+##### Starry Background
+This is a bonus SpriteKitview I created for decorative reasons. It uses spriteKit to create a nice starry background for the screens. It's algorithm was random so each starry background is different. The alogrithm is vry simple as it simply randomly places stars a random number in a random position in a given range for a set number of iterations. I used some of spriteKits effects like glow which gave a glow around the border on the individual stars which were just small dots/circles.
+This code is the code that generates the stars and puts it under the stars node which is added to the spritekit gametree.
+``` swift
+let stars = SKNode()
+        for _ in 0...starCount{
+
+            let position = CGPoint(x: Int.random(in: -size...size), y: Int.random(in: -size...size)) // Randomly Generates Position
+            let star = SKShapeNode(circleOfRadius: 0.5)
+            star.glowWidth = 0.5
+            star.position = position
+            stars.addChild(star)
+        }
+```
+This is shown behind all the screens
 
 ## Evaluation
 
@@ -958,10 +993,20 @@ Implemnt in future:
 The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly and start planet has neighbours
 
 #### Subcomponent Two : Graph Rendering
+
 #### Subcomponent Three : Algorithm Solving
+
 #### Subcomponent Four : Algorithm Control
+
 #### Subcomponent Five : Algorithm Visualisation
+
 #### Subcomponent Six : User Interface
+
+##### Text Based SwiftUI pages
+One small thing was I found the text/image based information pages to be quite static and boring. One reason being that I used images in theses screens which were simply screenshots It may have been better if I used small spritekit windows in the swiftUI view to make it more interactive. This would futureproof it too as if I updated the gameplay screens it will automatically update in the screenshots instead of me having to take new screenshots.
+This also meant that the starry background in the screenshots would move relative to the starry background in the page which was a small issue but still could be better.
+
+I also thought the text and UI components did not optimise space particularly well. The back button limited the available screan real estate. To do this better I would have overlayed the UI componets and used transparent images. 
 
 
 ## Sources
