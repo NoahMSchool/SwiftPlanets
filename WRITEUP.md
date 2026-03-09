@@ -1,28 +1,6 @@
-
-```swift
-protocol Traversable: Identifiable {
-    // This property requirement comes from Identifiable.
-    var id: UUID { get }
-    func getNeighbours()->[(neighbour : any Traversable, weight : Double)]
-    func isEqual(to other: any Traversable) -> Bool
-    func heuristic(to end: any Traversable) -> Double
-    
-}
-
-// Example of comparitor implementedx as a closure
-let sortedPaths = potentialPaths.sorted {
-    return $0.distance<$1.distance
-}
-
-```
-
-
 | **Name :**<br><br>Noah Marks                    | **Candidate Number : 1146** |
 | ----------------------------------------------- | --------------------------- |
-| **Agenda :**<br><br>Engaging Graphing Simulator | **Centre Number :*10132*    |
-
-
-<!-- TODO: Mention Computer Science (CS) abbreviation -->
+| **Agenda :**<br><br>Engaging Graphing Simulator | **Centre Number : 10132**    |
 
 # A level Comp-Sci Writeup 
 
@@ -75,7 +53,7 @@ I loved using this and found it very useful but one thing I would have liked is 
 
 #### Research Takeaways
 
-The main things I took away is that I wanted to make the program approachable and relatable to the user, intuitive to use and not rely on any knowledge fromthe user, this would make it accessible to my whole audience which is anyone seeking to learn about graphing algorihms. It 
+The main things I took away is that I wanted to make the program approachable and relatable to the user, intuitive to use and not rely on any knowledge from the user, this would make it accessible to my whole audience which is anyone seeking to learn about graphing algorihms. 
 
 ### Stakeholders and Audience
 
@@ -90,12 +68,6 @@ I have interviewed these stakeholders and I aim to use this data to tailor the e
 
 ### Questionnaire for target market
 
-| **Which of the following subjects would you find most engaging for a learning tool.** | Space, Geographical or City |
-| ------------------------------------------------------------------------------------- | --------------------------- |
-| Stakeholder 1: Rambo                                                                  | City                        |
-| Stakeholder 2: Noah                                                                   | Space                       |
-| Stakeholder 3 : Rocco                                                                 | Geographical Landscape      |
-
 | **When using a tool to learn a new subject would you rather.** | more freedom or a more guided path                                                                                                        |
 | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | Stakeholder 1: Rambo                                           | More control would be nice but it should be easy/intuitive to use                                                                         |
@@ -108,11 +80,16 @@ I have interviewed these stakeholders and I aim to use this data to tailor the e
 | Stakeholder 2: Noah | The ruralMap would be cool but also the Space |
 | Stakeholder 3 : Rocco | The Industrial Map would be cool but also the Space |
 
+| **Which of the following subjects would you find most engaging for a learning tool.** | Space, Geographical or City |
+| ------------------------------------------------------------------------------------- | --------------------------- |
+| Stakeholder 1: Rambo                                                                  | City                        |
+| Stakeholder 2: Noah                                                                   | Space                       |
+| Stakeholder 3 : Rocco                                                                 | Geographical Landscape      |
+
 #### Client Questionnaire takeaways
 
 I believe a Space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM so were already fascinated by space.
-
-I think it is important to have at least a slow introduction into the algorithms. From research of other games I found the solutions that had an easy onboarding to be more useful. My stakeholders backed this up.
+I think it is important to have at least a slow introduction into the algorithms. From research of other games I found the solutions that had an easy onboarding to be more useful. My stakeholders backed this up
 
 ### Features of Proposed solution
 
@@ -128,26 +105,21 @@ Creation of graph
 
 #### Performance
 The simulation should be able to run on lower end older hardware. This will make it more accessible to more people.
-The program should not abruptly crash
+The program should not abruptly crash. It should not be too processeur intensive so it should be fast to run with decent frame rates, not drain the devices battery life and boot up quickly. I do not want performance to be an issue as it is importaint that the user enjoys using the program.
 
 #### Bugs/Exploits
-There should not be any Major bugs or exploits in the program.
-As this would confuse/mislead the user.
+There should not be any Major bugs or Exploits in the program.  
+My focus will be on minimizing bugs that are accedentaly triggered that cause unexpected behaviour as this would confuse/mislead the user. 
 
 #### Information/Teaching
 
 As this is an educational tool everything needs to be factually correct.
 After and during development.
-
 I will also make small quality of life improvements that make explanations more true to what is actually happening
 
 ### Limitations of Solution
 
-It may not be a very accurate simulation of the universe as there are many factors that are likely not included. Humans have not even explored another planet (apart from a rover on Mars), so we do not know what it takes to explore a universe.
-
-It may be hard to show how the algorithms involved work so the game can only educate the user on if they exist.
-
-I may not have the capacity to add lots of levels so it may be limited to a tutorial and a main level.
+As I am targeting to make the simulator accessable and focussed on introducing to graphs it is naturally going to be less feature rich and the user will not have full control over the program. It is not targeted at experienced people simulating lots of graphs to test efficiency or testing unusual cases on algorithms. It is more a learning tool
 
 ### Using Computational Methods in the solution
 
@@ -169,7 +141,7 @@ In each of the subcomponents of my game I am going to decide what are the inputs
 
 #### Thinking Procedurally
 
-I am going to break the game down into sub-systems to make it easier to write.
+I am going to break the game down into sub-systems to make it easier to write. When developing I will work on each component individually.
 I will use a top down design when designing the architecture.
 
 #### Thinking Logically
@@ -178,16 +150,16 @@ I have to write lots of algorithms of varying complexity.
 
 #### Thinking Concurrently
 
-Lots of parts of my program will hapen at the same time. The ship will need to move, the galaxy will need to be generated, the paths will need to be found
+Lots of parts of my program will hapen at the same time. The ship will need to move, the galaxy will need to be generated, the paths will need to be found. This will mean that I need to do things asynchronously. There will be lots of objects in the game running functions continuously. This means that there will be multiple threads running at once which should be handled by the engine I use.
 
 ### Choosing a Framework
 
-| **Platform**                                | **Description**                                                                                                                                                                                     | **Pros**                                                                                                                                                                                                                                       | **Cons**                                                                                                                                                                                                                                                             |
-| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Unity](https://unity.com/)/Unreal          | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine.                                                                              | I could make the program 3D however my game<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine meaning I will not have to code these elements.  | A game engine like this can be overly complex for my program , they are designed for video games involving more complex graphics. <br><br>I will have less control over the program if it is using pre-backed functions which means I don't write as many algorithms |
-| [Godot](https://godotengine.org/)           | Godot is a lightweight Game engine used for both 2D and 3D games                                                                                                                                    | Very lightweight and simple to use.<br><br>I can write in GDScript which is a simple language similar of python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms including ios devices | Like Unity, this is probably overkill<br><br>Too many functions provided in the framework so less algorithms to write                                                                                                                                                |
-| [Swift](https://www.swift.org/) / SpriteKit | Swift is Apples programming language and SpriteKitis a simple graphics API I could use with it to make my game. SpriteKit is still feature ritch and powerful with their Node System and SKActions. | I could make my app work on all Apple devices such as tablets and phones which is a more convenient for my target audience.<br><br>It will be more efficient as Swift is statically typed meaning it will be more optimised by the compiler    | The game will not be playable on other platforms like Android or Windows as will be exclusively iOS.                                                                                                                                                                 |
-| [Pygame](https://www.pygame.org/)<br>       | Pygame is a simple 2D graphics library that uses python.                                                                                                                                            | I can write the project in Python which has easy syntax and is quite lightweight.                                                                                                                                                              | It is very basic so I will have to program all user interface components from scratch                                                                                                                                                                                |
+| **Platform** | **Description** | **Pros** | **Cons** |
+| ------------------------------------------- | --- | --- | --- |
+| [Unity](https://unity.com/)/Unreal | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine. | I could make the program 3D however my game<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine meaning I will not have to code these elements.  | A game engine like this can be overly complex for my program , they are designed for video games involving more complex graphics. <br><br>I will have less control over the program if it is using pre-made functions which means I don't write as many algorithms. For a unique project like graphing I would want more control.  |
+| [Godot](https://godotengine.org/) | Godot is a lightweight Game engine used for both 2D and 3D games                                                                                                                                    | Very lightweight and simple to use.<br><br>I can write in GDScript which is a simple language similar of python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms including ios devices | Like Unity, this is probably overkill<br><br>Too many functions provided in the framework so less algorithms to write                                                                                                                                                |
+| [Swift](https://www.swift.org/) / SpriteKit | Swift is Apples programming language and SpriteKitis a simple graphics API I could use with it to make my game. SpriteKit is still feature ritch and powerful with their Node System and SKActions. | I could make my app work on all Apple devices such as tablets and phones which is a more convenient for my target audience.<br><br>It will be more efficient as Swift is statically typed meaning it will be more optimised by the compiler    | The game will not be playable on other platforms like Android or Windows as will be exclusively iOS. |
+| [Pygame](https://www.pygame.org/)<br>       | Pygame is a simple 2D graphics library that uses python. | I can write the project in Python which has easy syntax and is quite lightweight. | It is very basic so I will have to program all user interface components from scratch |
 
 
 #### Choice
@@ -674,7 +646,7 @@ classDiagram
 ## Development
 
 ### Stage One/Two : Random Galaxy Generation/Rendering
-
+I did the genaration of the galaxy and the rendering in parralell as it means I can visualise what is being done which is importaint to know if I am doing it correctly 
 #### Generation
 
 My first task was to randomly generate a graph/galaxy. This would consists of nodes/planets and edges which connect the path.
@@ -726,6 +698,14 @@ After Creating the random galaxy generator I realised there were lots of interse
 In order to delete edges and I need to decide which edges to delete.
 I decided to keep the shorter edges and remove the longer edges that intersect with the shorter edges.
 
+I used a closure with the sorted to compare which is the shorter edge. I am using a built in sort function for efficiency
+```swift
+// Example of comparitor implemented as a closure
+let sortedPaths = potentialPaths.sorted {
+    return $0.distance<$1.distance
+}
+```
+
 To fix the Lines going through planets  I thought of putting edges across the planet nodes. This meant that when an edge passed through a planet it would be deleted.
 However when developing this I encountered a bug that caused edges that ... to be deleted
 The fix to this was to put 4 edges from the centre of the planet to the circumference.
@@ -753,8 +733,6 @@ To deterimine the orientation of a line I used the sign of the cross product.
 Here is the code I used to check two lines intersect
 
 #### Minor improvements to prior stages
-
-
 
 
 ### Stage Three - **Implementing Search Algorithms**
