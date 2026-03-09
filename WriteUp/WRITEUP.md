@@ -6,13 +6,6 @@
 # A level Comp-Sci Writeup 
 
 
-![IMG_0701](https://github.com/user-attachments/assets/7f20cfe2-92fe-4e65-a3e2-bd88b7e33dfc)
-![IMG_0700](https://github.com/user-attachments/assets/f095f701-f961-47f4-9a86-62e30eb9f9db)
-![IMG_0699](https://github.com/user-attachments/assets/37f9e30e-9480-4ff2-837e-101b525d7cdd)
-![IMG_0698](https://github.com/user-attachments/assets/def1f340-4eca-4022-afd2-b1abbc215311)
-![IMG_0697](https://github.com/user-attachments/assets/039c34de-9fd3-4edc-9786-389b894511d8)
-
-
 ## Analysis
 
 ### Problem Recognition
