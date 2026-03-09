@@ -197,6 +197,7 @@ As I am using SwiftUI it will have to be an apple device such as an iPad, Mac or
 
 ## Design
 
+
 ### Problem Decomposition
 I have broken down my problem into the following subcomponents.
 When developing I will do sprints for each of these components.
@@ -313,11 +314,6 @@ Give a visual interface of the program
 ##### Validation
 The views should only allow for valid inputs such as selecting objects that exist or numbers in a correct range. 
 
-![IMG_0702](https://github.com/user-attachments/assets/ac1abd48-cd2c-4566-a51f-f9c2c9f81217)
-![IMG_0696](https://github.com/user-attachments/assets/539a2c82-fa08-4b86-b6b1-9201e02f8853)
-![IMG_0695](https://github.com/user-attachments/assets/16eb7c33-a43e-4350-90a8-e4aa918a7d08)
-
-
 ### System Overview / Architecture
 
 I will use the Model View Controller design pattern to separate the components of my app.
@@ -398,6 +394,8 @@ I need to create some algorithm that I use to generate a 2D graph that fits the 
 * Most graphs created should be solvable
 * The connected nodes should be based on the distance between the nodes.
 
+![GalaxyGeneration](https://github.com/user-attachments/assets/54ac3060-4519-4aa2-befa-87da94b83d19)
+
 #### Subcomponent Two : Graph rendering : View
 
 ##### SpriteKit
@@ -413,6 +411,10 @@ There should be a text box on the lines which will be used represent the weight.
 
 #### Subcomponent Three : Algorithm Solving : Model
 For the search algorithms I realised they are not that different from each other. They all have a list of nodes to visit and the nodes they have visited. The only difference is the order they are visited in.
+
+
+![Algorithms](https://github.com/user-attachments/assets/bd547fbb-1660-4bb2-b38b-7d9e4bf8b2e4)
+
 
 ##### General Search
 I will implement a general search class that the other algorithms will inherit from this will have the core functinality that all the search algorithms require.
@@ -454,6 +456,9 @@ Here is a summary table of the algorithms and the features they use:
 
 #### Subcomponent Four : Algorithm Control : Model
 
+![GraphControl](https://github.com/user-attachments/assets/ab664823-7ee0-4fb6-8102-55429821660a)
+
+
 ##### Solving Step By Step
 When writing the algorithm 
 
@@ -479,6 +484,10 @@ This will mean I calculate all the possible states at the start and the algorith
 #### Subcomponent Five : Algorithm Visualisation : View
 This componnet is very importaint which is to display progress of the algorithm to the user. This needs to be well done as it it the main purpose of the program.
 
+![Frontier](https://github.com/user-attachments/assets/fb01a530-c8b6-4520-8383-fe3cdbd789eb)
+![GraphSolving](https://github.com/user-attachments/assets/9a66c195-65f1-4da8-ab85-12e208d0c1b5)
+
+
 ##### Spaceship
 The spaceship Is going to be the object that traverses the graph. It will place emphasis on the current node being visited.
 I am going to use SpriteKits SKSpriteNode which allows me to put 2D textures on a object.
@@ -502,6 +511,10 @@ I am going to do this using the graph's interface i will create
 #### Subcomponent Six : User Interface : View
 All of the User Interface is going to be made with SwiftUI.
 
+
+![AboutScreen](https://github.com/user-attachments/assets/d716bdb5-385f-4f5d-aef6-e2467646e336)
+![StartScreen](https://github.com/user-attachments/assets/da99b1e1-7ab1-4a8d-8e15-9ca406712a2f)
+![SettingsScreen](https://github.com/user-attachments/assets/0ba99730-a5ca-43fb-a628-675401961496)
 
 ##### Adaptability
 The User Interface needs to be able to adapt to different screen sizes. Although iPads are all the same 4:3 aspect ratio they can be rotated to be in portrait and my app still needs to work. It should also work on Mac's, iPhones and Headsets. If it is being windowed the size should adapt similar to a web page
