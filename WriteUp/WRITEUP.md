@@ -1,6 +1,7 @@
+
 | **Name :**<br><br>Noah Marks                    | **Candidate Number : 1146** |
 | ----------------------------------------------- | --------------------------- |
-| **Agenda :**<br><br>Engaging Graphing Simulator | **Centre Number : 10132**    |
+| **Agenda :**<br><br>Engaging Graphing Simulator | **Centre Number : 10132**   |
 
 # A level Comp-Sci Writeup 
 
@@ -353,6 +354,32 @@ This will mean that my UI will adapt to all screen sizes with little effort! Thi
 The controler while was not included in the subcomponents is still a large section of the program. It provides a bridge between the Models and the views and is essential for the program to run.
 I am going to use swiftUI observable object which is an an object that will notify and update observers when it changes
 
+
+```mermaid
+erDiagram
+	GALAXY {
+	}
+	PLANET {
+	}
+	SHIP {
+	}
+	BUILDER {
+	}
+	ALGORITHM {
+	}
+	TRAVERSABLE {
+	}
+	GALAXY||--|{PLANET:"has"
+	GALAXY||--||SHIP:"owns"
+	SHIP||--||PLANET:"located_on"
+	GALAXY||--||BUILDER:"generated_by"
+	GALAXY||--||ALGORITHM:"uses"
+	PLANET||--||TRAVERSABLE:"implements"
+	ALGORITHM||--|{TRAVERSABLE:"operates_on"
+
+```
+
+
 ### Implementation of Subcomponnets
 
 #### Subcomponent One : Graph generation : Model
@@ -536,113 +563,6 @@ These test graphs looked more strange as the length of the paths were not what d
 
 ### Further Post Development Test Data
 
-
-### Objects
-
-| **Object** | **Overview** | **Update Logic** | **Render** |
-| --- | --- | --- | --- |
-|     |     |     |     |
-
-
-```mermaid
-
----
-config:
-  look: neo
-  layout: dagre
-  theme: redux-color
-title: Top Level Entity Relationship Diagram
----
-erDiagram
-	direction TB
-	GALAXY {
-	}
-	PLANET {
-	}
-	SHIP {
-	}
-	BUILDER {
-	}
-	ALGORITHM {
-	}
-	TRAVERSABLE {
-	}
-	GALAXY||--|{PLANET:"has"
-	GALAXY||--||SHIP:"owns"
-	SHIP||--||PLANET:"located_on"
-	GALAXY||--||BUILDER:"generated_by"
-	GALAXY||--||ALGORITHM:"uses"
-	PLANET||--||TRAVERSABLE:"implements"
-	ALGORITHM||--|{TRAVERSABLE:"operates_on"
-
-```
-
-```mermaid
-
----
-config:
-  look: neo
-title: Use of Inheritance Galaxy Builder
----
-classDiagram
-        class GalaxyBuilder{
-            createPlanets(planetCount, spacing, mapSize)
-            calculatePlanetPaths(maxDistance)
-            planetNames : Array[string]
-        }
-    class RandomGalaxyBuilder{
-    }
-    class SquareGalaxyBuilder{
-    }
-    class TreeGalaxyBuilder{
-    }
-    GalaxyBuilder <|-- RandomGalaxyBuilder
-    GalaxyBuilder <|-- SquareGalaxyBuilder
-    GalaxyBuilder <|-- TreeGalaxyBuilder
-```
-```mermaid
-
----
-title : Use of Inheritance BaseSearch
----
-
-
-classDiagram
-        class BaseSearch{
-            start : Traversable
-            end : Traversable
-
-            useWeights : Bool
-            useHeuristic : Bool
-
-            getQueuePriority()
-        }
-
-        class Traversable{
-
-        }
-        class AlgorithmState{
-            current : Traversable
-            frontier : Array[neighbour: Traversable, weight: Double]
-            explored : [Traversable]
-            cameFrom : [UUID: (Traversable)?] = [:]
-            weightSoFar : [UUID: Double] = [:]
-            path : [Traversable] = []
-            backtrackPathFromPrevious : [Traversable] = []
-            completed : Bool
-            pathExists : Bool
-            explanation : String
-        }
-        BaseSearch <|-- Dijkstra
-        BaseSearch <|-- AStar
-        BaseSearch <|-- BreadthFirst
-        BaseSearch <|-- DepthFirst
-        BaseSearch <|-- GreedyBestFirst
-        BaseSearch *-- Traversable
-        BaseSearch *-- AlgorithmState
-```
-
-
 ## Development
 
 ### Stage One/Two : Random Galaxy Generation/Rendering
@@ -692,6 +612,24 @@ override class func createPlanets(planetCount: Int, spacing : Double = 100, mapS
 
 ```
 
+
+```mermaid
+classDiagram
+        class GalaxyBuilder{
+            createPlanets(planetCount, spacing, mapSize)
+            calculatePlanetPaths(maxDistance)
+            planetNames : Array[string]
+        }
+    class RandomGalaxyBuilder{
+    }
+    class SquareGalaxyBuilder{
+    }
+    class TreeGalaxyBuilder{
+    }
+    GalaxyBuilder <|-- RandomGalaxyBuilder
+    GalaxyBuilder <|-- SquareGalaxyBuilder
+    GalaxyBuilder <|-- TreeGalaxyBuilder
+```
 #### CheckLines
 After Creating the random galaxy generator I realised there were lots of intersections of edges in the graph. The edges went through planets. This looked ugly and could be confusing to the user.
 
@@ -775,10 +713,72 @@ getNewWeight(n: n) + n.neighbour.heuristic(to: to)
 #### Greedy Best First Search 
 
 
+#### Diagram of searching components
+
+```mermaid
+classDiagram
+        class BaseSearch{
+            start : Traversable
+            end : Traversable
+
+            useWeights : Bool
+            useHeuristic : Bool
+
+            getQueuePriority()
+        }
+
+        class Traversable{
+
+        }
+        BaseSearch <|-- Dijkstra
+        BaseSearch <|-- AStar
+        BaseSearch <|-- BreadthFirst
+        BaseSearch <|-- DepthFirst
+        BaseSearch <|-- GreedyBestFirst
+        BaseSearch *-- Traversable
+```
+
+
+
 #### Minor improvements to prior stages
 
 
 ### Stage Four : Algorithm Control
+
+
+
+```mermaid
+classDiagram
+        class BaseSearch{
+            start : Traversable
+            end : Traversable
+
+            useWeights : Bool
+            useHeuristic : Bool
+
+            getQueuePriority()
+        }
+
+        class Traversable{
+
+        }
+        class AlgorithmState{
+            current : Traversable
+            frontier : Array[neighbour: Traversable, weight: Double]
+            explored : [Traversable]
+            cameFrom : [UUID: (Traversable)?] = [:]
+            weightSoFar : [UUID: Double] = [:]
+            path : [Traversable] = []
+            backtrackPathFromPrevious : [Traversable] = []
+            completed : Bool
+            pathExists : Bool
+            explanation : String
+        }
+        BaseSearch *-- Traversable
+        BaseSearch *-- AlgorithmState
+```
+
+#### Step by Step Solving
 
 #### Undo/Redo Stack
 I made an UNDO stack to store the history of the algorithm.
