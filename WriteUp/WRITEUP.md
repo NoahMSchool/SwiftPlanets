@@ -5,6 +5,14 @@
 
 # A level Comp-Sci Writeup 
 
+
+![IMG_0701](https://github.com/user-attachments/assets/7f20cfe2-92fe-4e65-a3e2-bd88b7e33dfc)
+![IMG_0700](https://github.com/user-attachments/assets/f095f701-f961-47f4-9a86-62e30eb9f9db)
+![IMG_0699](https://github.com/user-attachments/assets/37f9e30e-9480-4ff2-837e-101b525d7cdd)
+![IMG_0698](https://github.com/user-attachments/assets/def1f340-4eca-4022-afd2-b1abbc215311)
+![IMG_0697](https://github.com/user-attachments/assets/039c34de-9fd3-4edc-9786-389b894511d8)
+
+
 ## Analysis
 
 ### Problem Recognition
@@ -311,6 +319,10 @@ Affect program when buttons are pressed or items are selected by calling functio
 Give a visual interface of the program
 ##### Validation
 The views should only allow for valid inputs such as selecting objects that exist or numbers in a correct range. 
+
+![IMG_0702](https://github.com/user-attachments/assets/ac1abd48-cd2c-4566-a51f-f9c2c9f81217)
+![IMG_0696](https://github.com/user-attachments/assets/539a2c82-fa08-4b86-b6b1-9201e02f8853)
+![IMG_0695](https://github.com/user-attachments/assets/16eb7c33-a43e-4350-90a8-e4aa918a7d08)
 
 
 ### System Overview / Architecture
