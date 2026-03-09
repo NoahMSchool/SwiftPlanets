@@ -27,6 +27,7 @@ class BaseSearch{
      ***************/
     class func useHeuristic()->Bool{
         return false
+        
     }
     class func usesWeights()->Bool{
         return false

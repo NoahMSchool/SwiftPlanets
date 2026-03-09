@@ -32,6 +32,5 @@ struct SpaceText: ViewModifier{
         content
             .font(.custom("Chalkduster", size: 14))
             .foregroundColor(.white)
-
     }
 }

@@ -43,8 +43,8 @@ class PlanetNode : SKNode{
         addChild(planet)
         addChild(planetUILabel)
         addChild(planetNameLabel)
-        
     }
+    
     func hidePlanetLabel(){
         self.planetNameLabel.isHidden = true
     }

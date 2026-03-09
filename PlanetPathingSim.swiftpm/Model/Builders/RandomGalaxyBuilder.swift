@@ -17,6 +17,7 @@ class RandomGalaxyBuilder : GalaxyBuilder {
         var planetNamesShuffled = planetNames.shuffled()
         
         for i in 0...min(planetCount, options.count)-1{
+            print("hi")
             var name = "No Name \(i)"
             if !planetNamesShuffled.isEmpty{
                 name = planetNamesShuffled.removeFirst()
@@ -34,6 +35,7 @@ class RandomGalaxyBuilder : GalaxyBuilder {
     //gets lines from planets to help prevent paths going through planets
     class func getPlanetCheckLines(planets : [Planet])->[(start: CGPoint,end:  CGPoint)]{
         var checkLines : [(start: CGPoint, end: CGPoint)] = []
+        return []
         for planet in planets{
             checkLines+=planet.getCheckLines()
         }
@@ -64,7 +66,7 @@ class RandomGalaxyBuilder : GalaxyBuilder {
             //checks if goes through planets
             for checkLines in planetCheckLines{
                 if checkIntersections(p1: path.start.getPosition(), q1: path.end.getPosition(), p2: checkLines.start, q2: checkLines.end){
-                    hasIntersection = true
+                    hasIntersection = false
                     break
                 }   
             }

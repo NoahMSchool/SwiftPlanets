@@ -6,8 +6,8 @@ class Galaxy {
 
  init(){
         self.planets = []
- 
-    }
+ }
+    
     
     func resetPlanets(planetCount : Int, maxDistance : Double, builder : GalaxyBuilder.Type){        
         
