@@ -336,23 +336,20 @@ The Views Provides a GUI for the user to see and interact with the program.
 
 For this I will need to use a graphcs library. I am going to be using two, SpriteKit and SwiftUI.
 SpriteKit will be used for the areas where I need more control such as drawing graphs and custom animations.
-SwiftUI is going to be used for the overall app and navigation between screens
-**Spritekit** 
+SwiftUI is going to be used for the overall adaptive app UI and navigation between screens.
+##### Spritekit 
 ```SpriteKit is a general-purpose framework for drawing shapes, particles, text, images, and video in two dimensions.```
 SpriteKit is imperitive so I have control over exactly what is being rendered. It has a 2D coordinate system and allows me to place nodes in precise positions and draw shapes. This is importaint as I have control so I can draw graphs exacly how I want.
+It is a game engince that uses apples metal framework which will mean high performance rendering.
 
-**SwiftUI**
+##### SwiftUI
 ```SwiftUI is a declarative framework for building user interfaces for iOS, iPadOS, watchOS, tvOS, visionOS and macOS, developed by Apple Inc```
 Declaritive programming languages are higher level than imperitive so it uses Abstraction so I dont need to worry about the low level how the UI is created.
 This will mean that my UI will adapt to all screen sizes with little effort! This is because I define what I want the UI to look like and it will generate it so it is not generated with a particular screen size in mind. 
 
-##### The Views include :
-* Graph Rendering
-* Algorithm Visualisation
-
 #### Controller (Program Logic)
 
-The controler while was not included in the subcomponents is still a large section of the program. It provides a bridge between the Models and the views and is essential for the program to run.
+The controller while was not included in the subcomponents is still a large section of the program. It provides a bridge between the Models and the views and is essential for the program to run.
 I am going to use swiftUI observable object which is an an object that will notify and update observers when it changes
 
 
@@ -398,8 +395,7 @@ I need to create some algorithm that I use to generate a 2D graph that fits the 
 
 #### Subcomponent Two : Graph rendering : View
 
-##### SpriteKit
-For rendering the Graph I am going to use Spritekit. Spritekit is 
+For rendering the Graph I am going to use Spritekit. This is because I can draw exact shapes of planets and lines. I will have very exact control over what I am doing. 
 
 ##### Planets/Nodes
 The planets are going to be rendered using filled circles which are randomly selected from the planets. They will have a custom border whose color can be changed.
@@ -412,9 +408,7 @@ There should be a text box on the lines which will be used represent the weight.
 #### Subcomponent Three : Algorithm Solving : Model
 For the search algorithms I realised they are not that different from each other. They all have a list of nodes to visit and the nodes they have visited. The only difference is the order they are visited in.
 
-
 ![Algorithms](https://github.com/user-attachments/assets/bd547fbb-1660-4bb2-b38b-7d9e4bf8b2e4)
-
 
 ##### General Search
 I will implement a general search class that the other algorithms will inherit from this will have the core functinality that all the search algorithms require.
@@ -458,9 +452,18 @@ Here is a summary table of the algorithms and the features they use:
 
 ![GraphControl](https://github.com/user-attachments/assets/ab664823-7ee0-4fb6-8102-55429821660a)
 
-
 ##### Solving Step By Step
-When writing the algorithm 
+When writing these algorithms normally and how it is described previously in algorithm solving is that they use iteration or recursion. This means that local variables are created in a loops or functions and they are overidden on each iteration and do not persist in memory. If I want to run the algorithm step by step so the user can view it the options are:
+
+| **Method** | **Benifit** | **Drawback** |
+
+| Pausing the execution in the loop waiting for user input before continuing | This is easy to implement | The algorithm code would need to be run in a separate thread so it doesnt pause excecution of the main program. 
+| Storing state of the variables externally so they persist in memory | Data persists in memroy so I can jump to certain steps without having to rerun the algorithm from the start. | |I need to make a datastructure to store the state of the algorithm and write other functionality to use this datastructure to step forward and back or to steps in the algorithm |
+
+I am going to go with the 2nd choice as I beleve the ability to undo redo and move to certain steps is importaint. And 
+
+One thing worth mentioning about this decision is that running these search algorithms are not computationally expensive (especially as I would do it on imput) so running it every time on user input is not actually a major problem. Running it once compared to 10 times will have almost zero affect on performance. It is likely the processes rendering the graphics are more expensive than these algorithms. Although this is likely also not expensive as I am keeping it simple to allow it to run on low end/old hardward.
+
 
 ##### Undo/Redo Stack
 One of my requirements is that the user should be able to replay the steps of the algorithm
@@ -476,10 +479,6 @@ together these two stacks and current state will store all the possible states o
 When moving forwards I will pop the current state from the forwards stack and when going backwards I will push the current state on the forwards stack.
 
 This will mean I calculate all the possible states at the start and the algorithms dont need to be run every step.
-
-| **Option** | **Description** | **Benifits** | **Drawbacks** |
-| --- | --- | --- | --- |
-|     | Un |     |     |
 
 #### Subcomponent Five : Algorithm Visualisation : View
 This componnet is very importaint which is to display progress of the algorithm to the user. This needs to be well done as it it the main purpose of the program.
