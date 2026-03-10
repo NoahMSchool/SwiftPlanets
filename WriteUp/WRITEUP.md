@@ -456,14 +456,13 @@ Here is a summary table of the algorithms and the features they use:
 When writing these algorithms normally and how it is described previously in algorithm solving is that they use iteration or recursion. This means that local variables are created in a loops or functions and they are overidden on each iteration and do not persist in memory. If I want to run the algorithm step by step so the user can view it the options are:
 
 | **Method** | **Benifit** | **Drawback** |
-
-| Pausing the execution in the loop waiting for user input before continuing | This is easy to implement | The algorithm code would need to be run in a separate thread so it doesnt pause excecution of the main program. 
-| Storing state of the variables externally so they persist in memory | Data persists in memroy so I can jump to certain steps without having to rerun the algorithm from the start. | |I need to make a datastructure to store the state of the algorithm and write other functionality to use this datastructure to step forward and back or to steps in the algorithm |
+| --- | --- |
+| Pausing the execution in the loop waiting for user input before continuing | Reletively easy to implement | The algorithm code would need to be run in a separate thread so it doesnt pause excecution of the main program. | 
+| Storing state of the variables externally so they persist in memory so I can jump to certain steps without having to rerun the algorithm from the start. | I need to make a datastructure to store the state of the algorithm and write other functionality to use this datastructure to step forward and back or to steps in the algorithm |
 
 I am going to go with the 2nd choice as I beleve the ability to undo redo and move to certain steps is importaint. And 
 
 One thing worth mentioning about this decision is that running these search algorithms are not computationally expensive (especially as I would do it on imput) so running it every time on user input is not actually a major problem. Running it once compared to 10 times will have almost zero affect on performance. It is likely the processes rendering the graphics are more expensive than these algorithms. Although this is likely also not expensive as I am keeping it simple to allow it to run on low end/old hardward.
-
 
 ##### Undo/Redo Stack
 One of my requirements is that the user should be able to replay the steps of the algorithm
@@ -972,6 +971,11 @@ let stars = SKNode()
 This is shown behind all the screens
 
 ## Evaluation
+In this section I will go through the differnt components, Show the related success criteria in a table and mention any relevent added features and improvements that could be made.
+
+| Success Criteria | Achieved | Why/WhyNot |
+| --- | --- | --- | --- |
+
 
 #### Subcomponent One : Graph generation
 Learnings (things added later)
