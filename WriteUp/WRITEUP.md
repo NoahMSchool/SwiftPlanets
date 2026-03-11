@@ -51,7 +51,7 @@ This is not a graphing simulator but it is an educational tool making learning i
 There are lots of different high quality simulations on this platform. 
 PhET Is a non profit organisation founded by Carl Weiman. They have made their own framework for making simulations
 
-I loved using this and found it very useful but one thing I would have liked is if it added a creative twist to it to keep the user engaged. As this is a large platform with lots of pI may want to use an anlaogy of some sort to make the program more relatable to use.
+I loved using this and found it very useful but one thing I would have liked is if it added a creative twist to it to keep the user engaged. As this is a large platform with lots of pI may want to use an analogy of some sort to make the program more relatable to use.
 
 #### Research Takeaways
 
@@ -76,11 +76,11 @@ I have interviewed these stakeholders and I aim to use this data to tailor the e
 | Stakeholder 2: Noah                                            | I would like both, maybe you could start with a more guided approach and then once you are more familliar you could be given more control |
 | Stakeholder 3 : Rocco                                          | I would rather be guided at the start as I can find the options overwhelming                                                              |
 
-| **Which of the following analogies do you find most relatable and interisting** | Space, A Map (City or Rural) |
-| --- | --- |
-| Stakeholder 1: Rambo | I would love a space analogy |
-| Stakeholder 2: Noah | The ruralMap would be cool but also the Space |
-| Stakeholder 3 : Rocco | The Industrial Map would be cool but also the Space |
+| **Which of the following analogies do you find most relatable and interisting** | Space, A Map (City or Rural)                        |
+| ------------------------------------------------------------------------------- | --------------------------------------------------- |
+| Stakeholder 1: Rambo                                                            | I would love a space analogy                        |
+| Stakeholder 2: Noah                                                             | The ruralMap would be cool but also the Space       |
+| Stakeholder 3 : Rocco                                                           | The Industrial Map would be cool but also the Space |
 
 | **Which of the following subjects would you find most engaging for a learning tool.** | Space, Geographical or City |
 | ------------------------------------------------------------------------------------- | --------------------------- |
@@ -92,36 +92,6 @@ I have interviewed these stakeholders and I aim to use this data to tailor the e
 
 I believe a Space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM so were already fascinated by space.
 I think it is important to have at least a slow introduction into the algorithms. From research of other games I found the solutions that had an easy onboarding to be more useful. My stakeholders backed this up
-
-### Features of Proposed solution
-
-#### Usability
-
-**Menu with Navigation across screens**
-My app should allow the user to navigate between different screens. This should be intuitive and the user should not get lost.
-
-**Clean Design**
-I will make the appearance of the app minimal with clear controls.
-
-Creation of graph
-
-#### Performance
-The simulation should be able to run on lower end older hardware. This will make it more accessible to more people.
-The program should not abruptly crash. It should not be too processeur intensive so it should be fast to run with decent frame rates, not drain the devices battery life and boot up quickly. I do not want performance to be an issue as it is importaint that the user enjoys using the program.
-
-#### Bugs/Exploits
-There should not be any Major bugs or Exploits in the program.  
-My focus will be on minimizing bugs that are accedentaly triggered that cause unexpected behaviour as this would confuse/mislead the user. 
-
-#### Information/Teaching
-
-As this is an educational tool everything needs to be factually correct.
-After and during development.
-I will also make small quality of life improvements that make explanations more true to what is actually happening
-
-### Limitations of Solution
-
-As I am targeting to make the simulator accessable and focussed on introducing to graphs it is naturally going to be less feature rich and the user will not have full control over the program. It is not targeted at experienced people simulating lots of graphs to test efficiency or testing unusual cases on algorithms. It is more a learning tool
 
 ### Using Computational Methods in the solution
 
@@ -147,7 +117,7 @@ I am going to break the game down into sub-systems to make it easier to write. W
 I will use a top down design when designing the architecture.
 
 #### Thinking Logically
-My App is going to be event driven so will do things in a logical order step by step.
+My simulator is going to be event driven so will do things in a logical order step by step.
 I have to write lots of algorithms of varying complexity.
 
 #### Thinking Concurrently
@@ -156,12 +126,12 @@ Lots of parts of my program will hapen at the same time. The ship will need to m
 
 ### Choosing a Framework
 
-| **Platform** | **Description** | **Pros** | **Cons** |
-| ------------------------------------------- | --- | --- | --- |
-| [Unity](https://unity.com/)/Unreal | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine. | I could make the program 3D however my game<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine meaning I will not have to code these elements.  | A game engine like this can be overly complex for my program , they are designed for video games involving more complex graphics. <br><br>I will have less control over the program if it is using pre-made functions which means I don't write as many algorithms. For a unique project like graphing I would want more control.  |
-| [Godot](https://godotengine.org/) | Godot is a lightweight Game engine used for both 2D and 3D games                                                                                                                                    | Very lightweight and simple to use.<br><br>I can write in GDScript which is a simple language similar of python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms including ios devices | Like Unity, this is probably overkill<br><br>Too many functions provided in the framework so less algorithms to write                                                                                                                                                |
-| [Swift](https://www.swift.org/) / SpriteKit | Swift is Apples programming language and SpriteKitis a simple graphics API I could use with it to make my game. SpriteKit is still feature ritch and powerful with their Node System and SKActions. | I could make my app work on all Apple devices such as tablets and phones which is a more convenient for my target audience.<br><br>It will be more efficient as Swift is statically typed meaning it will be more optimised by the compiler    | The game will not be playable on other platforms like Android or Windows as will be exclusively iOS. |
-| [Pygame](https://www.pygame.org/)<br>       | Pygame is a simple 2D graphics library that uses python. | I can write the project in Python which has easy syntax and is quite lightweight. | It is very basic so I will have to program all user interface components from scratch |
+| **Platform**                                | **Description**                                                                                                                                                                                     | **Pros**                                                                                                                                                                                                                                       | **Cons**                                                                                                                                                                                                                                                                                                                          |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Unity](https://unity.com/)/Unreal          | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine.                                                                              | I could make the program 3D however my game<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine meaning I will not have to code these elements.  | A game engine like this can be overly complex for my program , they are designed for video games involving more complex graphics. <br><br>I will have less control over the program if it is using pre-made functions which means I don't write as many algorithms. For a unique project like graphing I would want more control. |
+| [Godot](https://godotengine.org/)           | Godot is a lightweight Game engine used for both 2D and 3D games                                                                                                                                    | Very lightweight and simple to use.<br><br>I can write in GDScript which is a simple language similar of python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms including ios devices | Like Unity, this is probably overkill<br><br>Too many functions provided in the framework so less algorithms to write                                                                                                                                                                                                             |
+| [Swift](https://www.swift.org/) / SpriteKit | Swift is Apples programming language and SpriteKitis a simple graphics API I could use with it to make my game. SpriteKit is still feature ritch and powerful with their Node System and SKActions. | I could make my app work on all Apple devices such as tablets and phones which is a more convenient for my target audience.<br><br>It will be more efficient as Swift is statically typed meaning it will be more optimised by the compiler    | The game will not be playable on other platforms like Android or Windows as will be exclusively iOS.                                                                                                                                                                                                                              |
+| [Pygame](https://www.pygame.org/)<br>       | Pygame is a simple 2D graphics library that uses python.                                                                                                                                            | I can write the project in Python which has easy syntax and is quite lightweight.                                                                                                                                                              | It is very basic so I will have to program all user interface components from scratch                                                                                                                                                                                                                                             |
 
 
 #### Choice
@@ -173,20 +143,51 @@ After considering the benefits and drawbacks of each framework I have decided to
 However this will mean that the app can only be played on Apple devices, this could be a good start as they are popular with my audience. I found it is also quite difficult to have an Android version as I would need to rewrite it due to the specific frameworks I have selected. It may be more accessible if I make a Web App but Swift does not allow this.
 
 ### System Requirements
-#### Hardware
 
-My game will be played on either a computer, tablet or a mobile device.
-As I am using SwiftUI it will have to be an apple device such as an iPad, Mac or iPhone
-
-| **Requirement** | **Reason** |
-| --- | --- |
-| Computer Mouse or touchscreen | Used for selecting objects and playing the game |
 
 #### Software
 
-| **Requirement** | **Reason** |
-| --- | --- |
-| Runs macOS, iOS, iPadOS | Swift, SwiftUI and SpriteKit only works on these operating systems |
+As I am using Swift/SwiftUI it will have to run an apple operating system.
+
+| **Requirement**                   | **Reason**                                                         |
+| --------------------------------- | ------------------------------------------------------------------ |
+| Runs macOS, iOS, iPadOS, VisionOS | Swift, SwiftUI and SpriteKit only works on these operating systems |
+
+#### Hardware
+
+My game will be played on either a computer, tablet or a mobile device.
+It also must be an apple device such as an iPad, Mac or iPhone to run a required operating system
+
+| **Requirement**               | **Reason**                                      |
+| ----------------------------- | ----------------------------------------------- |
+| Computer Mouse or touchscreen | Used for selecting objects and playing the game |
+
+### Features of Proposed solution
+
+### Limitations of Solution
+
+As I am targeting to make the simulator accessable and focussed on introducing to graphs it is naturally going to be less feature rich and the user will not have full control over the program. It is not targeted at experienced people simulating lots of graphs to test efficiency or testing unusual cases on algorithms. It is more a learning tool
+### Other Requirements
+#### Usability Requirements
+##### Menu with Navigation across screens
+My app should allow the user to navigate between different screens. This should be intuitive and the user should not get lost.
+##### Clean Design
+I will make the appearance of the app minimal with clear controls.
+
+##### Performance
+The simulation should be able to run on lower end older hardware. This will make it more accessible to more people.
+The program should not abruptly crash. It should not be too processeur intensive so it should be fast to run with decent frame rates, not drain the devices battery life and boot up quickly. I do not want performance to be an issue as it is importaint that the user enjoys using the program.
+
+##### Bugs/Exploits
+There should not be any Major bugs or Exploits in the program.  
+My focus will be on minimizing bugs that are accedentaly triggered that cause unexpected behaviour as this would confuse/mislead the user. 
+
+#### Information/Teaching
+
+As this is an educational tool everything needs to be factually correct.
+After and during development.
+I will also make small quality of life improvements that make explanations more true to what is actually happening
+
 
 ### Success Criteria
 | **Criteria** | **Reason** |
@@ -196,7 +197,6 @@ As I am using SwiftUI it will have to be an apple device such as an iPad, Mac or
 | Simulate a variety of graph algorithms on different graphs | This demonstrates that different algorithms have different strengths and weaknesses, and that performance depends on graph structure. |
 
 ## Design
-
 
 ### Problem Decomposition
 I have broken down my problem into the following subcomponents.

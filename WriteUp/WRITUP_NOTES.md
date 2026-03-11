@@ -76,24 +76,30 @@ development	testing	for	function	and	robustness.
 
 ## Evaluation
 
-•Used the test evidence to cross reference with 
+* Used the test evidence to cross reference with 
 the	success	criteria	to	evaluate	the	solution	
 explain how the evidence shows that the criteria 
 has	been	fully,	partially	or	not	met	in	each	case.
+
 * Provided	comments	on	how	any	partially	or	
 unmet criteria could be addressed in further 
 development.
+
 * Provided evidence of the usability features 
 justifying	their	success,	partial	success	or	failure	
 as	effective	usability	features.
+
 * Provided comments on how any issues with 
 partially	or	unmet	usability	features	could	be	
 addressed in further development.
+
 * Considered	maintenance	issues	and	limitations	of	
 the	solution.
+
 * Described how the program could be 
 developed	to	deal	with	limitations	and	potential	
 improvements / changes.
+
 * There is a well developed line of reasoning which 
 is	clear	and	logically	structured.	The	information	
 presented	is	relevant	and	substantiated.
