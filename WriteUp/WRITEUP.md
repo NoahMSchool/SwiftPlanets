@@ -190,22 +190,23 @@ I will also make small quality of life improvements that make explanations more 
 
 
 ### Success Criteria
-| **Criteria** | **Description** | **Reason** | **Analysis Link** |
 
-| **Functional** | --- | --- | --- |
-| Teach what a graph algorithm is and their uses| A page providing text/image based description about what graphing algorithms are and examples of their uses| The user needs a clear foundation before exploring specific algorithms, the user should understand real-world uses of graph and graph traversal algorithms (for example, maps and routing) |  |
-| Simulate all Graph Algorithms | It should be able to simulate all the graphing algorithms in the A level-specification. (These include; BFS, DFS, Dijkstra and A* | A level is often the first time students come across graphs so I think it is importaint to include at a minimum all the content these students will require. This allows demonstration that different algorithms have different strengths and weaknesses, and that performance depends on graph structure. | --- | 
-|  |  |  |  | 
+| ID  | **Criteria**                                   | **Description**                                                                                                                   | **Reason**                                                                                                                                                                                                                                                                                                | **Analysis Link** |
+| --- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+|     | **Functional**                                 |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
+| FR1 | Teach what a graph algorithm is and their uses | A page providing text/image based description about what graphing algorithms are and examples of their uses                       | The user needs a clear foundation before exploring specific algorithms, the user should understand real-world uses of graph and graph traversal algorithms (for example, maps and routing)                                                                                                                | --                |
+| FR2 | Simulate all Graph Algorithms                  | It should be able to simulate all the graphing algorithms in the A level-specification. (These include; BFS, DFS, Dijkstra and A* | A level is often the first time students come across graphs so I think it is important to include at a minimum all the content these students will require. This allows demonstration that different algorithms have different strengths and weaknesses, and that performance depends on graph structure. | ---               |
+| FR3 |                                                | Step by step                                                                                                                      |                                                                                                                                                                                                                                                                                                           |                   |
+|     |                                                | Visualisation                                                                                                                     |                                                                                                                                                                                                                                                                                                           |                   |
+|     | **Performance**                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
+| PR1 | Abrupt Crashes                                 |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
+|     |                                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
+|     |                                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
+|     | **Usability**                                  | ---                                                                                                                               | ---                                                                                                                                                                                                                                                                                                       | ---               |
+|     | Adaptive UI                                    | The program's user interface should resize and scale to fit the users devices screen                                              | The program should run equally well on all iOS devices to make it accessable.                                                                                                                                                                                                                             |                   |
+|     | Enjoyment                                      | Users should enjoy using it                                                                                                       | If users do not enjoy using the program they won't use it long enough to learn                                                                                                                                                                                                                            |                   |
+|     |                                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
 
-| **Performance** | --- | --- | --- |
-| Abrupt Crahses |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-
-| **Usability** | --- | --- | --- |
-| Adaptive UI | The program's user interface should resize and scale to fit the users devices screen | The program should run equally well on all iOS devices to make it accessable. |  | 
-|  |  |  |  | 
-|  |  |  |  | 
 **develop in devlopment**
 
 
@@ -863,11 +864,11 @@ To do this I made each node store the node which the ship came from.
 
 ### Stage Six : User Interface
 
-My User Interface needs to adapt and scale to fit different sized screens by looking consistant. visible and unintrusive for different devices. During this stage I used my ipad mini a lot for testing and tested using different window sizes on my laptop. 
+My User Interface needs to adapt and scale to fit different sized screens by looking consistant. visible and un-intrusive for different devices. During this stage I used my ipad mini a lot for testing and tested using different window sizes on my laptop. 
 Overall I found this to be harder than expected.
 
 The Screens that I included were the Menu Screen, Graph screen, How to use screen and a Algorithms Descriptions screen.
-I did not include a settings page as I did not find there were many controls in the program so I didn't think it was neccessary.
+I did not include a settings page as I did not find there were many controls in the program so I didn't think it was necessary.
 
 #### SwiftUI Reusable Components
 ##### Space Text
