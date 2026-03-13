@@ -190,11 +190,24 @@ I will also make small quality of life improvements that make explanations more 
 
 
 ### Success Criteria
-| **Criteria** | **Reason** |
-| --- | --- |
-| Teach what a graph algorithm is | The user needs a clear foundation before exploring specific algorithms. |
-| Show the uses of graph algorithms | The user should understand real-world uses of graph and graph traversal algorithms (for example, maps and routing). |
-| Simulate a variety of graph algorithms on different graphs | This demonstrates that different algorithms have different strengths and weaknesses, and that performance depends on graph structure. |
+| **Criteria** | **Description** | **Reason** | **Analysis Link** |
+
+| **Functional** | --- | --- | --- |
+| Teach what a graph algorithm is and their uses| A page providing text/image based description about what graphing algorithms are and examples of their uses| The user needs a clear foundation before exploring specific algorithms, the user should understand real-world uses of graph and graph traversal algorithms (for example, maps and routing) |  |
+| Simulate all Graph Algorithms | It should be able to simulate all the graphing algorithms in the A level-specification. (These include; BFS, DFS, Dijkstra and A* | A level is often the first time students come across graphs so I think it is importaint to include at a minimum all the content these students will require. This allows demonstration that different algorithms have different strengths and weaknesses, and that performance depends on graph structure. | --- | 
+|  |  |  |  | 
+
+| **Performance** | --- | --- | --- |
+| Abrupt Crahses |  |  |  | 
+|  |  |  |  | 
+|  |  |  |  | 
+
+| **Usability** | --- | --- | --- |
+| Adaptive UI | The program's user interface should resize and scale to fit the users devices screen | The program should run equally well on all iOS devices to make it accessable. |  | 
+|  |  |  |  | 
+|  |  |  |  | 
+**develop in devlopment**
+
 
 ## Design
 
