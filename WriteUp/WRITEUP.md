@@ -191,23 +191,23 @@ I will also make small quality of life improvements that make explanations more 
 
 ### Success Criteria
 
-| ID  | **Criteria**                                   | **Description**                                                                                                                   | **Reason**                                                                                                                                                                                                                                                                                                | **Analysis Link** |
-| --- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-|     | **Functional**                                 |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
-| FR1 | Teach what a graph algorithm is and their uses | A page providing text/image based description about what graphing algorithms are and examples of their uses                       | The user needs a clear foundation before exploring specific algorithms, the user should understand real-world uses of graph and graph traversal algorithms (for example, maps and routing)                                                                                                                | --                |
-| FR2 | Simulate all Graph Algorithms                  | It should be able to simulate all the graphing algorithms in the A level-specification. (These include; BFS, DFS, Dijkstra and A* | A level is often the first time students come across graphs so I think it is important to include at a minimum all the content these students will require. This allows demonstration that different algorithms have different strengths and weaknesses, and that performance depends on graph structure. | ---               |
-| FR3 |                                                | Step by step                                                                                                                      |                                                                                                                                                                                                                                                                                                           |                   |
-|     |                                                | Visualisation                                                                                                                     |                                                                                                                                                                                                                                                                                                           |                   |
-|     | **Performance**                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
-| PR1 | Abrupt Crashes                                 |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
-|     |                                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
-|     |                                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
-|     | **Usability**                                  | ---                                                                                                                               | ---                                                                                                                                                                                                                                                                                                       | ---               |
-|     | Adaptive UI                                    | The program's user interface should resize and scale to fit the users devices screen                                              | The program should run equally well on all iOS devices to make it accessable.                                                                                                                                                                                                                             |                   |
-|     | Enjoyment                                      | Users should enjoy using it                                                                                                       | If users do not enjoy using the program they won't use it long enough to learn                                                                                                                                                                                                                            |                   |
-|     |                                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
+| ID              | **Criteria**                                   | **Description**                                                                                                                   | **Reason**                                                                                                                                                                                                                                                                                                | **Analysis Link** |
+| --------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| **Functional**  |                                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
+| FR1             | Teach what a graph algorithm is and their uses | A page providing text/image based description about what graphing algorithms are and examples of their uses                       | The user needs a clear foundation before exploring specific algorithms, the user should understand real-world uses of graph and graph traversal algorithms (for example, maps and routing)                                                                                                                | --                |
+| FR2             | Simulate all Graph Algorithms                  | It should be able to simulate all the graphing algorithms in the A level-specification. (These include; BFS, DFS, Dijkstra and A* | A level is often the first time students come across graphs so I think it is important to include at a minimum all the content these students will require. This allows demonstration that different algorithms have different strengths and weaknesses, and that performance depends on graph structure. | ---               |
+| FR3             |                                                | Step by step                                                                                                                      |                                                                                                                                                                                                                                                                                                           |                   |
+|                 |                                                | Visualisation                                                                                                                     |                                                                                                                                                                                                                                                                                                           |                   |
+| **Performance** |                                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
+| PR1             | Abrupt Crashes                                 |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
+|                 |                                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
+|                 |                                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
+|                 | **Usability**                                  | ---                                                                                                                               | ---                                                                                                                                                                                                                                                                                                       | ---               |
+|                 | Adaptive UI                                    | The program's user interface should resize and scale to fit the users devices screen                                              | The program should run equally well on all iOS devices to make it accessable.                                                                                                                                                                                                                             |                   |
+|                 | Enjoyment                                      | Users should enjoy using it                                                                                                       | If users do not enjoy using the program they won't use it long enough to learn                                                                                                                                                                                                                            |                   |
+|                 |                                                |                                                                                                                                   |                                                                                                                                                                                                                                                                                                           |                   |
 
-**develop in devlopment**
+**develop in design devlopment**
 
 
 ## Design
@@ -583,7 +583,7 @@ I am going to use a swiftUI element called a sheet which allows me to overlay th
 This will contain the SpriteKit View
 
 ##### Simulation
-This will contain the SpriteKit View
+This will contain the SpriteKit View.
 
 
 ### Test Data
@@ -592,6 +592,8 @@ When writing the algorithms In order to debug and ensure they are working as int
 These test graphs looked more strange as the length of the paths were not what determined the weight. In my random graph generation the weights will be proportional to the distance between the nodes (with some random noise for variation).
 
 ### Further Post Development Test Data
+
+
 
 ## Development
 
@@ -727,11 +729,19 @@ The functions that are required are:
 
 #### BaseSearch
 I made my Search Algorithms all inherit from a Generic BaseSearch class.
-This acted partly like a protocol as it defined the functions the child classes should have. However the base search implemented some basic generic functionality that was overriden when neccessary.
+This acted partly like a protocol as it defined the functions the child classes should have. However the base search implemented some basic generic functionality that was overriden when neccesary.
 
 #### Breath First Search
+Breadth First Search uses a queue to decide which is the next node to visit. 
+This provides a broad search around the start node in general visiting closer nodes before further nodes
+
 #### Depth First Search
+Depth First provides a deep search so it will search deeper unitl it reaches a dead end before backtracking.
+I am using a pre order traversal so on a tree it will go root left right.
 #### Dijkstra
+
+For the algorithms that uses weights I decided to show them on the edges. 
+The priority function only uses the distance to the node
 
 #### A*
 
@@ -741,6 +751,7 @@ getNewWeight(n: n) + n.neighbour.heuristic(to: to)
 ```
 
 #### Greedy Best First Search 
+This priority function only used the heuristic. In my random graphs (with some exeptions when the start and end are separated by a void without nodes)  it often found the shortest path quickly as my weights were based of the distance to the node.
 
 
 #### Diagram of searching components
@@ -771,7 +782,7 @@ classDiagram
 
 
 #### Minor improvements to prior stages
-
+I added the ability to show and hide text on the edges for only dijkstra and A* to use edge weights. For algorithms that dont use the weights the wieght for all edges is 1
 
 ### Stage Four : Algorithm Control
 
@@ -843,7 +854,6 @@ The size of the border is not passed in but is calculated to fit the passed text
 
 ##### ShipNode
 The Ship turned out to be more of a UI element than an actual object that I expected. I used a SKspriteNode for this, these are nodes that take in an image which should be in the projects filesystem
-
 
 #### SKActions
 To create animations in the program I used SKActions.
@@ -987,9 +997,11 @@ This is shown behind all the screens
 ## Evaluation
 In this section I will go through the differnt components, Show the related success criteria in a table and mention any relevent added features and improvements that could be made.
 
-| Success Criteria | Achieved | Why/WhyNot |
-| --- | --- | --- | --- |
+### Success Criteria
 
+For visualising the difference in the algorithms I definitely achieved them all running correctly and visualising the backtracking helps a lot
+However the way the graphs were generated with the weights propotional to the distance to the node meant it did mean that a few algorithms performed quite similarly. 
+What I could have done was add more noise to the weights in genaration.
 
 #### Subcomponent One : Graph generation
 Learnings (things added later)
