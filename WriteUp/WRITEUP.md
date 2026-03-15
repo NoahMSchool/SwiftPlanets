@@ -188,8 +188,13 @@ As this is an educational tool everything needs to be factually correct.
 After and during development.
 I will also make small quality of life improvements that make explanations more true to what is actually happening
 
+**TODO:** explain how I will check that the algorithm facts and teaching points are correct.
+
 
 ### Success Criteria
+
+**TODO:** turn this table into clear measurable goals. give every success criterion an ID, a full description and a reason. have at least one functional for each of the 6 subcompontents
+**TODO:** remove blank rows and vague points like "enjoyment" unless I can test them properly.
 
 | ID              | **Criteria**                                   | **Description**                                                                                                                   | **Reason**                                                                                                                                                                                                                                                                                                | **Analysis Link** |
 | --------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
@@ -332,6 +337,7 @@ The views should only allow for valid inputs such as selecting objects that exis
 
 I will use the Model View Controller design pattern to separate the components of my app.
 
+**TODO:** explain this architecture clearly using my actual classes and screens. Include a screenshot of the directory structure of the project
 **Explain diagram and high level of components, Model veiw controller**
 
 #### Model (Data Structures)
@@ -591,7 +597,12 @@ This will contain the SpriteKit View.
 When writing the algorithms In order to debug and ensure they are working as intended I will need to make graphs that will produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. When developing I will compare the state with the expected state to make sure they work.
 These test graphs looked more strange as the length of the paths were not what determined the weight. In my random graph generation the weights will be proportional to the distance between the nodes (with some random noise for variation).
 
+**TODO:** include the test graphs I used for for BFS, DFS, Dijkstra and A* so I can prove they work. Screenshots of both the tree and the square graph full solved using all the algorithms
+
+**TODO:** add a proper test table with input, expected result, actual result and pass/fail. Do this for one or two of the test graphs with one algorithm running step by step
 ### Further Post Development Test Data
+
+**TODO:** add tests done after finishing the program, including UI tests and invalid input tests (for example too many planets on the generation, or exactly 1 planet, or 0 fuel.
 
 
 
@@ -611,6 +622,8 @@ My first task was to randomly generate a graph/galaxy. This would consists of no
 I started by using a nested for loop to create a square grid of possible positions for a planet and I added these to a array. I need to select a fixed number of positions from this list of positions. To do this I randomised the order of the planets array and selected the first planetCount of this array.
 
 I then
+
+**TODO:** finish this paragraph and explain the next step in the graph generation process.
 
 Here is the create Planets for random galaxy
 ```swift
@@ -680,6 +693,8 @@ To fix the Lines going through planets  I thought of putting edges across the pl
 However when developing this I encountered a bug that caused edges that ... to be deleted
 The fix to this was to put 4 edges from the centre of the planet to the circumference.
 
+**TODO:** explain what the bug was in simple terms and how I found it. 
+
 Here is a function on the planet that returns the checklines
 ```swift
 func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
@@ -701,6 +716,8 @@ To check if two lines intersect I did some research online and found an algorith
 
 To deterimine the orientation of a line I used the sign of the cross product.
 Here is the code I used to check two lines intersect
+
+**TODO:** add the line intersection code and explain why this method works.
 
 #### Minor improvements to prior stages
 
@@ -821,6 +838,9 @@ classDiagram
 
 #### Step by Step Solving
 
+**TODO:** explain how one click moves the algorithm forward by one state.
+**TODO:** explain what data is saved at each step.
+
 #### Undo/Redo Stack
 I made an UNDO stack to store the history of the algorithm.
 
@@ -842,6 +862,8 @@ struct AlgorithmState{
 ```
 
 Different to design I did not include a redo Stack that stored the future stages. The argument that it is less efficient I do not think is a problem as it is only being done on event and the calculations are actually not that big.
+
+**TODO:** explain why I changed from the original design and why this was acceptable.
 
 ### Stage Five : Algorithm Visualisation
 This stage was taking longer than expected and I found a few improvements I found necessary as well as using a new part of SpriteKit SKActions which allowed me to animate things
@@ -997,6 +1019,9 @@ This is shown behind all the screens
 ## Evaluation
 In this section I will go through the differnt components, Show the related success criteria in a table and mention any relevent added features and improvements that could be made.
 
+**TODO:** evaluate each success criterion one by one using evidence.
+**TODO:** say clearly what works well, what does not, and what I would improve next.
+
 ### Success Criteria
 
 For visualising the difference in the algorithms I definitely achieved them all running correctly and visualising the backtracking helps a lot
@@ -1013,13 +1038,23 @@ The start and end planets should be a reasonable distance from each other to pre
 
 #### Subcomponent Two : Graph Rendering
 
+**TODO:** say how well the graph was displayed and mention any visual problems.
+
 #### Subcomponent Three : Algorithm Solving
+
+**TODO:** say whether each algorithm worked correctly and refer to testing.
 
 #### Subcomponent Four : Algorithm Control
 
+**TODO:** evaluate the step system and undo system.
+
 #### Subcomponent Five : Algorithm Visualisation
 
+**TODO:** evaluate how clear the colours, ship movement,animations and explanations were.
+
 #### Subcomponent Six : User Interface
+
+**TODO:** evaluate the menus, navigation and screen layout on different devices.
 
 ##### Text Based SwiftUI pages
 One small thing was I found the text/image based information pages to be quite static and boring. One reason being that I used images in theses screens which were simply screenshots It may have been better if I used small SpriteKit windows in the swiftUI view to make it more interactive. This would future-proof it too as if I updated the gameplay screens it will automatically update in the screenshots instead of me having to take new screenshots.
