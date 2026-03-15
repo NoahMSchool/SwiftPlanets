@@ -35,7 +35,6 @@ class RandomGalaxyBuilder : GalaxyBuilder {
     //gets lines from planets to help prevent paths going through planets
     class func getPlanetCheckLines(planets : [Planet])->[(start: CGPoint,end:  CGPoint)]{
         var checkLines : [(start: CGPoint, end: CGPoint)] = []
-        return []
         for planet in planets{
             checkLines+=planet.getCheckLines()
         }
