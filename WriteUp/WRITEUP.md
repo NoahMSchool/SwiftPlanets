@@ -662,7 +662,7 @@ These test graphs looked more strange as the length of the paths were not what d
 ## Development
 
 ### Stage One/Two : Random Galaxy Generation/Rendering
-I did the genaration of the galaxy and the rendering in parralell as it means I can visualise what is being done which is importaint to know if I am doing it correctly 
+I did the genaration of the galaxy and the rendering in parrallel as it means I can visualise what is being done which is importaint to know if I am doing it correctly 
 #### Generation
 
 My first task was to randomly generate a graph/galaxy. This would consists of nodes/planets and edges which connect the path.
@@ -856,8 +856,6 @@ I added the ability to show and hide text on the edges for only dijkstra and A* 
 
 ### Stage Four : Algorithm Control
 
-
-
 ```mermaid
 classDiagram
         class BaseSearch{
@@ -891,39 +889,112 @@ classDiagram
 
 #### Step by Step Solving
 
-**TODO:** explain how one click moves the algorithm forward by one state.
-**TODO:** explain what data is saved at each step.
+At A high level to solve step by step I have a current state, a forward function and a backward function. 
+I have a stack that stores the history of the algorithm with an object.
+When going forwards I do the neccessary steps which will 
+Different to design I did not include a redo Stack that stored the future stages. The argument that it is less efficient I do not think is a problem as it is only being done on event and the calculations are actually not that big.
 
-#### Undo/Redo Stack
+#### Undo Stack
 I made an UNDO stack to store the history of the algorithm.
-
-When I went forward in the algorithm I created an object that stored all the key variables of the algorithm state. This is similar to how the contents of the registors are pushed onto a stack when there is an interupt.
+When I went forward in the algorithm I created an object that stored all the key variables of the algorithm state and pushed this object onto the stack. This is similar to how the contents of the registors are pushed onto a stack when there is an interupt. And then I could freely change the original variables for the next step without loosing the data for the previous step.
 This is the AlgorithmState Object I created. It stores a the simple data aswell as dictionaries of all the nodes and the relevant data.
 ```swift
 struct AlgorithmState{
-    var current: (any Traversable)
-    var frontier : [(neighbour: any Traversable, weight: Double)]
-    var explored : [any Traversable]
-    var cameFrom : [UUID: (any Traversable)?] = [:]
-    var weightSoFar : [UUID: Double] = [:]
-    var path : [any Traversable] = []
-    var backtrackPathFromPrevious : [any Traversable] = []
+    var current: (any Traversable) //current node
+    var frontier : [(neighbour: any Traversable, weight: Double)] // a list of nodes at the frontier
+    var explored : [any Traversable] // a list of the explored nodes at this step
+    var cameFrom : [UUID: (any Traversable)?] = [:] // a dictionary of where each node came from
+    var weightSoFar : [UUID: Double] = [:] // a dictionary of each node to the node it came from
+    var path : [any Traversable] = [] // A list of the nodes it took to reach this point
+    var backtrackPathFromPrevious : [any Traversable] = [] //
     var completed : Bool
     var pathExists : Bool
     var explanation : String
 }
 ```
 
-Different to design I did not include a redo Stack that stored the future stages. The argument that it is less efficient I do not think is a problem as it is only being done on event and the calculations are actually not that big.
 
-**TODO:** explain why I changed from the original design and why this was acceptable.
 
-##### Steps To Redo
-To redo. I put the current state of the listed variables onto a new Algorithm State Object. I put this on the top of the stack. I then run the next step of the algorithm.
-##### Steps to Undo
+#### Steps to Undo
 To Undo I pop the last Algorithm State of the Object. I override the current algorithm state.
+```swift
+func restoreHistory(){
+	//previous state is an optional variable so may not exist(it is nil), this if statement unwraps it so this code will run using the variable only if it exists.
+	if let previousState = history.popLast(){  
+		currentState = previousState
+}
+```
 
-The functions that do this are:
+#### Steps To Redo
+To redo there are two parts
+* Put the current state of the listed variables onto a new Algorithm State Object. I put this on the top of the stack.
+* Run the next step of the chosen algorithm to go calculate the new state for the next step.
+
+The first part is simple:
+```swift
+func storeHistory(){
+	history.append(currentState)
+}
+```
+
+In the second part there are few steps
+* Get the Next node (this uses the frontier queue which is based of the priorities of the chosen algorithm)
+* Check if the next node is the target node
+
+This is the code, there is some aditional validation I had to do that was included
+```swift
+//move to next node (getNextFrontier returns a tuple of weight and neighbour)
+currentState.current = getNextFrontier().neighbour
+            
+// Don't add to explored twice
+if !currentState.explored.contains(where: { $0.id == currentState.current.id }) {
+	currentState.explored.append(currentState.current)
+}            
+calculatePathFromPreviousToCurrent(previousNode: previousNode)
+
+
+if let end = end{
+	if end.isEqual(to : currentState.current){
+		
+		let reconstructedPath = getPathToStart(end: end)
+		
+		currentState.path = reconstructedPath.reversed()
+		currentState.pathExists = true
+		currentState.explanation = Explanations.getCompletedExplanation(
+			current: end, 
+			exploreCount: currentState.explored.count,
+			cost: Int(currentState.weightSoFar[end.id] ?? 0)
+		)
+		currentState.completed = true
+		return
+	}
+}
+		   
+var justAdded : [any Traversable] = []
+
+for n in currentState.current.getNeighbours(){
+	let newWeight = getNewWeight (n: n)
+	let queuePriority = getQueuePriority(n : n, to:end!)                      
+	
+	// let newWeight = weightToCurrent + n.weight
+	if shouldAddToFrontier(n : n, newWeight : newWeight){
+		currentState.frontier.append((neighbour: n.neighbour, weight: queuePriority))
+		justAdded.append(n.neighbour)
+		currentState.cameFrom[n.neighbour.id] = currentState.current
+		currentState.weightSoFar[n.neighbour.id] = newWeight                    
+	}
+	}
+	currentState.explanation = Explanations.getAddToFrontierExplanation(current: currentState.current, neighbours: justAdded)
+	
+	//added to frontier so can resort
+	prioritizeAndDedupeFrontier()
+	
+	if currentState.frontier.isEmpty{
+		
+		currentState.explanation = Explanations.getFullyExploredExplanation(current: currentState.current)
+		currentState.completed = true
+	}
+```
 
 ### Stage Five : Algorithm Visualisation
 This stage was taking longer than expected and I found a few improvements I found necessary as well as using a new part of SpriteKit SKActions which allowed me to animate things
