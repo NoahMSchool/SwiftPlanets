@@ -662,7 +662,7 @@ These test graphs looked more strange as the length of the paths were not what d
 ## Development
 
 ### Stage One/Two : Random Galaxy Generation/Rendering
-I did the genaration of the galaxy and the rendering in parrallel as it means I can visualise what is being done which is importaint to know if I am doing it correctly 
+I did the generation of the galaxy and the rendering in parrallel as it means I can visualise what is being done which is important to know if I am doing it correctly 
 #### Generation
 
 My first task was to randomly generate a graph/galaxy. This would consists of nodes/planets and edges which connect the path.
@@ -771,6 +771,46 @@ To deterimine the orientation of a line I used the sign of the cross product.
 Here is the code I used to check two lines intersect
 
 **TODO:** add the line intersection code and explain why this method works.
+
+#### Procedural Planet appearance
+
+Each planet has a border which is used to indicate the information about the planet.
+Inside the border there is a procedurally generated planet which is not conveying any information.
+
+The following code is a static function on the PlanetNode class that will return a SpriteKit Node which is the planetNode, it takes in a base colour and an accent colour and applies it to the fillColor and strokeColor which are attributes of all SKShapeNodes. (SKShapeNodes are just spritekit nodes that can be given a shape which it rendrs as, a circle is suitbale for a planet.)
+SKShapeNodes has a built in glow parameter which added a subtle effect.
+I made this a static function as there is no functionallity related to a specific 
+
+```swift 
+static func generatePlanet(baseColor: UIColor, accentColor: UIColor, size: CGFloat) -> SKNode {
+        let planetNode = SKNode() // makes the SKNode
+        let planetBody = SKShapeNode(circleOfRadius: size)
+        planetBody.fillColor = baseColor
+        planetBody.strokeColor = accentColor
+        planetBody.glowWidth = 1.0
+        planetBody.zPosition = 4
+        planetNode.addChild(planetBody)
+        return planetNode
+    }
+```
+
+#### Planet UI elements
+Once the PlanetNode has been added the other UI elements are then added as a child of it
+This code is run on the SpriteKit node to generate this
+```swift 
+//name of planet
+self.planetNameLabel = TextBubbleNode(textString: planetName)
+self.planetNameLabel.position = CGPoint(x: 0, y: 35)
+//border which is used to highlight
+self.border = SKShapeNode(circleOfRadius: borderRadius)        
+self.border.lineWidth = 2
+self.border.fillColor = .black
+```
+### Graph Edges or Paths
+
+To do this I used a SKLineNode
+
+
 
 #### Minor improvements to prior stages
 
@@ -1023,7 +1063,6 @@ After implementing the search algorithms I realised algorithms that used backtra
 To do this I made each node store the node which the ship came from.
 
 #### Minor improvements to prior stages
-
 
 ### Stage Six : User Interface
 
