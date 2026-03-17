@@ -23,12 +23,12 @@ I have selected a few educational tools that aimed to create an interactive way 
 
 <img width="80%"  alt="Graph Online" src="https://github.com/user-attachments/assets/e6c11fa0-cad3-4ecf-a0de-d02985504591" />
 
-This is a graphing simulator I found online. 
-It lets you create a graph manually
-The UI was quite tedious 
-I thought it was frustrating making a graph manually and thought it would be especially not useful if this was your first time encountering a graph you may not know what graph to make.  
+This is a basic graphing simulator I found online. 
+It lets you create a graph manually, to do this there were a few tools: panning, dragging, adding nodes, adding edges and more.
+The UI was quite tedious especially moving nodes and edges, creating a connection between two nodes where there is a menu selecting weights and direction.
+I thought it was frustrating making a graph manually and thought it would be unhelpfull if this was your first time encountering a graph so you may not know what graph to make.  
 I found the options overwhelming and did not focus on anything specific. I thought It was more suitable for people more experienced with the basics. I want my project to be accessable to people who do not even know what a graph is.
-It did not show you the steps of the algorithm and just solved it
+It did not show you the steps of the algorithm and just solved it which I beleve is importaint for understanding the algorithm.
 
 #### Solution 2: TUM Shortest Path [[https://algorithms.discrete.ma.tum.de/spp/]]
 
@@ -37,18 +37,17 @@ It did not show you the steps of the algorithm and just solved it
 The University of Munich made a graphing algorithm visualisation and learning tool that I enjoyed
 
 I liked how there were different tabs which separated learning about the algorithm, creating the graph and running the algorithm.
-I liked the detailed descriptions of the steps and the visual colouring of the nodes an edges I found this to be importaing for the algorithm.
-The graph creation was better than graph online and there started with a simple graph thay you could extend but still was quite limiting
-My main complaint is that the program was not very engaging. The user had to read long paragraphs of text and the app was not ugly but wasn't super visually appealing.
-It also did not have many of the simpler graph traversal algorithms and only shortest path.
+I liked the detailed descriptions of the steps and the visual colouring of the nodes an edges I found this to be importaint for the algorithm simulation.
+The graph creation was better than graph online and there started with a simple graph thay you could extend but still was quite limiting.
+My main complaint is that the program was not very engaging. The user had to read long paragraphs of text and while the SITE was not ugly but it wasn't super visually appealing.
+It also did not have many of the simpler graph traversal algorithms (like BFS and DFS) and only shortest path.
 
 #### Solution 3: PhET Simulations ([[https://phet.colorado.edu/]])
 
 This is not a graphing simulator but it is an educational tool making learning interesting.
 There are lots of different high quality simulations on this platform. 
-PhET Is a non profit organisation founded by Carl Weiman. They have made their own framework for making simulations
-
-I loved using this and found it very useful but one thing I would have liked is if it added a creative twist to it to keep the user engaged. As this is a large platform with lots of pI may want to use an analogy of some sort to make the program more relatable to use.
+PhET Is a non profit organisation founded by Carl Weiman. They have made their own framework for making simulations.
+I loved using this and found it very useful but one thing I would have liked is if it added a creative twist to it to keep the user engaged. As this is a large platform with lots of similar simlations I would have liked something more unique to make the program more relatable to use.
 
 #### Research Takeaways
 
@@ -57,15 +56,38 @@ The main things I took away is that I wanted to make the program approachable an
 ### Stakeholders and Audience
 
 My audience is anyone who is interested in learning about CS. This could be anyone from the age of 8 to 80 who is interested. This may seem like quite a broad audience due to the wide age range but I can slightly narrow it down to those who are more STEM focused.
-Specifically I am targeting a younger audience as they are the future generation, and I want to create interest among the younger generation as they are still deciding what they are going to do with their lives. It is also true that this age group spends lots of time on mobile applications, playing video games or using computers so this may appeal more to them.
+Specifically I am targeting a younger audience as they are the future generation, and I want to create interest among the younger generation as they are still deciding what they are going to do with their lives. It is also true that this age group spends lots of time on mobile applications, playing video games or using computers so this may appeal more to them. For my stakeholders I tried to find Computer Science students (who likely will studying graphing algorithms) doing A-Levels or GCSE's aswell as an adult as my goal is to make this tool accessible to people not actively studying computer science.
 
-Therefore I feel like an app is the most accessible form to this audience.
-
-My stakeholders are mostly Students studying graphing algorithms for the first time in A-Level CS as well as some GCSE students and some adults, as my goal is to make this tool accessible to people not actively studying computer science.
-
-I have interviewed these stakeholders and I aim to use this data to tailor the experience to be more engaging across my audience. I am going to refer back to these users as I develop the program.
+I have interviewed these stakeholders and I aim to use this data to better understand my audience and tailor the experience to be more engaging to them. I am going to refer back to these users once I have developed the app.
 
 ### Questionnaire for target market
+
+Rambo
+Rocco
+Jon
+Willow
+
+How Long are you willing to spend to learn a new topic
+20 minuites for something small
+half an hour
+40 minuites, just under a lesson
+1 school period or an hour
+
+What devices do you use the most to learn (Tablet, Phone, Desktop or other)
+I got a ipad 9th gen which I use for work
+I use a m2 macbook pro
+I have a m2 macbook air
+Mac Mini desktop for work
+
+Are you studying computer science, if so what course
+GCSE OCR computer Science
+OCR comp-sci A-Level
+A level Computer Science
+I am not studiying computer science but still am interseted in a graph learning tool
+
+When using a tool to learn a new subject would you rather have more freedom or a more guided path.
+Which of the following analogies do you find most relatable and interisting : Space, A CityMap or A RuralMap
+
 
 | **When using a tool to learn a new subject would you rather.** | more freedom or a more guided path                                                                                                        |
 | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -89,7 +111,10 @@ I have interviewed these stakeholders and I aim to use this data to tailor the e
 
 I believe a Space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM so were already fascinated by space.
 I think it is important to have at least a slow introduction into the algorithms. From research of other games I found the solutions that had an easy onboarding to be more useful. My stakeholders backed this up
+I think that 30 minuites is a suitable length the user should spend on the program. This is close to the length of a school lesson and I beleve it will take slightly longer than they will think
+Therefore I feel like an app is the most accessible form to this audience, the stakeholders seem to be using apple devices so.
 
+**TODO** Improve
 ### Using Computational Methods in the solution
 
 #### Thinking Abstractly
