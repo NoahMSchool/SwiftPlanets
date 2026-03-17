@@ -12,14 +12,10 @@
             "id": "d15e98eec5debd93",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "WRITEUP.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "WRITEUP"
+              "title": "New tab"
             }
           }
         ]
@@ -33,14 +29,10 @@
             "id": "a05d522f90468ec7",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "WRITUP_NOTES.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "WRITUP_NOTES"
+              "title": "New tab"
             }
           }
         ]
@@ -178,13 +170,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "WRITEUP.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of WRITEUP"
+              "title": "Outline"
             }
           }
         ],
@@ -208,7 +199,9 @@
   "active": "d15e98eec5debd93",
   "lastOpenFiles": [
     "WRITUP_NOTES.md",
+    "WRITEUP.md",
     "Untitled.md",
-    "WRITEUP.md"
+    "2026-03-15.md",
+    "WRITEUPDUP.md"
   ]
 }
