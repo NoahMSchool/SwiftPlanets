@@ -1,4 +1,4 @@
-# A level Comp-Sci Writeup 
+# A Level Comp-Sci Write-Up
 
 | **Name :**Noah Marks                        | **Candidate Number : 1146** |
 | ------------------------------------------- | --------------------------- |
@@ -7,13 +7,13 @@
 
 ### Problem Recognition
 
-The problem I am solving is the lack of fun ways to learn about certain Computer Science (CS) concepts, more specifically graphing algorithms.
-Interactive simulations are useful tools for learning as they can walk you through new concepts especially for STEM and Computer Science. Good learning also comes from relatable analogies and creative teaching methods. The flexibility of Coding allows you to express this creativity through a program. Therefore a computer simulation a suitable method to teach a topic like graphing algorithms 
+The problem I am solving is the lack of fun ways to learn about certain Computer Science (CS) concepts, more specifically graph algorithms.
+Interactive simulations are useful tools for learning as they can walk you through new concepts, especially for STEM and Computer Science. Good learning also comes from relatable analogies and creative teaching methods. The flexibility of coding allows you to express this creativity through a program. Therefore, a computer simulation is a suitable method to teach a topic like graph algorithms.
 
-From experience I have noticed that when looking for resources online to help learn a new concept there are a separation between the engaging resources which are often videos using creative analogies and the interactive tools used to model them which are often boring and difficult to use and stuck in the browser. This could be due to the relative difficulty to make a program compared to a video.
-I want to bridge that gap by creating a graphing algorithm simulator that uses a fun analogy of Space to keep the user engaged. From my research you will later see I believe that space is an engaging subject for many people interested in computer science and even if they are not it is still a fun different way to explore the algorithms.
+From experience I have noticed that when looking for resources online to help learn a new concept there is a separation between the engaging resources, which are often videos using creative analogies, and the interactive tools used to model them, which are often boring, difficult to use, and stuck in the browser. This could be due to the relative difficulty of making a program compared to a video.
+I want to bridge that gap by creating a graph algorithm simulator that uses a fun analogy of space to keep the user engaged. From my research, which I will refer to later, I believe that space is an engaging subject for many people interested in computer science and, even if they are not, it is still a fun and different way to explore the algorithms.
 
-Graphing algorithms are often found to be a difficult topic for Computer Science Students as they have not been exposed to these concepts before. I will make a educational tool that aims to create a fun way for anyone to learn about graphing algorithms through space. I will do this in the form of an app using Swift and SwiftUI.
+Graph algorithms are often a difficult topic for Computer Science students as they have not been exposed to these concepts before. I will make an educational tool that aims to create a fun way for anyone to learn about graph algorithms through space. I will do this in the form of an app using Swift and SwiftUI.
 
 ### Analysing Other Solutions
 
@@ -25,21 +25,21 @@ I have selected a few educational tools that aimed to create an interactive way 
 
 This is a basic graphing simulator I found online. 
 It lets you create a graph manually, to do this there were a few tools: panning, dragging, adding nodes, adding edges and more.
-The UI was quite tedious especially moving nodes and edges, creating a connection between two nodes where there is a menu selecting weights and direction.
-I thought it was frustrating making a graph manually and thought it would be unhelpfull if this was your first time encountering a graph so you may not know what graph to make.  
-I found the options overwhelming and did not focus on anything specific. I thought It was more suitable for people more experienced with the basics. I want my project to be accessable to people who do not even know what a graph is.
-It did not show you the steps of the algorithm and just solved it which I beleve is importaint for understanding the algorithm.
+The UI was quite tedious, especially when moving nodes and edges or creating a connection between two nodes, where there is a menu for selecting weights and direction.
+I thought it was frustrating to make a graph manually and that it would be unhelpful if this was your first time encountering a graph, because you may not know what graph to make.  
+I found the options overwhelming and not focused on anything specific. I thought it was more suitable for people who were already familiar with the basics. I want my project to be accessible to people who do not even know what a graph is.
+It did not show you the steps of the algorithm and just solved it, which I believe is important for understanding the algorithm.
 
 #### Solution 2: TUM Shortest Path [[https://algorithms.discrete.ma.tum.de/spp/]]
 
 <img width="80%" alt="TUM Shortest Path Algorithm" src="https://github.com/user-attachments/assets/b8c4fa64-73b3-4a83-9e5d-fe228275d1a5" />
 
-The University of Munich made a graphing algorithm visualisation and learning tool that I enjoyed
+The University of Munich made a graph algorithm visualisation and learning tool that I enjoyed.
 
-I liked how there were different tabs which separated learning about the algorithm, creating the graph and running the algorithm.
-I liked the detailed descriptions of the steps and the visual colouring of the nodes an edges I found this to be importaint for the algorithm simulation.
-The graph creation was better than graph online and there started with a simple graph thay you could extend but still was quite limiting.
-My main complaint is that the program was not very engaging. The user had to read long paragraphs of text and while the SITE was not ugly but it wasn't super visually appealing.
+I liked how there were different tabs which separated learning about the algorithm, creating the graph, and running the algorithm.
+I liked the detailed descriptions of the steps and the visual colouring of the nodes and edges. I found this to be important for the algorithm simulation.
+The graph creation was better than Graph Online and it started with a simple graph that you could extend, but it was still quite limiting.
+My main complaint is that the program was not very engaging. The user had to read long paragraphs of text and, while the site was not ugly, it was not especially visually appealing.
 It also did not have many of the simpler graph traversal algorithms (like BFS and DFS) and only shortest path.
 
 #### Solution 3: PhET Simulations ([[https://phet.colorado.edu/]])
@@ -47,16 +47,16 @@ It also did not have many of the simpler graph traversal algorithms (like BFS an
 This is not a graphing simulator but it is an educational tool making learning interesting.
 There are lots of different high quality simulations on this platform. 
 PhET Is a non profit organisation founded by Carl Weiman. They have made their own framework for making simulations.
-I loved using this and found it very useful but one thing I would have liked is if it added a creative twist to it to keep the user engaged. As this is a large platform with lots of similar simlations I would have liked something more unique to make the program more relatable to use.
+I loved using this and found it very useful but one thing I would have liked is if it added a creative twist to keep the user engaged. As this is a large platform with lots of similar simulations I would have liked something more unique to make the program more relatable to use.
 
 #### Research Takeaways
 The main things I took away is that I wanted to make the program approachable and relatable to the user, intuitive to use and not rely on any knowledge from the user, this would make it accessible to my whole audience which is anyone seeking to learn about graphing algorithms. 
 
 ### Stakeholders and Audience
-My audience is anyone who is interested in learning about CS. This could be anyone from the age of 8 to 80 who is interested. This may seem like quite a broad audience due to the wide age range but I can slightly narrow it down to those who are more STEM focused.
-Specifically I am targeting a younger audience as they are the future generation, and I want to create interest among the younger generation as they are still deciding what they are going to do with their lives. It is also true that this age group spends lots of time on mobile applications, playing video games or using computers so this may appeal more to them. For my stakeholders I tried to find Computer Science students (who likely will studying graphing algorithms) doing A-Levels or GCSE's aswell as an adult as my goal is to make this tool accessible to people not actively studying computer science.
+My audience is anyone who is interested in learning about CS. This could be anyone from the age of 8 to 80 who is interested. This may seem like quite a broad audience due to the wide age range, but I can narrow it slightly to those who are more STEM focused.
+Specifically I am targeting a younger audience, as they are the future generation, and I want to create interest while they are still deciding what they are going to do with their lives. It is also true that this age group spends lots of time on mobile applications, playing video games, or using computers, so this may appeal more to them. For my stakeholders I tried to find Computer Science students, who will likely study graph algorithms, doing A-Levels or GCSEs, as well as an adult, as my goal is to make this tool accessible to people not actively studying computer science.
 
-I have interviewed these stakeholders and I aim to use this data to better understand my audience and tailor the experience to be more engaging to them. I am going to refer back to these users once I have developed the app.
+I interviewed these stakeholders and I aim to use this data to better understand my audience and tailor the experience to be more engaging to them. I am going to refer back to these users once I have developed the app.
 
 ### Questionnaire for target market
 
@@ -107,12 +107,12 @@ Which of the following analogies do you find most relatable and interisting : Sp
 
 #### Client Questionnaire takeaways
 
-I believe a Space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM so were already fascinated by space.
-I think it is important to have at least a slow introduction into the algorithms. From research of other games I found the solutions that had an easy onboarding to be more useful. My stakeholders backed this up
-I think that 30 minuites is a suitable length the user should spend on the program. This is close to the length of a school lesson and I beleve it will take slightly longer than they will think
-Therefore I feel like an app is the most accessible form to this audience, the stakeholders seem to be using apple devices so.
+I believe a space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM, so they were already fascinated by space.
+I think it is important to have at least a gentle introduction to the algorithms. From research into other tools I found the solutions that had an easy onboarding to be more useful, and my stakeholders backed this up.
+I think that 30 minutes is a suitable length of time for the user to spend on the program. This is close to the length of a school lesson and I believe it will take slightly longer than they first expect.
+Therefore I feel like an app is the most accessible form for this audience, especially as the stakeholders seem to be using Apple devices.
 
-**TODO** Improve
+**TODO:** improve this section by linking each takeaway more directly to a design decision.
 ### Using Computational Methods in the solution
 
 #### Thinking Abstractly
@@ -290,8 +290,8 @@ Here is an in depth summary of each of the components of my solution
  
 #### Subcomponent One : Graph generation
 ##### Description
-Generates a undirected graph that the algorithms can operate on and the spacship can move between. Each node will be a planet in the graph which knows its neighbours. I will start simpler by using an unweighted graph (or all the weights equal to one) and then add weights later for neccessary algorithms. To keep with the analogy I will call the weights fuel needed.
-This will also include choosing a start planet and an end planet. The graph does not neccessarily have to be solvable 
+Generates an undirected graph that the algorithms can operate on and the spaceship can move between. Each node will be a planet in the graph which knows its neighbours. I will start more simply by using an unweighted graph, or all the weights equal to one, and then add weights later for necessary algorithms. To keep with the analogy I will call the weights fuel needed.
+This will also include choosing a start planet and an end planet. The graph does not necessarily have to be solvable.
 ##### Inputs
 
 | Input                     | Type                                                                                                                                                       |
@@ -305,10 +305,10 @@ Graph with connected nodes or planets
 At least two planets and up to a sensible limit which will be decided.	The start and end planets should not be the same planet. Planets should not be too close to each other or go on top of each other.
 
 Learnings (things added later)
-Non random test galaxies
-Edges should not intersect as it makes it hard to visualise. This is why i introduced the checklines
-Implemnt in future: 
-The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly and start planet has neighbours
+I later added non-random test galaxies so that I could verify whether each algorithm had solved the graph correctly. This was useful because random graphs were not always easy to judge by eye.
+Edges should not intersect as it makes the graph harder to visualise. This is why I introduced the `CheckLines` stage.
+Implement in future:
+The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly, and the start planet should always have neighbours.
 
 
 #### Subcomponent Two : Graph Rendering
@@ -460,7 +460,7 @@ erDiagram
 #### Subcomponent One : Graph generation : Model
 As this is not to do with the graphics I do not need to use any graphics libraries however It will use coordinates. This will be provided to the graph rendering component which will use SpriteKit to render it.
 
-I decided that the graphs I use are going to be undirected meaning there is no one way relationships between nodes, I think this is simpler for someone new to graphs. The graphs are going to be weighted however as algorithms like dijkstra and A* are more suitable for weighted graphs. My graphs are not required to be fully connected so it is possible that the graphs are unsolvable. I think this is importaint as it exposes the user to the case that algorithm finishes on the case that it has not found a path to the target node.
+I decided that the graphs I use are going to be undirected, meaning there are no one-way relationships between nodes. I think this is simpler for someone new to graphs. The graphs are going to be weighted, however, as algorithms like Dijkstra and A* are more suitable for weighted graphs. My graphs are not required to be fully connected, so it is possible that the graphs are unsolvable. I think this is important because it exposes the user to the case where an algorithm finishes without finding a path to the target node.
 
 I need to create some algorithm that I use to generate a 2D graph that fits the requirements:
 * The nodes should not be too close or on top of each other
@@ -671,34 +671,39 @@ The SwiftUI controls will be mostly output based:
 
 ### Test Data
 
-When writing the algorithms In order to debug and ensure they are working as intended I will need to make graphs that will produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. When developing I will compare the state with the expected state to make sure they work.
-These test graphs looked more strange as the length of the paths were not what determined the weight. In my random graph generation the weights will be proportional to the distance between the nodes (with some random noise for variation).
+When writing the algorithms, in order to debug them and ensure they were working as intended, I needed graphs that would produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. During development I then compared the program state with the expected state to make sure the implementations were correct.
+These test graphs looked more artificial than the random galaxies because their purpose was correctness rather than appearance. In my random graph generation the weights are usually proportional to the distance between nodes, with some random noise for variation, but for the fixed tests I wanted graphs that clearly separated the behaviour of the algorithms.
 
-**TODO:** include the test graphs I used for for BFS, DFS, Dijkstra and A* so I can prove they work. Screenshots of both the tree and the square graph full solved using all the algorithms
+I ended up using two main non-random test graphs throughout development:
+* A weighted square graph, which was useful for comparing algorithms that do and do not account for edge weights.
+* A tree graph, which was useful for checking traversal order and the behaviour of stacks and queues.
 
-**TODO:** add a proper test table with input, expected result, actual result and pass/fail. Do this for one or two of the test graphs with one algorithm running step by step
+Stakeholder play testing also influenced this decision. When stakeholders tried the program with random graphs, one point of feedback was that it was not always obvious whether the solution shown was correct. Because of that feedback I added the fixed test graphs, even though this was not part of my original plan. This also led to a change in the galaxy generator structure so I could use subclasses for different graph types, such as `RandomGalaxyBuilder`, `SquareGalaxyBuilder`, and `TreeGalaxyBuilder`.
+
+**TODO:** insert labelled screenshots of the weighted square graph and the tree graph before solving.
+
+
+**TODO:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
 ### Further Post Development Test Data
 
-**TODO:** add tests done after finishing the program, including UI tests and invalid input tests (for example too many planets on the generation, or exactly 1 planet, or 0 fuel.
+**TODO:** add tests done after finishing the program, including UI tests and invalid input tests, for example too many planets in generation, exactly 1 planet, or 0 fuel.
 
 ## Development
 
 ### Stage One/Two : Random Galaxy Generation/Rendering
-I did the generation of the galaxy and the rendering in parrallel as it means I can visualise what is being done which is important to know if I am doing it correctly 
+I developed the galaxy generation and rendering in parallel because it meant I could immediately visualise what was being done, which was important for checking whether I was doing it correctly.
 #### Generation
 
-My first task was to randomly generate a graph/galaxy. This would consists of nodes/planets and edges which connect the path.
+My first task was to randomly generate a graph or galaxy. This would consist of nodes or planets and edges which connect the paths.
 
-* My objectives is that each galaxy should feel random and different. 
+* My objective was that each galaxy should feel random and different.
 * You should have some control over the graph structure without having to micromanage nodes
-* Select the Number of nodes in the graph and lengths of paths
+* Select the number of nodes in the graph and the lengths of paths
 * The graph should look visually appealing and look like a galaxy
 
-I started by using a nested for loop to create a square grid of possible positions for a planet and I added these to a array. I need to select a fixed number of positions from this list of positions. To do this I randomised the order of the planets array and selected the first planetCount of this array.
+I started by using a nested `for` loop to create a square grid of possible positions for a planet and I added these to an array. I then needed to select a fixed number of positions from this list. To do this I randomised the order of the options array and selected the first `planetCount` positions.
 
-I then
-
-**TODO:** finish this paragraph and explain the next step in the graph generation process.
+I then added a small random offset to each selected position so the planets did not sit in a perfectly regular grid. This kept a minimum spacing between planets while still making the galaxy feel more natural. After generating the planets, the next stage was to calculate which planets should be connected based on distance and then remove bad-looking edge intersections. Later in development, after stakeholder feedback, I also introduced subclasses for fixed test graphs so I could swap between random generation and known graphs for testing.
 
 Here is the create Planets for random galaxy
 ```swift
@@ -751,9 +756,9 @@ classDiagram
     GalaxyBuilder <|-- TreeGalaxyBuilder
 ```
 #### CheckLines
-After Creating the random galaxy generator I realised there were lots of intersections of edges in the graph. The edges went through planets. This looked ugly and could be confusing to the user.
+After creating the random galaxy generator I realised there were lots of intersections of edges in the graph. Some edges went through planets. This looked ugly and could be confusing to the user.
 
-In order to delete edges and I need to decide which edges to delete.
+In order to delete edges I needed to decide which edges to remove.
 I decided to keep the shorter edges and remove the longer edges that intersect with the shorter edges.
 
 I used a closure with the sorted to compare which is the shorter edge. I am using a built in sort function for efficiency
@@ -1209,31 +1214,36 @@ let stars = SKNode()
 This is shown behind all the screens
 
 
-##  Testing to inform development ]
+## Testing to Inform Development
+
+I used the weighted square graph and the tree graph repeatedly while implementing the algorithms and the step system. These were useful because they gave me known expected answers, so I could check whether the frontier, explored nodes, and final path matched what I had worked out on paper.
+
+This testing was also useful for the user experience, not just correctness. During stakeholder play testing, one piece of feedback was that random graphs could look impressive but it was hard to tell whether the answer was actually right. That feedback was one of the reasons I added the fixed test graphs and changed the galaxy generator into subclasses so I could deliberately choose between a random graph and a known test case.
+
+**TODO:** add brief evidence from play testing here, such as who tested it and one or two short quotes or summarised comments.
 
 ![[Screenshot 2026-03-17 at 21.50.43.png]]
-##  Testing to inform Evaluation 
+## Testing to Inform Evaluation
 ## Evaluation
-In this section I will go through the differnt components, Show the related success criteria in a table and mention any relevent added features and improvements that could be made.
+In this section I will go through the different components, show the related success criteria in a table, and mention any relevant added features and improvements that could be made.
 
 **TODO:** evaluate each success criterion one by one using evidence.
 **TODO:** say clearly what works well, what does not, and what I would improve next.
 
 ### Success Criteria
 
-For visualising the difference in the algorithms I definitely achieved them all running correctly and visualising the backtracking helps a lot
-However the way the graphs were generated with the weights propotional to the distance to the node meant it did mean that a few algorithms performed quite similarly. 
-What I could have done was add more noise to the weights in genaration.
+For visualising the difference in the algorithms I definitely achieved the main goal of getting them all running correctly, and visualising the backtracking helps a lot.
+However, the way the random graphs were generated, with weights proportional to the distance to the node, meant that a few algorithms performed quite similarly. What I could have done was add more noise to the weights in generation.
 
 
 
 #### Subcomponent One : Graph generation
 Learnings (things added later)
-Non random test galaxies
-Edges should not intersect as it makes it hard to visualise. This is why i introduced the checklines
+I added non-random test galaxies later in development after stakeholder feedback. These made it much easier to verify correctness and compare how the algorithms behaved on the same graph.
+Edges should not intersect as this makes the graph harder to visualise. This is why I introduced the `CheckLines` stage.
 
-Implement in future: 
-The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly and start planet has neighbours
+Implement in future:
+The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly, and the start planet should have neighbours.
 
 #### Subcomponent Two : Graph Rendering
 
@@ -1241,7 +1251,7 @@ The start and end planets should be a reasonable distance from each other to pre
 
 #### Subcomponent Three : Algorithm Solving
 
-**TODO:** say whether each algorithm worked correctly and refer to testing.
+**TODO:** say whether each algorithm worked correctly and refer directly to the weighted square graph and tree graph test results table.
 
 #### Subcomponent Four : Algorithm Control
 
@@ -1256,7 +1266,7 @@ The start and end planets should be a reasonable distance from each other to pre
 **TODO:** evaluate the menus, navigation and screen layout on different devices.
 
 ##### Text Based SwiftUI pages
-One small thing was I found the text/image based information pages to be quite static and boring. One reason being that I used images in theses screens which were simply screenshots It may have been better if I used small SpriteKit windows in the swiftUI view to make it more interactive. This would future-proof it too as if I updated the gameplay screens it will automatically update in the screenshots instead of me having to take new screenshots.
+One small thing I found was that the text and image based information pages were quite static and boring. One reason was that I used images in these screens which were simply screenshots. It may have been better if I had used small SpriteKit windows in the SwiftUI view to make them more interactive. This would future-proof it too, as if I updated the gameplay screens it would automatically update in the information pages instead of me having to take new screenshots.
 This also meant that the starry background in the screenshots would move relative to the starry background in the page which was a small issue but still could be better.
 
 I also thought the text and UI components did not optimise space particularly well. The back button limited the available screen real estate. To do this better I would have overlayed the UI components and used transparent images. 
@@ -1270,4 +1280,3 @@ https://developer.apple.com/library/archive/documentation/General/Conceptual/Dev
 
 https://www.ocr.org.uk/Images/324587-project-setting-guidance.pdf
 https://www.ocr.org.uk/images/170844-specification-accredited-a-level-gce-computer-science-h446.pdf
-
