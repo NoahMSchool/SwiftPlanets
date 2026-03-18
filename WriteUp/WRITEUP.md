@@ -25,7 +25,9 @@ I have selected a few educational tools that aimed to create an interactive way 
 
 This is a basic graphing simulator I found online. 
 It lets you create a graph manually, to do this there were a few tools: panning, dragging, adding nodes, adding edges and more.
-The UI was quite tedious, especially when moving nodes and edges or creating a connection between two nodes, where there is a menu for selecting weights and direction.
+The UI was quite tedious, especially when moving nodes and edges or creating a connection between two nodes, where there is a menu for selecting weights and direction and text which seemed unncessary and time consuming.
+<img width="371" height="322" alt="image" src="https://github.com/user-attachments/assets/3ee0ca7a-41fe-48b0-8e66-f04a5cb3dc73" />
+
 I thought it was frustrating to make a graph manually and that it would be unhelpful if this was your first time encountering a graph, because you may not know what graph to make.  
 I found the options overwhelming and not focused on anything specific. I thought it was more suitable for people who were already familiar with the basics. I want my project to be accessible to people who do not even know what a graph is.
 It did not show you the steps of the algorithm and just solved it, which I believe is important for understanding the algorithm.
@@ -42,12 +44,20 @@ The graph creation was better than Graph Online and it started with a simple gra
 My main complaint is that the program was not very engaging. The user had to read long paragraphs of text and, while the site was not ugly, it was not especially visually appealing.
 It also did not have many of the simpler graph traversal algorithms (like BFS and DFS) and only shortest path.
 
-#### Solution 3: PhET Simulations ([[https://phet.colorado.edu/]])
+#### Solution 3: PhET ([[https://phet.colorado.edu/]])
 
 This is not a graphing simulator but it is an educational tool making learning interesting.
 There are lots of different high quality simulations on this platform. 
 PhET is a non-profit organisation founded by Carl Wieman. They have made their own framework for making simulations.
-I loved using this and found it very useful but one thing I would have liked is if it added a creative twist to keep the user engaged. As this is a large platform with lots of similar simulations I would have liked something more unique to make the program more relatable to use.
+
+This is a math simulation that shows you the derivitive of a function. I thought it was useful visualisation and the controls were minimal and neccessary. 
+<img width="919" height="509" alt="image" src="https://github.com/user-attachments/assets/b8d34bd6-4bcc-41c7-abbc-4c6d7ed96b32" />
+
+
+The following simulation is about keplers laws, you can choose between the three (this screenshot is specifically for keplers 3rd law). This is a theme across most simulations but you can turn of relevant information. Lots of the tools to help learn were consistant across the simulations. This would mean that the user is familiar of how to use these tools before even starting the simulation.
+<img width="939" height="446" alt="image" src="https://github.com/user-attachments/assets/cf1432e1-f6b3-4230-beee-052b980449d5" />
+
+I loved using all the simulations and found them very useful however one thing I would have liked is if it added a creative twist to keep the user engaged. As this is a large platform with lots of similar simulations I understand that it is good to keep consistancy between them so I understand why they in some cases can look a bit boring. Since my program is only for one tool I can take advantage to this to make my project more unique to make the program more relatable to use.
 
 #### Research Takeaways
 The main things I took away is that I wanted to make the program approachable and relatable to the user, intuitive to use and not rely on any knowledge from the user, this would make it accessible to my whole audience which is anyone seeking to learn about graphing algorithms. 
@@ -119,20 +129,18 @@ Therefore I feel like an app is the most accessible form for this audience, espe
 * Explain how the preference for guidance affected onboarding, help screens, and step-by-step controls.
 * Explain how device answers supported choosing Swift, SwiftUI, and Apple platforms.
 * Explain why the space theme was chosen even though not every stakeholder chose it as their first preference.
+
 ### Using Computational Methods in the solution
 
 #### Thinking Abstractly
 
-I am going to use AI generated 2D sprites as this will not be time consuming and will be easy to implement while also providing an appealing aesthetic.
-
 As My graphing simulator is set in space, I need to consider which features to keep to make the simulation at least somewhat accurate. This is a graphing simulator not an ultra-realistic space simulation so I am able to remove things without making the program useless to the user.
 I will abstract lots of details of space and simplify it to just a graph with a few aesthetic objects in the background for visual appeal.
-
 I have looked at many aspects of space and noticed that there are many extra ideas that seem unnecessary and will overcomplicate the program. For example, adding planet Orbits would mean the nodes on the graph would have to move around. This not only complicates the development of the game but also adds extra complexities the user has to manage which would be frustrating, for example orbits would mean that the shortest path would be constantly changing. This would confuse the user which is a problem for an introduction to the subject.
 Even though this may be unrealistic, my planets are just going to be floating in space scattered randomly on a 2D plane.
 
-I am going to remove aspects that do not add much value to the experience.
-This might include 
+In terms of the graph simulation there is more abstraction going on. There are lots of aditional features such as extra algorithms I could add, other variables I can show and other UI elements.
+I want to keep the program minimal showing only neccessary features and information to avoid confusing the user
 
 #### Thinking Ahead
 In each of the subcomponents of my game I am going to decide what are the inputs and outputs of my the function
@@ -149,6 +157,9 @@ I have to write lots of algorithms of varying complexity.
 #### Thinking Concurrently
 
 Lots of parts of my program will hapen at the same time. The ship will need to move, the galaxy will need to be generated, the paths will need to be found. This will mean that I need to do things asynchronously. There will be lots of objects in the game running functions continuously. This means that there will be multiple threads running at once which should be handled by the engine I use.
+
+#### Iteration
+I am going to be using iteration throught the solution especcially when I need to repeat code on multiple intances like nodes and edges. Iteration is also used in the graphing algorithms itself as a process is repeated until the graph is solved..
 
 ### Choosing a Framework
 
@@ -596,6 +607,8 @@ This component is very important because it displays the progress of the algorit
 ##### Spaceship
 The spaceship Is going to be the object that traverses the graph. It will place emphasis on the current node being visited.
 I am going to use SpriteKits SKSpriteNode which allows me to put 2D textures on a object.
+I am going to use AI generated 2D sprites as this will not be time consuming and will be easy to implement while also providing an appealing aesthetic.
+
 ##### Frontier and Explored Lists
 As well as UI elements it is important to show text-based information. I want to show the lists of nodes that have been visited and are next to be visited.
 
