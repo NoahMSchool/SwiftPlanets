@@ -703,6 +703,7 @@ The SwiftUI controls will be mostly output based:
 
 ## Development
 
+### Source Control and Project Tracking
 ### Stage One/Two : Random Galaxy Generation/Rendering
 I developed the galaxy generation and rendering in parallel because it meant I could immediately visualise what was being done, which was important for checking whether I was doing it correctly.
 #### Generation
