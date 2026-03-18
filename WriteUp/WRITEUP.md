@@ -682,6 +682,24 @@ Stakeholder play testing also influenced this decision. When stakeholders tried 
 
 **TODO:** insert labelled screenshots of the weighted square graph and the tree graph before solving.
 
+**TODO:** insert screenshots of both test graphs fully solved with BFS, DFS, Dijkstra, Greedy Best First Search, and A* so the reader can compare the outputs visually.
+
+#### Test Results Summary
+
+| Test graph | Algorithm | Correct (Y/N) | Shortest length | Number of steps | Number of nodes explored |
+| ---------- | --------- | ------------- | --------------- | --------------- | ------------------------ |
+| Weighted square graph | BFS | **TODO** | **TODO** | **TODO** | **TODO** |
+| Weighted square graph | DFS | **TODO** | **TODO** | **TODO** | **TODO** |
+| Weighted square graph | Dijkstra | **TODO** | **TODO** | **TODO** | **TODO** |
+| Weighted square graph | Greedy Best First Search | **TODO** | **TODO** | **TODO** | **TODO** |
+| Weighted square graph | A* | **TODO** | **TODO** | **TODO** | **TODO** |
+| Tree graph | BFS | **TODO** | **TODO** | **TODO** | **TODO** |
+| Tree graph | DFS | **TODO** | **TODO** | **TODO** | **TODO** |
+| Tree graph | Dijkstra | **TODO** | **TODO** | **TODO** | **TODO** |
+| Tree graph | Greedy Best First Search | **TODO** | **TODO** | **TODO** | **TODO** |
+| Tree graph | A* | **TODO** | **TODO** | **TODO** | **TODO** |
+
+**TODO:** fill this table with the actual measured results from the fixed test graphs and refer back to it in the algorithm-solving and evaluation sections.
 
 **TODO:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
 ### Further Post Development Test Data
