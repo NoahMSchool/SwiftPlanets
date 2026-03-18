@@ -114,7 +114,11 @@ I think it is important to have at least a gentle introduction to the algorithms
 I think that 30 minutes is a suitable length of time for the user to spend on the program. This is close to the length of a school lesson and I believe it will take slightly longer than they first expect.
 Therefore I feel like an app is the most accessible form for this audience, especially as the stakeholders seem to be using Apple devices.
 
-**TODO:** improve this section by linking each takeaway more directly to a design decision.
+**TODO:** improve this section by linking each takeaway directly to a design decision.
+* State which questionnaire result led to each design choice.
+* Explain how the preference for guidance affected onboarding, help screens, and step-by-step controls.
+* Explain how device answers supported choosing Swift, SwiftUI, and Apple platforms.
+* Explain why the space theme was chosen even though not every stakeholder chose it as their first preference.
 ### Using Computational Methods in the solution
 
 #### Thinking Abstractly
@@ -224,10 +228,17 @@ After and during development.
 I will also make small quality of life improvements that make explanations more true to what is actually happening
 
 **TODO:** explain how I will check that the algorithm facts and teaching points are correct.
+* Cross-check the algorithm explanations against the OCR A Level specification and at least one other reliable source.
+* Verify that the simulator behaviour matches the textbook rules for BFS, DFS, Dijkstra, and A*.
+* Use worked examples on paper and compare them with the simulator step by step.
+* Ask at least one stakeholder studying Computer Science to confirm that the explanations are understandable and accurate.
 ### Success Criteria
 
-**TODO:** turn this table into clear measurable goals. give every success criterion an ID, a full description and a reason. have at least one functional for each of the 6 subcomponents
-**TODO:** remove blank rows and vague points like "enjoyment" unless I can test them properly.
+**TODO:** turn this table into clear measurable goals. Give every success criterion an ID, a full description, a reason, and a measurable test.
+* Have at least one functional criterion for each of the 6 subcomponents.
+* Add a column showing how each criterion will be tested and what evidence will be used.
+* Replace vague wording like "good", "clear", or "enjoyable" with measurable wording such as "user can complete task X" or "algorithm returns the correct path on test graph Y".
+* Remove every blank row and make sure each criterion can later be judged as met, partially met, or not met.
 
 Maybe Match Functional Requirements to Design and Development Sprints
 
@@ -296,6 +307,10 @@ Generates an undirected graph that the algorithms can operate on and the spacesh
 This will also include choosing a start planet and an end planet. The graph does not necessarily have to be solvable.
 
 **TODO:** make the inputs, outputs, and validation equally clear for every subcomponent, using the same format and data-type detail throughout this section.
+* For each subcomponent, list the main data items with their types.
+* State what valid input looks like and what invalid input is rejected.
+* Make sure each output is specific enough to be tested later.
+* Link each subcomponent back to the success criteria it supports.
 ##### Inputs
 
 | Input                     | Type                                                                                                                                                       |
@@ -542,9 +557,12 @@ I am going to go with the 2nd choice as I beleve the ability to undo redo and mo
 
 One thing worth mentioning about this decision is that running these search algorithms are not computationally expensive (especially as I would do it on imput) so running it every time on user input is not actually a major problem. Running it once compared to 10 times will have almost zero affect on performance. It is likely the processes rendering the graphics are more expensive than these algorithms. Although this is likely also not expensive as I am keeping it simple to allow it to run on low end/old hardward.
 
-TODO ** Maybe Move to testing section or make new version with preimplemented graph for post develpment testing**
+**TODO:** replace this note with a clear explanation of why fixed test graphs were needed, how they were introduced, and how they supported step-by-step verification during development.
 
 **TODO:** explain the design decision for what happens when graph-generation parameters change, for example whether the graph should regenerate immediately or only when the user presses a button, and justify why that is better for usability.
+* State the final behaviour in the app.
+* Explain how this avoids confusing the user or unexpectedly losing a graph they were studying.
+* Refer to any stakeholder feedback or testing that influenced this decision.
 
 ##### Example of Step by step running
 When testing running the algorithm step by step I wanted to make sure it was done correctly.
@@ -677,8 +695,11 @@ The SwiftUI controls will be mostly output based:
 
 ### Further Post Development Test Data
 
-**TODO:** add tests done after finishing the program, including UI tests and invalid input tests, for example too many planets in generation, exactly 1 planet, or 0 fuel.
-**TODO:** make it clear that this section is planned post-development testing data, or move the final evidence down into the later testing section once it has actually been carried out.
+**TODO:** add tests done after finishing the program, including function, robustness, and usability tests.
+* Include invalid input tests such as too many planets, 1 planet, 0 planets, impossible paths, or extreme values.
+* Include at least one usability test and one robustness test.
+* Annotate the evidence with what was expected, what happened, and whether the test passed.
+* If this remains a planning section, rename it clearly as planned post-development testing. If the testing has been completed, move the final evidence into the later testing section.
 
 ## Development
 
@@ -1243,21 +1264,28 @@ This testing was also useful for the user experience, not just correctness. Duri
 | Tree graph | A* | **TODO** | **TODO** | **TODO** | **TODO** |
 
 **TODO:** fill this table with the actual measured results from the fixed test graphs and refer back to it in the algorithm-solving and evaluation sections.
+* Use real values taken from the finished program, not estimated ones.
+* Highlight where different algorithms behave differently on the same graph.
+* State explicitly which algorithms found the shortest path and which did not.
 
 **TODO:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
+* Make sure the trace table matches the screenshots and the implementation.
+* Use this as direct evidence that the step system is correct.
 
 ![[Screenshot 2026-03-17 at 21.50.43.png]]
 ## Testing to Inform Evaluation
 
-**TODO:** add brief evidence from post-development user testing here, including who tested it and what I asked them to try.
+**TODO:** add brief evidence from post-development user testing here, including who tested it, what level of experience they had, and what I asked them to try.
 * Generate their own graphs and choose their algorithm.
 * Understand how to step through the algorithm.
 * Understand how the visual representation of the progress made sense to them.
 * Understand the final visual representation of the path that was found.
 * Navigate to the about and help screens.
 * Use the help screens if they got stuck.
+* Record whether each task was completed successfully and how much support the user needed.
 
 **TODO:** add the findings from this testing and explain what I changed because of them.
+* For each finding, state the issue, the evidence, the change made, and whether the issue was fully resolved.
 * Found a bug generating a galaxy with 0 planets.
 * Found the colours quite confusing.
 * Nobody bothered reading the help section.
@@ -1267,7 +1295,12 @@ This testing was also useful for the user experience, not just correctness. Duri
 In this section I will go through the different components, show the related success criteria in a table, and mention any relevant added features and improvements that could be made.
 
 **TODO:** evaluate each success criterion one by one using evidence.
+* For every criterion, state whether it was met, partially met, or not met.
+* Quote the evidence source, such as a test table, screenshot, stakeholder result, or specific implementation section.
+* Keep the judgement honest where the evidence is mixed.
 **TODO:** say clearly what works well, what does not, and what I would improve next.
+* Separate strengths, weaknesses, and future improvements instead of mixing them together.
+* Make sure every proposed improvement links back to a limitation or partially met criterion.
 
 ### Success Criteria
 
