@@ -669,39 +669,6 @@ The SwiftUI controls will be mostly output based:
 * List of Frontier nodes and visited nodes
 * Explanation Boxes explaining the steps of the algorithms.
 
-### Test Data
-
-When writing the algorithms, in order to debug them and ensure they were working as intended, I needed graphs that would produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. During development I then compared the program state with the expected state to make sure the implementations were correct.
-These test graphs looked more artificial than the random galaxies because their purpose was correctness rather than appearance. In my random graph generation the weights are usually proportional to the distance between nodes, with some random noise for variation, but for the fixed tests I wanted graphs that clearly separated the behaviour of the algorithms.
-
-I ended up using two main non-random test graphs throughout development:
-* A weighted square graph, which was useful for comparing algorithms that do and do not account for edge weights.
-* A tree graph, which was useful for checking traversal order and the behaviour of stacks and queues.
-
-Stakeholder play testing also influenced this decision. When stakeholders tried the program with random graphs, one point of feedback was that it was not always obvious whether the solution shown was correct. Because of that feedback I added the fixed test graphs, even though this was not part of my original plan. This also led to a change in the galaxy generator structure so I could use subclasses for different graph types, such as `RandomGalaxyBuilder`, `SquareGalaxyBuilder`, and `TreeGalaxyBuilder`.
-
-**TODO:** insert labelled screenshots of the weighted square graph and the tree graph before solving.
-
-**TODO:** insert screenshots of both test graphs fully solved with BFS, DFS, Dijkstra, Greedy Best First Search, and A* so the reader can compare the outputs visually.
-
-#### Test Results Summary
-
-| Test graph | Algorithm | Correct (Y/N) | Shortest length | Number of steps | Number of nodes explored |
-| ---------- | --------- | ------------- | --------------- | --------------- | ------------------------ |
-| Weighted square graph | BFS | **TODO** | **TODO** | **TODO** | **TODO** |
-| Weighted square graph | DFS | **TODO** | **TODO** | **TODO** | **TODO** |
-| Weighted square graph | Dijkstra | **TODO** | **TODO** | **TODO** | **TODO** |
-| Weighted square graph | Greedy Best First Search | **TODO** | **TODO** | **TODO** | **TODO** |
-| Weighted square graph | A* | **TODO** | **TODO** | **TODO** | **TODO** |
-| Tree graph | BFS | **TODO** | **TODO** | **TODO** | **TODO** |
-| Tree graph | DFS | **TODO** | **TODO** | **TODO** | **TODO** |
-| Tree graph | Dijkstra | **TODO** | **TODO** | **TODO** | **TODO** |
-| Tree graph | Greedy Best First Search | **TODO** | **TODO** | **TODO** | **TODO** |
-| Tree graph | A* | **TODO** | **TODO** | **TODO** | **TODO** |
-
-**TODO:** fill this table with the actual measured results from the fixed test graphs and refer back to it in the algorithm-solving and evaluation sections.
-
-**TODO:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
 ### Further Post Development Test Data
 
 **TODO:** add tests done after finishing the program, including UI tests and invalid input tests, for example too many planets in generation, exactly 1 planet, or 0 fuel.
@@ -1234,14 +1201,57 @@ This is shown behind all the screens
 
 ## Testing to Inform Development
 
+When writing the algorithms, in order to debug them and ensure they were working as intended, I needed graphs that would produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. During development I then compared the program state with the expected state to make sure the implementations were correct.
+These test graphs looked more artificial than the random galaxies because their purpose was correctness rather than appearance. In my random graph generation the weights are usually proportional to the distance between nodes, with some random noise for variation, but for the fixed tests I wanted graphs that clearly separated the behaviour of the algorithms.
+
+I ended up using two main non-random test graphs throughout development:
+* A weighted square graph, which was useful for comparing algorithms that do and do not account for edge weights.
+* A tree graph, which was useful for checking traversal order and the behaviour of stacks and queues.
+
 I used the weighted square graph and the tree graph repeatedly while implementing the algorithms and the step system. These were useful because they gave me known expected answers, so I could check whether the frontier, explored nodes, and final path matched what I had worked out on paper.
 
 This testing was also useful for the user experience, not just correctness. During stakeholder play testing, one piece of feedback was that random graphs could look impressive but it was hard to tell whether the answer was actually right. That feedback was one of the reasons I added the fixed test graphs and changed the galaxy generator into subclasses so I could deliberately choose between a random graph and a known test case.
 
-**TODO:** add brief evidence from play testing here, such as who tested it and one or two short quotes or summarised comments.
+**TODO:** insert labelled screenshots of the weighted square graph and the tree graph before solving.
+
+**TODO:** insert screenshots of both test graphs fully solved with BFS, DFS, Dijkstra, Greedy Best First Search, and A* so the reader can compare the outputs visually.
+
+#### Test Results Summary
+
+| Test graph | Algorithm | Correct (Y/N) | Shortest length | Number of steps | Number of nodes explored |
+| ---------- | --------- | ------------- | --------------- | --------------- | ------------------------ |
+| Weighted square graph | BFS | **TODO** | **TODO** | **TODO** | **TODO** |
+| Weighted square graph | DFS | **TODO** | **TODO** | **TODO** | **TODO** |
+| Weighted square graph | Dijkstra | **TODO** | **TODO** | **TODO** | **TODO** |
+| Weighted square graph | Greedy Best First Search | **TODO** | **TODO** | **TODO** | **TODO** |
+| Weighted square graph | A* | **TODO** | **TODO** | **TODO** | **TODO** |
+| Tree graph | BFS | **TODO** | **TODO** | **TODO** | **TODO** |
+| Tree graph | DFS | **TODO** | **TODO** | **TODO** | **TODO** |
+| Tree graph | Dijkstra | **TODO** | **TODO** | **TODO** | **TODO** |
+| Tree graph | Greedy Best First Search | **TODO** | **TODO** | **TODO** | **TODO** |
+| Tree graph | A* | **TODO** | **TODO** | **TODO** | **TODO** |
+
+**TODO:** fill this table with the actual measured results from the fixed test graphs and refer back to it in the algorithm-solving and evaluation sections.
+
+**TODO:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
 
 ![[Screenshot 2026-03-17 at 21.50.43.png]]
 ## Testing to Inform Evaluation
+
+**TODO:** add brief evidence from post-development user testing here, including who tested it and what I asked them to try.
+* Generate their own graphs and choose their algorithm.
+* Understand how to step through the algorithm.
+* Understand how the visual representation of the progress made sense to them.
+* Understand the final visual representation of the path that was found.
+* Navigate to the about and help screens.
+* Use the help screens if they got stuck.
+
+**TODO:** add the findings from this testing and explain what I changed because of them.
+* Found a bug generating a galaxy with 0 planets.
+* Found the colours quite confusing.
+* Nobody bothered reading the help section.
+* It was hard to know if the algorithm found the correct path.
+
 ## Evaluation
 In this section I will go through the different components, show the related success criteria in a table, and mention any relevant added features and improvements that could be made.
 
