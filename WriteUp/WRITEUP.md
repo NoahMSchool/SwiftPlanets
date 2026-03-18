@@ -60,6 +60,8 @@ I interviewed these stakeholders and I aim to use this data to better understand
 
 ### Questionnaire for target market
 
+**TODO:** finish this questionnaire section so it is presented consistently. Turn the remaining raw answers into tables or short summaries and make it clear which stakeholder gave each response.
+
 Rambo
 Rocco
 Jon
@@ -292,6 +294,8 @@ Here is an in depth summary of each of the components of my solution
 ##### Description
 Generates an undirected graph that the algorithms can operate on and the spaceship can move between. Each node will be a planet in the graph which knows its neighbours. I will start more simply by using an unweighted graph, or all the weights equal to one, and then add weights later for necessary algorithms. To keep with the analogy I will call the weights fuel needed.
 This will also include choosing a start planet and an end planet. The graph does not necessarily have to be solvable.
+
+**TODO:** make the inputs, outputs, and validation equally clear for every subcomponent, using the same format and data-type detail throughout this section.
 ##### Inputs
 
 | Input                     | Type                                                                                                                                                       |
@@ -540,6 +544,8 @@ One thing worth mentioning about this decision is that running these search algo
 
 TODO ** Maybe Move to testing section or make new version with preimplemented graph for post develpment testing**
 
+**TODO:** explain the design decision for what happens when graph-generation parameters change, for example whether the graph should regenerate immediately or only when the user presses a button, and justify why that is better for usability.
+
 ##### Example of Step by step running
 When testing running the algorithm step by step I wanted to make sure it was done correctly.
 I solved a simple graph I made on paper and then i made it in the simulation.
@@ -672,6 +678,7 @@ The SwiftUI controls will be mostly output based:
 ### Further Post Development Test Data
 
 **TODO:** add tests done after finishing the program, including UI tests and invalid input tests, for example too many planets in generation, exactly 1 planet, or 0 fuel.
+**TODO:** make it clear that this section is planned post-development testing data, or move the final evidence down into the later testing section once it has actually been carried out.
 
 ## Development
 
@@ -1065,8 +1072,12 @@ To create animations in the program I used SKActions.
 SKActions are a class that allows me to transition properties and run actions one after each other.
 This is how I added all the animations and moving elements in my game, it is not only for animations but is also used for moving nodes and can even run code. I used this for these purposes.
 
+**TODO**: Add example code for SKActions
+
 ##### ShipRingPulse
 I added a pulse for when the ship explores a planet. The radius is dependant on the ships shortest distance so the ships it can travel too. Hopefully this makes it more obvious what planets are added to the frontier
+
+**TODO**: Add example code for this animation
 ##### NodeTeleport
 ##### MoveShipNode
 
@@ -1287,11 +1298,11 @@ The start and end planets should be a reasonable distance from each other to pre
 
 #### Subcomponent Five : Algorithm Visualisation
 
-**TODO:** evaluate how clear the colours, ship movement,animations and explanations were.
+**TODO:** evaluate how clear the colours, ship movement,animations and explanations were. Refer back to the user testing. Mention the problems with the ship timing when doing the auto play
 
 #### Subcomponent Six : User Interface
 
-**TODO:** evaluate the menus, navigation and screen layout on different devices.
+**TODO:** evaluate the menus, navigation and screen layout on different devices. Say how well they fitted.
 
 ##### Text Based SwiftUI pages
 One small thing I found was that the text and image based information pages were quite static and boring. One reason was that I used images in these screens which were simply screenshots. It may have been better if I had used small SpriteKit windows in the SwiftUI view to make them more interactive. This would future-proof it too, as if I updated the gameplay screens it would automatically update in the information pages instead of me having to take new screenshots.
