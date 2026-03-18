@@ -46,7 +46,7 @@ It also did not have many of the simpler graph traversal algorithms (like BFS an
 
 This is not a graphing simulator but it is an educational tool making learning interesting.
 There are lots of different high quality simulations on this platform. 
-PhET Is a non profit organisation founded by Carl Weiman. They have made their own framework for making simulations.
+PhET is a non-profit organisation founded by Carl Wieman. They have made their own framework for making simulations.
 I loved using this and found it very useful but one thing I would have liked is if it added a creative twist to keep the user engaged. As this is a large platform with lots of similar simulations I would have liked something more unique to make the program more relatable to use.
 
 #### Research Takeaways
@@ -68,9 +68,9 @@ Jon
 Willow
 
 How Long are you willing to spend to learn a new topic
-20 minuites for something small
+20 minutes for something small
 half an hour
-40 minuites, just under a lesson
+40 minutes, just under a lesson
 1 school period or an hour
 
 What devices do you use the most to learn (Tablet, Phone, Desktop or other)
@@ -82,20 +82,20 @@ Mac Mini desktop for work
 Are you studying computer science, if so what course
 GCSE OCR computer Science
 OCR comp-sci A-Level
-A level Computer Science
-I am not studiying computer science but still am interseted in a graph learning tool
+A Level Computer Science
+I am not studying computer science but still am interested in a graph learning tool
 
 When using a tool to learn a new subject would you rather have more freedom or a more guided path.
-Which of the following analogies do you find most relatable and interisting : Space, A CityMap or A RuralMap
+Which of the following analogies do you find most relatable and interesting: Space, A CityMap or A RuralMap
 
 
 | **When using a tool to learn a new subject would you rather.** | more freedom or a more guided path                                                                                                        |
 | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | Stakeholder 1: Rambo                                           | More control would be nice but it should be easy/intuitive to use                                                                         |
-| Stakeholder 2: Noah                                            | I would like both, maybe you could start with a more guided approach and then once you are more familliar you could be given more control |
+| Stakeholder 2: Noah                                            | I would like both, maybe you could start with a more guided approach and then once you are more familiar you could be given more control |
 | Stakeholder 3 : Rocco                                          | I would rather be guided at the start as I can find the options overwhelming                                                              |
 
-| **Which of the following analogies do you find most relatable and interisting** | Space, A Map (City or Rural)                        |
+| **Which of the following analogies do you find most relatable and interesting** | Space, A Map (City or Rural)                        |
 | ------------------------------------------------------------------------------- | --------------------------------------------------- |
 | Stakeholder 1: Rambo                                                            | I would love a space analogy                        |
 | Stakeholder 2: Noah                                                             | The ruralMap would be cool but also the Space       |
@@ -126,10 +126,10 @@ Therefore I feel like an app is the most accessible form for this audience, espe
 I am going to use AI generated 2D sprites as this will not be time consuming and will be easy to implement while also providing an appealing aesthetic.
 
 As My graphing simulator is set in space, I need to consider which features to keep to make the simulation at least somewhat accurate. This is a graphing simulator not an ultra-realistic space simulation so I am able to remove things without making the program useless to the user.
-I will abstract lots of details of space and simplify it to just a graph with a few aesthetic objects in the backround for visual appeal.
+I will abstract lots of details of space and simplify it to just a graph with a few aesthetic objects in the background for visual appeal.
 
 I have looked at many aspects of space and noticed that there are many extra ideas that seem unnecessary and will overcomplicate the program. For example, adding planet Orbits would mean the nodes on the graph would have to move around. This not only complicates the development of the game but also adds extra complexities the user has to manage which would be frustrating, for example orbits would mean that the shortest path would be constantly changing. This would confuse the user which is a problem for an introduction to the subject.
-Even though this may be unreasistic my planets are just going to be floating in space scattered randomly on a 2D plane.
+Even though this may be unrealistic, my planets are just going to be floating in space scattered randomly on a 2D plane.
 
 I am going to remove aspects that do not add much value to the experience.
 This might include 
@@ -156,7 +156,7 @@ Lots of parts of my program will hapen at the same time. The ship will need to m
 | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Unity](https://unity.com/)/Unreal          | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine.                                                                              | I could make the program 3D however my game<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine meaning I will not have to code these elements.  | A game engine like this can be overly complex for my program , they are designed for video games involving more complex graphics. <br><br>I will have less control over the program if it is using pre-made functions which means I don't write as many algorithms. For a unique project like graphing I would want more control. |
 | [Godot](https://godotengine.org/)           | Godot is a lightweight Game engine used for both 2D and 3D games                                                                                                                                    | Very lightweight and simple to use.<br><br>I can write in GDScript which is a simple language similar of python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms including ios devices | Like Unity, this is probably overkill<br><br>Too many functions provided in the framework so less algorithms to write                                                                                                                                                                                                             |
-| [Swift](https://www.swift.org/) / SpriteKit | Swift is Apples programming language and SpriteKitis a simple graphics API I could use with it to make my game. SpriteKit is still feature ritch and powerful with their Node System and SKActions. | I could make my app work on all Apple devices such as tablets and phones which is a more convenient for my target audience.<br><br>It will be more efficient as Swift is statically typed meaning it will be more optimised by the compiler    | The game will not be playable on other platforms like Android or Windows as will be exclusively iOS.                                                                                                                                                                                                                              |
+| [Swift](https://www.swift.org/) / SpriteKit | Swift is Apple's programming language and SpriteKit is a simple graphics API I could use with it to make my game. SpriteKit is still feature rich and powerful with its node system and SKActions. | I could make my app work on all Apple devices such as tablets and phones which is more convenient for my target audience.<br><br>It will be more efficient as Swift is statically typed, meaning it will be more optimised by the compiler    | The game will not be playable on other platforms like Android or Windows as it will be exclusively iOS.                                                                                                                                                                                                                              |
 | [Pygame](https://www.pygame.org/)<br>       | Pygame is a simple 2D graphics library that uses python.                                                                                                                                            | I can write the project in Python which has easy syntax and is quite lightweight.                                                                                                                                                              | It is very basic so I will have to program all user interface components from scratch                                                                                                                                                                                                                                             |
 
 
@@ -175,8 +175,8 @@ However this will mean that the app can only be played on Apple devices, this co
 | **Requirement**                        | Description                                                                                                                                  | **Justification**                                                                                                                                |
 | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Runs macOS, iOS, iPadOS, VisionOS      | As I am using Swift/SwiftUI it will have to run an apple operating system.                                                                   | Swift, SwiftUI and SpriteKit only works on these operating systems                                                                               |
-| MacOS Sonoma 14.5 or iOS 17.5 or later | I cannot support all versions of the OS so I need to decide how far back I can go                                                            | For iOS/MacOS is reccomended that you support the last version and two preceeding. Apple devices tend to be well within the last two OS versions |
-| Mac Catalyst 17.5                      | This is only related to MacOS but Mac Catalyst makes a version of my ipad App that works on Mac. Mac catalyst 17.5 corresponds to MacOS 14.5 | I am developing for iOS so I need to be able to convert it to a version that can run on Mac                                                      |
+| macOS Sonoma 14.5 or iOS 17.5 or later | I cannot support all versions of the OS so I need to decide how far back I can go                                                            | For iOS/macOS it is recommended that you support the last version and two preceding versions. Apple devices tend to be well within the last two OS versions |
+| Mac Catalyst 17.5                      | This is only related to macOS but Mac Catalyst makes a version of my iPad app that works on Mac. Mac Catalyst 17.5 corresponds to macOS 14.5 | I am developing for iOS so I need to be able to convert it to a version that can run on Mac                                                      |
 |                                        |                                                                                                                                              |                                                                                                                                                  |
 #### Hardware
 
@@ -184,7 +184,7 @@ However this will mean that the app can only be played on Apple devices, this co
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Computer Mouse or touchscreen | The device they use must be a touchscreen, or have a screen and mouse or trackpad or some mechanism to view and select elements                                                                                                                      | Used for selecting objects and playing the game                                                      |
 | Apple Device                  | It must be an apple device such as an iPad, Mac or iPhone                                                                                                                                                                                            | The device needs to run a required operating system                                                  |
-| Screen Aspect Ratio/Size      | I will not be too strict about the aspect ratio but it should not be too wide or too small. I am going to test it using an Ipad and a mac which have 3:2 and 16:10 aspect ratio so it will be designed around that aswell as 2:3 for portrait ipads. | Most users will be running this on ipads or macs so optimising for these aspect ratios is importaint |
+| Screen Aspect Ratio/Size      | I will not be too strict about the aspect ratio but it should not be too wide or too small. I am going to test it using an iPad and a Mac which have 3:2 and 16:10 aspect ratios so it will be designed around that as well as 2:3 for portrait iPads. | Most users will be running this on iPads or Macs so optimising for these aspect ratios is important |
 | RAM                           | 8gb                                                                                                                                                                                                                                                  | Firstly I need to be able to run swift playgrounds.                                                  |
 |                               | My program is not storign much data                                                                                                                                                                                                                  |                                                                                                      |
 
@@ -192,19 +192,19 @@ However this will mean that the app can only be played on Apple devices, this co
 
 | Feature                                                   | Explanation                                                                                                               | Reason                                                                                                                                                                                 |
 | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| An app with navigatable screen                            | Aswell as the simulation I will need a app with navigation                                                                |                                                                                                                                                                                        |
+| An app with navigatable screen                            | As well as the simulation I will need an app with navigation                                                              |                                                                                                                                                                                        |
 | Generating the graph                                      | The program should automatically generate a  simple graph with few user inputs this will mean that the user does not need | I need a graph to perform the search algorithms on                                                                                                                                     |
-| Visualising the Graph                                     | There should be a user interface that allows the user to interact with the graph                                          | In order to understand the graph it is important to see the graph. Graphing algorithms can still be done without seeing the nodes and edges but for a learning tool this is importaint |
+| Visualising the Graph                                     | There should be a user interface that allows the user to interact with the graph                                          | In order to understand the graph it is important to see the graph. Graph algorithms can still be done without seeing the nodes and edges but for a learning tool this is important |
 | Performing Search Algorithms on Graph<br>                 | This may seem obvious but I need to be able to run the algorithms on the graph                                            | To simulate the algorithms I must be able to programmatically solve them                                                                                                               |
-| Step By Step through the Graph                            | I need to be able to run each algorithm slowly to explain the algorithm                                                   | The user should be able to pause the algoritm and in theory make a trace table of the key variables of the algorithm.                                                                  |
+| Step By Step through the Graph                            | I need to be able to run each algorithm slowly to explain the algorithm                                                   | The user should be able to pause the algorithm and in theory make a trace table of the key variables of the algorithm.                                                                  |
 | Explanations and Visualisation of graph being operated on | I will have text boxes explaining what is happening at each step                                                          | I need to also explain what is happening at each step.                                                                                                                                 |
 ### Limitations of Solution
 
 | Limitation                         | Explanation                                                                                                                                         | Justification                                                                                                                                                                                                                  |
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Simplicity                         | The program will have a easy to use simple interface                                                                                                | As I am targeting to make the simulator accessable and focussed on introducing to graphs it is naturally going to be less feature rich and the user will not have full control over the program.                               |
-| Less Control over Graph Generation | As I am quickly generating the graph with minimal inputs It means the user will not be able to have the control to create the exaxt graph they want | Giving more control t the user will make it more complicated to use. It is not targeted at experienced people simulating lots of graphs to test efficiency or testing unusual cases on algorithms. It is more a learning tool. |
-| No Saved Data                      | I have not included the ability to store app data.                                                                                                  | I couldnt find enough features and reasons to store user data. There are no major practical benifits and the user likely prefers not to be tracked.                                                                            |
+| Simplicity                         | The program will have an easy to use simple interface                                                                                                | As I am targeting the simulator at introducing graphs it is naturally going to be less feature rich and the user will not have full control over the program.                               |
+| Less Control over Graph Generation | As I am quickly generating the graph with minimal inputs it means the user will not be able to have the control to create the exact graph they want | Giving more control to the user will make it more complicated to use. It is not targeted at experienced people simulating lots of graphs to test efficiency or unusual cases on algorithms. It is more of a learning tool. |
+| No Saved Data                      | I have not included the ability to store app data.                                                                                                  | I could not find enough features and reasons to store user data. There are no major practical benefits and the user likely prefers not to be tracked.                                                                            |
 
 ### Other Requirements
 #### Usability Requirements
@@ -215,7 +215,7 @@ I will make the appearance of the app minimal.
 I will have clear controls with suitable labels explaining what they do.
 ##### Performance
 The simulation should be able to run on lower end older hardware. This will make it more accessible to more people.
-The program should not abruptly crash. It should not be too processeur intensive so it should be fast to run with decent frame rates, not drain the devices battery life and boot up quickly. I do not want performance to be an issue as it is importaint that the user enjoys using the program.
+The program should not abruptly crash. It should not be too processor intensive so it should run with decent frame rates, not drain the device's battery life, and boot up quickly. I do not want performance to be an issue as it is important that the user enjoys using the program.
 
 ##### Bugs/Exploits
 There should not be any Major bugs or Exploits in the program.  
@@ -225,7 +225,7 @@ My focus will be on minimising bugs that are accidentally triggered that cause u
 
 As this is an educational tool everything needs to be factually correct.
 After and during development.
-I will also make small quality of life improvements that make explanations more true to what is actually happening
+I will also make small quality of life improvements that make the explanations more true to what is actually happening.
 
 **TODO:** explain how I will check that the algorithm facts and teaching points are correct.
 * Cross-check the algorithm explanations against the OCR A Level specification and at least one other reliable source.
@@ -248,17 +248,17 @@ Maybe Match Functional Requirements to Design and Development Sprints
 | **Functional**                      |                                                |                                                                                                                                                              |                                                                                                                                                                                                                                                                                                           |                   |
 | FR1                                 | Generate A graph                               | The program should generate a random graph for the user with a few simple inputs. They should be ranges of shapes and sizes.                                 | These graphs should highlight the main features, benefits and drawbacks of each algorithm.                                                                                                                                                                                                                | ---               |
 | FR2                                 | Teach what a graph algorithm is and their uses | A page providing text/image based description about what graphing algorithms are and examples of their uses                                                  | The user needs a clear foundation before exploring specific algorithms, the user should understand real-world uses of graph and graph traversal algorithms (for example, maps and routing)                                                                                                                | --                |
-| FR3                                 | Simulate all Graph Algorithms                  | It should be able to simulate all the graphing algorithms in the A level-specification. (These include; BFS, DFS, Dijkstra and A*                            | A level is often the first time students come across graphs so I think it is important to include at a minimum all the content these students will require. This allows demonstration that different algorithms have different strengths and weaknesses, and that performance depends on graph structure. |                   |
+| FR3                                 | Simulate all Graph Algorithms                  | It should be able to simulate all the graphing algorithms in the A Level specification. (These include: BFS, DFS, Dijkstra and A*)                            | A Level is often the first time students come across graphs so I think it is important to include at a minimum all the content these students will require. This allows demonstration that different algorithms have different strengths and weaknesses, and that performance depends on graph structure. |                   |
 | FR4                                 | Step by step                                   | The user should be able to run through each step of the algorithm individually on command. This would mean they could create a trace table of the steps.     | To truly understand the algorithm the user must be able to know what is happening in each iteration. For Comp-Sci courses you often need to make trace tables for the algorithm                                                                                                                           |                   |
 | FR5                                 | Visualisation                                  | The Graph should also provide a visualisation of what is happening on the graph algorithm while it is being searched                                         |                                                                                                                                                                                                                                                                                                           |                   |
 | FR6                                 |                                                |                                                                                                                                                              |                                                                                                                                                                                                                                                                                                           |                   |
 | **Performance**                     |                                                |                                                                                                                                                              |                                                                                                                                                                                                                                                                                                           |                   |
-| PR1                                 | Abrupt Crashes                                 | The program should not crash due to runtime errors such as invalid data types (eg if strings are assigned to floats).                                        | If the app crashes the user will loose their progress which will mean they will have to restart. This could prevent them from finishing the lesson.                                                                                                                                                       |                   |
+| PR1                                 | Abrupt Crashes                                 | The program should not crash due to runtime errors such as invalid data types (eg if strings are assigned to floats).                                        | If the app crashes the user will lose their progress which will mean they will have to restart. This could prevent them from finishing the lesson.                                                                                                                                                       |                   |
 | PR2                                 | Decently high Frame Rates and minimal Lag      | It should run at 60fps and have little to no lag. To do this I will need to make sure the program is not too computationally expensive especially per frame. | The user should not be getting frustrated by the program while running so it should run smoothly.                                                                                                                                                                                                         |                   |
 | PR3                                 |                                                |                                                                                                                                                              |                                                                                                                                                                                                                                                                                                           |                   |
 | PR4                                 |                                                |                                                                                                                                                              |                                                                                                                                                                                                                                                                                                           |                   |
 | **Usability**                       |                                                |                                                                                                                                                              |                                                                                                                                                                                                                                                                                                           |                   |
-| UR1                                 | Adaptive UI                                    | The program's user interface should resize and scale to fit the users devices screen                                                                         | The program should run equally well on all iOS devices to make it accessable.                                                                                                                                                                                                                             |                   |
+| UR1                                 | Adaptive UI                                    | The program's user interface should resize and scale to fit the users' device screens                                                                         | The program should run equally well on all iOS devices to make it accessible.                                                                                                                                                                                                                             |                   |
 | UR2                                 | Theme                                          | The overall program's theme should stick to the chosen analogy of space                                                                                      | If users do not engaged by the program they won't use it long enough to learn                                                                                                                                                                                                                             |                   |
 | UR3                                 | Navigatable App                                | As my app will have multiple pages, they should all be straightforward to navigate between                                                                   | The user should not have any trouble finding the pages and parts of the program they are looking for they should spend their time looking at the content                                                                                                                                                  |                   |
 | UR4 **maybe belongs in Functional** | Explanations during graph simulations          | Aswell as slowly stepping through the graph algorithm steps the user should see explanations of what is happening.                                           | Just seeing variables and coloured nodes may be confusing                                                                                                                                                                                                                                                 |                   |
@@ -334,20 +334,20 @@ The start and end planets should be a reasonable distance from each other to pre
 ##### Description
 Now that I have a graph which are nodes that store their positions and know their neighbours I need a way to visualise them
 The first part of this is to add circles to the correct coordinates and lines showing the connections for edges.
-The graph also needs to give an interface that alows external classes to access the colors of nodes and edges aswell as other effects and info about the node. This will mean that when writing the algorithm it will be easy to change the visuals for the user.
+The graph also needs to give an interface that allows external classes to access the colours of nodes and edges as well as other effects and information about the node. This will mean that when writing the algorithm it will be easy to change the visuals for the user.
 ##### Inputs
 A graph Datastructure that stores nodes and edges
 ##### Outputs
 A visual display of the graph that appears like planets in a galaxy with lines showing the edges. All text labels should be readable.
 This graph should be able to change using code so it can also be used as a tool to display what is happening during the graph traversal
 ##### Validation
-The nodes and edges in the graph is in valid locations and are linked correcly. The graph rendering will assume that the graph is valid and will render even if nodes are in incorrect locations.
+The nodes and edges in the graph are in valid locations and are linked correctly. The graph rendering will assume that the graph is valid and will render even if nodes are in incorrect locations.
 
 #### Subcomponent Three : Algorithm Solving
 ##### Description
-I will make a simple graph traversal algorithm such as Breadth First Search and Depth Firt Search to traverse the graph and find a path from the start to the finish.
-It will record necessary data such as the queue or stack of nodes to visit next aswell as the visited nodes.
-I plan to then implement the rest of the algorithms in the A-level specification including dijkstra and A* using a heuristic of distance to target.
+I will make a simple graph traversal algorithm such as Breadth First Search and Depth First Search to traverse the graph and find a path from the start to the finish.
+It will record necessary data such as the queue or stack of nodes to visit next as well as the visited nodes.
+I plan to then implement the rest of the algorithms in the A Level specification including Dijkstra and A* using a heuristic of distance to the target.
 I will not have a UI at this stage but plan to visualise data in the console or debugger.
 ##### Inputs
 A graph and a chosen algorithm
@@ -375,7 +375,7 @@ In this section I will heavily use the interface I created for the graph changin
 I will also create lists and other UI elements to help display algorithm state and other factors.
 I am also going to add a spaceship that shows the current node
 ##### Inputs
-A graph that provides a interface for changing visuals, UI elements
+A graph that provides an interface for changing visuals, UI elements
 The Algorithm State
 ##### Outputs
 A visual display of the state of the algorithm
@@ -383,10 +383,10 @@ A visual display of the state of the algorithm
 
 #### Subcomponent Six : User Interface
 ##### Description
-This component is not to do with the main program but is about the app as a whole. I want a easily navigatable UI that will show all the different screens and should be intuitive to use.
-This is not just putting the screens together but also covers the creation of these UI elements. I am going to use reusable components which will save time in development, increase performance and create a consistant User Interface
+This component is not to do with the main program but is about the app as a whole. I want an easily navigable UI that will show all the different screens and should be intuitive to use.
+This is not just putting the screens together but also covers the creation of these UI elements. I am going to use reusable components which will save time in development, increase performance and create a consistent user interface.
 ##### Inputs
-Buttons that The user can press. Menus the user can sellect
+Buttons that the user can press. Menus the user can select
 ##### Outputs
 Affect program when buttons are pressed or items are selected by calling functions or updating variables.
 Give a visual interface of the program
@@ -430,17 +430,17 @@ This means when changing the objects properties it will update any views using t
 #### View (User Interface)
 The Views Provides a GUI for the user to see and interact with the program. 
 
-For this I will need to use a graphcs library. I am going to be using two, SpriteKit and SwiftUI.
+For this I will need to use a graphics library. I am going to be using two, SpriteKit and SwiftUI.
 SpriteKit will be used for the areas where I need more control such as drawing graphs and custom animations.
 SwiftUI is going to be used for the overall adaptive app UI and navigation between screens.
 ##### Spritekit 
 ```SpriteKit is a general-purpose framework for drawing shapes, particles, text, images, and video in two dimensions.```
-SpriteKit is imperitive so I have control over exactly what is being rendered. It has a 2D coordinate system and allows me to place nodes in precise positions and draw shapes. This is importaint as I have control so I can draw graphs exacly how I want.
-It is a game engince that uses apples metal framework which will mean high performance rendering.
+SpriteKit is imperative so I have control over exactly what is being rendered. It has a 2D coordinate system and allows me to place nodes in precise positions and draw shapes. This is important as I have control so I can draw graphs exactly how I want.
+It is a game engine that uses Apple's Metal framework which will mean high performance rendering.
 
 ##### SwiftUI
 ```SwiftUI is a declarative framework for building user interfaces for iOS, iPadOS, watchOS, tvOS, visionOS and macOS, developed by Apple Inc```
-Declaritive programming languages are higher level than imperitive so it uses Abstraction so I dont need to worry about the low level how the UI is created.
+Declarative programming languages are higher level than imperative so they use abstraction and I do not need to worry about the low-level details of how the UI is created.
 This will mean that my UI will adapt to all screen sizes with little effort! This is because I define what I want the UI to look like and it will generate it so it is not generated with a particular screen size in mind. 
 
 #### Controller (Program Logic)
@@ -474,7 +474,7 @@ erDiagram
 ```
 
 
-### Implementation of Subcomponnets
+### Implementation of Subcomponents
 
 #### Subcomponent One : Graph generation : Model
 As this is not to do with the graphics I do not need to use any graphics libraries however It will use coordinates. This will be provided to the graph rendering component which will use SpriteKit to render it.
@@ -497,7 +497,7 @@ The planets are going to be rendered using filled circles which are randomly sel
 The planets will have labels below them which should be readable. These will be used to show the name of which planet it is as the names will be used in other places.
 ##### Edges/Paths
 The edges will be represented by lines
-There should be a text box on the lines which will be used represent the weight. This should also be readable and the graph rendering is not responsable for what is in the text box, It just needs to be able to be changed.
+There should be a text box on the lines which will be used to represent the weight. This should also be readable and the graph rendering is not responsible for what is in the text box, it just needs to be able to be changed.
 
 #### Subcomponent Three : Algorithm Solving : Model
 For the search algorithms I realised they are not that different from each other. They all have a list of nodes to visit and the nodes they have visited. The only difference is the order they are visited in.
@@ -547,15 +547,15 @@ Here is a summary table of the algorithms and the features they use:
 ##### Solving Step By Step
 When writing these algorithms normally and how it is described previously in algorithm solving is that they use iteration or recursion. This means that local variables are created in a loops or functions and they are overidden on each iteration and do not persist in memory. If I want to run the algorithm step by step so the user can view it the options are:
 
-| **Method**                                                                                                                                               | **Benifit**                                                                                                                                                                      | **Drawback**                                                                                                    |
+| **Method**                                                                                                                                               | **Benefit**                                                                                                                                                                      | **Drawback**                                                                                                    |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Pausing the execution in the loop waiting for user input before continuing                                                                               | Reletively easy to implement                                                                                                                                                     | The algorithm code would need to be run in a separate thread so it doesnt pause excecution of the main program. |
-| Storing state of the variables externally so they persist in memory so I can jump to certain steps without having to rerun the algorithm from the start. | I need to make a datastructure to store the state of the algorithm and write other functionality to use this datastructure to step forward and back or to steps in the algorithm | I am storing aditional data for every step in the algorithm.                                                    |
+| Pausing the execution in the loop waiting for user input before continuing                                                                               | Relatively easy to implement                                                                                                                                                     | The algorithm code would need to be run in a separate thread so it does not pause execution of the main program. |
+| Storing state of the variables externally so they persist in memory so I can jump to certain steps without having to rerun the algorithm from the start. | I need to make a data structure to store the state of the algorithm and write other functionality to use this data structure to step forward and back or to steps in the algorithm | I am storing additional data for every step in the algorithm.                                                    |
 |                                                                                                                                                          |                                                                                                                                                                                  |                                                                                                                 |
 
-I am going to go with the 2nd choice as I beleve the ability to undo redo and move to certain steps is importaint. And 
+I am going to go with the 2nd choice as I believe the ability to undo, redo, and move to certain steps is important.
 
-One thing worth mentioning about this decision is that running these search algorithms are not computationally expensive (especially as I would do it on imput) so running it every time on user input is not actually a major problem. Running it once compared to 10 times will have almost zero affect on performance. It is likely the processes rendering the graphics are more expensive than these algorithms. Although this is likely also not expensive as I am keeping it simple to allow it to run on low end/old hardward.
+One thing worth mentioning about this decision is that running these search algorithms is not computationally expensive, especially as I would do it on input, so running it every time on user input is not actually a major problem. Running it once compared to 10 times will have almost zero effect on performance. It is likely the processes rendering the graphics are more expensive than these algorithms. Although this is also likely not expensive as I am keeping it simple to allow it to run on low-end or old hardware.
 
 **TODO:** replace this note with a clear explanation of why fixed test graphs were needed, how they were introduced, and how they supported step-by-step verification during development.
 
@@ -574,21 +574,21 @@ This is an example with BFS about how i want the algorithms to be visualised wit
 
 ##### Undo/Redo Stack
 One of my requirements is that the user should be able to replay the steps of the algorithm
-Another Requirement is that my program is efficeint to optimise performance on less powerful devices.
+Another requirement is that my program is efficient to optimise performance on less powerful devices.
 To implement this I am going to use a stack that stores the state.
 
 I will create a data structure that saves the state of the algorithm
-When Moving forwards a step I wil push the importaint data of the algorithms state onto a stack.
+When moving forwards a step I will push the important data of the algorithm's state onto a stack.
 When Undoing a step I will pop the top of the stack and 
 However for this I need to reacalculate the steps when going forwards but not backwards.
-To fix this I could make anouther stack that stores the next instructions
+To fix this I could make another stack that stores the next instructions
 together these two stacks and current state will store all the possible states of the algorithm.
 When moving forwards I will pop the current state from the forwards stack and when going backwards I will push the current state on the forwards stack.
 
 This will mean I calculate all the possible states at the start and the algorithms dont need to be run every step.
 
 #### Subcomponent Five : Algorithm Visualisation : View
-This componnet is very importaint which is to display progress of the algorithm to the user. This needs to be well done as it it the main purpose of the program.
+This component is very important because it displays the progress of the algorithm to the user. This needs to be done well as it is the main purpose of the program.
 
 ![GraphSolving](https://github.com/user-attachments/assets/9a66c195-65f1-4da8-ab85-12e208d0c1b5)
 
@@ -597,14 +597,14 @@ This componnet is very importaint which is to display progress of the algorithm 
 The spaceship Is going to be the object that traverses the graph. It will place emphasis on the current node being visited.
 I am going to use SpriteKits SKSpriteNode which allows me to put 2D textures on a object.
 ##### Frontier and Explored Lists
-As well as UI elements it is importaint to show text based info. I want to show the lists of nodes that have been visited and are next to be visited.
+As well as UI elements it is important to show text-based information. I want to show the lists of nodes that have been visited and are next to be visited.
 
 The list of nodes to visit is the frontier. This is the queue/stack/priority queue that the algorithm uses to select the next node to visit.
 The list of visited node is the visited. This is a list of the nodes that have already been visited. I could add information next to these about the weight to get to it so far or the node it came from for more information.
 ##### Explanation Boxes
 To Tie all the Visualisation together I am going to have a text box.
 This will explain what is happening in each of the steps of the algorithm. It will say what the algorithm is actually doing while it is happening to help the user understand.
-I will premake a selection of strings that allow me to insert specific information in the correct location (such as the node name).
+I will pre-make a selection of strings that allow me to insert specific information in the correct location, such as the node name.
 I will also give the ability for the user to swap between Space Explanations (which use space vocab to increase engagement such as: Galaxy, Planet, Path) and a more Technically accurite Graph Explanations (which uses words like graph, node, edge).
 
 ##### Planet and Path Colouring
@@ -615,7 +615,7 @@ I am going to do this using the graph's interface i will create
 #### Subcomponent Six : User Interface : View
 All of the User Interface is going to be made with SwiftUI.
 ##### Adaptability
-The User Interface needs to be able to adapt to different screen sizes. Although iPads are all the same 4:3 aspect ratio they can be rotated to be in portrait and my app still needs to work. It should also work on Mac's, iPhones and Headsets. If it is being windowed the size should adapt similar to a web page
+The user interface needs to be able to adapt to different screen sizes. Although iPads are all the same 4:3 aspect ratio they can be rotated to portrait and my app still needs to work. It should also work on Macs, iPhones and headsets. If it is windowed the size should adapt similarly to a web page.
 I therefore should make sure my app can adjust the size and locations of UI elements to fit and not obscure the screen.
 ##### Validation of input data
 
@@ -669,10 +669,10 @@ Like the about screen this is going to be a scrollable screen with not much inte
 The objectives of this screen are:
 * Explain the meaning of the highlight colours on the nodes.
 * Show the use what all the buttons on the program do to control the algorithm.
-* Explain What each of the lists are representing in relation to the algoritm (Is it a stack or queue) showing how I will link the colours.
+* Explain what each of the lists is representing in relation to the algorithm, for example whether it is a stack or queue, showing how I will link the colours.
 * Show the user how to select the different algorithms.
 ##### Settings View
-This is not so much going to be a separate screen but will be placed on top of the current view. This will always be the galaxy builder or simlation as it is only accessible via these pages.
+This is not so much going to be a separate screen but will be placed on top of the current view. This will always be the galaxy builder or simulation as it is only accessible via these pages.
 I am going to use a swiftUI element called a sheet which allows me to overlay the settings view on top of the current view, this will allow me to keep the background visible while changing settings to keep the context of the graph.
 ![SettingsScreen](https://github.com/user-attachments/assets/0ba99730-a5ca-43fb-a628-675401961496)
 This is what the sheet will look like. I will put the controls inside the sheet.
@@ -687,7 +687,7 @@ There will be the controls for generating the graph and choosing the search algo
 
 
 ##### Simulation
-This will contain the SpriteKit View which will include a ship and neccessary highlight colors depending on the state of the algorithm.
+This will contain the SpriteKit View which will include a ship and necessary highlight colours depending on the state of the algorithm.
 
 The SwiftUI controls will be mostly output based:
 * List of Frontier nodes and visited nodes
@@ -881,7 +881,7 @@ The functions that are required are:
 I made my Search Algorithms all inherit from a Generic BaseSearch class.
 This acted partly like a protocol as it defined the functions the child classes should have. However the base search implemented some basic generic functionality that was overriden when neccesary.
 
-#### Breath First Search
+#### Breadth First Search
 Breadth First Search uses a queue to decide which is the next node to visit. 
 This provides a broad search around the start node in general visiting closer nodes before further nodes
 
@@ -901,7 +901,7 @@ getNewWeight(n: n) + n.neighbour.heuristic(to: to)
 ```
 
 #### Greedy Best First Search 
-This priority function only used the heuristic. In my random graphs (with some exeptions when the start and end are separated by a void without nodes)  it often found the shortest path quickly as my weights were based of the distance to the node.
+This priority function only used the heuristic. In my random graphs, with some exceptions when the start and end are separated by a void without nodes, it often found the shortest path quickly as my weights were based on the distance to the node.
 
 
 #### Diagram of searching components
@@ -932,7 +932,7 @@ classDiagram
 
 
 #### Minor improvements to prior stages
-I added the ability to show and hide text on the edges for only dijkstra and A* to use edge weights. For algorithms that dont use the weights the wieght for all edges is 1
+I added the ability to show and hide text on the edges for only Dijkstra and A* to use edge weights. For algorithms that do not use the weights, the weight for all edges is 1.
 
 ### Stage Four : Algorithm Control
 
@@ -971,13 +971,13 @@ classDiagram
 
 At A high level to solve step by step I have a current state, a forward function and a backward function. 
 I have a stack that stores the history of the algorithm with an object.
-When going forwards I do the neccessary steps which will 
+When going forwards I do the necessary steps which will 
 Different to design I did not include a redo Stack that stored the future stages. The argument that it is less efficient I do not think is a problem as it is only being done on event and the calculations are actually not that big.
 
 #### Undo Stack
 I made an UNDO stack to store the history of the algorithm.
-When I went forward in the algorithm I created an object that stored all the key variables of the algorithm state and pushed this object onto the stack. This is similar to how the contents of the registors are pushed onto a stack when there is an interupt. And then I could freely change the original variables for the next step without loosing the data for the previous step.
-This is the AlgorithmState Object I created. It stores a the simple data aswell as dictionaries of all the nodes and the relevant data.
+When I went forward in the algorithm I created an object that stored all the key variables of the algorithm state and pushed this object onto the stack. This is similar to how the contents of the registers are pushed onto a stack when there is an interrupt. I could then freely change the original variables for the next step without losing the data for the previous step.
+This is the `AlgorithmState` object I created. It stores the simple data as well as dictionaries of all the nodes and the relevant data.
 ```swift
 struct AlgorithmState{
     var current: (any Traversable) //current node
@@ -1021,7 +1021,7 @@ In the second part there are few steps
 * Get the Next node (this uses the frontier queue which is based of the priorities of the chosen algorithm)
 * Check if the next node is the target node
 
-This is the code, there is some aditional validation I had to do that was included
+This is the code. There is some additional validation that I had to include.
 ```swift
 //move to next node (getNextFrontier returns a tuple of weight and neighbour)
 currentState.current = getNextFrontier().neighbour
@@ -1096,7 +1096,7 @@ This is how I added all the animations and moving elements in my game, it is not
 **TODO**: Add example code for SKActions
 
 ##### ShipRingPulse
-I added a pulse for when the ship explores a planet. The radius is dependant on the ships shortest distance so the ships it can travel too. Hopefully this makes it more obvious what planets are added to the frontier
+I added a pulse for when the ship explores a planet. The radius is dependent on the ship's shortest distance so the ship it can travel to. Hopefully this makes it more obvious which planets are added to the frontier.
 
 **TODO**: Add example code for this animation
 ##### NodeTeleport
@@ -1110,7 +1110,7 @@ To do this I made each node store the node which the ship came from.
 
 ### Stage Six : User Interface
 
-My User Interface needs to adapt and scale to fit different sized screens by looking consistant. visible and un-intrusive for different devices. During this stage I used my ipad mini a lot for testing and tested using different window sizes on my laptop. 
+My user interface needs to adapt and scale to fit different sized screens while looking consistent, visible, and un-intrusive for different devices. During this stage I used my iPad mini a lot for testing and tested using different window sizes on my laptop. 
 Overall I found this to be harder than expected.
 
 The Screens that I included were the Menu Screen, Graph screen, How to use screen and a Algorithms Descriptions screen.
@@ -1118,9 +1118,9 @@ I did not include a settings page as I did not find there were many controls in 
 
 #### SwiftUI Reusable Components
 ##### Space Text
-To save time developing the program and to increase the consistancy of the UI across the user interface I used reuasable components such as buttons, sliders and text.
+To save time developing the program and to increase the consistency of the UI across the user interface I used reusable components such as buttons, sliders and text.
 
-I started by creating a custom view modifier that could change the text in a view. A view modifier in switui is function that can change aspects of a view. I made my own custom modifers which could make elements in my custom style. I made three for basic text, headings and subheadings. When making them I was just using built in view modifiers but my custom one just packaged them together so I can change all elements using this modifier by just changing the modifier. For the font I used a system font called"chalkduster" which is preinstalled on most new iOS devices.
+I started by creating a custom view modifier that could change the text in a view. A view modifier in SwiftUI is a function that can change aspects of a view. I made my own custom modifiers which could make elements in my custom style. I made three for basic text, headings and subheadings. When making them I was just using built-in view modifiers but my custom one just packaged them together so I can change all elements using this modifier by just changing the modifier. For the font I used a system font called "Chalkduster" which is preinstalled on most new iOS devices.
 
 Here is the text modifier
 ```swift
@@ -1158,12 +1158,12 @@ The Main Menu Screen was made up of The main title text which was defined in the
 
 <img width="622" height="347" alt="image" src="https://github.com/user-attachments/assets/187e5d8b-58a2-48d6-bb88-78cb56637585" />
 
-#### Graph Genaration Screen
+#### Graph Generation Screen
 
 #### Graph Solving Screen
 
 #### How to use Screen
-This is a screen that shows the user how to interact with the program incase they are confuesd. It tells them what the colors codes mean and what the stacks and other UI elements represent.
+This is a screen that shows the user how to interact with the program in case they are confused. It tells them what the colour codes mean and what the stacks and other UI elements represent.
 It also shows the user the controls and how to interact with the program.
 
 #### Algorithms Descriptions Page
@@ -1212,7 +1212,7 @@ I found this to be the most challenging part of creating the UI.
 #### Minor improvements to prior stages
 
 ##### Starry Background
-This is a bonus SpriteKitView I created for decorative reasons. It uses spriteKit to create a nice starry background for the screens. It's algorithm was random so each starry background is different. The alogrithm is vry simple as it simply randomly places stars a random number in a random position in a given range for a set number of iterations. I used some of spriteKits effects like glow which gave a glow around the border on the individual stars which were just small dots/circles.
+This is a bonus SpriteKitView I created for decorative reasons. It uses SpriteKit to create a nice starry background for the screens. Its algorithm was random so each starry background is different. The algorithm is very simple as it simply places a random number of stars in random positions in a given range for a set number of iterations. I used some of SpriteKit's effects like glow which gave a glow around the border on the individual stars which were just small dots or circles.
 
 This code is the code that generates the stars and puts it under the stars node which is added to the SpriteKit game tree.
 ``` swift
