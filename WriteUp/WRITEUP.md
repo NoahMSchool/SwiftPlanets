@@ -74,11 +74,9 @@ I am going to refer back to these stakeholders once I have developed the app and
 
 ### Questionnaire for target market
 
-**TODO:** finish this questionnaire section so it is presented consistently. Turn the remaining raw answers into tables or short summaries and make it clear which stakeholder gave each response.
-
 | **Are you studying computer science, if so what course: ** | A level, GCSE, University, None or Other                                                               |
 | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Stakeholder 1: Rambo                                       | GCSE OCR computer Scien                                                                                |
+| Stakeholder 1: Rambo                                       | GCSE OCR computer Science                                                                                |
 | Stakeholder 2: Rocco                                       | OCR comp-sci A-Le                                                                                      |
 | Stakeholder 3 : Jim                                        | A Level Computer Sci                                                                                   |
 | Stakeholder 4 : Jon                                     I am not currently studying computer science but finished a degree in comp-sci and maths a while back e, I  |
@@ -118,9 +116,12 @@ Space seems to be the most popular
 #### Client Questionnaire takeaways
 
 I believe a space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM, so they were already fascinated by space.
+
 I think it is important to have at least a gentle introduction to the algorithms. From research into other tools I found the solutions that had an easy onboarding to be more useful, and my stakeholders backed this up.
-I think that 30 minutes is a suitable length of time for the user to spend on the program. This is close to the length of a school lesson and I believe it will take slightly longer than they first expect.
-Therefore I feel like an app is the most accessible form for this audience, especially as the stakeholders seem to be using Apple devices.
+
+I think that 30 minutes is a suitable length of time for the user to spend on the program. This is close to the length of a school lesson and I believe it will take slightly longer than they first expect so this will allow people more flexibility around time.
+
+I beleve an app is the most accessible form for this audience, especially as the stakeholders seem to be using Apple devices. Apple makes it easy to develop for their platforms so It seems suitable.
 
 **TODO:** improve this section by linking each takeaway directly to a design decision.
 * State which questionnaire result led to each design choice.
@@ -130,8 +131,28 @@ Therefore I feel like an app is the most accessible form for this audience, espe
 
 ### Using Computational Methods in the solution
 
-#### Thinking Abstractly
+#### Iteration
+I am going to be using iteration throught the solution especcially when I need to repeat code on multiple intances like nodes and edges. Iteration is also used while running the graphing algorithms as a process is repeated until the graph is solved.
 
+#### Recursion
+Some algorithms such as depth first search can use recursion instead of iteration. I will decide on the implementation later but I wouldnt be suprised if I use recursion at some point in the solution.
+
+#### Computational Methods
+
+##### Backtracking
+All graph algorithms use backtracking all the time either if they reach a dead-end or have to return to a previous node to visit the next one on their frontier.
+##### Data mining
+My program does not require any 
+##### Heuristics
+Algorithms like A* use heuristics to help guide the search.
+
+##### Pipelining
+I doubt I am going to be doing pipelining myself as I am going to use a high level language.
+
+##### Performance modelling
+I can look at the time complexities of the components of the solution to see if the calculations are realistic on the kind of hardware I am using. I can look at the time complexities of the graphing algorithms I am using.
+
+#### Abstraction
 As My graphing simulator is set in space, I need to consider which features to keep to make the simulation at least somewhat accurate. This is a graphing simulator not an ultra-realistic space simulation so I am able to remove things without making the program useless to the user.
 I will abstract lots of details of space and simplify it to just a graph with a few aesthetic objects in the background for visual appeal.
 I have looked at many aspects of space and noticed that there are many extra ideas that seem unnecessary and will overcomplicate the program. For example, adding planet Orbits would mean the nodes on the graph would have to move around. This not only complicates the development of the game but also adds extra complexities the user has to manage which would be frustrating, for example orbits would mean that the shortest path would be constantly changing. This would confuse the user which is a problem for an introduction to the subject.
@@ -140,27 +161,20 @@ Even though this may be unrealistic, my planets are just going to be floating in
 In terms of the graph simulation there is more abstraction going on. There are lots of aditional features such as extra algorithms I could add, other variables I can show and other UI elements.
 I want to keep the program minimal showing only neccessary features and information to avoid confusing the user
 
-#### Thinking Ahead
-In each of the subcomponents of my game I am going to decide what are the inputs and outputs of my the function
+#### Other Computational Thinking
+##### Thinking Ahead
+In each of the subcomponents of my game I am going to decide what are the inputs and outputs of these components. Reusing components will make it easier to develop aswell as making it more conistant.
 
-#### Thinking Procedurally
-
+##### Thinking Procedurally
 I am going to break the game down into sub-systems to make it easier to write. When developing I will work on each component individually.
 I will use a top down design when designing the architecture.
 
-#### Thinking Logically
+##### Thinking Logically
 My simulator is going to be event driven so will do things in a logical order step by step.
 I have to write lots of algorithms of varying complexity.
 
-#### Thinking Concurrently
-
+##### Thinking Concurrently
 Lots of parts of my program will hapen at the same time. The ship will need to move, the galaxy will need to be generated, the paths will need to be found. This will mean that I need to do things asynchronously. There will be lots of objects in the game running functions continuously. This means that there will be multiple threads running at once which should be handled by the engine I use.
-
-#### Iteration
-I am going to be using iteration throught the solution especcially when I need to repeat code on multiple intances like nodes and edges. Iteration is also used while running the graphing algorithms as a process is repeated until the graph is solved.
-
-#### Recursion
-Some algorithms such as depth first search can use recursion instead of iteration. I will decide on the implementation later but I wouldnt be suprised if I use recursion at some point in the solution.
 
 ### Choosing a Framework
 
@@ -170,7 +184,6 @@ Some algorithms such as depth first search can use recursion instead of iteratio
 | [Godot](https://godotengine.org/)           | Godot is a lightweight Game engine used for both 2D and 3D games                                                                                                                                    | Very lightweight and simple to use.<br><br>I can write in GDScript which is a simple language similar of python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms including ios devices | Like Unity, this is probably overkill<br><br>Too many functions provided in the framework so less algorithms to write                                                                                                                                                                                                             |
 | [Swift](https://www.swift.org/) / SpriteKit | Swift is Apple's programming language and SpriteKit is a simple graphics API I could use with it to make my game. SpriteKit is still feature rich and powerful with its node system and SKActions. | I could make my app work on all Apple devices such as tablets and phones which is more convenient for my target audience.<br><br>It will be more efficient as Swift is statically typed, meaning it will be more optimised by the compiler    | The game will not be playable on other platforms like Android or Windows as it will be exclusively iOS.                                                                                                                                                                                                                              |
 | [Pygame](https://www.pygame.org/)<br>       | Pygame is a simple 2D graphics library that uses python.                                                                                                                                            | I can write the project in Python which has easy syntax and is quite lightweight.                                                                                                                                                              | It is very basic so I will have to program all user interface components from scratch                                                                                                                                                                                                                                             |
-
 
 #### Choice
 
@@ -248,6 +261,7 @@ I will also make small quality of life improvements that make the explanations m
 * Verify that the simulator behaviour matches the textbook rules for BFS, DFS, Dijkstra, and A*.
 * Use worked examples on paper and compare them with the simulator step by step.
 * Ask at least one stakeholder studying Computer Science to confirm that the explanations are understandable and accurate.
+
 ### Success Criteria
 
 **TODO:** turn this table into clear measurable goals. Give every success criterion an ID, a full description, a reason, and a measurable test.
@@ -701,6 +715,7 @@ The objectives of this screen are:
 * Show the use what all the buttons on the program do to control the algorithm.
 * Explain what each of the lists is representing in relation to the algorithm, for example whether it is a stack or queue, showing how I will link the colours.
 * Show the user how to select the different algorithms.
+
 ##### Settings View
 This is not so much going to be a separate screen but will be placed on top of the current view. This will always be the galaxy builder or simulation as it is only accessible via these pages.
 I am going to use a swiftUI element called a sheet which allows me to overlay the settings view on top of the current view, this will allow me to keep the background visible while changing settings to keep the context of the graph.
@@ -817,6 +832,8 @@ To fix the Lines going through planets  I thought of putting edges across the pl
 However when developing this I encountered a bug that caused edges that ... to be deleted
 The fix to this was to put 4 edges from the centre of the planet to the circumference.
 
+Here is a diagram of the checklines on a Planet Node
+
 **TODO:** explain what the bug was in simple terms and how I found it. 
 
 Here is a function on the planet that returns the checklines
@@ -879,12 +896,28 @@ self.border.fillColor = .black
 ```
 ### Graph Edges or Paths
 
-To do this I used a SKLineNode
+To do this I used a SpriteKit CGMutablePath.
+I made a seperate draw helper file which provided me with a few functions with a simpler more relevant interface that I can use to create the connections for the spritekit graph. 
+These currenlyfunctions include
+* **drawline** which draws a line between two given positions
+* **drawArrow** which uses drawline and places a arrowhead SKShape node. There was a bit more complexity here with rotation which I solved with a bit of trig.
+* **drawlines** which takes in a list of lines and draws them all using drawLine. This was not only usefull for drawing lots of lines at the same time but also puts them all under a container node so these lines are in the same place.
 
+This is the code for drawline. It takes in the two points and relevant parameters and creates a CGMutablePath Object.
+```swift
+func drawLine(from start: CGPoint, to end: CGPoint, lineWidth: CGFloat, color: UIColor) -> SKNode{
+    let path = CGMutablePath()
+    path.move(to: start)
+    path.addLine(to: end)
+    let line = SKShapeNode(path: path)
+    line.zPosition = 0
+    line.strokeColor = color
+    return line    
+}
+```
 
 
 #### Minor improvements to prior stages
-
 
 ### Stage Three - **Implementing Search Algorithms**
 
