@@ -142,9 +142,9 @@ Some algorithms such as depth first search can use recursion instead of iteratio
 ##### Backtracking
 All graph algorithms use backtracking all the time either if they reach a dead-end or have to return to a previous node to visit the next one on their frontier.
 ##### Data mining
-My program does not require any 
+My program does not require any data mining as I am not storing data.
 ##### Heuristics
-Algorithms like A* use heuristics to help guide the search.
+Algorithms like A* use heuristics to help guide the search. For graph algorithms a sensible heuristic is the absolute distance to the target node
 
 ##### Pipelining
 I doubt I am going to be doing pipelining myself as I am going to use a high level language.
@@ -251,9 +251,8 @@ There should not be any Major bugs or Exploits in the program.
 My focus will be on minimising bugs that are accidentally triggered that cause unexpected behaviour as this would confuse/mislead the user. 
 
 #### Information/Teaching
-
 As this is an educational tool everything needs to be factually correct.
-After and during development.
+After and during development I will run tests involving trace tables to check the algorithms are doing the correct steps. When writing factual information I will refer to credible sources
 I will also make small quality of life improvements that make the explanations more true to what is actually happening.
 
 **TODO:** explain how I will check that the algorithm facts and teaching points are correct.
@@ -327,9 +326,8 @@ At a very high level, this are the six subcomponents I'm going to divide the pro
 * **Algorithm Visualisation** : this is add more information to the graph rendering interface to show progress through the algorithm
 * **User Interface** : this is how the user interacts with the app and navigates between the screens
 
-
 ### In depth structure of components of Solution
-Here is an in depth summary of each of the components of my solution
+Here is an in depth summary of the inputs, outputs, preconditions with suitable validation and error handling for the main components of my solution
  
 #### Subcomponent One : Graph generation
 ##### Description
@@ -349,16 +347,10 @@ This will also include choosing a start planet and an end planet. The graph does
 | Maximum Connection Length | This will be a integer which will be the maximum distance two nodes can be connected by                                                                    |
 
 ##### Outputs
-Graph with connected nodes or planets
+A Graph Object with connected nodes or planets. The nodes themselves should also be objects. The graph object should control the nodes in the graph.
 ##### Validation
-At least two planets and up to a sensible limit which will be decided.	The start and end planets should not be the same planet. Planets should not be too close to each other or go on top of each other.
-
-Learnings (things added later)
-I later added non-random test galaxies so that I could verify whether each algorithm had solved the graph correctly. This was useful because random graphs were not always easy to judge by eye.
-Edges should not intersect as it makes the graph harder to visualise. This is why I introduced the `CheckLines` stage.
-Implement in future:
-The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly, and the start planet should always have neighbours.
-
+Before using the inputs I need to check they are reasonable.
+There must be at least two planets and up to a sensible limit roughly around 10 but this will be finalised in development (as then I can test and visualise to choose the suitable count). The start and end planets should not be the same planet as the graph would already be solved and the graph should not be within less than 3 steps of completion so runs dont end instantly. Planets should not be too close to each other or go on top of each other as this will confuse the user.
 
 #### Subcomponent Two : Graph Rendering
 ##### Description
@@ -386,7 +378,6 @@ A solved graph storing the backtrace path taken to get from start to finish it s
 ##### Validation
 There should be a start and and end node and an algorithm to use needs to be selected
 
-
 #### Subcomponent Four : Algorithm Control
 ##### Description
 The first part of the problem is just solving the algorithm instantly however I want the user to see each stage of the solving along with the state of the variables being used at this time. The user should be able to easily use this to make a trace table for the solving of the algorithm. This is because this is meant to be a learning tool not just a graph solver.
@@ -410,18 +401,23 @@ The Algorithm State
 ##### Outputs
 A visual display of the state of the algorithm
 ##### Validation
+This component will be built on top of the graph which has lots of validataion to check it is correctly genarated. Therefore I can trust the inputs and operate on them without having to revalidate.
 
 #### Subcomponent Six : User Interface
 ##### Description
 This component is not to do with the main program but is about the app as a whole. I want an easily navigable UI that will show all the different screens and should be intuitive to use.
 This is not just putting the screens together but also covers the creation of these UI elements. I am going to use reusable components which will save time in development, increase performance and create a consistent user interface.
 ##### Inputs
-Buttons that the user can press. Menus the user can select
+This kind of input is passed from the user not other components of the program. Examples are just UI elements such as:
+* Buttons that the user can press.
+* Menus the user can select.
+
 ##### Outputs
 Affect program when buttons are pressed or items are selected by calling functions or updating variables.
 Give a visual interface of the program
 ##### Validation
 The views should only allow for valid inputs such as selecting objects that exist or numbers in a correct range. 
+
 ### Revisiting Requirements
 Now that I have a slightly better understanding of the program I am going to revisit and make some adjustments to the requirements. I may rename or match them to the subcomponents of my program to make them easier to track
 
@@ -1371,17 +1367,23 @@ In this section I will go through the different components, show the related suc
 For visualising the difference in the algorithms I definitely achieved the main goal of getting them all running correctly, and visualising the backtracking helps a lot.
 However, the way the random graphs were generated, with weights proportional to the distance to the node, meant that a few algorithms performed quite similarly. What I could have done was add more noise to the weights in generation.
 
-
-
 #### Subcomponent One : Graph generation
-Learnings (things added later)
-I added non-random test galaxies later in development after stakeholder feedback. These made it much easier to verify correctness and compare how the algorithms behaved on the same graph.
-Edges should not intersect as this makes the graph harder to visualise. This is why I introduced the `CheckLines` stage.
 
-Implement in future:
-The start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly, and the start planet should have neighbours.
+##### Learnings and things added
+I later added non-random test galaxies so that I could verify whether each algorithm had solved the graph correctly. This was useful because random graphs were not always easy to judge by eye.
+Edges should not intersect as it makes the graph harder to visualise. This is why I introduced the `CheckLines` stage.
+
+##### Implement in future
+Validating distance between start and end
+I did mention this in design but the start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly. There are three main conditions I could use to determine this:
+* Is the absolute distance between the start and end nodes are less than some predetermined threashold.
+* Check if the number of edges between the start and end, this will mean I can specify the minimum number of steps for an algorithm.
+* Check if the total weight to the finish is less than a certain value. (This would be the same as the number of edges for algorithms that dont do weights.
+For the way I have structured the graph generation I think all of these will have similar effect as deciding if there is a connection and the weight is based off of absolute distance 
 
 #### Subcomponent Two : Graph Rendering
+
+#### Learnings
 
 **TODO:** say how well the graph was displayed and mention any visual problems.
 
