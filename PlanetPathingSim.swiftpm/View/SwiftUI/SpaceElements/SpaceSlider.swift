@@ -12,7 +12,6 @@ struct SpaceSlider: View {
                 .modifier(SpaceSubheading())
             Slider(value: $value, in: range, step: step)
                 .tint(.yellow)
-
         }
     }
 }

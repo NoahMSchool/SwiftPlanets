@@ -862,7 +862,6 @@ override class func createPlanets(planetCount: Int, spacing : Double = 100, mapS
         }
         return planets
     }
-
 ```
 
 
@@ -918,7 +917,7 @@ func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
                               end: CGPoint(x: self.position.x, y: self.position.y+planetRadius))
         let checkLines : [(start: CGPoint, end : CGPoint)] = [horizontalFirst, horizontalSecond, verticalFirst, verticalSecond]
         return checkLines
-    }
+}
 ```
 #### Intersection Algorithm using Orientation
 To check if two lines intersect I did some research online and found an algorithm that uses orientation to check if two lines intersect. I used an article from GeeksforGeeks to help understand the concepts before implementing it.
@@ -956,15 +955,15 @@ I made this a static function as there is no functionality related to a specific
 
 ```swift 
 static func generatePlanet(baseColor: UIColor, accentColor: UIColor, size: CGFloat) -> SKNode {
-        let planetNode = SKNode() // makes the SKNode
-        let planetBody = SKShapeNode(circleOfRadius: size)
-        planetBody.fillColor = baseColor
-        planetBody.strokeColor = accentColor
-        planetBody.glowWidth = 1.0
-        planetBody.zPosition = 4
-        planetNode.addChild(planetBody)
-        return planetNode
-    }
+	let planetNode = SKNode() // makes the SKNode
+	let planetBody = SKShapeNode(circleOfRadius: size)
+	planetBody.fillColor = baseColor
+	planetBody.strokeColor = accentColor
+	planetBody.glowWidth = 1.0
+	planetBody.zPosition = 4
+	planetNode.addChild(planetBody)
+	return planetNode
+}
 ```
 
 #### Planet UI elements
@@ -1019,7 +1018,6 @@ In my case the Planets are the nodes so they conform to **Traversable**
 protocol Traversable: Identifiable {
     // This property requirement comes from Identifiable.
     var id: UUID { get }
-
     func getNeighbours()->[(neighbour : any Traversable, weight : Double)]
     func heuristic(to end: any Traversable) -> Double   
     func isEqual(to other: any Traversable) -> Bool
@@ -1156,7 +1154,6 @@ For A* the priority function was still extremely simple:
 ```swift
 getNewWeight(n: n) + n.neighbour.heuristic(to: to)
 ```
-
 
 #### Minor improvements to prior stages
 I added the ability to show and hide text on the edges for only Dijkstra and A* to use edge weights. For algorithms that do not use the weights, the weight for all edges is 1.
@@ -1329,14 +1326,13 @@ This works by finding the point where the two routes share a common node. The sh
 #### Minor improvements to prior stages
 
 <div style="page-break-before: always;"></div>
-
 ### Stage Five : Algorithm Visualisation
 This stage was taking longer than expected and I found a few improvements I found necessary as well as using a new part of SpriteKit SKActions which allowed me to animate things
 
 #### Hierarchy of SpriteKit elements
 
 ##### Text Bubble
-To put UI elemnts over the spritekit scene turned out to be difficult and not the best way to do it. Instead I created my own SpriteKit elements which I could reuse. This inherited from SKNode and uses a lebelNode for text and a shapeNode for the border.
+To put UI elemnts over the spritekit scene turned out to be difficult and not the best way to do it. Instead I created my own SpriteKit elements which I could reuse. This inherited from SKNode and uses a labelNode for text and a shapeNode for the border.
 The size of the border is not passed in but is calculated to fit the passed text. This means it is easy to use this UI element. The text can be changed and this simply recalculates the border size.
 
 ##### ShipNode
@@ -1399,7 +1395,6 @@ func moveShipNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAct
     
     let moveAction = SKAction.move(to: to, duration: duration)
     moveAction.timingMode = .easeInEaseOut
-
     let shrink = SKAction.scale(to: 0.8, duration: duration)
     let grow = SKAction.scale(to: 1, duration: duration)
     let shrinkGrow = SKAction.sequence([shrink, grow])
@@ -1438,7 +1433,6 @@ In the controller I used `@Published` properties so that changing a setting in S
 ```
 
 This meant I did not have to manually refresh the user interface every time the user changed a control. When one of these values changes, SwiftUI notices and the program updates the graph or algorithm automatically.
-
 #### SwiftUI Reusable Components
 ##### Space Text
 To save time developing the program and to increase the consistency of the UI across the user interface I used reusable components such as buttons, sliders and text.
@@ -1458,7 +1452,6 @@ struct SpaceText: ViewModifier{
 Here is an example of them being used
 ```swift Text("this is a subheading").modifier(SpaceSubheading()) ```
 I also made a title View which was a fixed string I could use from the title screen
-
 ##### Space Buttons
 I made two stylised buttons that I could reuse. These are custom small SwiftUI views that I can reuse. They use the standard swiftUI buttons but apply further styling. This includes adding the spaceText modifier I already created.
 SwiftUI buttons take in a closure which is a function that is called when they are pressed. This meant my buttons had to take in a closure and then relay it to the button I use in the view.
@@ -1473,7 +1466,32 @@ LargeSpaceButton(text: "SpaceIsBig", imageSystemName: "star", action: {print("sp
 ##### SpaceList
 This and the remaining components are primarily used for the HUD for the algorithm Control
 ##### SpaceSlider
+![[GalaxySlider.png]]
+This is a slider ui element which will be used to easily change numerical values.
+It has a title which can show the user what it does aswell as placing the current value so the user can see the exact selected number.
+This is usefull for if the user wants an exact number of nodes in the graph.
+I experimented with text fields but decided as the majority of users are using on touch first devices a slider is more intuitive.
+The value variable has a binding property wrapper () which tells it 
+```swift
+struct SpaceSlider: View {
+    var title: String
+    var range: ClosedRange<Double>
+    var step: Double
+    @Binding var value: Double
+    var body: some View {
+        VStack {
+            Text("\(title): \(Int(value))")
+                .modifier(SpaceSubheading())
+            Slider(value: $value, in: range, step: step)
+                .tint(.yellow)
+        }
+    }
+}
+```
+
 ##### SpacePicker
+
+This UI component allows me to pick between a list of elements. Here is the actual version I used in the program for selecting 
 
 #### Menu Screen
 This is the first screen that is shown on launch, so it should allow the user to navigate from here to the rest of the program. I did this by passing closures to change the state of the app.
@@ -1481,14 +1499,152 @@ The Main Menu Screen was made up of the main title text, which was defined in `S
 
 <img width="622" height="347" alt="image" src="https://github.com/user-attachments/assets/187e5d8b-58a2-48d6-bb88-78cb56637585" />
 
+### SpriteKit Screens
+
+There are two swiftUI screens that overlay on top of the SpriteKit View.
+They are the Graph Generation and the Graph Solving.
+
+For the UI elements of these two swiftUI control views I realised that half of the swiftUI components were shared the two views. The repeated sections were actually the top half only which was for navigation of the SpriteKit scene and app navigation.
+This meant that I can just reuse the top half of the swiftUI that I created for the graph generation screen by packaging it into a reusable component. I used a 1 by 2 grid as it seemed to be the best way to be able to swap out the views
+
+```swift
+var body : some View{
+	Grid(alignment: .top){
+		GridRow(alignment: .top){
+			TopBuilderHUDRow()
+				.environmentObject(galaxy)
+				.frame(maxWidth: .infinity)
+		}
+		.frame(maxWidth: .infinity)            
+		Spacer()
+		GridRow{  
+			BottomBuilderHUDRow()
+				.environmentObject(galaxy)
+				.frame(maxWidth: .infinity)
+	}
+	.frame(maxWidth: .infinity, maxHeight: 280)
+}
+```
+
+To do the overlay I used a ZStack. I had been using HStacks and VStacks which alligned views horrozontally and veritcally but a zstack can place views ontop of each other from back to front which is perfect for overlaying a view on anouther one.
+I need to pass the environment object to the views as it is the data model.
+```swift
+ZStack {
+	SpriteKitView()
+		.environmentObject(galaxy)
+		.scaledToFill()
+		.frame(width: geometry.size.width, height: geometry.size.height)	
+	HUDView
+		.environmentObject(galaxy)
+		.padding()
+		.opacity(0.8)
+		.modifier(SpaceText())
+		.frame(width: .infinity, height: .infinity)
+}
+```
+The HUDView is a new view that just swaps between the Graph generation HUD and the Graph solving HUD
+
+The Two HUD's are very similar as they both share the top half
+This is the generic top HudView which was placed at the top of both of the SpriteKit screens 
+```swift
+struct TopPlayingHUDRow : View{
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var galaxy : GameController
+    var body: some View{
+        SpaceButton(imageSystemName: "arrowshape.turn.up.backward.fill", textLabel : "Galaxy Builder", disabled: false){
+            galaxy.resetAlgorithm()
+            galaxy.startMode.toggle()
+        }
+        VStack{
+            Text("\(galaxy.selectedAlgorithm) Algorithm")
+                .modifier(SpaceHeading())
+            Text(" Step Number : \(String(galaxy.getMoveStep()))")         
+                .modifier(SpaceSubheading())
+        }.gridCellColumns(5)
+        VStack{
+            SpaceButton(imageSystemName: "location.fill", textLabel: "Focus On Ship", disabled: false){
+                galaxy.focusOnShip = true  
+            }
+            SpaceButton(imageSystemName: galaxy.lockOnShip ? "lock.open.fill" : "lock.fill", textLabel: "Lock On Ship", disabled: false){
+                galaxy.lockOnShip.toggle()
+            }
+        }
+    }
+}
+```
+
 #### Graph Generation Screen
 
+To create the more complex UI sections like a HUD I further broke down the screens into components that used the components I made. These views are not generic or reusable but are for packaging related components therefore they don't take in any UI based parameters (these are hardcoded in the view).
+This Galaxy Sliders screen combined the two sliders required to change the parameters of the Graph Generation and placed them on top of each other.
+
+```swift
+struct GalaxySliders : View{
+    var planetCountRange: ClosedRange<Double> = 2.0...100.0
+    var maxDistanceRange: ClosedRange<Double> = 1.0...20.0
+
+    @EnvironmentObject var galaxy : GameController
+
+    var body : some View{
+
+        VStack {
+            SpaceSlider(
+                title: "Number of Planets",
+                range: planetCountRange,
+                step: 1.0,
+                value: Binding(
+                    get: { Double(galaxy.planetCount) },
+                    set: { galaxy.planetCount = Int($0) }
+                )
+            )
+            SpaceSlider(
+                title: "Max Fuel",
+                range: maxDistanceRange,
+                step: 0.5,
+                value: Binding(
+                    get: { Double(galaxy.maxDistance / 25) },
+                    set: { galaxy.maxDistance = $0 * 25 }
+                )
+            )
+        }
+        .padding()
+    }
+}
+
+```
+For the bottom I made a large Space Button to start and used the Galaxy Sliders and the Algorithm Selector
+![[BottomPlayingHUD.png]]
 #### Graph Solving Screen
 
+
+This is the BottomHUDView for the graph solving screen
+```swift
+struct BottomPlayingHUDRow : View {
+    @EnvironmentObject var galaxy : GameController
+
+    var body: some View{
+        SpaceList(title : "Frontier",  color: .cyan, planets : galaxy.getFrontierStrings())
+            .frame(maxWidth: .infinity)
+            .gridCellColumns(2)
+        
+        ButtonsAndExplanationBlock().environmentObject(galaxy)
+            .frame(maxWidth: .infinity)
+            .gridCellColumns(3)
+        
+        SpaceList(title : "Explored", color: .red, planets : galaxy.getExploredStrings())
+            .frame(maxWidth: .infinity)
+            .gridCellColumns(2)
+
+    }
+```
+The ButtonsAndExplanationBlock is another container view I created to decompose it further
+Here is the image of the generated view.
+![[BottomPlayingHUD 1.png]]
 #### How to use Screen
+
 This is a screen that shows the user how to interact with the program in case they are confused. It tells them what the colour codes mean and what the stacks and other UI elements represent.
 It also shows the user the controls and how to interact with the program.
-
+![[HowToUseScreen.png]]
 #### Algorithms Descriptions Page
 
 The start of my algorithms page is generic to all the algorithms. Similar to how I realised how similar the algorithms' core concepts really are, I wanted to amplify this in the descriptions.
@@ -1524,9 +1680,12 @@ override class func getDescription()->String{
         return "Dijkstra's Algorithm was created by Edsger Dijkstra in 1956. It always finds the shortest weighted path from start to goal. It uses a priority queue to explore the lowest-cost path first."
     }  
 ```
-
+![[AboutScreen.png]]
 #### Hierarchy of SwiftUI elements
 Similar to SpriteKit I used reusable components to save development time and increase consistency in the UI.
+
+Here is a heirachy of the swiftUI elements that I used
+**Todo**
 
 #### Making it adapt to screen size.
 I found this to be the most challenging part of creating the UI. 
@@ -1955,8 +2114,8 @@ This testing was also useful for the user experience, not just correctness. Duri
 
 TODO: For the tree graph there is no weighting and only one path. All of the algorithms find the path, but they take very different numbers of steps.
 
-| Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image                                         |
-| ------------------------ | ------------- | --------------: | --------------- | ---------------------------------------------------------- |
+| Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image                                                                                                    |
+| ------------------------ | ------------- | --------------: | --------------- | --------------------------------------------------------------------------------------------------------------------- |
 | BFS                      | **Y**         |           **3** | **13**          | <img src="./solvedgraphs/BreadthFirstTreeSolved.png" alt="Breadth First Tree Solved" style="width:70%; height:auto;"> |
 | DFS                      | **Y**         |           **3** | **7**           | <img src="./solvedgraphs/DepthFirstTreeSolved.png" alt="Depth First Tree Solved" style="width:70%; height:auto;">     |
 | Greedy Best First Search | **Y**         |           **3** | **4**           | <img src="./solvedgraphs/GreedyTreeSolved.png" alt="Greedy Tree Solved" style="width:70%; height:auto;">              |
@@ -1984,14 +2143,17 @@ Even though A* is also designed to find the shortest path and in most cases it d
 
 ##### Generated Graph Test Example
 
-| Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image |
-| ------------------------ | ------------- | --------------: | --------------- | ------------------ |
-| BFS                      | **Y**         |           **3** | **13**          |                    |
-| DFS                      | **Y**         |           **3** | **7**           |                    |
-| Greedy Best First Search | **Y**         |        **TODO** | **4**           |                    |
-| Dijkstra                 | **Y**         |           **3** | **13**          |                    |
-| A*                       | **Y**         |        **TODO** | **4**           |                    |
+| Algorithm                | Correct (Y/N) | Cost | Number of steps | Solved Graph Image                |
+| ------------------------ | ------------- | ---: | --------------- | --------------------------------- |
+| BFS                      | **Y**         |  N/A | **13**          | ![[BreadthFirstRandomSolved.png]] |
+| DFS                      | **Y**         |  N/A | 5               | ![[DepthFirstRandomSolved.png]]   |
+| Greedy Best First Search | **Y**         |  N/A | 5               | ![[GreedyRandomSolved.png]]       |
+| Dijkstra                 | **Y**         |   34 | 11              | ![[DijkstraRandomSolved.png]]     |
+| A*                       | **Y**         |   34 | 6               | ![[AStarRandomSolved.png]]        |
 For the Generated Graph the heuristic is very good because the path weights and heuristic both rely on the distance between two nodes.
+
+Breadth First 
+
 
 
 **TODO:** fill this table with the actual measured results from the fixed test graphs and refer back to it in the algorithm-solving and evaluation sections.

@@ -5,10 +5,10 @@ struct ButtonsAndExplanationBlock : View{
     @EnvironmentObject var galaxy : GameController
     var body : some View{
         VStack{
-            /*
+            
             ExplanationBlock().environmentObject(galaxy)
                 .padding(.vertical)
-            */
+            
             HStack{
                 SpaceButton(imageSystemName: "backward.end.alt.fill", textLabel : "Reset", disabled: !galaxy.backwardAllowed) {
                     galaxy.resetAlgorithm()
