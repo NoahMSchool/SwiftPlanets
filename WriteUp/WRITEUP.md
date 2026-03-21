@@ -94,6 +94,7 @@ At the cost of making it more approachable my program may have less features exp
 This will differentiate my program to the competition which should make it more appealing to my audience which is anyone seeking to learn about graphing algorithms with less experience or from scratch. 
 
 <div style="page-break-before: always;"></div>
+
 ### Stakeholders and Audience
 
 My audience is anyone who is interested in learning about CS. This could be anyone from the age of 8 to 80 who is interested. This may seem like quite a broad audience due to the wide age range, but I can narrow it slightly to those who are more STEM focused.
@@ -116,6 +117,7 @@ I am going to refer back to these stakeholders once I have developed the app and
 | Stakeholder 4 : Jon                                        | I am not currently studying computer science but finished a degree in comp-sci and maths a while ago |
 | Stakeholder 5 : Willow                                     |                                                                                                      |
 | Stakeholder 6 : Caspian                                    |                                                                                                      |
+| Stakeholder 7 : Inge                                       |                                                                                                      |
 
 From this it seems like my stakeholders will, or already have, encountered graphing algorithms, which gives me confidence that I have selected a useful topic. 
 
@@ -127,6 +129,7 @@ From this it seems like my stakeholders will, or already have, encountered graph
 | Stakeholder 4 : Jon                        | Mac Mini desktop for work                   |
 | Stakeholder 5 : Willow                     |                                             |
 | Stakeholder 6 : Caspian                    |                                             |
+| Stakeholder 7 : Inge                       |                                             |
 
 I noticed all my stakeholders use Apple iOS devices. It is only a small sample but I do think targeting this audience is a good start.
 
@@ -138,6 +141,7 @@ I noticed all my stakeholders use Apple iOS devices. It is only a small sample b
 | Stakeholder 4 : Jon                                          | half an hour                                               |
 | Stakeholder 5 : Willow                                       |                                                            |
 | Stakeholder 6 : Caspian                                      |                                                            |
+| Stakeholder 7 : Inge                                         |                                                            |
 
 I wouldn't be surprised if it takes slightly longer (or shorter) than the stakeholders quoted times but my target is that this should be done in about half a school lesson. The tool will not be used the whole time so this would also provide time for other forms of research or creating trace tables while using the program.
 
@@ -149,6 +153,7 @@ I wouldn't be surprised if it takes slightly longer (or shorter) than the stakeh
 | Stakeholder 4 : Jon                                                                      | The Industrial Map would be cool but also the Space                      |
 | Stakeholder 5 : Willow                                                                   |                                                                          |
 | Stakeholder 6 : Caspian                                                                  |                                                                          |
+| Stakeholder 7 : Inge                                                                     |                                                                          |
 
 Space seems to be the most popular theme among my stakeholders.
 
@@ -160,6 +165,7 @@ Space seems to be the most popular theme among my stakeholders.
 | Stakeholder 4 : Jon                                                  | I think it is good to take it slow while learning, so I think there should be the ability to experiment on top of an overall guide to make sure we don't go off track. |
 | Stakeholder 5 : Willow                                               |                                                                                                                                                                        |
 | Stakeholder 6 : Caspian                                              |                                                                                                                                                                        |
+| Stakeholder 7 : Inge                                                 |                                                                                                                                                                        |
 
 #### Client Questionnaire takeaways
 
@@ -192,7 +198,7 @@ My program does not require any data mining as I am not storing data.
 ##### Heuristics
 Algorithms like A* use heuristics to help guide the search. For graph algorithms a sensible heuristic is the absolute distance to the target node
 ##### Pipelining
-Pipelining is not something I am directly controlling in this project, so it is not a major computational method in my solution.
+Pipelining is not something I am directly controlling in this project, so it is not a relevent method in my solution.
 ##### Performance modelling
 I can look at the time complexities of the components of the solution to see if the calculations are realistic on the kind of hardware I am using. I can look at the time complexities of the graphing algorithms I am using.
 #### Abstraction
@@ -216,7 +222,9 @@ My simulator is going to be event driven so will do things in a logical order st
 I have to write lots of algorithms of varying complexity.
 ##### Thinking Concurrently
 Lots of parts of my program will happen at the same time. The ship will need to move, the galaxy will need to be generated, and the paths will need to be found. This will mean that I need to do things asynchronously. There will be lots of objects in the game running functions continuously. This means that there will be multiple threads running at once, which should be handled by the engine I use.
+
 <div style="page-break-before: always;"></div>
+
 ### Choosing a Framework
 #### Framework Options
 
@@ -287,55 +295,46 @@ My app should allow the user to navigate between different screens. This should 
 I will make the appearance of the app minimal. 
 I will have clear controls with suitable labels explaining what they do.
 ##### Performance
-The simulation should be able to run on lower end older hardware. This will make it more accessible to more people.
-The program should not abruptly crash. It should not be too processor intensive so it should run with decent frame rates, not drain the device's battery life, and boot up quickly. I do not want performance to be an issue as it is important that the user enjoys using the program.
+The simulation should be able to run on lower end older hardware. This will make it more accessible to more people. The program should not abruptly crash. It should not be too processor intensive so it should run with decent frame rates, not drain the device's battery life, and boot up quickly. I do not want performance to be an issue as it is important that the user enjoys using the program.
 
 ##### Bugs/Exploits
-There should not be any Major bugs or Exploits in the program.  
-My focus will be on minimising bugs that are accidentally triggered that cause unexpected behaviour as this would confuse/mislead the user. 
+There should not be any Major bugs or Exploits in the program.   My focus will be on minimising bugs that are accidentally triggered that cause unexpected behaviour as this would confuse/mislead the user. 
 
 #### Information/Teaching
-As this is an educational tool everything needs to be factually correct.
-After and during development I will run tests involving trace tables to check the algorithms are doing the correct steps. When writing factual information I will refer to credible sources
-I will also make small quality of life improvements that make the explanations more true to what is actually happening.
+As this is an educational tool everything needs to be factually correct. After and during development I will run tests involving trace tables to check the algorithms are doing the correct steps. When writing factual information I will refer to credible sources. I will also make small quality of life improvements that make the explanations more true to what is actually happening.
 
-**TODO:** explain how I will check that the algorithm facts and teaching points are correct.
-* Cross-check the algorithm explanations against the OCR A Level specification and at least one other reliable source.
-* Verify that the simulator behaviour matches the textbook rules for BFS, DFS, Dijkstra, and A*.
-* Use worked examples on paper and compare them with the simulator step by step.
-* Ask at least one stakeholder studying Computer Science to confirm that the explanations are understandable and accurate.
 
 <div style="page-break-before: always;"></div>
+
 ### Success Criteria
 
-***TODO: turn this table into clear measurable goals. Give every success criterion an ID, a full description, a reason, and a measurable test.***
-* ***Have at least one functional criterion for each of the 6 subcomponents.***
-* ***Add a column showing how each criterion will be tested and what evidence will be used.***
-* ***Replace vague wording like "good", "clear", or "enjoyable" with measurable wording such as "user can complete task X" or "algorithm returns the correct path on test graph Y".***
-* ***Remove every blank row and make sure each criterion can later be judged as met, partially met, or not met.***
-* ***Maybe Match Functional Requirements to Design and Development Sprints***
+Based on the problem I'm trying to solve, the responses from my client stakeholders and the features and limitations of the proposed solution I have come up with the following success criteria. I will compare against these in the evaluation of the project.
 
-
-| ID                                  | **Criteria**                                   | **Description**                                                                                                                                                      | **Reason**                                                                                                                                                                                                                                                                                                | **Analysis Link** |
-| ----------------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| **Functional**                      |                                                |                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                           |                   |
-| FR1                                 | Generate A graph                               | The program should generate a random graph for the user with a few simple inputs. They should be ranges of shapes and sizes.                                         | These graphs should highlight the main features, benefits and drawbacks of each algorithm.                                                                                                                                                                                                                | ---               |
-| FR2                                 | Teach what a graph algorithm is and their uses | A page providing text/image based description about what graphing algorithms are and examples of their uses                                                          | The user needs a clear foundation before exploring specific algorithms, the user should understand real-world uses of graph and graph traversal algorithms (for example, maps and routing)                                                                                                                | --                |
-| FR3                                 | Simulate all Graph Algorithms                  | It should be able to simulate all the graphing algorithms in the A Level specification. (These include: BFS, DFS, Dijkstra and A*)                                   | A Level is often the first time students come across graphs so I think it is important to include at a minimum all the content these students will require. This allows demonstration that different algorithms have different strengths and weaknesses, and that performance depends on graph structure. |                   |
-| FR4                                 | Step by step                                   | The user should be able to run through each step of the algorithm individually on command. This would mean they could create a trace table of the steps.             | To truly understand the algorithm the user must be able to know what is happening in each iteration. For Comp-Sci courses you often need to make trace tables for the algorithm                                                                                                                           |                   |
-| FR5                                 | Visualisation                                  | The Graph should also provide a visualisation of what is happening on the graph algorithm while it is being searched. This means the use of colour and animations. | It is essential that the user can visualise the algorithm or they might as well be just reading text.                                                                                                                                                                                                     |                   |
-| FR6                                 |                                                |                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                           |                   |
-| **Performance**                     |                                                |                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                           |                   |
-| PR1                                 | Abrupt Crashes                                 | The program should not crash due to runtime errors such as invalid data types (eg if strings are assigned to floats).                                                | If the app crashes the user will lose their progress which will mean they will have to restart. This could prevent them from finishing the lesson.                                                                                                                                                        |                   |
-| PR2                                 | Decently high Frame Rates and minimal Lag      | It should run at 60fps and have little to no lag. To do this I will need to make sure the program is not too computationally expensive especially per frame.         | The user should not be getting frustrated by the program while running so it should run smoothly.                                                                                                                                                                                                         |                   |
-| PR3                                 | No Misleading bugs or logic errors             | There should be no major bugs in the program meaning things work not as intended.                                                                                    | It is essential not to mislead the user as they are learning something new and are not able to know if something is wrong.                                                                                                                                                                               |                   |
-| PR4                                 |                                                |                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                           |                   |
-| **Usability**                       |                                                |                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                           |                   |
-| UR1                                 | Adaptive UI                                    | The program's user interface should resize and scale to fit the users' device screens                                                                                | The program should run equally well on all iOS devices to make it accessible.                                                                                                                                                                                                                             |                   |
-| UR2                                 | Theme                                          | The overall program's theme should stick to the chosen analogy of space                                                                                              | If users do not engaged by the program they won't use it long enough to learn                                                                                                                                                                                                                             |                   |
-| UR3                                 | Navigatable App                                | As my app will have multiple pages, they should all be straightforward to navigate between                                                                           | The user should not have any trouble finding the pages and parts of the program they are looking for they should spend their time looking at the content                                                                                                                                                  |                   |
-| UR4 **maybe belongs in Functional** | Explanations during graph simulations          | As well as slowly stepping through the graph algorithm steps the user should see explanations of what is happening.                                                   | Just seeing variables and coloured nodes may be confusing                                                                                                                                                                                                                                                 |                   |
-|                                     |                                                |                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                           |                   |
+| ID              | **Criteria**                                  | **Description**                                                                                                 | **Reason**                                                                                                              | **Analysis Link**             |
+| --------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| **Functional**  |                                               |                                                                                                                 |                                                                                                                         |                               |
+| FR1             | Generate a graph                              | The user can generate a graph using simple controls.                                                            | This allows the user to create a graph quickly without having to build one manually.                                    | Features of Proposed solution |
+| FR2             | Teach what graphs and algorithms are used for | The app includes a page that explains what graphs and the algorithms are used for.                              | The user needs some background knowledge before using the simulator so they understand why these algorithms matter.     | Features of Proposed solution |
+| FR3             | Simulate the algorithms                       | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.           | These are the main algorithms I want to teach, so the program must implement them correctly.                            | Features of Proposed solution |
+| FR4             | Step through the algorithm                    | The user can step forwards and backwards through the algorithm one step at a time.                              | This helps the user follow the algorithm carefully and create a trace table if needed.                                  | Features of Proposed solution |
+| FR5             | Auto-play the full algorithm                  | The user can auto-play the whole algorithm from start to finish.                                                | This gives the user a quicker way to watch the full process and compare it with manual step-by-step control.            | Features of Proposed solution |
+| FR6             | Show the algorithm state                      | The simulation shows the current node, explored nodes, frontier nodes, and final path clearly.                  | The user needs to be able to see the state of the algorithm clearly while it is running.                                | Features of Proposed solution |
+| FR7             | Explain each step                             | The simulation gives a text explanation of what is happening at each step.                                      | The visual changes alone may not be enough for a new user to understand the algorithm.                                  | Features of Proposed solution |
+| FR8             | Show unsolvable graphs                        | The simulation clearly shows when a graph cannot be solved.                                                     | Some generated graphs may not contain a valid path, so the user should not be misled.                                   | Limitations of Solution       |
+| FR9             | Show visit order with the ship                | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                  | This makes the search order easier to follow and helps the user understand what the algorithm is doing.                 | Features of Proposed solution |
+| FR10            | Avoid crossing lines                          | Graphs should not be rendered with lines crossing each other where possible.                                    | Crossing lines make the graph harder to read and can confuse the user when following the algorithm.                     | Features of Proposed solution |
+| **Performance** |                                               |                                                                                                                 |                                                                                                                         |                               |
+| PR1             | No crashes                                    | The app does not crash during normal use or robustness testing.                                                 | Crashes would interrupt learning and make the program unreliable to use in a lesson.                                    | Other Requirements            |
+| PR2             | Quick response                                | The app responds quickly on supported devices when the user changes the graph or uses the algorithm controls.   | Delays would make the simulator frustrating to use and would weaken the learning experience.                            | System Requirements           |
+| PR3             | Prevent invalid graph setups                  | The app checks inputs and prevents invalid graph setups.                                                        | Validation is needed so the program stays in a valid state and the user cannot accidentally create a broken simulation. | Other Requirements            |
+| PR4             | No misleading algorithm results               | The algorithms do not give incorrect or misleading results on the fixed test graphs.                            | As this is an educational tool, the algorithms must behave correctly and not teach the user the wrong thing.            | Information/Teaching          |
+| **Usability**   |                                               |                                                                                                                 |                                                                                                                         |                               |
+| UR1             | Readable on tested devices                    | The main screens are readable and usable on the tested iPad and Mac screen sizes.                               | The app should work well on the devices most likely to be used by my stakeholders.                                      | Client Questionnaire          |
+| UR2             | Easy to navigate                              | Most stakeholder testers can move between the main screens without help.                                        | The user should be able to find the main parts of the app easily instead of wasting time looking for them.              | Usability Requirements        |
+| UR3             | Help users understand the algorithm           | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.   | The main purpose of the app is to make graph algorithms easier to understand.                                           | Client Questionnaire          |
+| UR4             | Help users compare algorithms                 | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app. | The app should help users understand that the algorithms behave differently, not just show them as animations.          | Problem Recognition           |
+| UR5             | Explain the Frontier and Explored boxes       | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                 | These boxes are a key part of the simulation, so users need to understand them for the app to teach effectively.        | Features of Proposed solution |
+| UR6             | Use an engaging space theme                   | Most stakeholder testers find the space theme engaging and suitable for the target audience.                    | The theme is an important part of making the app feel more appealing and less dry than a standard graph simulator.      | Client Questionnaire          |
 
 
 <div style="page-break-before: always;"></div>
@@ -370,18 +369,14 @@ flowchart LR
 <div style="page-break-before: always;"></div>
 
 ### In depth structure of components of Solution
-Here is an in depth summary of the inputs, outputs, preconditions with suitable validation and error handling for the main components of my solution
- 
+
+Here is an in depth summary of the inputs, outputs, preconditions with suitable validation and error handling for the main components of my solution. I have also listed which of my success criteria belong in each subcomponent. The only exception is PR1 (No crashes), which affects the whole program rather than one specific subcomponent because any part of the system could cause the app to crash.
+
 #### Subcomponent One : Graph generation
 ##### Description
 Generates an undirected graph that the algorithms can operate on and the spaceship can move between. Each node will be a planet in the graph which knows its neighbours. I will start more simply by using an unweighted graph, or all the weights equal to one, and then add weights later for necessary algorithms. To keep with the analogy I will call the weights fuel needed.
 This will also include choosing a start planet and an end planet. The graph does not necessarily have to be solvable.
 
-**TODO:** make the inputs, outputs, and validation equally clear for every subcomponent, using the same format and data-type detail throughout this section.
-* For each subcomponent, list the main data items with their types.
-* State what valid input looks like and what invalid input is rejected.
-* Make sure each output is specific enough to be tested later.
-* Link each subcomponent back to the success criteria it supports.
 ##### Inputs
 
 | Input                     | Type                                                                                                                                                       |
@@ -392,34 +387,55 @@ This will also include choosing a start planet and an end planet. The graph does
 ##### Outputs
 A Graph Object with connected nodes or planets. The nodes themselves should also be objects. The graph object should control the nodes in the graph.
 ##### Validation
-Before using the inputs I need to check they are reasonable.
-There must be at least two planets and up to a sensible limit roughly around 10, but this will be finalised in development when I can test and visualise to choose the suitable count. The start and end planets should not be the same planet as the graph would already be solved, and the graph should not be within less than 3 steps of completion so runs do not end instantly. Planets should not be too close to each other or go on top of each other, as this will confuse the user.
+Before using the inputs I need to check they are reasonable. There must be at least two planets and up to a sensible limit roughly around 10, but this will be finalised in development when I can test and visualise to choose the suitable count. The start and end planets should not be the same planet as the graph would already be solved, and the graph should not be within less than 3 steps of completion so runs do not end instantly. Planets should not be too close to each other or go on top of each other, as this will confuse the user.
+##### Related Success Criteria
+
+| ID  | Criteria                     | Why this subcomponent supports it |
+| --- | ---------------------------- | --------------------------------- |
+| FR1 | Generate a graph             | This subcomponent is responsible for generating the graph the user will work with. |
+| FR8 | Show unsolvable graphs       | It can produce graphs that are unsolvable, so it must support that case properly. |
+| FR10 | Avoid crossing lines        | The generation logic should try to avoid creating graphs with crossing edges. |
+| PR3 | Prevent invalid graph setups | It must validate inputs and avoid invalid graph setups such as impossible start and end choices. |
 
 #### Subcomponent Two : Graph Rendering
 ##### Description
-Now that I have a graph which are nodes that store their positions and know their neighbours I need a way to visualise them
-The first part of this is to add circles to the correct coordinates and lines showing the connections for edges.
+Now that I have a graph which are nodes that store their positions and know their neighbours I need a way to visualise them The first part of this is to add circles to the correct coordinates and lines showing the connections for edges.
+
 The graph also needs to give an interface that allows external classes to access the colours of nodes and edges as well as other effects and information about the node. This will mean that when writing the algorithm it will be easy to change the visuals for the user.
 ##### Inputs
-A graph Datastructure that stores nodes and edges
+A graph data structure that stores nodes and edges and can provide information about neighbours
 ##### Outputs
-A visual display of the graph that appears like planets in a galaxy with lines showing the edges. All text labels should be readable.
-This graph should be able to change using code so it can also be used as a tool to display what is happening during the graph traversal
+A visual display of the graph that appears like planets in a galaxy with lines showing the edges. All text labels should be readable. This graph should be able to change using code so it can also be used as a tool to display what is happening during the graph traversal.
 ##### Validation
-The nodes and edges in the graph are in valid locations and are linked correctly. The graph rendering will assume that the graph is valid and will render even if nodes are in incorrect locations.
+The nodes and edges in the graph are in valid locations and are linked correctly. The graph rendering will assume that the graph is valid and will render even if nodes are in incorrect locations. Lines should not cross each other.
+
+##### Related Success Criteria
+
+| ID  | Criteria                  | Why this subcomponent supports it |
+| --- | ------------------------- | --------------------------------- |
+| FR6 | Show the algorithm state  | It is responsible for displaying nodes, edges, and the final path clearly. |
+| FR10 | Avoid crossing lines     | If crossing lines are left in the graph, the rendered graph becomes harder to understand. |
+| UR1 | Readable on tested devices | The graph display must remain readable on the tested screen sizes. |
 
 #### Subcomponent Three : Algorithm Solving
 ##### Description
-I will make a simple graph traversal algorithm such as Breadth First Search and Depth First Search to traverse the graph and find a path from the start to the finish.
-It will record necessary data such as the queue or stack of nodes to visit next as well as the visited nodes.
-I plan to then implement the rest of the algorithms in the A Level specification including Dijkstra and A* using a heuristic of distance to the target.
-I will not have a UI at this stage but plan to visualise data in the console or debugger.
+I will make a simple graph traversal algorithm such as Breadth First Search and Depth First Search to traverse the graph and find a path from the start to the finish. It will record necessary data such as the queue or stack of nodes to visit next as well as the visited nodes.
+
+I plan to then implement the rest of the algorithms in the A Level specification including Dijkstra and A* using a heuristic of distance to the target. I will not have a UI at this stage but plan to visualise data in the console or debugger.
 ##### Inputs
 A graph and a chosen algorithm
 ##### Outputs
 A solved graph storing the backtrace path taken to get from start to finish it should also be able to report if it is solvable
 ##### Validation
 There should be a start and and end node and an algorithm to use needs to be selected
+
+##### Related Success Criteria
+
+| ID  | Criteria                      | Why this subcomponent supports it |
+| --- | ----------------------------- | --------------------------------- |
+| FR3 | Simulate the algorithms       | This is where the search algorithms themselves are implemented and solved. |
+| FR8 | Show unsolvable graphs        | It must detect when no valid path exists and report that outcome. |
+| PR4 | No misleading algorithm results | The correctness of the algorithms depends on this subcomponent. |
 
 #### Subcomponent Four : Algorithm Control
 ##### Description
@@ -430,7 +446,15 @@ Graph Algorithm
 ##### Outputs
 Step by step state of graph algorithm
 ##### Validation
-Not Undo at the first stage and redo at the last stage
+Not Undo at the first stage and redo at the last stage.
+
+##### Related Success Criteria
+
+| ID  | Criteria                    | Why this subcomponent supports it |
+| --- | --------------------------- | --------------------------------- |
+| FR4 | Step through the algorithm  | It allows the user to move forwards and backwards through the algorithm one step at a time. |
+| FR5 | Auto-play the full algorithm | It controls the automatic playback of the whole algorithm. |
+| PR2 | Quick response              | The controls need to respond quickly when the user interacts with them. |
 
 #### Subcomponent Five : Algorithm Visualisation
 ##### Description
@@ -445,6 +469,16 @@ The Algorithm State
 A visual display of the state of the algorithm
 ##### Validation
 This component will be built on top of the graph which has lots of validataion to check it is correctly genarated. Therefore I can trust the inputs and operate on them without having to revalidate.
+
+##### Related Success Criteria
+
+| ID  | Criteria                           | Why this subcomponent supports it |
+| --- | ---------------------------------- | --------------------------------- |
+| FR6 | Show the algorithm state           | It shows the algorithm state such as the current node, explored nodes, frontier, and final path. |
+| FR7 | Explain each step                  | It displays the text explanations for what is happening at each step. |
+| FR9 | Show visit order with the ship     | It includes the ship movement that shows visit order and backtracking. |
+| UR3 | Help users understand the algorithm | The step-by-step visualisation should help users understand the algorithm. |
+| UR5 | Explain the Frontier and Explored boxes | It contains the Frontier and Explored boxes that users need to understand. |
 
 #### Subcomponent Six : User Interface
 ##### Description
@@ -461,33 +495,17 @@ Give a visual interface of the program
 ##### Validation
 The views should only allow for valid inputs such as selecting objects that exist or numbers in a correct range. 
 
-<div style="page-break-before: always;"></div>
+##### Related Success Criteria
 
-### Revisiting Requirements
-Now that I have a slightly better understanding of the program I am going to revisit and make some adjustments to the requirements. I may rename or match them to the subcomponents of my program to make them easier to track
-
-| ID                                  | **Criteria**                                   | **Description**                                                                                                                                                      |
-| ----------------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Functional**                      |                                                |                                                                                                                                                                      |
-| FR1                                 | Generate A graph                               | The program should generate a random graph for the user with a few simple inputs. They should be ranges of shapes and sizes.                                         |
-| FR2                                 | Teach what a graph algorithm is and their uses | A page providing text/image based description about what graphing algorithms are and examples of their uses                                                          |
-| FR3                                 | Simulate all Graph Algorithms                  | It should be able to simulate all the graphing algorithms in the A Level specification. (These include: BFS, DFS, Dijkstra and A*)                                   |
-| FR4                                 | Step by step                                   | The user should be able to run through each step of the algorithm individually on command. This would mean they could create a trace table of the steps.             |
-| FR5                                 | Visualisation                                  | The Graph should also provide a visualisation of what is happening on the graph algorithm while it is being searched. This means the use of colour and animations. |
-| FR6                                 |                                                |                                                                                                                                                                      |
-| **Performance**                     |                                                |                                                                                                                                                                      |
-| PR1                                 | Abrupt Crashes                                 | The program should not crash due to runtime errors such as invalid data types (eg if strings are assigned to floats).                                                |
-| PR2                                 | Decently high Frame Rates and minimal Lag      | It should run at 60fps and have little to no lag. To do this I will need to make sure the program is not too computationally expensive especially per frame.         |
-| PR3                                 | No Misleading bugs or logic errors             | There should be no major bugs in the program meaning things work not as intended.                                                                                    |
-| PR4                                 |                                                |                                                                                                                                                                      |
-| **Usability**                       |                                                |                                                                                                                                                                      |
-| UR1                                 | Adaptive UI                                    | The program's user interface should resize and scale to fit the users' device screens                                                                                |
-| UR2                                 | Theme                                          | The overall program's theme should stick to the chosen analogy of space                                                                                              |
-| UR3                                 | Navigatable App                                | As my app will have multiple pages, they should all be straightforward to navigate between                                                                           |
-| UR4 **maybe belongs in Functional** | Explanations during graph simulations          | As well as slowly stepping through the graph algorithm steps the user should see explanations of what is happening.                                                   |
+| ID  | Criteria                              | Why this subcomponent supports it |
+| --- | ------------------------------------- | --------------------------------- |
+| FR2 | Teach what graphs and algorithms are used for | The user interface includes the information page about graphs and algorithms. |
+| UR1 | Readable on tested devices            | The screens need to be readable and usable on the tested devices. |
+| UR2 | Easy to navigate                      | Navigation between the main screens is handled by this part of the solution. |
+| UR4 | Help users compare algorithms         | The interface allows the user to choose algorithms and view information pages that help them compare them. |
+| UR6 | Use an engaging space theme           | The overall look and feel of the app, including the space theme, is presented through the interface. |
 
 <div style="page-break-before: always;"></div>
-
 ### System Overview / Architecture
 
 #### Model View Controller
@@ -2124,4 +2142,3 @@ There are still some improvements that could be made in future, such as refining
 - Obsidian - https://obsidian.md/
 - Obsidian Markdown Editor - https://obsidian.md/
 - Mermaid JS Chart Library - https://mermaid.js.org/
-
