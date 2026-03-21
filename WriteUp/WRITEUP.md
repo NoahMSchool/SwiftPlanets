@@ -3,6 +3,9 @@
 | **Name :**Noah Marks                        | **Candidate Number : 1146** |
 | ------------------------------------------- | --------------------------- |
 | **Agenda :**<br>Engaging Graphing Simulator | **Centre Number : 10132**   |
+
+<div style="page-break-before: always;"></div>
+
 ## Analysis
 
 ### Problem Recognition
@@ -293,6 +296,8 @@ I will also make small quality of life improvements that make the explanations m
 |                                     |                                                |                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                           |                   |
 
 
+<div style="page-break-before: always;"></div>
+
 ## Design
 
 ### Problem Decomposition
@@ -510,7 +515,7 @@ erDiagram
 
 #### Subcomponent One : Graph generation : Model
 
-![Graph Generation Sketch](./sketches/sketch_generator.jpeg)
+<p align="center"><img src="./sketches/sketch_generator.jpeg" alt="Graph Generation Sketch" width="75%"></p>
 As this is not to do with the graphics I do not need to use any graphics libraries however It will use coordinates. This will be provided to the graph rendering component which will use SpriteKit to render it.
 
 I decided that the graphs I use are going to be undirected, meaning there are no one-way relationships between nodes. I think this is simpler for someone new to graphs. The graphs are going to be weighted, however, as algorithms like Dijkstra and A* are more suitable for weighted graphs. My graphs are not required to be fully connected, so it is possible that the graphs are unsolvable. I think this is important because it exposes the user to the case where an algorithm finishes without finding a path to the target node.
@@ -522,7 +527,7 @@ I need to create some algorithm that I use to generate a 2D graph that fits the 
 * The connected nodes should be based on the distance between the nodes.
 
 #### Subcomponent Two : Graph rendering : View
-![Graph Rendering Sketch](./sketches/sketch_visualise.jpeg)
+<p align="center"><img src="./sketches/sketch_visualise.jpeg" alt="Graph Rendering Sketch" width="75%"></p>
 For rendering the Graph I am going to use Spritekit. This is because I can draw exact shapes of planets and lines. I will have very exact control over what I am doing. 
 ##### Planets/Nodes
 The planets are going to be rendered using filled circles which are randomly selected from the planets. They will have a custom border whose color can be changed.
@@ -590,7 +595,7 @@ When testing running the algorithm step by step I wanted to make sure it was don
 I solved a simple graph I made on paper and then i made it in the simulation.
 This is an example with BFS about how i want the algorithms to be visualised with the stacks on the side
 
-![Algorithms Sketch](./sketches/sketch_algorithms.jpeg)
+<p align="center"><img src="./sketches/sketch_algorithms.jpeg" alt="Algorithms Sketch" width="75%"></p>
 ##### Undo/Redo Stack
 One of my requirements is that the user should be able to replay the steps of the algorithm
 Another requirement is that my program is efficient to optimise performance on less powerful devices.
@@ -609,7 +614,7 @@ This will mean I calculate all the possible states at the start and the algorith
 #### Subcomponent Five : Algorithm Visualisation : View
 This component is very important because it displays the progress of the algorithm to the user. This needs to be done well as it is the main purpose of the program.
 
-![Solver Sketch](./sketches/sketch_solver.jpeg)
+<p align="center"><img src="./sketches/sketch_solver.jpeg" alt="Solver Sketch" width="75%"></p>
 
 
 ##### Spaceship
@@ -682,12 +687,12 @@ stateDiagram-v2
 ##### Menu Screen
 This is the Screen that the user will start with. The user should be able to navigate to all the other screens from here.
 
-![Main Menu Sketch](./sketches/sketch_main.jpeg)
+<p align="center"><img src="./sketches/sketch_main.jpeg" alt="Main Menu Sketch" width="75%"></p>
 ##### About Graphs/Algorithms
 This is going to be a scrollable text screen that will tell the user about the algorithms.
 It is going to also contain images and tables to compare the algorithms as they are not too different from one another.
 
-![About Page Sketch](./sketches/sketch_about.jpeg)
+<p align="center"><img src="./sketches/sketch_about.jpeg" alt="About Page Sketch" width="75%"></p>
 I will add more text  and information describing each algorithm individually
 ##### How to use screen
 Like the about screen this is going to be a scrollable screen with not much interaction.
@@ -701,7 +706,7 @@ The objectives of this screen are:
 This is not so much going to be a separate screen but will be placed on top of the current view. This will always be the galaxy builder or simulation as it is only accessible via these pages.
 I am going to use a swiftUI element called a sheet which allows me to overlay the settings view on top of the current view, this will allow me to keep the background visible while changing settings to keep the context of the graph.
 
-![Settings Sketch](./sketches/sketch_settings.jpeg)
+<p align="center"><img src="./sketches/sketch_settings.jpeg" alt="Settings Sketch" width="75%"></p>
 This is what the sheet will look like. I will put the controls inside the sheet.
 ##### Graph Generation
 This will contain the SpriteKit View. Here the nodes will not be colored exluding coloring indicating the start and end. This is because the algorithm isnt currently being run.
@@ -727,6 +732,8 @@ The SwiftUI controls will be mostly output based:
 * Annotate the evidence with what was expected, what happened, and whether the test passed.
 * If this remains a planning section, rename it clearly as planned post-development testing. If the testing has been completed, move the final evidence into the later testing section.
 
+<div style="page-break-before: always;"></div>
+
 ## Development
 
 ### Source Control, Project Tracking and Tools
@@ -750,12 +757,12 @@ I used GitHub desktop on my Mac as the source control client. I used Obsidian as
 
 #### Use of AI
 
-| Type      | Use                                                                                                                | Example               |
-| --------- | ------------------------------------------------------------------------------------------------------------------ | --------------------- |
-| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with ChatGPT.                       | ![Ship sprite](./Ship8.png) |
-| Code<br>  | None of the code was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections. |                       |
-| Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand.                       |                       |
-| Writeup   | None of the write up is AI generated                                                                               |                       |
+| Type      | Use                                                                                                                | Example                     |
+| --------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------- |
+| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with ChatGPT.                       | <img src="./Ship8.png" alt="Ship sprite" width="20%"> |
+| Code<br>  | None of the code was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections. |                             |
+| Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand.                       |                             |
+| Writeup   | None of the write up is AI generated                                                                               |                             |
 
 ### Stage One/Two : Random Galaxy Generation/Rendering
 I developed the galaxy generation and rendering in parallel because it meant I could immediately visualise what was being done, which was important for checking whether I was doing it correctly.
@@ -1482,6 +1489,8 @@ let stars = SKNode()
 This is shown behind all the screens
 
 
+<div style="page-break-before: always;"></div>
+
 ## Testing to Inform Development
 
 When writing the algorithms, in order to debug them and ensure they were working as intended, I needed graphs that would produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. During development I then compared the program state with the expected state to make sure the implementations were correct.
@@ -1547,6 +1556,8 @@ For the Generated Graph the heuristic is very good because the path weights and 
 * Make sure the trace table matches the screenshots and the implementation.
 * Use this as direct evidence that the step system is correct.
 
+<div style="page-break-before: always;"></div>
+
 ## Testing to Inform Evaluation
 
 **TODO:** add brief evidence from post-development user testing here, including who tested it, what level of experience they had, and what I asked them to try.
@@ -1565,7 +1576,10 @@ For the Generated Graph the heuristic is very good because the path weights and 
 * Nobody bothered reading the help section.
 * It was hard to know if the algorithm found the correct path.
 
+<div style="page-break-before: always;"></div>
+
 ## Evaluation
+
 In this section I will go through the different components, show the related success criteria in a table, and mention any relevant added features and improvements that could be made.
 
 **TODO:** evaluate each success criterion one by one using evidence.
@@ -1623,7 +1637,10 @@ This also meant that the starry background in the screenshots would move relativ
 
 I also thought the text and UI components did not optimise space particularly well. The back button limited the available screen real estate. To do this better I would have overlayed the UI components and used transparent images. 
 
+<div style="page-break-before: always;"></div>
+
 ## Sources
+
 ### Example Solutions
 - Graph Online - https://graphonline.top/
 - TUM Shortest Path Visualisation - https://algorithms.discrete.ma.tum.de/spp/
