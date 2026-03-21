@@ -948,6 +948,32 @@ The functions that are required are:
 #### BaseSearch
 At this stage I implemented the different graph search algorithms by building them all on top of the same `BaseSearch` class. The base search implemented some basic generic functionality that was overriden when neccesary This meant the shared logic for stepping forward, tracking the frontier, storing history, and reconstructing the final path only had to be written once. Each individual algorithm then only needed to override the small parts that changed its behaviour, such as how the frontier was read or how priorities were calculated.
 
+#### Diagram of searching components
+
+```mermaid
+classDiagram
+        class BaseSearch{
+            start : Traversable
+            end : Traversable
+
+            useWeights : Bool
+            useHeuristic : Bool
+
+            getQueuePriority()
+        }
+
+        class Traversable{
+
+        }
+        BaseSearch <|-- Dijkstra
+        BaseSearch <|-- AStar
+        BaseSearch <|-- BreadthFirst
+        BaseSearch <|-- DepthFirst
+        BaseSearch <|-- GreedyBestFirst
+        BaseSearch *-- Traversable
+```
+
+
 Here is the table of the different search algorithms and how they differ, which helps to understand what functions need to be overridden for each.
 
 | Feature                 | Breadth First | Depth First    | Greedy BFS     | Dijkstra       | A*                 |
@@ -1031,32 +1057,6 @@ For A* the priority function was still extremely simple:
 ```swift
 getNewWeight(n: n) + n.neighbour.heuristic(to: to)
 ```
-
-#### Diagram of searching components
-
-```mermaid
-classDiagram
-        class BaseSearch{
-            start : Traversable
-            end : Traversable
-
-            useWeights : Bool
-            useHeuristic : Bool
-
-            getQueuePriority()
-        }
-
-        class Traversable{
-
-        }
-        BaseSearch <|-- Dijkstra
-        BaseSearch <|-- AStar
-        BaseSearch <|-- BreadthFirst
-        BaseSearch <|-- DepthFirst
-        BaseSearch <|-- GreedyBestFirst
-        BaseSearch *-- Traversable
-```
-
 
 
 #### Minor improvements to prior stages
