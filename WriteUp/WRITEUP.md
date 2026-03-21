@@ -74,12 +74,12 @@ I am going to refer back to these stakeholders once I have developed the app and
 
 ### Questionnaire for target market
 
-| **Are you studying computer science, if so what course: **                                                                                                         | A level, GCSE, University, None or Other |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
-| Stakeholder 1: Rambo                                                                                                                                               | GCSE OCR computer Science                |
-| Stakeholder 2: Rocco                                                                                                                                               | OCR comp-sci A-Le                        |
-| Stakeholder 3 : Jim                                                                                                                                                | A Level Computer Sci                     |
-| Stakeholder 4 : Jon                                     I am not currently studying computer science but finished a degree in comp-sci and maths a while back e, I |                                          |
+| **Are you studying computer science, if so what course: ** | A level, GCSE, University, None or Other                                                             |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Stakeholder 1: Rambo                                       | GCSE OCR computer Science                                                                            |
+| Stakeholder 2: Rocco                                       | OCR comp-sci A-Le                                                                                    |
+| Stakeholder 3 : Jim                                        | A Level Computer Sci                                                                                 |
+| Stakeholder 4 : Jon                                        | I am not currently studying computer science but finished a degree in comp-sci and maths a while ago |
 From this It seems like my stakeholders will or already have encountered graphing algorithms which gives me confidence that I have selected a useful topic. 
 
 | What devices do you use the most to learn:** | Options: Tablet, Phone, Desktop or other    |
@@ -88,7 +88,7 @@ From this It seems like my stakeholders will or already have encountered graphin
 | Stakeholder 2: Rocco                         | I use a m2 macbook pro                      |
 | Stakeholder 3 : Jim                          | I have a m2 macbook air                     |
 | Stakeholder 4 : Jon                          | Mac Mini desktop for work                   |
-I noticed all my stakeholders use apple devices. It is only a small sample but I do think targeting this audience is a good start.
+I noticed all my stakeholders use Apple iOS devices. It is only a small sample but I do think targeting this audience is a good start.
 
 | **How Long are you willing to spend to learn a new topic: ** | A time based measurement from 5 minutes to over a few days |
 | ------------------------------------------------------------ | ---------------------------------------------------------- |
@@ -263,13 +263,12 @@ I will also make small quality of life improvements that make the explanations m
 
 ### Success Criteria
 
-**TODO:** turn this table into clear measurable goals. Give every success criterion an ID, a full description, a reason, and a measurable test.
-* Have at least one functional criterion for each of the 6 subcomponents.
-* Add a column showing how each criterion will be tested and what evidence will be used.
-* Replace vague wording like "good", "clear", or "enjoyable" with measurable wording such as "user can complete task X" or "algorithm returns the correct path on test graph Y".
-* Remove every blank row and make sure each criterion can later be judged as met, partially met, or not met.
-
-Maybe Match Functional Requirements to Design and Development Sprints
+***TODO: turn this table into clear measurable goals. Give every success criterion an ID, a full description, a reason, and a measurable test.***
+* ***Have at least one functional criterion for each of the 6 subcomponents.***
+* ***Add a column showing how each criterion will be tested and what evidence will be used.***
+* ***Replace vague wording like "good", "clear", or "enjoyable" with measurable wording such as "user can complete task X" or "algorithm returns the correct path on test graph Y".***
+* ***Remove every blank row and make sure each criterion can later be judged as met, partially met, or not met.***
+* ***Maybe Match Functional Requirements to Design and Development Sprints***
 
 
 | ID                                  | **Criteria**                                   | **Description**                                                                                                                                                      | **Reason**                                                                                                                                                                                                                                                                                                | **Analysis Link** |
@@ -297,10 +296,8 @@ Maybe Match Functional Requirements to Design and Development Sprints
 ## Design
 
 ### Problem Decomposition
-I have broken down my problem into the following subcomponents.
-When developing I will do sprints for each of these components.
+I have broken down my problem into the following subcomponents. When developing I will do sprints for each of these components. At a very high level, this are the six subcomponents I'm going to divide the problem into:
 
-#### Hierarchy Diagram 
 ```mermaid
 
 flowchart LR
@@ -315,9 +312,6 @@ flowchart LR
     %%AlgorithmVisualisation ---> |uses| AlgorithmControl
     %%AlgorithmVisualisation ---> |uses| GraphRendering
 ```
-
-#### Subcomponents
-At a very high level, this are the six subcomponents I'm going to divide the problem into:
 
 * **Graph generation** : This generates a random graph of planets for algorithms to solve
 * **Graph rendering** : this will be a UI compontent that will show the graph visually as planets in a galaxy
@@ -483,8 +477,8 @@ This will mean that my UI will adapt to all screen sizes with little effort! Thi
 
 #### Controller (Program Logic)
 
-The controller while was not included in the subcomponents is still a large section of the program. It provides a bridge between the Models and the views and is essential for the program to run.
-I am going to use swiftUI observable object which is an an object that will notify and update observers when it changes
+The controller while was not included in the subcomponents is still a large section of the program. It provides a bridge between the Models and the Views and is essential for the program to run.
+I am going to use SwiftUI observable object which is an an object that will notify and update observers when it changes
 
 
 ```mermaid
@@ -515,6 +509,8 @@ erDiagram
 ### Implementation of Subcomponents
 
 #### Subcomponent One : Graph generation : Model
+
+![[sketch_generator.jpeg]]
 As this is not to do with the graphics I do not need to use any graphics libraries however It will use coordinates. This will be provided to the graph rendering component which will use SpriteKit to render it.
 
 I decided that the graphs I use are going to be undirected, meaning there are no one-way relationships between nodes. I think this is simpler for someone new to graphs. The graphs are going to be weighted, however, as algorithms like Dijkstra and A* are more suitable for weighted graphs. My graphs are not required to be fully connected, so it is possible that the graphs are unsolvable. I think this is important because it exposes the user to the case where an algorithm finishes without finding a path to the target node.
@@ -525,10 +521,8 @@ I need to create some algorithm that I use to generate a 2D graph that fits the 
 * Most graphs created should be solvable
 * The connected nodes should be based on the distance between the nodes.
 
-![GalaxyGeneration](https://github.com/user-attachments/assets/54ac3060-4519-4aa2-befa-87da94b83d19)
-
 #### Subcomponent Two : Graph rendering : View
-
+![[sketch_visualise.jpeg]]
 For rendering the Graph I am going to use Spritekit. This is because I can draw exact shapes of planets and lines. I will have very exact control over what I am doing. 
 ##### Planets/Nodes
 The planets are going to be rendered using filled circles which are randomly selected from the planets. They will have a custom border whose color can be changed.
@@ -538,13 +532,14 @@ The edges will be represented by lines
 There should be a text box on the lines which will be used to represent the weight. This should also be readable and the graph rendering is not responsible for what is in the text box, it just needs to be able to be changed.
 
 #### Subcomponent Three : Algorithm Solving : Model
-For the search algorithms I realised they are not that different from each other. They all have a list of nodes to visit and the nodes they have visited. The only difference is the order they are visited in.
+
+For the search algorithms I realised they are not that different from each other. They all have a list of nodes to visit and the nodes they have visited. The only difference is the order they are visited in and whether they use a heuristic.
 
 ##### General Search
 I will implement a general search class that the other algorithms will inherit from this will have the core functionality that all the search algorithms require.
 The way these search algorithms work is:
 
-1. They have a (priority)queue/stack to decide what is the next node to visit and visit that node.
+1. They have a (priority) queue/stack to decide what is the next node to visit and visit that node.
 2. They add this node to a visited list so the algorithm knows not to return.
 3. They check if they are on the target node, if so then they have found the target and the search has been completed.
 4. If not they see which nodes are connected to the current node and add them to the queue/stack, first checking if they are not there already using the list of already visited nodes
@@ -567,11 +562,8 @@ A* uses a priority queue based on a combination (A 50/50 split) between the clos
 ##### Greedy Best First Search (Bonus)
 When researching the algorithms I found there was one more algorithm that would complete the program. Although Greedy (BFS) is not in the A-Level spec it has the same core idea of the others as it uses a priority queue which only has
 
-Here is a summary table of the algorithms and the features they use:
-
 #### Subcomponent Four : Algorithm Control : Model
 
-![GraphControl](https://github.com/user-attachments/assets/ab664823-7ee0-4fb6-8102-55429821660a)
 
 ##### Solving Step By Step
 When writing these algorithms normally and how it is described previously in algorithm solving is that they use iteration or recursion. This means that local variables are created in a loops or functions and they are overidden on each iteration and do not persist in memory. If I want to run the algorithm step by step so the user can view it the options are:
@@ -598,9 +590,7 @@ When testing running the algorithm step by step I wanted to make sure it was don
 I solved a simple graph I made on paper and then i made it in the simulation.
 This is an example with BFS about how i want the algorithms to be visualised with the stacks on the side
 
-![Algorithms](https://github.com/user-attachments/assets/bd547fbb-1660-4bb2-b38b-7d9e4bf8b2e4)
-![Frontier](https://github.com/user-attachments/assets/fb01a530-c8b6-4520-8383-fe3cdbd789eb)
-
+![[sketch_algorithms.jpeg]]
 ##### Undo/Redo Stack
 One of my requirements is that the user should be able to replay the steps of the algorithm
 Another requirement is that my program is efficient to optimise performance on less powerful devices.
@@ -619,7 +609,7 @@ This will mean I calculate all the possible states at the start and the algorith
 #### Subcomponent Five : Algorithm Visualisation : View
 This component is very important because it displays the progress of the algorithm to the user. This needs to be done well as it is the main purpose of the program.
 
-![GraphSolving](https://github.com/user-attachments/assets/9a66c195-65f1-4da8-ab85-12e208d0c1b5)
+![[sketch_solver.jpeg]]
 
 
 ##### Spaceship
@@ -633,7 +623,7 @@ As well as UI elements it is important to show text-based information. I want to
 The list of nodes to visit is the frontier. This is the queue/stack/priority queue that the algorithm uses to select the next node to visit.
 The list of visited node is the visited. This is a list of the nodes that have already been visited. I could add information next to these about the weight to get to it so far or the node it came from for more information.
 ##### Explanation Boxes
-To Tie all the Visualisation together I am going to have a text box.
+To tie all the Visualisation together I am going to have a text box.
 This will explain what is happening in each of the steps of the algorithm. It will say what the algorithm is actually doing while it is happening to help the user understand.
 I will pre-make a selection of strings that allow me to insert specific information in the correct location, such as the node name.
 I will also give the ability for the user to swap between Space Explanations (which use space vocab to increase engagement such as: Galaxy, Planet, Path) and a more Technically accurite Graph Explanations (which uses words like graph, node, edge).
@@ -644,6 +634,7 @@ These will be the same colours as I coloured the lists for the frontier and the 
 I am going to do this using the graph's interface i will create
 
 #### Subcomponent Six : User Interface : View
+
 All of the User Interface is going to be made with SwiftUI.
 ##### Adaptability
 The user interface needs to be able to adapt to different screen sizes. Although iPads are all the same 4:3 aspect ratio they can be rotated to portrait and my app still needs to work. It should also work on Macs, iPhones and headsets. If it is windowed the size should adapt similarly to a web page.
@@ -690,12 +681,13 @@ stateDiagram-v2
 
 ##### Menu Screen
 This is the Screen that the user will start with. The user should be able to navigate to all the other screens from here.
-![StartScreen](https://github.com/user-attachments/assets/da99b1e1-7ab1-4a8d-8e15-9ca406712a2f)
+
+![[sketch_main.jpeg]]
 ##### About Graphs/Algorithms
 This is going to be a scrollable text screen that will tell the user about the algorithms.
 It is going to also contain images and tables to compare the algorithms as they are not too different from one another.
 
-![AboutScreen](https://github.com/user-attachments/assets/d716bdb5-385f-4f5d-aef6-e2467646e336)
+![[sketch_about.jpeg]]
 I will add more text  and information describing each algorithm individually
 ##### How to use screen
 Like the about screen this is going to be a scrollable screen with not much interaction.
@@ -708,7 +700,8 @@ The objectives of this screen are:
 ##### Settings View
 This is not so much going to be a separate screen but will be placed on top of the current view. This will always be the galaxy builder or simulation as it is only accessible via these pages.
 I am going to use a swiftUI element called a sheet which allows me to overlay the settings view on top of the current view, this will allow me to keep the background visible while changing settings to keep the context of the graph.
-![SettingsScreen](https://github.com/user-attachments/assets/0ba99730-a5ca-43fb-a628-675401961496)
+
+![[sketch_settings.jpeg]]
 This is what the sheet will look like. I will put the controls inside the sheet.
 ##### Graph Generation
 This will contain the SpriteKit View. Here the nodes will not be colored exluding coloring indicating the start and end. This is because the algorithm isnt currently being run.
@@ -718,7 +711,6 @@ There will be the controls for generating the graph and choosing the search algo
 * Regenerating Graph
 * Changing the number of planets in the graph
 * Changing The maximum node connection
-
 
 ##### Simulation
 This will contain the SpriteKit View which will include a ship and necessary highlight colours depending on the state of the algorithm.
@@ -758,10 +750,12 @@ I used GitHub desktop on my Mac as the source control client. I used Obsidian as
 
 #### Use of AI
 
-| Type                                                                                                                                                                                                                      | Example               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| Assets: The only AI generated item in my project was the Spaceship sprite which I made with ChatGPT.                                                                                                                      | ![[./Ship8.png\|192]] |
-| Code: None of the code was AI Generated although I did ask ChatGPT for help when I had problems and error messages that I did not understand. It also told me about the orientation algorithm for line intersections.<br> |                       |
+| Type      | Use                                                                                                                | Example               |
+| --------- | ------------------------------------------------------------------------------------------------------------------ | --------------------- |
+| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with ChatGPT.                       | ![Ship sprite](./Ship8.png) |
+| Code<br>  | None of the code was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections. |                       |
+| Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand.                       |                       |
+| Writeup   | None of the write up is AI generated                                                                               |                       |
 
 ### Stage One/Two : Random Galaxy Generation/Rendering
 I developed the galaxy generation and rendering in parallel because it meant I could immediately visualise what was being done, which was important for checking whether I was doing it correctly.
@@ -843,14 +837,13 @@ let sortedPaths = potentialPaths.sorted {
 ```
 
 To fix the Lines going through planets  I thought of putting edges across the planet nodes. This meant that when an edge passed through a planet it would be deleted.
-However when developing this I encountered a bug that caused edges that ... to be deleted
-The fix to this was to put 4 edges from the centre of the planet to the circumference.
+However when developing this I encountered a bug that caused all edges to collide. This was because the start and end points of the lines were the exact center point of the planets. The fix to this was to put 4 lines from the centre of the planet to the circumference so no lines actually pass through the center, only started on it. The algorithm does not treat lines that start at the same point as a collision.
 
 Here is a diagram of the checklines on a Planet Node
 
-**TODO:** explain what the bug was in simple terms and how I found it. 
+**TODO:** DRAW THE PLANET WITH LINE 
 
-Here is a function on the planet that returns the checklines
+Here is the function on the planet that returns an array of four checklines for a planet:
 ```swift
 func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
         let horizontalFirst = (start: CGPoint(x: self.position.x-planetRadius, y: self.position.y), 
@@ -867,9 +860,9 @@ func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
     }
 ```
 #### Intersection Algorithm using Orientation
-To check if two lines intersect I did some research online and found an algorithm that uses orientation to check if two lines intersect. I used an article from GeeksforGeeks to help understand the concepts before implementing it
+To check if two lines intersect I did some research online and found an algorithm that uses orientation to check if two lines intersect. I used an article from GeeksforGeeks to help understand the concepts before implementing it.
 
-To deterimine the orientation of a line I used the sign of the cross product.
+To determine the orientation of a line I used the sign of the cross product.
 Here is the code I used to check two lines intersect
 
 **TODO:** add the line intersection code and explain why this method works.
