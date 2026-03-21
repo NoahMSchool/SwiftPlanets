@@ -747,7 +747,7 @@ Throughout development I used source control with Git and GitHub. This was usefu
 Git was especially useful for a project like this because I was changing several parts of the program at once, such as the graph generation, algorithm logic, and user interface. Source control reduced the risk of losing work and made it easier to compare new code with older versions when I was debugging.
 #### Issue Tracking
 
-I also tried to use GitHub Issues to track tasks and bugs during development. This was helpful when I remembered to use it, because it gave me a simple way to record problems and planned improvements in one place. However, I was not very consistent in using it, so it was only a partial record of the work rather than a complete project log. The issues page is here: [GitHub Issues](https://github.com/NoahMSchool/SwiftPlanets/issues).
+I also tried to use GitHub Issues to track tasks and bugs during development. This was helpful when I remembered to use it, because it gave me a simple way to record problems and planned improvements in one place. However, I was not very consistent in using it and only made 23 issues so it was only a partial record of the work rather than a complete project log. I think it would be more useful if more than one person was working on the project. The issues page is here: [GitHub Issues](https://github.com/NoahMSchool/SwiftPlanets/issues).
 
 <img  alt="image" src="https://github.com/user-attachments/assets/29c8c4d2-4f8e-40d2-b66e-061032ac5594" />
 
@@ -1369,6 +1369,7 @@ This is shown behind all the screens
 ## Testing to Inform Development
 
 When writing the algorithms, in order to debug them and ensure they were working as intended, I needed graphs that would produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. During development I then compared the program state with the expected state to make sure the implementations were correct.
+
 These test graphs looked more artificial than the random galaxies because their purpose was correctness rather than appearance. In my random graph generation the weights are usually proportional to the distance between nodes, with some random noise for variation, but for the fixed tests I wanted graphs that clearly separated the behaviour of the algorithms.
 
 I ended up using two main non-random test graphs throughout development:
@@ -1403,6 +1404,7 @@ Remove Bolds
 | Greedy Best First Search | Y             |     11 | 5               | ![Greedy Square Solved](./GreedySquareSolved.png)              |
 | Dijkstra                 | **Y**         |  **8** | 7               | ![Dijkstra Square Solved](./DijkstraSquareSolved.png)          |
 | A*                       | **Y**         | **11** | 5               | ![A Star Square Solved](./AStarSquareSolved.png)               |
+
 For the square the 
 The only graph that found the shortest path was dijkstra.
 Even though A* is also designed to find the shortest path and in most cases it does but the awkward route that dijkstra had to take mean that 
@@ -1506,19 +1508,24 @@ This also meant that the starry background in the screenshots would move relativ
 I also thought the text and UI components did not optimise space particularly well. The back button limited the available screen real estate. To do this better I would have overlayed the UI components and used transparent images. 
 
 ## Sources
+### Example Solutions
+- Graph Online - https://graphonline.top/
+- TUM Shortest Path Visualisation - https://algorithms.discrete.ma.tum.de/spp/
+- PhET Interactive Simulations - https://phet.colorado.edu/
 
-Orientation Algorithm For Line Intersection
-https://www.geeksforgeeks.org/dsa/check-if-two-given-line-segments-intersect/
-Model View Controller explanation
-https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html
+### Documentation and Reference Sources
+- Orientation Algorithm For Line Intersection https://www.geeksforgeeks.org/dsa/check-if-two-given-line-segments-intersect/
+- Model View Controller explanation - https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html
+- Swift Documentation - https://www.swift.org/documentation/
+- SwiftUI Documentation - https://developer.apple.com/documentation/swiftui/
+- SpriteKit Documentation - https://developer.apple.com/documentation/spritekit/
+- OCR Guidance - https://www.ocr.org.uk/Images/324587-project-setting-guidance.pdf
+- OCR Specification - https://www.ocr.org.uk/images/170844-specification-accredited-a-level-gce-computer-science-h446.pdf
 
-https://www.ocr.org.uk/Images/324587-project-setting-guidance.pdf
-https://www.ocr.org.uk/images/170844-specification-accredited-a-level-gce-computer-science-h446.pdf
-
-## Tools
-Swift Playgrounds - https://developer.apple.com/swift-playground/
-Swift Documentation - https://www.swift.org/documentation/
-Github - https://github,com/
-GitHub Desktop - https://github.com/apps/desktop
-Obsidian Markdown Editor - https://obsidian.md/
-Memaid JS Chart Library - https://mermaid.js.org/
+### Software and Tools
+- Swift Playgrounds - https://developer.apple.com/swift-playground/
+- GitHub - https://github.com/
+- GitHub Desktop - https://desktop.github.com/
+- Obsidian - https://obsidian.md/
+- Obsidian Markdown Editor - https://obsidian.md/
+- Memaid JS Chart Library - https://mermaid.js.org/
