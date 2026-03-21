@@ -510,7 +510,7 @@ erDiagram
 
 #### Subcomponent One : Graph generation : Model
 
-![[sketch_generator.jpeg]]
+![Graph Generation Sketch](./sketches/sketch_generator.jpeg)
 As this is not to do with the graphics I do not need to use any graphics libraries however It will use coordinates. This will be provided to the graph rendering component which will use SpriteKit to render it.
 
 I decided that the graphs I use are going to be undirected, meaning there are no one-way relationships between nodes. I think this is simpler for someone new to graphs. The graphs are going to be weighted, however, as algorithms like Dijkstra and A* are more suitable for weighted graphs. My graphs are not required to be fully connected, so it is possible that the graphs are unsolvable. I think this is important because it exposes the user to the case where an algorithm finishes without finding a path to the target node.
@@ -522,7 +522,7 @@ I need to create some algorithm that I use to generate a 2D graph that fits the 
 * The connected nodes should be based on the distance between the nodes.
 
 #### Subcomponent Two : Graph rendering : View
-![[sketch_visualise.jpeg]]
+![Graph Rendering Sketch](./sketches/sketch_visualise.jpeg)
 For rendering the Graph I am going to use Spritekit. This is because I can draw exact shapes of planets and lines. I will have very exact control over what I am doing. 
 ##### Planets/Nodes
 The planets are going to be rendered using filled circles which are randomly selected from the planets. They will have a custom border whose color can be changed.
@@ -590,7 +590,7 @@ When testing running the algorithm step by step I wanted to make sure it was don
 I solved a simple graph I made on paper and then i made it in the simulation.
 This is an example with BFS about how i want the algorithms to be visualised with the stacks on the side
 
-![[sketch_algorithms.jpeg]]
+![Algorithms Sketch](./sketches/sketch_algorithms.jpeg)
 ##### Undo/Redo Stack
 One of my requirements is that the user should be able to replay the steps of the algorithm
 Another requirement is that my program is efficient to optimise performance on less powerful devices.
@@ -609,7 +609,7 @@ This will mean I calculate all the possible states at the start and the algorith
 #### Subcomponent Five : Algorithm Visualisation : View
 This component is very important because it displays the progress of the algorithm to the user. This needs to be done well as it is the main purpose of the program.
 
-![[sketch_solver.jpeg]]
+![Solver Sketch](./sketches/sketch_solver.jpeg)
 
 
 ##### Spaceship
@@ -682,12 +682,12 @@ stateDiagram-v2
 ##### Menu Screen
 This is the Screen that the user will start with. The user should be able to navigate to all the other screens from here.
 
-![[sketch_main.jpeg]]
+![Main Menu Sketch](./sketches/sketch_main.jpeg)
 ##### About Graphs/Algorithms
 This is going to be a scrollable text screen that will tell the user about the algorithms.
 It is going to also contain images and tables to compare the algorithms as they are not too different from one another.
 
-![[sketch_about.jpeg]]
+![About Page Sketch](./sketches/sketch_about.jpeg)
 I will add more text  and information describing each algorithm individually
 ##### How to use screen
 Like the about screen this is going to be a scrollable screen with not much interaction.
@@ -701,7 +701,7 @@ The objectives of this screen are:
 This is not so much going to be a separate screen but will be placed on top of the current view. This will always be the galaxy builder or simulation as it is only accessible via these pages.
 I am going to use a swiftUI element called a sheet which allows me to overlay the settings view on top of the current view, this will allow me to keep the background visible while changing settings to keep the context of the graph.
 
-![[sketch_settings.jpeg]]
+![Settings Sketch](./sketches/sketch_settings.jpeg)
 This is what the sheet will look like. I will put the controls inside the sheet.
 ##### Graph Generation
 This will contain the SpriteKit View. Here the nodes will not be colored exluding coloring indicating the start and end. This is because the algorithm isnt currently being run.
