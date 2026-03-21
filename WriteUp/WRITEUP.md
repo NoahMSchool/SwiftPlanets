@@ -805,14 +805,6 @@ The SwiftUI controls will be mostly output based:
 
 <div style="page-break-before: always;"></div>
 
-### Further Post Development Test Data
-
-**TODO:** add tests done after finishing the program, including function, robustness, and usability tests.
-* Include invalid input tests such as too many planets, 1 planet, 0 planets, impossible paths, or extreme values.
-* Include at least one usability test and one robustness test.
-* Annotate the evidence with what was expected, what happened, and whether the test passed.
-* If this remains a planning section, rename it clearly as planned post-development testing. If the testing has been completed, move the final evidence into the later testing section.
-
 <div style="page-break-before: always;"></div>
 
 ## Development
@@ -848,7 +840,7 @@ I used GitHub desktop on my Mac as the source control client. I used Obsidian as
 
 <div style="page-break-before: always;"></div>
 
-### Stage One/Two : Random Galaxy Generation/Rendering
+### Stage One : Random Galaxy Generation
 
 I developed the galaxy generation and rendering in parallel because it meant I could immediately visualise what was being done, which was important for checking whether I was doing it correctly.
 #### Generation
@@ -976,6 +968,7 @@ func checkIntersections(p1: CGPoint, q1: CGPoint, p2: CGPoint, q2: CGPoint) -> B
 
 This works because the orientation (which is the direction we travel to visit the three points) tells me which side of a line another point is on. If the two points from one line are on different sides of the other line, and the same is also true the other way round, then the two lines must cross. I also added a small check to ignore lines that share an endpoint, because graph edges meeting at a node should not count as an intersection.
 
+### Stage Two : Galaxy Rendering
 #### Procedural Planet appearance
 
 Each planet has a border which is used to indicate the information about the planet.
@@ -1034,7 +1027,6 @@ func drawLine(from start: CGPoint, to end: CGPoint, lineWidth: CGFloat, color: U
 }
 ```
 
-#### Minor improvements to prior stages
 I added the ability to show and hide text on the edges 
 
 <div style="page-break-before: always;"></div>
@@ -1189,7 +1181,6 @@ getNewWeight(n: n) + n.neighbour.heuristic(to: to)
 ```
 
 
-#### Minor improvements to prior stages
 I added the ability to show and hide text on the edges for only Dijkstra and A* to use edge weights. For algorithms that do not use the weights, the weight for all edges is 1.
 
 <div style="page-break-before: always;"></div>
@@ -1357,7 +1348,7 @@ func calculatePathFromPreviousToCurrent(previousNode: any Traversable){
 
 This works by finding the point where the two routes share a common node. The ship can then move back to that shared point and then out to the next node, which makes the movement look much more natural.
 
-#### Minor improvements to prior stages
+
 
 <div style="page-break-before: always;"></div>
 
@@ -1446,7 +1437,6 @@ The ship turns to face the next planet which uses the tan function to get the di
 #### Algorithm Backtracking
 After implementing the search algorithms I realised algorithms that used backtracking would do large jumps across the graph. I thought this was unclear and may be confusing for my target audience. I wanted to implement a feature that showed the nodes the spaceship backtracks to on the way to the next node. To do this I made each node store the node which the ship came from.
 
-#### Minor improvements to prior stages
 
 <div style="page-break-before: always;"></div>
 
@@ -1562,10 +1552,7 @@ Similar to SpriteKit I used reusable components to save development time and inc
 #### Making it adapt to screen size.
 I found this to be the most challenging part of creating the UI. 
 
-
-#### Minor improvements to prior stages
-
-##### Starry Background
+#### Starry Background
 This is a bonus SpriteKitView I created for decorative reasons. It uses SpriteKit to create a nice starry background for the screens. Its algorithm was random so each starry background is different. The algorithm is very simple as it simply places a random number of stars in random positions in a given range for a set number of iterations. I used some of SpriteKit's effects like glow which gave a glow around the border on the individual stars which were just small dots or circles.
 
 This code generates the stars and puts them under the stars node, which is then added to the SpriteKit game tree.
@@ -1998,7 +1985,7 @@ TODO: For the tree graph there is no weighting and only one path. All of the alg
 
 ##### Weighted Square Test Graph
 
-Remove Bolds
+TODO: Remove Bolds
 
 | Algorithm                | Correct (Y/N) |   Cost | Number of steps | Solved Graph Image                                             |
 | ------------------------ | ------------- | -----: | --------------- | -------------------------------------------------------------- |
@@ -2038,19 +2025,39 @@ For the Generated Graph the heuristic is very good because the path weights and 
 
 ## Testing to Inform Evaluation
 
-| Question | Summary of answers |
-| -------- | ------------------ |
-| What was the most useful part of the app? | |
-| What most needs improving? | |
+To evaluate whether the final program met the success criteria, I planned a short set of stakeholder questions to ask after users had tested the app. This focuses on the main usability, learning, and functionality goals of the program. The table below can be used to record each stakeholder's answer and then summarise the overall pattern at the end.
 
-**TODO:** add brief evidence from post-development user testing here, including who tested it, what level of experience they had, and what I asked them to try.
-* Generate their own graphs and choose their algorithm.
-* Understand how to step through the algorithm.
-* Understand how the visual representation of the progress made sense to them.
-* Understand the final visual representation of the path that was found.
-* Navigate to the about and help screens.
-* Use the help screens if they got stuck.
-* Record whether each task was completed successfully and how much support the user needed.
+### Stakeholder Testing Results
+
+| Question                                                     | Rambo | Rocco | Jim | Jon | Willow | Caspian | Inge | Summary |
+| ------------------------------------------------------------ | ----- | ----- | --- | --- | ------ | ------- | ---- | ------- |
+| Could move between the main screens without help             |       |       |     | Y   |        |         |      |         |
+| Screens were easy to read on their device                    |       |       |     | Y   |        |         |      |         |
+| Space theme was engaging and suitable                        |       |       |     | Y   |        |         |      |         |
+| Step-by-step simulation helped them understand the algorithm |       |       |     | Y   |        |         |      |         |
+| Could explain what the `Frontier` box meant                  |       |       |     | Y   |        |         |      |         |
+| Could explain what the `Explored` box meant                  |       |       |     | Y   |        |         |      |         |
+| Ship movement helped show visit order                        |       |       |     | Y   |        |         |      |         |
+| Text explanations were helpful                               |       |       |     | N   |        |         |      |         |
+| Felt they understood graph algorithms better after use       |       |       |     | Y   |        |         |      |         |
+| Could explain a difference between two algorithms            |       |       |     | Y   |        |         |      |         |
+| Could generate a graph successfully                          |       |       |     | Y   |        |         |      |         |
+| Could step forwards and backwards through the algorithm      |       |       |     | Y   |        |         |      |         |
+| Could use auto-play successfully                             |       |       |     | Y   |        |         |      |         |
+| Unsolvable graphs were clearly shown                         |       |       |     | Y   |        |         |      |         |
+| Graph looked clear and easy to follow                        |       |       |     | Y   |        |         |      |         |
+| Crossing lines made the graph harder to read                 |       |       |     | N   |        |         |      |         |
+| App crashed at any point                                     |       |       |     | N   |        |         |      |         |
+| Noticed bugs or confusing behaviour                          |       |       |     | Y   |        |         |      |         |
+| Overall, the app helped them learn graph algorithms          |       |       |     | Y   |        |         |      |         |
+
+### Open Feedback Summary
+
+| Question                                  | Summary of answers |
+| ----------------------------------------- | ------------------ |
+| What was the most useful part of the app? |                    |
+| What most needs improving?                |                    |
+
 
 **TODO:** add the findings from this testing and explain what I changed because of them.
 * For each finding, state the issue, the evidence, the change made, and whether the issue was fully resolved.
@@ -2074,6 +2081,42 @@ In this section I will go through the different components, show the related suc
 * Make sure every proposed improvement links back to a limitation or partially met criterion.
 
 ### Success Criteria
+
+In the status column I will use the following labels:
+
+| Label | Meaning |
+| ----- | ------- |
+| <span style="color: green;"><strong>Met</strong></span> | The success criterion was achieved fully. |
+| <span style="color: orange;"><strong>Partially Met</strong></span> | The success criterion was achieved to some extent, but there were still weaknesses or limitations. |
+| <span style="color: red;"><strong>Not Met</strong></span> | The success criterion was not achieved. |
+
+These work well because they are simple, clear, and easy to justify with evidence from testing and stakeholder feedback.
+
+| ID              | Description                                                                                                     | Evidence / Summary                                          | Status                                                             |
+| --------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Functional**  |                                                                                                                 |                                                             |                                                                    |
+| FR1             | The user can generate a graph using simple controls.                                                            |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR2             | The app includes a page that explains what graphs and the algorithms are used for.                              |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR3             | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.           |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR4             | The user can step forwards and backwards through the algorithm one step at a time.                              |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR5             | The user can auto-play the whole algorithm from start to finish.                                                |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR6             | The simulation shows the current node, explored nodes, frontier nodes, and final path clearly.                  |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR7             | The simulation gives a text explanation of what is happening at each step.                                      |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| FR8             | The simulation clearly shows when a graph cannot be solved.                                                     |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR9             | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                  |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| FR10            | Graphs should not be rendered with lines crossing each other where possible.                                    |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| **Performance** |                                                                                                                 |                                                             |                                                                    |
+| PR1             | The app does not crash during normal use or robustness testing.                                                 |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| PR2             | The app responds quickly on supported devices when the user changes the graph or uses the algorithm controls.   |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| PR3             | The app checks inputs and prevents invalid graph setups.                                                        |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| PR4             | The algorithms do not give incorrect or misleading results on the fixed test graphs.                            |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| **Usability**   |                                                                                                                 |                                                             |                                                                    |
+| UR1             | The main screens are readable and usable on the tested iPad and Mac screen sizes.                               |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| UR2             | Most stakeholder testers can move between the main screens without help.                                        |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| UR3             | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.   |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| UR4             | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app. |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| UR5             | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                 | A few of the stakeholders had no idea what the frontier was | <span style="color: red;"><strong>Not Met</strong></span>          |
+| UR6             | Most stakeholder testers find the space theme engaging and suitable for the target audience.                    |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
 
 For visualising the difference in the algorithms I definitely achieved the main goal of getting them all running correctly, and visualising the backtracking helps a lot.
 However, the way the random graphs were generated, with weights proportional to the distance to the node, meant that a few algorithms performed quite similarly. What I could have done was add more noise to the weights in generation.
