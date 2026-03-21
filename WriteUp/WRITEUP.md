@@ -366,11 +366,9 @@ flowchart LR
 * **Algorithm Visualisation** : this is add more information to the graph rendering interface to show progress through the algorithm
 * **User Interface** : this is how the user interacts with the app and navigates between the screens
 
-<div style="page-break-before: always;"></div>
-
-### In depth structure of components of Solution
-
 Here is an in depth summary of the inputs, outputs, preconditions with suitable validation and error handling for the main components of my solution. I have also listed which of my success criteria belong in each subcomponent. The only exception is PR1 (No crashes), which affects the whole program rather than one specific subcomponent because any part of the system could cause the app to crash.
+
+<div style="page-break-before: always;"></div>
 
 #### Subcomponent One : Graph generation
 ##### Description
@@ -397,6 +395,8 @@ Before using the inputs I need to check they are reasonable. There must be at le
 | FR10 | Avoid crossing lines        | The generation logic should try to avoid creating graphs with crossing edges. |
 | PR3 | Prevent invalid graph setups | It must validate inputs and avoid invalid graph setups such as impossible start and end choices. |
 
+<div style="page-break-before: always;"></div>
+
 #### Subcomponent Two : Graph Rendering
 ##### Description
 Now that I have a graph which are nodes that store their positions and know their neighbours I need a way to visualise them The first part of this is to add circles to the correct coordinates and lines showing the connections for edges.
@@ -417,6 +417,8 @@ The nodes and edges in the graph are in valid locations and are linked correctly
 | FR10 | Avoid crossing lines     | If crossing lines are left in the graph, the rendered graph becomes harder to understand. |
 | UR1 | Readable on tested devices | The graph display must remain readable on the tested screen sizes. |
 
+<div style="page-break-before: always;"></div>
+
 #### Subcomponent Three : Algorithm Solving
 ##### Description
 I will make a simple graph traversal algorithm such as Breadth First Search and Depth First Search to traverse the graph and find a path from the start to the finish. It will record necessary data such as the queue or stack of nodes to visit next as well as the visited nodes.
@@ -436,6 +438,9 @@ There should be a start and and end node and an algorithm to use needs to be sel
 | FR3 | Simulate the algorithms       | This is where the search algorithms themselves are implemented and solved. |
 | FR8 | Show unsolvable graphs        | It must detect when no valid path exists and report that outcome. |
 | PR4 | No misleading algorithm results | The correctness of the algorithms depends on this subcomponent. |
+<div style="page-break-before: always;"></div>
+
+
 
 #### Subcomponent Four : Algorithm Control
 ##### Description
@@ -455,6 +460,9 @@ Not Undo at the first stage and redo at the last stage.
 | FR4 | Step through the algorithm  | It allows the user to move forwards and backwards through the algorithm one step at a time. |
 | FR5 | Auto-play the full algorithm | It controls the automatic playback of the whole algorithm. |
 | PR2 | Quick response              | The controls need to respond quickly when the user interacts with them. |
+
+<div style="page-break-before: always;"></div>
+
 
 #### Subcomponent Five : Algorithm Visualisation
 ##### Description
@@ -479,6 +487,9 @@ This component will be built on top of the graph which has lots of validataion t
 | FR9 | Show visit order with the ship     | It includes the ship movement that shows visit order and backtracking. |
 | UR3 | Help users understand the algorithm | The step-by-step visualisation should help users understand the algorithm. |
 | UR5 | Explain the Frontier and Explored boxes | It contains the Frontier and Explored boxes that users need to understand. |
+
+<div style="page-break-before: always;"></div>
+
 
 #### Subcomponent Six : User Interface
 ##### Description
@@ -506,6 +517,8 @@ The views should only allow for valid inputs such as selecting objects that exis
 | UR6 | Use an engaging space theme           | The overall look and feel of the app, including the space theme, is presented through the interface. |
 
 <div style="page-break-before: always;"></div>
+<div style="page-break-before: always;"></div>
+
 ### System Overview / Architecture
 
 #### Model View Controller
@@ -641,11 +654,11 @@ When researching the algorithms I found there was one more algorithm that would 
 ##### Solving Step By Step
 When writing these algorithms normally, as described previously in algorithm solving, they use iteration or recursion. This means that local variables are created in loops or functions and are overridden on each iteration, so they do not persist in memory. If I want to run the algorithm step by step so the user can view it, the options are:
 
-| **Method**                                                                                                                                               | **Benefit**                                                                                                                                                                      | **Drawback**                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Pausing the execution in the loop waiting for user input before continuing                                                                               | Relatively easy to implement                                                                                                                                                     | The algorithm code would need to be run in a separate thread so it does not pause execution of the main program. |
+| **Method**                                                                                                                                               | **Benefit**                                                                                                                                                                        | **Drawback**                                                                                                     |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Pausing the execution in the loop waiting for user input before continuing                                                                               | Relatively easy to implement                                                                                                                                                       | The algorithm code would need to be run in a separate thread so it does not pause execution of the main program. |
 | Storing state of the variables externally so they persist in memory so I can jump to certain steps without having to rerun the algorithm from the start. | I need to make a data structure to store the state of the algorithm and write other functionality to use this data structure to step forward and back or to steps in the algorithm | I am storing additional data for every step in the algorithm.                                                    |
-|                                                                                                                                                          |                                                                                                                                                                                  |                                                                                                                 |
+|                                                                                                                                                          |                                                                                                                                                                                    |                                                                                                                  |
 
 I am going to go with the 2nd choice as I believe the ability to undo, redo, and move to certain steps is important.
 
@@ -2024,6 +2037,11 @@ For the Generated Graph the heuristic is very good because the path weights and 
 <div style="page-break-before: always;"></div>
 
 ## Testing to Inform Evaluation
+
+| Question | Summary of answers |
+| -------- | ------------------ |
+| What was the most useful part of the app? | |
+| What most needs improving? | |
 
 **TODO:** add brief evidence from post-development user testing here, including who tested it, what level of experience they had, and what I asked them to try.
 * Generate their own graphs and choose their algorithm.
