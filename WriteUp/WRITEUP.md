@@ -862,10 +862,27 @@ func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
 #### Intersection Algorithm using Orientation
 To check if two lines intersect I did some research online and found an algorithm that uses orientation to check if two lines intersect. I used an article from GeeksforGeeks to help understand the concepts before implementing it.
 
-To determine the orientation of a line I used the sign of the cross product.
-Here is the code I used to check two lines intersect
+To determine the orientation of a line I used the sign of the cross product. Here is the code I used to check two lines intersect:
+```swift
+func checkIntersections(p1: CGPoint, q1: CGPoint, p2: CGPoint, q2: CGPoint) -> Bool {
+    func orientation(_ a: CGPoint, _ b: CGPoint, _ c: CGPoint) -> Int {
+        let val = (b.y - a.y) * (c.x - b.x) - (b.x - a.x) * (c.y - b.y)
+        return (val > 0) ? 1 : -1
+    }
+    // We don't want lines that touch to count or the planet checklines always make collisions
+    if p1 == q1 || p1 == q2 || p2 == q1 || p2 == q2{
+        return false
+    }
+    let o1 = orientation(p1, q1, p2)
+    let o2 = orientation(p1, q1, q2)
+    let o3 = orientation(p2, q2, p1)
+    let o4 = orientation(p2, q2, q1)
+    
+    return (o1 != o2) && (o3 != o4)
+}
+```
 
-**TODO:** add the line intersection code and explain why this method works.
+This works because the orientation (which is the direction we travel to visit the three points) tells me which side of a line another point is on. If the two points from one line are on different sides of the other line, and the same is also true the other way round, then the two lines must cross. I also added a small check to ignore lines that share an endpoint, because graph edges meeting at a node should not count as an intersection.
 
 #### Procedural Planet appearance
 
@@ -1217,13 +1234,46 @@ The Ship turned out to be more of a UI element than an actual object that I expe
 To create animations in the program I used SKActions.
 SKActions are a class that allows me to transition properties and run actions one after each other.
 This is how I added all the animations and moving elements in my game, it is not only for animations but is also used for moving nodes and can even run code. I used this for these purposes.
+For example, I used SKActions to create a repeating pulse animation:
 
-**TODO**: Add example code for SKActions
+```swift
+func createPulsingAction(scaleAmount: CGFloat, duration: TimeInterval) -> SKAction {
+    let scaleUp = SKAction.scale(to: scaleAmount, duration: duration)
+    let scaleDown = SKAction.scale(to: 1.0, duration: duration)
+    let sequence = SKAction.sequence([scaleUp, scaleDown])
+    return SKAction.repeatForever(sequence)
+}
+```
+
+This shows how actions can be sequenced and repeated. First the node grows, then it shrinks back to its normal size, and the whole sequence loops forever.
 
 ##### ShipRingPulse
 I added a pulse for when the ship explores a planet. The radius is dependent on the ship's shortest distance so the ship it can travel to. Hopefully this makes it more obvious which planets are added to the frontier.
+The pulse itself was implemented as a grouped animation so the ring grows and fades at the same time:
 
-**TODO**: Add example code for this animation
+```swift
+func ringPulseAction(scaleBy : CGFloat) -> SKAction{
+    let grow = SKAction.scale(by: scaleBy, duration: 1)
+    let fade = SKAction.fadeOut(withDuration: 1.5)
+    let groupAction = SKAction.group([grow, fade])
+    return groupAction
+}
+```
+
+I then called this from the `Planet` object when I wanted to highlight a node:
+
+```swift
+func pulseRing(outerDistance : CGFloat){
+    let ring = SKShapeNode(circleOfRadius: self.planetRadius)
+    ring.strokeColor = UIColor.cyan
+    ring.lineWidth = 2
+    ring.fillColor = .clear
+    self.shape.addChild(ring)
+    ring.run(ringPulseAction(scaleBy: outerDistance/self.planetRadius))
+}
+```
+
+This was useful because it made the current search radius visible without permanently changing the planet itself.
 ##### NodeTeleport
 ##### MoveShipNode
 
