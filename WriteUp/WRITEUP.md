@@ -1387,15 +1387,19 @@ This testing was also useful for the user experience, not just correctness. Duri
 For the tree graph
 
 ##### Weighted Square Test Graph
+Remove Bolds
 
-| Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image |
-| ------------------------ | ------------- | --------------: | --------------- | ------------------ |
-| BFS                      | **Y**         |           **3** |                 |                    |
-| DFS                      | **Y**         |           **3** |                 |                    |
-| Greedy Best First Search | **Y**         |        **TODO** |                 |                    |
-| Dijkstra                 | **Y**         |           **3** |                 |                    |
-| A*                       | **Y**         |        **TODO** |                 |                    |
+| Algorithm                | Correct (Y/N) |    Cost | Number of steps | Solved Graph Image                |
+| ------------------------ | ------------- | ------: | --------------- | --------------------------------- |
+| BFS                      | **Y**         |     N/A | 11              | ![[BreadthFirstSquareSolved.png]] |
+| DFS                      | **Y**         | **N/A** | 5               | ![[DepthFirstSquareSolved.png]]   |
+| Greedy Best First Search | **Y**         |  **11** | 5               | ![[GreedySquareSolved.png]]       |
+| Dijkstra                 | **Y**         |   **8** | 7               | ![[DijkstraSquareSolved.png]]     |
+| A*                       | **Y**         |  **11** | 5               | ![[AStarSquareSolved.png]]        |
 For the square the 
+The only graph that found the shortest path was dijkstra.
+Even though A* is also designed to find the shortest path and in most cases it does but the awkward route that dijkstra had to take mean that 
+however it was also took the sencond longest to solve aftyer Breadth First
 
 
 ##### Generated Graph
