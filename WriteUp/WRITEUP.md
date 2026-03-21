@@ -1700,15 +1700,13 @@ I also thought the text and UI components did not optimise space particularly we
 
 ## Conclusion
 
-**TODO:** add a short summary of what was created and whether the project achieved its overall aim.
-* Mention the final app and the main features it includes.
-* State clearly whether it succeeded in making graph algorithms easier to learn.
+In conclusion, I think I achieved the main goal of this project. I created a final app that can generate graphs, solve them using multiple algorithms, and show the solution step by step in a way that is easier to follow. The main functional requirements were met, and I think the program succeeded in making graph algorithms more accessible and easier to learn.
 
-**TODO:** summarise the main strengths of the project.
-* Refer briefly to the algorithm simulation, the step-by-step system, and the visual presentation.
+One of the main strengths of the project is that it is interactive. The user can generate different graphs, choose different algorithms, and watch the process happen visually instead of only reading about it. I think the step-by-step system, the colour coding, and the movement of the ship all helped make the algorithms clearer. The feedback from stakeholders was also positive, and they said that they enjoyed using it.
 
-**TODO:** summarise the main limitations and the most important future improvements.
-* Keep this short and link it back to the evaluation section.
+Another important outcome of the project was what I learned while making it. I developed the app in Swift, which was a new language for me, so this project helped me learn a new programming language as well as new frameworks like SwiftUI and SpriteKit. This made the project more difficult, but it also made it more fun.
+
+There are still some improvements that could be made in future, such as refining parts of the interface further, improving some of the timings and animations, and extending the app with more features. However, overall I think the project was successful and produced a useful educational tool.
 
 <p align="center"><img src="./screenshots/ConclusionScreen.png" alt="Conclusion Screen" width="75%"></p>
 
