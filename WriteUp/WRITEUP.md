@@ -4,7 +4,7 @@
 | ------------------------------------------- | --------------------------- |
 | **Project: Engaging Graphing Simulator ** | **Centre Number: 10132**   |
 
-![[IntroScreen.png]]
+<p align="center"><img src="./screenshots/IntroScreen.png" alt="Intro Screen" width="75%"></p>
 
 <div style="page-break-before: always;"></div>
 
@@ -40,16 +40,17 @@ I have selected a few educational tools that aimed to create an interactive way 
 
 #### Solution 1: Graph Online [[https://graphonline.top/]]
 
-<img width="80%"  alt="Graph Online" src="https://github.com/user-attachments/assets/e6c11fa0-cad3-4ecf-a0de-d02985504591" />
+<p align="center"><img src="./exampletools/graphonline.png" alt="Graph Online" width="80%"></p>
 
 This is a basic graphing simulator I found online.  It lets you create a graph manually, to do this there were a few tools: panning, dragging, adding nodes, adding edges and more. The UI was quite tedious, especially when moving nodes and edges or creating a connection between two nodes, where there is a menu for selecting weights and direction and text which seemed unnecessary and time consuming.
-<img width="40%" alt="image" src="https://github.com/user-attachments/assets/3ee0ca7a-41fe-48b0-8e66-f04a5cb3dc73" />
+
+<p align="center"><img src="./exampletools/noweight.png" alt="Graph Online No Weights" width="40%"></p>
 
 I thought it was frustrating to make a graph manually and that it would be unhelpful if this was your first time encountering a graph, because you may not know what graph to make.  I found the options overwhelming and not focused on anything specific. I thought it was more suitable for people who were already familiar with the basics. I want my project to be accessible to people who do not even know what a graph is. It did not show you the steps of the algorithm and just solved it, which I believe is important for understanding the algorithm.
 
 #### Solution 2: TUM Shortest Path [[https://algorithms.discrete.ma.tum.de/spp/]]
 
-<img width="80%" alt="TUM Shortest Path Algorithm" src="https://github.com/user-attachments/assets/b8c4fa64-73b3-4a83-9e5d-fe228275d1a5" />
+<p align="center"><img src="./exampletools/munich.png" alt="TUM Shortest Path Algorithm" width="80%"></p>
 
 The University of Munich made a graph algorithm visualisation and learning tool that I enjoyed.
 
@@ -64,18 +65,18 @@ It also did not have many of the simpler graph traversal algorithms (like BFS an
 This is not a graphing simulator but it is an educational tool making learning interesting. There are lots of different high quality simulations on this platform.  PhET is a non-profit organisation founded by Carl Wieman. They have made their own framework for making simulations.
 
 This is a math simulation that shows you the derivative of a function. I thought it was useful visualisation and the controls were minimal and necessary. 
-<img width="919" height="509" alt="image" src="https://github.com/user-attachments/assets/b8d34bd6-4bcc-41c7-abbc-4c6d7ed96b32" />
+
+<p align="center"><img src="./exampletools/phet.png" alt="PhET Graph Example" width="80%"></p>
 
 The following simulation is about keplers laws, you can choose between the three (this screenshot is specifically for keplers 3rd law). This is a theme across most simulations but you can turn of relevant information. Lots of the tools to help learn were consistant across the simulations. This would mean that the user is familiar of how to use these tools before even starting the simulation.
-<img alt="image" src="https://github.com/user-attachments/assets/cf1432e1-f6b3-4230-beee-052b980449d5" />
+
+<p align="center"><img src="./exampletools/targetorbit.png" alt="PhET Orbit Example" width="80%"></p>
 
 I loved using all the simulations and found them very useful however one thing I would have liked is if it added a creative twist to keep the user engaged. As this is a large platform with lots of similar simulations I understand that it is good to keep consistancy between them so I understand why they in some cases can look a bit boring. Since my program is only for one tool I can take advantage to this to make my project more unique to make the program more relatable to use.
-
 #### Research Takeaways
 The main things I took away is that I wanted to make the program approachable and relatable to the user, intuitive to use and not rely on any knowledge from the user, this would make it accessible to my whole audience which is anyone seeking to learn about graphing algorithms. 
 
 <div style="page-break-before: always;"></div>
-
 ### Stakeholders and Audience
 My audience is anyone who is interested in learning about CS. This could be anyone from the age of 8 to 80 who is interested. This may seem like quite a broad audience due to the wide age range, but I can narrow it slightly to those who are more STEM focused.
 
@@ -92,7 +93,7 @@ I am going to refer back to these stakeholders once I have developed the app and
 | **Are you studying computer science, if so what course: ** | A level, GCSE, University, None or Other                                                             |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Stakeholder 1: Rambo                                       | GCSE OCR computer Science                                                                            |
-| Stakeholder 2: Rocco                                       | OCR comp-sci A-Le                                                                                    |
+| Stakeholder 2: Rocco                                       | OCR comp-sci A-Level                                                                                 |
 | Stakeholder 3 : Jim                                        | A Level Computer Sci                                                                                 |
 | Stakeholder 4 : Jon                                        | I am not currently studying computer science but finished a degree in comp-sci and maths a while ago |
 
@@ -156,7 +157,7 @@ I beleve an app is the most accessible form for this audience, especially as the
 I am going to be using iteration throught the solution especcially when I need to repeat code on multiple intances like nodes and edges. Iteration is also used while running the graphing algorithms as a process is repeated until the graph is solved.
 
 #### Recursion
-Some algorithms such as depth first search can use recursion instead of iteration. I will decide on the implementation later but I wouldnt be suprised if I use recursion at some point in the solution.
+Some algorithms such as depth first search can use recursion instead of iteration. I will decide on the implementation later but I wouldn't be surprised if I use recursion at some point in the solution.
 
 #### Computational Methods
 
@@ -175,8 +176,11 @@ I can look at the time complexities of the components of the solution to see if 
 
 #### Abstraction
 As My graphing simulator is set in space, I need to consider which features to keep to make the simulation at least somewhat accurate. This is a graphing simulator not an ultra-realistic space simulation so I am able to remove things without making the program useless to the user.
+
 I will abstract lots of details of space and simplify it to just a graph with a few aesthetic objects in the background for visual appeal.
+
 I have looked at many aspects of space and noticed that there are many extra ideas that seem unnecessary and will overcomplicate the program. For example, adding planet Orbits would mean the nodes on the graph would have to move around. This not only complicates the development of the game but also adds extra complexities the user has to manage which would be frustrating, for example orbits would mean that the shortest path would be constantly changing. This would confuse the user which is a problem for an introduction to the subject.
+
 Even though this may be unrealistic, my planets are just going to be floating in space scattered randomly on a 2D plane.
 
 In terms of the graph simulation there is more abstraction going on. There are lots of aditional features such as extra algorithms I could add, other variables I can show and other UI elements.
@@ -198,7 +202,6 @@ I have to write lots of algorithms of varying complexity.
 Lots of parts of my program will hapen at the same time. The ship will need to move, the galaxy will need to be generated, the paths will need to be found. This will mean that I need to do things asynchronously. There will be lots of objects in the game running functions continuously. This means that there will be multiple threads running at once which should be handled by the engine I use.
 
 <div style="page-break-before: always;"></div>
-
 ### Choosing a Framework
 #### Framework Options
 
@@ -1570,11 +1573,11 @@ TODO: For the tree graph - no weighting and only one path. all find the path but
 
 | Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image                                         |
 | ------------------------ | ------------- | --------------: | --------------- | ---------------------------------------------------------- |
-| BFS                      | **Y**         |           **3** | **13**          | <img src="./BreadthFirstTreeSolved.png" alt="Breadth First Tree Solved" style="width:70%; height:auto;"> |
-| DFS                      | **Y**         |           **3** | **7**           | <img src="./DepthFirstTreeSolved.png" alt="Depth First Tree Solved" style="width:70%; height:auto;">     |
-| Greedy Best First Search | **Y**         |           **3** | **4**           | <img src="./GreedyTreeSolved.png" alt="Greedy Tree Solved" style="width:70%; height:auto;">              |
-| Dijkstra                 | **Y**         |           **3** | **13**          | <img src="./DijkstraTreeSolved.png" alt="Dijkstra Tree Solved" style="width:70%; height:auto;">          |
-| A*                       | **Y**         |           **3** | **4**           | <img src="./AStarTreeSolved.png" alt="A Star Tree Solved" style="width:70%; height:auto;">               |
+| BFS                      | **Y**         |           **3** | **13**          | <img src="./solvedgraphs/BreadthFirstTreeSolved.png" alt="Breadth First Tree Solved" style="width:70%; height:auto;"> |
+| DFS                      | **Y**         |           **3** | **7**           | <img src="./solvedgraphs/DepthFirstTreeSolved.png" alt="Depth First Tree Solved" style="width:70%; height:auto;">     |
+| Greedy Best First Search | **Y**         |           **3** | **4**           | <img src="./solvedgraphs/GreedyTreeSolved.png" alt="Greedy Tree Solved" style="width:70%; height:auto;">              |
+| Dijkstra                 | **Y**         |           **3** | **13**          | <img src="./solvedgraphs/DijkstraTreeSolved.png" alt="Dijkstra Tree Solved" style="width:70%; height:auto;">          |
+| A*                       | **Y**         |           **3** | **4**           | <img src="./solvedgraphs/AStarTreeSolved.png" alt="A Star Tree Solved" style="width:70%; height:auto;">               |
 
 <div style="page-break-before: always;"></div>
 
@@ -1584,11 +1587,11 @@ Remove Bolds
 
 | Algorithm                | Correct (Y/N) |   Cost | Number of steps | Solved Graph Image                                             |
 | ------------------------ | ------------- | -----: | --------------- | -------------------------------------------------------------- |
-| BFS                      | Y             |    N/A | 11              | <img src="./BreadthFirstSquareSolved.png" alt="Breadth First Square Solved" style="width:56%; height:auto;"> |
-| DFS                      | Y             |    N/A | 5               | <img src="./DepthFirstSquareSolved.png" alt="Depth First Square Solved" style="width:56%; height:auto;">     |
-| Greedy Best First Search | Y             |     11 | 5               | <img src="./GreedySquareSolved.png" alt="Greedy Square Solved" style="width:56%; height:auto;">              |
-| Dijkstra                 | **Y**         |  **8** | 7               | <img src="./DijkstraSquareSolved.png" alt="Dijkstra Square Solved" style="width:56%; height:auto;">          |
-| A*                       | **Y**         | **11** | 5               | <img src="./AStarSquareSolved.png" alt="A Star Square Solved" style="width:56%; height:auto;">               |
+| BFS                      | Y             |    N/A | 11              | <img src="./solvedgraphs/BreadthFirstSquareSolved.png" alt="Breadth First Square Solved" style="width:56%; height:auto;"> |
+| DFS                      | Y             |    N/A | 5               | <img src="./solvedgraphs/DepthFirstSquareSolved.png" alt="Depth First Square Solved" style="width:56%; height:auto;">     |
+| Greedy Best First Search | Y             |     11 | 5               | <img src="./solvedgraphs/GreedySquareSolved.png" alt="Greedy Square Solved" style="width:56%; height:auto;">              |
+| Dijkstra                 | **Y**         |  **8** | 7               | <img src="./solvedgraphs/DijkstraSquareSolved.png" alt="Dijkstra Square Solved" style="width:56%; height:auto;">          |
+| A*                       | **Y**         | **11** | 5               | <img src="./solvedgraphs/AStarSquareSolved.png" alt="A Star Square Solved" style="width:56%; height:auto;">               |
 
 For the square the 
 The only graph that found the shortest path was dijkstra.
@@ -1713,7 +1716,7 @@ I also thought the text and UI components did not optimise space particularly we
 **TODO:** summarise the main limitations and the most important future improvements.
 * Keep this short and link it back to the evaluation section.
 
-![[ConclusionScreen.png]]
+<p align="center"><img src="./screenshots/ConclusionScreen.png" alt="Conclusion Screen" width="75%"></p>
 
 <div style="page-break-before: always;"></div>
 
