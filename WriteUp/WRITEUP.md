@@ -1003,6 +1003,23 @@ Here is the table of the different search algorithms and how they differ, which 
 | Use Heuristic           | ---           | ---            | Y              | ---            | Y                  |
 | Priority Function       | ---           | ---            | Heuristic      | Weight         | Heuristic + Weight |
 
+I also had one shared function in `BaseSearch` that made the frontier work like a priority queue for the algorithms that needed one:
+
+```swift
+func prioritizeAndDedupeFrontier() {
+    currentState.frontier.sort { $0.weight < $1.weight }
+    
+    // keep only the first version of each node
+    var seen: Set<UUID> = []
+    currentState.frontier = currentState.frontier.filter { entry in
+        let id = entry.neighbour.id
+        return seen.insert(id).inserted
+    }
+}
+```
+
+This first sorts the frontier by priority, then removes duplicate nodes so the same node does not appear multiple times in the queue.
+
 #### Breadth First Search
 Breadth First Search uses a queue to decide which is the next node to visit. 
 This provides a broad search around the start node in general visiting closer nodes before further nodes
@@ -1218,6 +1235,29 @@ for n in currentState.current.getNeighbours(){
 	}
 ```
 
+One more important part of the step system was working out how the ship should move from one explored node to the next. If I only moved it directly, the ship would sometimes jump across the graph in a way that looked confusing. To solve this I calculated the path from the previous node back to a common ancestor and then forwards again to the next node:
+
+```swift
+func calculatePathFromPreviousToCurrent(previousNode: any Traversable){
+    self.currentState.backtrackPathFromPrevious = []
+    // path from the old node back to the start
+    let backtrackPrevious = getPathToStart(end: previousNode)
+    // path from the new current node back to the start
+    let backtrackNext = Array(getPathToStart(end: currentState.current).reversed())
+    if let firstPreviousIndex = backtrackPrevious.firstIndex(where: { obj in backtrackNext.contains { $0.isEqual(to: obj) } }) {
+        let commonNode = backtrackPrevious[firstPreviousIndex]
+        if let firstNextIndex = backtrackNext.firstIndex(where:  { $0.isEqual(to: commonNode) }) {
+            let previous = backtrackPrevious[...firstPreviousIndex]
+            let next = backtrackNext[firstNextIndex...].dropFirst()
+            // go back to the shared node, then go forwards again
+            self.currentState.backtrackPathFromPrevious = Array(previous+next)
+        }
+    }
+}
+```
+
+This works by finding the point where the two routes share a common node. The ship can then move back to that shared point and then out to the next node, which makes the movement look much more natural.
+
 ### Stage Five : Algorithm Visualisation
 This stage was taking longer than expected and I found a few improvements I found necessary as well as using a new part of SpriteKit SKActions which allowed me to animate things
 
@@ -1231,9 +1271,9 @@ The size of the border is not passed in but is calculated to fit the passed text
 The Ship turned out to be more of a UI element than an actual object that I expected. I used a SKspriteNode for this, these are nodes that take in an image which should be in the projects filesystem
 
 #### SKActions
-To create animations in the program I used SKActions.
-SKActions are a class that allows me to transition properties and run actions one after each other.
-This is how I added all the animations and moving elements in my game, it is not only for animations but is also used for moving nodes and can even run code. I used this for these purposes.
+To create animations in the program I used SKActions. SKActions are a class that allows me to transition properties and run actions one after each other. This is how I added all the animations and moving elements in my game, it is not only for animations but is also used for moving nodes and can even run code. I used this for these purposes.
+
+##### Pulsing action
 For example, I used SKActions to create a repeating pulse animation:
 
 ```swift
@@ -1245,7 +1285,7 @@ func createPulsingAction(scaleAmount: CGFloat, duration: TimeInterval) -> SKActi
 }
 ```
 
-This shows how actions can be sequenced and repeated. First the node grows, then it shrinks back to its normal size, and the whole sequence loops forever.
+This shows how actions can be ordered and repeated. First the node grows, then it shrinks back to its normal size, and the whole sequence loops forever.
 
 ##### ShipRingPulse
 I added a pulse for when the ship explores a planet. The radius is dependent on the ship's shortest distance so the ship it can travel to. Hopefully this makes it more obvious which planets are added to the frontier.
@@ -1274,12 +1314,34 @@ func pulseRing(outerDistance : CGFloat){
 ```
 
 This was useful because it made the current search radius visible without permanently changing the planet itself.
-##### NodeTeleport
 ##### MoveShipNode
 
+For the main ship movement I used another SKAction that rotates the ship to face the direction of travel and then moves it smoothly:
+
+```swift
+func moveShipNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction {
+    let dy = to.y-from.y
+    let dx = to.x-from.x
+    let direction = -atan2(dx, dy)
+    let rotatePlanet = SKAction.rotate(toAngle: direction, duration: duration, shortestUnitArc: true)
+    
+    let moveAction = SKAction.move(to: to, duration: duration)
+    moveAction.timingMode = .easeInEaseOut
+
+    let shrink = SKAction.scale(to: 0.8, duration: duration)
+    let grow = SKAction.scale(to: 1, duration: duration)
+    let shrinkGrow = SKAction.sequence([shrink, grow])
+    // first turn, then move and scale at the same time
+    let groupAction = SKAction.sequence([rotatePlanet, SKAction.group([moveAction, shrinkGrow])])
+    
+    return groupAction
+}
+```
+
+The ship turns to face the next planet which uses the tan function to get the direction, then moves there. While moving it slightly shrinks and grows to make it feel like it is taking off and landing.
+
 #### Algorithm Backtracking
-After implementing the search algorithms I realised algorithms that used backtracking would do large jumps across the graph. I thought this was unclear and may be confusing for my target audience. I wanted to implement a feature that showed the nodes the spaceship backtracks to on the way to the next node.
-To do this I made each node store the node which the ship came from.
+After implementing the search algorithms I realised algorithms that used backtracking would do large jumps across the graph. I thought this was unclear and may be confusing for my target audience. I wanted to implement a feature that showed the nodes the spaceship backtracks to on the way to the next node. To do this I made each node store the node which the ship came from.
 
 #### Minor improvements to prior stages
 
@@ -1290,6 +1352,18 @@ Overall I found this to be harder than expected.
 
 The Screens that I included were the Menu Screen, Graph screen, How to use screen and a Algorithms Descriptions screen.
 I did not include a settings page as I did not find there were many controls in the program so I didn't think it was necessary.
+
+In the controller I used `@Published` properties so that changing a setting in SwiftUI would automatically update the app state:
+
+```swift
+@Published var selectedUILabel : String = "Cost" { didSet {updateUI(hasAnimation: false)}}
+@Published var selectedAlgorithm : String = "Breadth First Search" { didSet{resetAlgorithm()}}
+@Published var selectedBuilder : String = "Random" { didSet{resetPlanets()}}
+@Published var planetCount : Int { didSet {resetPlanets()}}
+@Published var maxDistance : Double { didSet {recalculatePaths()}}
+```
+
+This meant I did not have to manually refresh the user interface every time the user changed a control. When one of these values changes, SwiftUI notices and the program updates the graph or algorithm automatically.
 
 #### SwiftUI Reusable Components
 ##### Space Text
@@ -1354,8 +1428,7 @@ Here is the code in the algorithm descriptions page that loops through all the a
 
 ```swift
 ForEach(GameController.searchAlgorithms, id: \.self) { algorithm in
-	if let algorithmType = GameController.algorithmTypes[algorithm] {
-		//Image(systemName: algorithmType.getIcon()) 
+	if let algorithmType = GameController.algorithmTypes[algorithm] { 
 		Text(algorithm).modifier(SpaceSubheading())
 			.padding()
 		Text(algorithmType.getDescription())
