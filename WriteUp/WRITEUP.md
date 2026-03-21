@@ -738,20 +738,30 @@ The SwiftUI controls will be mostly output based:
 ## Development
 
 ### Source Control, Project Tracking and Tools
+#### Source Control
 
 Throughout development I used source control with Git and GitHub. This was useful because it allowed me to save versions of the project over time, experiment with changes more safely, and go back to an earlier version if I introduced a bug. It also helped me keep a clearer record of how the project developed, which is useful when reviewing progress across multiple stages. I made over 300 commits to this project, although about half of these were to this file, the WRITEUP.md file.
 
 <img  alt="image" src="https://github.com/user-attachments/assets/d22bb71f-91e8-48b0-942a-282ccc3b1125" />
 
 Git was especially useful for a project like this because I was changing several parts of the program at once, such as the graph generation, algorithm logic, and user interface. Source control reduced the risk of losing work and made it easier to compare new code with older versions when I was debugging.
+#### Issue Tracking
 
 I also tried to use GitHub Issues to track tasks and bugs during development. This was helpful when I remembered to use it, because it gave me a simple way to record problems and planned improvements in one place. However, I was not very consistent in using it, so it was only a partial record of the work rather than a complete project log. The issues page is here: [GitHub Issues](https://github.com/NoahMSchool/SwiftPlanets/issues).
 
 <img  alt="image" src="https://github.com/user-attachments/assets/29c8c4d2-4f8e-40d2-b66e-061032ac5594" />
 
+#### Development Environment
+The IDE that I used was Swift Playgrounds, which is slightly easier to use than XCode for iOS Projects. I referred heavily to the Swift Documentation. Links to all of these tools can be found at the end of this document.
+
 I used GitHub desktop on my Mac as the source control client. I used Obsidian as a markdown editor for the writeup. I used Mermaid.js for the charts in this write up as you can describe different kinds of diagrams using Markdown. Markdown was a good choice because I think the diagrams are clear and they work on the GitHub markdown pages.
 
-The IDE that I used was Swift Playgrounds, which is slightly easier to use than XCode for iOS Projects. I referred heavily to the Swift Documentation. Links to all of these tools can be found at the end of this document.
+#### Use of AI
+
+| Type                                                                                                                                                                                                                      | Example               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| Assets: The only AI generated item in my project was the Spaceship sprite which I made with ChatGPT.                                                                                                                      | ![[./Ship8.png\|192]] |
+| Code: None of the code was AI Generated although I did ask ChatGPT for help when I had problems and error messages that I did not understand. It also told me about the orientation algorithm for line intersections.<br> |                       |
 
 ### Stage One/Two : Random Galaxy Generation/Rendering
 I developed the galaxy generation and rendering in parallel because it meant I could immediately visualise what was being done, which was important for checking whether I was doing it correctly.
@@ -1369,13 +1379,11 @@ I used the weighted square graph and the tree graph repeatedly while implementin
 
 This testing was also useful for the user experience, not just correctness. During stakeholder play testing, one piece of feedback was that random graphs could look impressive but it was hard to tell whether the answer was actually right. That feedback was one of the reasons I added the fixed test graphs and changed the galaxy generator into subclasses so I could deliberately choose between a random graph and a known test case.
 
-**TODO:** insert labelled screenshots of the weighted square graph and the tree graph before solving.
-
-**TODO:** insert screenshots of both test graphs fully solved with BFS, DFS, Dijkstra, Greedy Best First Search, and A* so the reader can compare the outputs visually.
-
 #### Test Results Summary
 
 ##### Unweighted Tree Test Graph
+
+TODO: For the tree graph - no weighting and only one path. all find the path but very different number of steps.
 
 | Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image                                         |
 | ------------------------ | ------------- | --------------: | --------------- | ---------------------------------------------------------- |
@@ -1384,25 +1392,23 @@ This testing was also useful for the user experience, not just correctness. Duri
 | Greedy Best First Search | **Y**         |           **3** | **4**           | ![Greedy Tree Solved](./GreedyTreeSolved.png)              |
 | Dijkstra                 | **Y**         |           **3** | **13**          | ![Dijkstra Tree Solved](./DijkstraTreeSolved.png)          |
 | A*                       | **Y**         |           **3** | **4**           | ![A Star Tree Solved](./AStarTreeSolved.png)               |
-For the tree graph
 
 ##### Weighted Square Test Graph
 Remove Bolds
 
-| Algorithm                | Correct (Y/N) |    Cost | Number of steps | Solved Graph Image                |
-| ------------------------ | ------------- | ------: | --------------- | --------------------------------- |
-| BFS                      | **Y**         |     N/A | 11              | ![Breadth First Square Solved](./BreadthFirstSquareSolved.png) |
-| DFS                      | **Y**         | **N/A** | 5               | ![Depth First Square Solved](./DepthFirstSquareSolved.png)   |
-| Greedy Best First Search | **Y**         |  **11** | 5               | ![Greedy Square Solved](./GreedySquareSolved.png)       |
-| Dijkstra                 | **Y**         |   **8** | 7               | ![Dijkstra Square Solved](./DijkstraSquareSolved.png)     |
-| A*                       | **Y**         |  **11** | 5               | ![A Star Square Solved](./AStarSquareSolved.png)        |
+| Algorithm                | Correct (Y/N) |   Cost | Number of steps | Solved Graph Image                                             |
+| ------------------------ | ------------- | -----: | --------------- | -------------------------------------------------------------- |
+| BFS                      | Y             |    N/A | 11              | ![Breadth First Square Solved](./BreadthFirstSquareSolved.png) |
+| DFS                      | Y             |    N/A | 5               | ![Depth First Square Solved](./DepthFirstSquareSolved.png)     |
+| Greedy Best First Search | Y             |     11 | 5               | ![Greedy Square Solved](./GreedySquareSolved.png)              |
+| Dijkstra                 | **Y**         |  **8** | 7               | ![Dijkstra Square Solved](./DijkstraSquareSolved.png)          |
+| A*                       | **Y**         | **11** | 5               | ![A Star Square Solved](./AStarSquareSolved.png)               |
 For the square the 
 The only graph that found the shortest path was dijkstra.
 Even though A* is also designed to find the shortest path and in most cases it does but the awkward route that dijkstra had to take mean that 
 however it was also took the sencond longest to solve aftyer Breadth First
 
-
-##### Generated Graph
+##### Generated Graph Test Example
 
 | Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image |
 | ------------------------ | ------------- | --------------: | --------------- | ------------------ |
@@ -1411,8 +1417,7 @@ however it was also took the sencond longest to solve aftyer Breadth First
 | Greedy Best First Search | **Y**         |        **TODO** | **4**           |                    |
 | Dijkstra                 | **Y**         |           **3** | **13**          |                    |
 | A*                       | **Y**         |        **TODO** | **4**           |                    |
-For the Generated Graph the 
-
+For the Generated Graph the heuristic is very good because the path weights and heuristic both rely on the distance between two nodes.
 
 
 **TODO:** fill this table with the actual measured results from the fixed test graphs and refer back to it in the algorithm-solving and evaluation sections.
