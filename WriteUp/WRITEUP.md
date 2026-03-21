@@ -1,8 +1,22 @@
-# A Level Comp-Sci Write-Up
+# A Level Computer Science - Engaging Space Graphing Simulator
 
-| **Name :**Noah Marks                        | **Candidate Number : 1146** |
+| **Name: Noah Marks  **                       | **Candidate Number: 1146** |
 | ------------------------------------------- | --------------------------- |
-| **Agenda :**<br>Engaging Graphing Simulator | **Centre Number : 10132**   |
+| **Project: Engaging Graphing Simulator ** | **Centre Number: 10132**   |
+
+![[IntroScreen.png]]
+
+<div style="page-break-before: always;"></div>
+
+## Introduction
+
+This project was to create an educational graph algorithm simulator with a space theme. The main aim was to make graph algorithms more engaging and easier to understand by allowing the user to interact with them in an app, rather than only reading about them or solving them from boring diagrams. The finished program allows the user to generate or choose a graph, select an algorithm, and then step through the solution while seeing what is happening visually on the graph.
+
+This document is organised into the main stages of the project. It begins with analysis of the problem, the audience, and existing solutions, and then moves into the design of the system. In the design section I use tables, hand-drawn sketches, and diagrams such as hierarchy diagrams, navigation diagrams, and class diagrams to show how the solution was planned. The development section then explains how the main parts of the program were implemented, using screenshots, code samples, and further diagrams where they help explain the structure. After this there are sections on testing during development, testing after development, evaluation of the finished project, and finally an appendix containing the sources used.
+
+I have divided the project into six main components and each section tries to cover them separately.
+
+I hope you enjoy reading it as much as I enjoyed writing it!
 
 <div style="page-break-before: always;"></div>
 
@@ -10,13 +24,15 @@
 
 ### Problem Recognition
 
-The problem I am solving is the lack of fun ways to learn about certain Computer Science (CS) concepts, more specifically graph algorithms.
-Interactive simulations are useful tools for learning as they can walk you through new concepts, especially for STEM and Computer Science. Good learning also comes from relatable analogies and creative teaching methods. The flexibility of coding allows you to express this creativity through a program. Therefore, a computer simulation is a suitable method to teach a topic like graph algorithms.
+The problem I am solving is the lack of fun ways to learn about certain Computer Science (CS) concepts, more specifically graph algorithms. Interactive simulations are useful tools for learning as they can walk you through new concepts, especially for STEM and Computer Science. Good learning also comes from relatable analogies and creative teaching methods. The flexibility of coding allows you to express this creativity through a program. Therefore, a computer simulation is a suitable method to teach a topic like graph algorithms.
 
 From experience I have noticed that when looking for resources online to help learn a new concept there is a separation between the engaging resources, which are often videos using creative analogies, and the interactive tools used to model them, which are often boring, difficult to use, and stuck in the browser. This could be due to the relative difficulty of making a program compared to a video.
+
 I want to bridge that gap by creating a graph algorithm simulator that uses a fun analogy of space to keep the user engaged. From my research, which I will refer to later, I believe that space is an engaging subject for many people interested in computer science and, even if they are not, it is still a fun and different way to explore the algorithms.
 
 Graph algorithms are often a difficult topic for Computer Science students as they have not been exposed to these concepts before. I will make an educational tool that aims to create a fun way for anyone to learn about graph algorithms through space. I will do this in the form of an app using Swift and SwiftUI.
+
+<div style="page-break-before: always;"></div>
 
 ### Analysing Other Solutions
 
@@ -26,14 +42,10 @@ I have selected a few educational tools that aimed to create an interactive way 
 
 <img width="80%"  alt="Graph Online" src="https://github.com/user-attachments/assets/e6c11fa0-cad3-4ecf-a0de-d02985504591" />
 
-This is a basic graphing simulator I found online. 
-It lets you create a graph manually, to do this there were a few tools: panning, dragging, adding nodes, adding edges and more.
-The UI was quite tedious, especially when moving nodes and edges or creating a connection between two nodes, where there is a menu for selecting weights and direction and text which seemed unnecessary and time consuming.
+This is a basic graphing simulator I found online.  It lets you create a graph manually, to do this there were a few tools: panning, dragging, adding nodes, adding edges and more. The UI was quite tedious, especially when moving nodes and edges or creating a connection between two nodes, where there is a menu for selecting weights and direction and text which seemed unnecessary and time consuming.
 <img width="40%" alt="image" src="https://github.com/user-attachments/assets/3ee0ca7a-41fe-48b0-8e66-f04a5cb3dc73" />
 
-I thought it was frustrating to make a graph manually and that it would be unhelpful if this was your first time encountering a graph, because you may not know what graph to make.  
-I found the options overwhelming and not focused on anything specific. I thought it was more suitable for people who were already familiar with the basics. I want my project to be accessible to people who do not even know what a graph is.
-It did not show you the steps of the algorithm and just solved it, which I believe is important for understanding the algorithm.
+I thought it was frustrating to make a graph manually and that it would be unhelpful if this was your first time encountering a graph, because you may not know what graph to make.  I found the options overwhelming and not focused on anything specific. I thought it was more suitable for people who were already familiar with the basics. I want my project to be accessible to people who do not even know what a graph is. It did not show you the steps of the algorithm and just solved it, which I believe is important for understanding the algorithm.
 
 #### Solution 2: TUM Shortest Path [[https://algorithms.discrete.ma.tum.de/spp/]]
 
@@ -41,21 +53,18 @@ It did not show you the steps of the algorithm and just solved it, which I belie
 
 The University of Munich made a graph algorithm visualisation and learning tool that I enjoyed.
 
-I liked how there were different tabs which separated learning about the algorithm, creating the graph, and running the algorithm.
-I liked the detailed descriptions of the steps and the visual colouring of the nodes and edges. I found this to be important for the algorithm simulation.
+I liked how there were different tabs which separated learning about the algorithm, creating the graph, and running the algorithm. I liked the detailed descriptions of the steps and the visual colouring of the nodes and edges. I found this to be important for the algorithm simulation.
 The graph creation was better than Graph Online and it started with a simple graph that you could extend, but it was still quite limiting.
+
 My main complaint is that the program was not very engaging. The user had to read long paragraphs of text and, while the site was not ugly, it was not especially visually appealing.
 It also did not have many of the simpler graph traversal algorithms (like BFS and DFS) and only shortest path.
 
 #### Solution 3: PhET ([[https://phet.colorado.edu/]])
 
-This is not a graphing simulator but it is an educational tool making learning interesting.
-There are lots of different high quality simulations on this platform. 
-PhET is a non-profit organisation founded by Carl Wieman. They have made their own framework for making simulations.
+This is not a graphing simulator but it is an educational tool making learning interesting. There are lots of different high quality simulations on this platform.  PhET is a non-profit organisation founded by Carl Wieman. They have made their own framework for making simulations.
 
-This is a math simulation that shows you the derivitive of a function. I thought it was useful visualisation and the controls were minimal and neccessary. 
+This is a math simulation that shows you the derivative of a function. I thought it was useful visualisation and the controls were minimal and necessary. 
 <img width="919" height="509" alt="image" src="https://github.com/user-attachments/assets/b8d34bd6-4bcc-41c7-abbc-4c6d7ed96b32" />
-
 
 The following simulation is about keplers laws, you can choose between the three (this screenshot is specifically for keplers 3rd law). This is a theme across most simulations but you can turn of relevant information. Lots of the tools to help learn were consistant across the simulations. This would mean that the user is familiar of how to use these tools before even starting the simulation.
 <img alt="image" src="https://github.com/user-attachments/assets/cf1432e1-f6b3-4230-beee-052b980449d5" />
@@ -65,8 +74,11 @@ I loved using all the simulations and found them very useful however one thing I
 #### Research Takeaways
 The main things I took away is that I wanted to make the program approachable and relatable to the user, intuitive to use and not rely on any knowledge from the user, this would make it accessible to my whole audience which is anyone seeking to learn about graphing algorithms. 
 
+<div style="page-break-before: always;"></div>
+
 ### Stakeholders and Audience
 My audience is anyone who is interested in learning about CS. This could be anyone from the age of 8 to 80 who is interested. This may seem like quite a broad audience due to the wide age range, but I can narrow it slightly to those who are more STEM focused.
+
 Specifically I am targeting a younger audience, as they are the future generation, and I want to create interest while they are still deciding what they are going to do with their lives. It is also true that this age group spends lots of time on mobile applications, playing video games, or using computers, so this may appeal more to them. 
 
 For my stakeholders I tried to find Computer Science students, who will likely study graph algorithms, doing A-Levels or GCSEs, as well as an adult, as my goal is to make this tool accessible to people not actively studying computer science.
@@ -75,7 +87,7 @@ First I gave a quick questionaire these stakeholders and I aim to use this data 
 
 I am going to refer back to these stakeholders once I have developed the app and allow them to test the feedback.
 
-### Questionnaire for target market
+#### Questionnaire for target market
 
 | **Are you studying computer science, if so what course: ** | A level, GCSE, University, None or Other                                                             |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
@@ -83,6 +95,7 @@ I am going to refer back to these stakeholders once I have developed the app and
 | Stakeholder 2: Rocco                                       | OCR comp-sci A-Le                                                                                    |
 | Stakeholder 3 : Jim                                        | A Level Computer Sci                                                                                 |
 | Stakeholder 4 : Jon                                        | I am not currently studying computer science but finished a degree in comp-sci and maths a while ago |
+
 From this It seems like my stakeholders will or already have encountered graphing algorithms which gives me confidence that I have selected a useful topic. 
 
 | What devices do you use the most to learn:** | Options: Tablet, Phone, Desktop or other    |
@@ -91,6 +104,7 @@ From this It seems like my stakeholders will or already have encountered graphin
 | Stakeholder 2: Rocco                         | I use a m2 macbook pro                      |
 | Stakeholder 3 : Jim                          | I have a m2 macbook air                     |
 | Stakeholder 4 : Jon                          | Mac Mini desktop for work                   |
+
 I noticed all my stakeholders use Apple iOS devices. It is only a small sample but I do think targeting this audience is a good start.
 
 | **How Long are you willing to spend to learn a new topic: ** | A time based measurement from 5 minutes to over a few days |
@@ -99,7 +113,8 @@ I noticed all my stakeholders use Apple iOS devices. It is only a small sample b
 | Stakeholder 2: Rocco                                         | 20 minutes for something small                             |
 | Stakeholder 3 : Jim                                          | half a school period or half an hour                       |
 | Stakeholder 4 : Jon                                          | half an hour                                               |
-I wouldnt be suprised if it takes slightly longer (or shorter) than the stakeholders quoted times but my target is that this should be done in about half a school lesson. The tool will not be used the whole time so this would also provide time for other forms of research or creating trace tables while using the program.
+
+I wouldn't be surprised if it takes slightly longer (or shorter) than the stakeholders quoted times but my target is that this should be done in about half a school lesson. The tool will not be used the whole time so this would also provide time for other forms of research or creating trace tables while using the program.
 
 | **Which of the following analogies do you find most relatable and interesting out of: ** | Options: Space, A Map (City or Rural) or other                           |
 | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
@@ -107,7 +122,8 @@ I wouldnt be suprised if it takes slightly longer (or shorter) than the stakehol
 | Stakeholder 2: Rocco                                                                     | Space or City would be interesting                                       |
 | Stakeholder 3 : Jim                                                                      | I like the idea of a rural geographical map but Space would also be cool |
 | Stakeholder 4 : Jon                                                                      | The Industrial Map would be cool but also the Space                      |
-Space seems to be the most popular
+
+Space seems to be the most popular theme amoung my stakeholders.
 
 | **When using a tool to learn a new subject would you rather have :** | Options: more freedom or a more guided path or other                                                                                                               |
 | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -131,6 +147,8 @@ I beleve an app is the most accessible form for this audience, especially as the
 * Explain how the preference for guidance affected onboarding, help screens, and step-by-step controls.
 * Explain how device answers supported choosing Swift, SwiftUI, and Apple platforms.
 * Explain why the space theme was chosen even though not every stakeholder chose it as their first preference.
+
+<div style="page-break-before: always;"></div>
 
 ### Using Computational Methods in the solution
 
@@ -179,7 +197,10 @@ I have to write lots of algorithms of varying complexity.
 ##### Thinking Concurrently
 Lots of parts of my program will hapen at the same time. The ship will need to move, the galaxy will need to be generated, the paths will need to be found. This will mean that I need to do things asynchronously. There will be lots of objects in the game running functions continuously. This means that there will be multiple threads running at once which should be handled by the engine I use.
 
+<div style="page-break-before: always;"></div>
+
 ### Choosing a Framework
+#### Framework Options
 
 | **Platform**                                | **Description**                                                                                                                                                                                     | **Pros**                                                                                                                                                                                                                                       | **Cons**                                                                                                                                                                                                                                                                                                                          |
 | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -188,9 +209,9 @@ Lots of parts of my program will hapen at the same time. The ship will need to m
 | [Swift](https://www.swift.org/) / SpriteKit | Swift is Apple's programming language and SpriteKit is a simple graphics API I could use with it to make my game. SpriteKit is still feature rich and powerful with its node system and SKActions. | I could make my app work on all Apple devices such as tablets and phones which is more convenient for my target audience.<br><br>It will be more efficient as Swift is statically typed, meaning it will be more optimised by the compiler    | The game will not be playable on other platforms like Android or Windows as it will be exclusively iOS.                                                                                                                                                                                                                              |
 | [Pygame](https://www.pygame.org/)<br>       | Pygame is a simple 2D graphics library that uses python.                                                                                                                                            | I can write the project in Python which has easy syntax and is quite lightweight.                                                                                                                                                              | It is very basic so I will have to program all user interface components from scratch                                                                                                                                                                                                                                             |
 
-#### Choice
+#### Final Choice
 
-The main three contenders are Swift / SpriteKit, Pygame and Godot.
+The main three contenders are Swift using SpriteKit, Pygame and Godot.
 
 After considering the benefits and drawbacks of each framework I have decided to use Swift for my project. I will specifically be using SpriteKit for the graphics and SwiftUI for the controls and User Interface. I like the simplicity of this as it means I have more control over my game. Another main factor in my decision means I can program it in Swift which is a strongly typed language meaning great efficiency compared to something like using python with Pygame which was a close second choice. I prefer this over a game engine which would require me to code in C# or C++ which are more complex.
 
@@ -199,6 +220,8 @@ However this will mean that the app can only be played on Apple devices, this co
 To develop I am going to be using swift Playgrounds.
 This is a simple environment that should make it fast and easy to develop in.
 I may consider moving it to XCode later if neccessary but to start Swift Playrounds is Sufficent.
+
+<div style="page-break-before: always;"></div>
 
 ### System Requirements
 
@@ -220,6 +243,8 @@ I may consider moving it to XCode later if neccessary but to start Swift Playrou
 | 8GB of RAM                    | At least 8gb of RAM will be required. For Intel Macs 16gb would be preffered as apple silicon macs are more efficient in managing RAM. 4gb is also okay on ipad as it is well optimised and my program itself is not storing much data so It will not use much RAM. | I need to be able to run swift playgrounds which is reccomened to have at least 8gb.                |
 |                               |                                                                                                                                                                                                                                                                     |                                                                                                     |
 
+<div style="page-break-before: always;"></div>
+
 ### Features of Proposed solution
 
 | Feature                                                   | Explanation                                                                                                               | Reason                                                                                                                                                                             |
@@ -230,6 +255,7 @@ I may consider moving it to XCode later if neccessary but to start Swift Playrou
 | Performing Search Algorithms on Graph<br>                 | This may seem obvious but I need to be able to run the algorithms on the graph                                            | To simulate the algorithms I must be able to programmatically solve them                                                                                                           |
 | Step By Step through the Graph                            | I need to be able to run each algorithm slowly to explain the algorithm                                                   | The user should be able to pause the algorithm and in theory make a trace table of the key variables of the algorithm.                                                             |
 | Explanations and Visualisation of graph being operated on | I will have text boxes explaining what is happening at each step                                                          | I need to also explain what is happening at each step.                                                                                                                             |
+
 ### Limitations of Solution
 
 | Limitation                         | Explanation                                                                                                                                         | Justification                                                                                                                                                                                                                  |
@@ -263,6 +289,8 @@ I will also make small quality of life improvements that make the explanations m
 * Verify that the simulator behaviour matches the textbook rules for BFS, DFS, Dijkstra, and A*.
 * Use worked examples on paper and compare them with the simulator step by step.
 * Ask at least one stakeholder studying Computer Science to confirm that the explanations are understandable and accurate.
+
+<div style="page-break-before: always;"></div>
 
 ### Success Criteria
 
@@ -324,6 +352,8 @@ flowchart LR
 * **Algorithm Control** : this will store the state of an algorithm to allow users to step back and forwards through the solution
 * **Algorithm Visualisation** : this is add more information to the graph rendering interface to show progress through the algorithm
 * **User Interface** : this is how the user interacts with the app and navigates between the screens
+
+<div style="page-break-before: always;"></div>
 
 ### In depth structure of components of Solution
 Here is an in depth summary of the inputs, outputs, preconditions with suitable validation and error handling for the main components of my solution
@@ -417,6 +447,8 @@ Give a visual interface of the program
 ##### Validation
 The views should only allow for valid inputs such as selecting objects that exist or numbers in a correct range. 
 
+<div style="page-break-before: always;"></div>
+
 ### Revisiting Requirements
 Now that I have a slightly better understanding of the program I am going to revisit and make some adjustments to the requirements. I may rename or match them to the subcomponents of my program to make them easier to track
 
@@ -439,6 +471,9 @@ Now that I have a slightly better understanding of the program I am going to rev
 | UR2                                 | Theme                                          | The overall program's theme should stick to the chosen analogy of space                                                                                              |
 | UR3                                 | Navigatable App                                | As my app will have multiple pages, they should all be straightforward to navigate between                                                                           |
 | UR4 **maybe belongs in Functional** | Explanations during graph simulations          | Aswell as slowly stepping through the graph algorithm steps the user should see explanations of what is happening.                                                   |
+
+<div style="page-break-before: always;"></div>
+
 ### System Overview / Architecture
 
 #### Model View Controller
@@ -510,6 +545,7 @@ erDiagram
 
 ```
 
+<div style="page-break-before: always;"></div>
 
 ### Implementation of Subcomponents
 
@@ -724,6 +760,8 @@ The SwiftUI controls will be mostly output based:
 * List of Frontier nodes and visited nodes
 * Explanation Boxes explaining the steps of the algorithms.
 
+<div style="page-break-before: always;"></div>
+
 ### Further Post Development Test Data
 
 **TODO:** add tests done after finishing the program, including function, robustness, and usability tests.
@@ -744,6 +782,7 @@ Throughout development I used source control with Git and GitHub. This was usefu
 <img  alt="image" src="https://github.com/user-attachments/assets/d22bb71f-91e8-48b0-942a-282ccc3b1125" />
 
 Git was especially useful for a project like this because I was changing several parts of the program at once, such as the graph generation, algorithm logic, and user interface. Source control reduced the risk of losing work and made it easier to compare new code with older versions when I was debugging.
+
 #### Issue Tracking
 
 I also tried to use GitHub Issues to track tasks and bugs during development. This was helpful when I remembered to use it, because it gave me a simple way to record problems and planned improvements in one place. However, I was not very consistent in using it and only made 23 issues so it was only a partial record of the work rather than a complete project log. I think it would be more useful if more than one person was working on the project. The issues page is here: [GitHub Issues](https://github.com/NoahMSchool/SwiftPlanets/issues).
@@ -763,6 +802,8 @@ I used GitHub desktop on my Mac as the source control client. I used Obsidian as
 | Code<br>  | None of the code was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections. |                             |
 | Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand.                       |                             |
 | Writeup   | None of the write up is AI generated                                                                               |                             |
+
+<div style="page-break-before: always;"></div>
 
 ### Stage One/Two : Random Galaxy Generation/Rendering
 I developed the galaxy generation and rendering in parallel because it meant I could immediately visualise what was being done, which was important for checking whether I was doing it correctly.
@@ -914,6 +955,7 @@ static func generatePlanet(baseColor: UIColor, accentColor: UIColor, size: CGFlo
 ```
 
 #### Planet UI elements
+
 Once the PlanetNode has been added the other UI elements are then added as a child of it
 This code is run on the SpriteKit node to generate this
 ```swift 
@@ -925,7 +967,8 @@ self.border = SKShapeNode(circleOfRadius: borderRadius)        
 self.border.lineWidth = 2
 self.border.fillColor = .black
 ```
-### Graph Edges or Paths
+
+#### Graph Edges or Paths
 
 To do this I used a SpriteKit CGMutablePath.
 I made a seperate draw helper file which provided me with a few functions with a simpler more relevant interface that I can use to create the connections for the spritekit graph. 
@@ -947,8 +990,10 @@ func drawLine(from start: CGPoint, to end: CGPoint, lineWidth: CGFloat, color: U
 }
 ```
 
-
 #### Minor improvements to prior stages
+I added the ability to show and hide text on the edges 
+
+<div style="page-break-before: always;"></div>
 
 ### Stage Three - **Implementing Search Algorithms**
 
@@ -1101,6 +1146,8 @@ getNewWeight(n: n) + n.neighbour.heuristic(to: to)
 
 #### Minor improvements to prior stages
 I added the ability to show and hide text on the edges for only Dijkstra and A* to use edge weights. For algorithms that do not use the weights, the weight for all edges is 1.
+
+<div style="page-break-before: always;"></div>
 
 ### Stage Four : Algorithm Control
 
@@ -1265,6 +1312,10 @@ func calculatePathFromPreviousToCurrent(previousNode: any Traversable){
 
 This works by finding the point where the two routes share a common node. The ship can then move back to that shared point and then out to the next node, which makes the movement look much more natural.
 
+#### Minor improvements to prior stages
+
+<div style="page-break-before: always;"></div>
+
 ### Stage Five : Algorithm Visualisation
 This stage was taking longer than expected and I found a few improvements I found necessary as well as using a new part of SpriteKit SKActions which allowed me to animate things
 
@@ -1351,6 +1402,8 @@ The ship turns to face the next planet which uses the tan function to get the di
 After implementing the search algorithms I realised algorithms that used backtracking would do large jumps across the graph. I thought this was unclear and may be confusing for my target audience. I wanted to implement a feature that showed the nodes the spaceship backtracks to on the way to the next node. To do this I made each node store the node which the ship came from.
 
 #### Minor improvements to prior stages
+
+<div style="page-break-before: always;"></div>
 
 ### Stage Six : User Interface
 
@@ -1473,6 +1526,7 @@ I found this to be the most challenging part of creating the UI.
 This is a bonus SpriteKitView I created for decorative reasons. It uses SpriteKit to create a nice starry background for the screens. Its algorithm was random so each starry background is different. The algorithm is very simple as it simply places a random number of stars in random positions in a given range for a set number of iterations. I used some of SpriteKit's effects like glow which gave a glow around the border on the individual stars which were just small dots or circles.
 
 This code is the code that generates the stars and puts it under the stars node which is added to the SpriteKit game tree.
+
 ``` swift
 let stars = SKNode()
         for _ in 0...starCount{
@@ -1486,12 +1540,14 @@ let stars = SKNode()
             stars.addChild(star)
         }
 ```
-This is shown behind all the screens
+
+This background is shown behind all the screens in the game
 
 
 <div style="page-break-before: always;"></div>
 
 ## Testing to Inform Development
+#### Test Results Summary
 
 When writing the algorithms, in order to debug them and ensure they were working as intended, I needed graphs that would produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. During development I then compared the program state with the expected state to make sure the implementations were correct.
 
@@ -1505,7 +1561,8 @@ I used the weighted square graph and the tree graph repeatedly while implementin
 
 This testing was also useful for the user experience, not just correctness. During stakeholder play testing, one piece of feedback was that random graphs could look impressive but it was hard to tell whether the answer was actually right. That feedback was one of the reasons I added the fixed test graphs and changed the galaxy generator into subclasses so I could deliberately choose between a random graph and a known test case.
 
-#### Test Results Summary
+
+<div style="page-break-before: always;"></div>
 
 ##### Unweighted Tree Test Graph
 
@@ -1513,27 +1570,32 @@ TODO: For the tree graph - no weighting and only one path. all find the path but
 
 | Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image                                         |
 | ------------------------ | ------------- | --------------: | --------------- | ---------------------------------------------------------- |
-| BFS                      | **Y**         |           **3** | **13**          | ![Breadth First Tree Solved](./BreadthFirstTreeSolved.png) |
-| DFS                      | **Y**         |           **3** | **7**           | ![Depth First Tree Solved](./DepthFirstTreeSolved.png)     |
-| Greedy Best First Search | **Y**         |           **3** | **4**           | ![Greedy Tree Solved](./GreedyTreeSolved.png)              |
-| Dijkstra                 | **Y**         |           **3** | **13**          | ![Dijkstra Tree Solved](./DijkstraTreeSolved.png)          |
-| A*                       | **Y**         |           **3** | **4**           | ![A Star Tree Solved](./AStarTreeSolved.png)               |
+| BFS                      | **Y**         |           **3** | **13**          | <img src="./BreadthFirstTreeSolved.png" alt="Breadth First Tree Solved" style="width:70%; height:auto;"> |
+| DFS                      | **Y**         |           **3** | **7**           | <img src="./DepthFirstTreeSolved.png" alt="Depth First Tree Solved" style="width:70%; height:auto;">     |
+| Greedy Best First Search | **Y**         |           **3** | **4**           | <img src="./GreedyTreeSolved.png" alt="Greedy Tree Solved" style="width:70%; height:auto;">              |
+| Dijkstra                 | **Y**         |           **3** | **13**          | <img src="./DijkstraTreeSolved.png" alt="Dijkstra Tree Solved" style="width:70%; height:auto;">          |
+| A*                       | **Y**         |           **3** | **4**           | <img src="./AStarTreeSolved.png" alt="A Star Tree Solved" style="width:70%; height:auto;">               |
+
+<div style="page-break-before: always;"></div>
 
 ##### Weighted Square Test Graph
+
 Remove Bolds
 
 | Algorithm                | Correct (Y/N) |   Cost | Number of steps | Solved Graph Image                                             |
 | ------------------------ | ------------- | -----: | --------------- | -------------------------------------------------------------- |
-| BFS                      | Y             |    N/A | 11              | ![Breadth First Square Solved](./BreadthFirstSquareSolved.png) |
-| DFS                      | Y             |    N/A | 5               | ![Depth First Square Solved](./DepthFirstSquareSolved.png)     |
-| Greedy Best First Search | Y             |     11 | 5               | ![Greedy Square Solved](./GreedySquareSolved.png)              |
-| Dijkstra                 | **Y**         |  **8** | 7               | ![Dijkstra Square Solved](./DijkstraSquareSolved.png)          |
-| A*                       | **Y**         | **11** | 5               | ![A Star Square Solved](./AStarSquareSolved.png)               |
+| BFS                      | Y             |    N/A | 11              | <img src="./BreadthFirstSquareSolved.png" alt="Breadth First Square Solved" style="width:56%; height:auto;"> |
+| DFS                      | Y             |    N/A | 5               | <img src="./DepthFirstSquareSolved.png" alt="Depth First Square Solved" style="width:56%; height:auto;">     |
+| Greedy Best First Search | Y             |     11 | 5               | <img src="./GreedySquareSolved.png" alt="Greedy Square Solved" style="width:56%; height:auto;">              |
+| Dijkstra                 | **Y**         |  **8** | 7               | <img src="./DijkstraSquareSolved.png" alt="Dijkstra Square Solved" style="width:56%; height:auto;">          |
+| A*                       | **Y**         | **11** | 5               | <img src="./AStarSquareSolved.png" alt="A Star Square Solved" style="width:56%; height:auto;">               |
 
 For the square the 
 The only graph that found the shortest path was dijkstra.
 Even though A* is also designed to find the shortest path and in most cases it does but the awkward route that dijkstra had to take mean that 
 however it was also took the sencond longest to solve aftyer Breadth First
+
+<div style="page-break-before: always;"></div>
 
 ##### Generated Graph Test Example
 
@@ -1639,7 +1701,23 @@ I also thought the text and UI components did not optimise space particularly we
 
 <div style="page-break-before: always;"></div>
 
-## Sources
+## Conclusion
+
+**TODO:** add a short summary of what was created and whether the project achieved its overall aim.
+* Mention the final app and the main features it includes.
+* State clearly whether it succeeded in making graph algorithms easier to learn.
+
+**TODO:** summarise the main strengths of the project.
+* Refer briefly to the algorithm simulation, the step-by-step system, and the visual presentation.
+
+**TODO:** summarise the main limitations and the most important future improvements.
+* Keep this short and link it back to the evaluation section.
+
+![[ConclusionScreen.png]]
+
+<div style="page-break-before: always;"></div>
+
+## Appendix: Sources
 
 ### Example Solutions
 - Graph Online - https://graphonline.top/
