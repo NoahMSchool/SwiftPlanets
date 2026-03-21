@@ -517,7 +517,6 @@ The views should only allow for valid inputs such as selecting objects that exis
 | UR6 | Use an engaging space theme           | The overall look and feel of the app, including the space theme, is presented through the interface. |
 
 <div style="page-break-before: always;"></div>
-<div style="page-break-before: always;"></div>
 
 ### System Overview / Architecture
 
@@ -526,12 +525,12 @@ I will use the Model View Controller design pattern to separate the components o
 This allows me to separate the functionality into three main components.
 
 I will explain the three components at a lower level next but at a high level:
-* The Mode is a collection of object that encapsulates the data of the app
+* The Model is a collection of objects that encapsulates the data of the app
 * The View is the user interface 
 * The Controller ties the Model and the View together
 
 **TODO:** explain this architecture clearly using my actual classes and screens. Include a screenshot of the directory structure of the project
-**Explain diagram and high level of components, Model veiw controller**
+**TODO:** explain the diagram and high level of components in terms of Model View Controller
 
 #### Model (Data Structures)
 As I am using the Model View Controller Pattern I am going to keep the data in the Model.
@@ -545,7 +544,7 @@ This means when changing the objects properties it will update any views using t
 * Algorithm Control
 
 #### View (User Interface)
-The Views Provides a GUI for the user to see and interact with the program. 
+The View provides a GUI for the user to see and interact with the program. 
 
 For this I will need to use a graphics library. I am going to be using two, SpriteKit and SwiftUI.
 SpriteKit will be used for the areas where I need more control such as drawing graphs and custom animations.
@@ -562,8 +561,8 @@ This will mean that my UI will adapt to all screen sizes with little effort! Thi
 
 #### Controller (Program Logic)
 
-The controller while was not included in the subcomponents is still a large section of the program. It provides a bridge between the Models and the Views and is essential for the program to run.
-I am going to use SwiftUI observable object which is an an object that will notify and update observers when it changes
+The controller, while not included directly in the subcomponents, is still a large section of the program. It provides a bridge between the Models and the Views and is essential for the program to run.
+I am going to use a SwiftUI observable object, which is an object that will notify and update observers when it changes.
 
 
 ```mermaid
@@ -2012,12 +2011,12 @@ Even though A* is also designed to find the shortest path and in most cases it d
 For the Generated Graph the heuristic is very good because the path weights and heuristic both rely on the distance between two nodes.
 
 
-**TODO:** fill this table with the actual measured results from the fixed test graphs and refer back to it in the algorithm-solving and evaluation sections.
+**TODO: CRITICAL:** fill this table with the actual measured results from the fixed test graphs and refer back to it in the algorithm-solving and evaluation sections.
 * Use real values taken from the finished program, not estimated ones.
 * Highlight where different algorithms behave differently on the same graph.
 * State explicitly which algorithms found the shortest path and which did not.
 
-**TODO:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
+**TODO: CRITICAL:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
 * Make sure the trace table matches the screenshots and the implementation.
 * Use this as direct evidence that the step system is correct.
 
@@ -2028,6 +2027,10 @@ For the Generated Graph the heuristic is very good because the path weights and 
 To evaluate whether the final program met the success criteria, I planned a short set of stakeholder questions to ask after users had tested the app. This focuses on the main usability, learning, and functionality goals of the program. The table below can be used to record each stakeholder's answer and then summarise the overall pattern at the end.
 
 ### Stakeholder Testing Results
+
+**TODO: CRITICAL:** fill in the responses from all seven stakeholders, not just one, so I can justify claims such as "most stakeholders".
+
+**TODO: CRITICAL:** fill in the Summary column with overall patterns such as "6/7 said yes" or "most found this helpful".
 
 | Question                                                     | Rambo | Rocco | Jim | Jon | Willow | Caspian | Inge | Summary |
 | ------------------------------------------------------------ | ----- | ----- | --- | --- | ------ | ------- | ---- | ------- |
@@ -2053,13 +2056,15 @@ To evaluate whether the final program met the success criteria, I planned a shor
 
 ### Open Feedback Summary
 
+**TODO: CRITICAL:** summarise the most common positive comments and the most common suggested improvements from stakeholder testing.
+
 | Question                                  | Summary of answers |
 | ----------------------------------------- | ------------------ |
 | What was the most useful part of the app? |                    |
 | What most needs improving?                |                    |
 
 
-**TODO:** add the findings from this testing and explain what I changed because of them.
+**TODO: CRITICAL:** add the findings from this testing and explain what I changed because of them.
 * For each finding, state the issue, the evidence, the change made, and whether the issue was fully resolved.
 * Found a bug generating a galaxy with 0 planets.
 * Found the colours quite confusing.
@@ -2072,11 +2077,11 @@ To evaluate whether the final program met the success criteria, I planned a shor
 
 In this section I will go through the different components, show the related success criteria in a table, and mention any relevant added features and improvements that could be made.
 
-**TODO:** evaluate each success criterion one by one using evidence.
+**TODO: CRITICAL:** evaluate each success criterion one by one using evidence.
 * For every criterion, state whether it was met, partially met, or not met.
 * Quote the evidence source, such as a test table, screenshot, stakeholder result, or specific implementation section.
 * Keep the judgement honest where the evidence is mixed.
-**TODO:** say clearly what works well, what does not, and what I would improve next.
+**TODO: CRITICAL:** say clearly what works well, what does not, and what I would improve next.
 * Separate strengths, weaknesses, and future improvements instead of mixing them together.
 * Make sure every proposed improvement links back to a limitation or partially met criterion.
 
@@ -2091,6 +2096,8 @@ In the status column I will use the following labels:
 | <span style="color: red;"><strong>Not Met</strong></span> | The success criterion was not achieved. |
 
 These work well because they are simple, clear, and easy to justify with evidence from testing and stakeholder feedback.
+
+**TODO: CRITICAL:** fill the Evidence / Summary column for each success criterion using the testing tables, screenshots, and development evidence.
 
 | ID              | Description                                                                                                     | Evidence / Summary                                          | Status                                                             |
 | --------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
@@ -2139,23 +2146,23 @@ For the way I have structured the graph generation I think all of these will hav
 
 #### Learnings
 
-**TODO:** say how well the graph was displayed and mention any visual problems.
+**TODO: CRITICAL:** say how well the graph was displayed and mention any visual problems.
 
 #### Subcomponent Three : Algorithm Solving
 
-**TODO:** say whether each algorithm worked correctly and refer directly to the weighted square graph and tree graph test results table.
+**TODO: CRITICAL:** say whether each algorithm worked correctly and refer directly to the weighted square graph and tree graph test results table.
 
 #### Subcomponent Four : Algorithm Control
 
-**TODO:** evaluate the step system and undo system.
+**TODO: CRITICAL:** evaluate the step system and undo system.
 
 #### Subcomponent Five : Algorithm Visualisation
 
-**TODO:** evaluate how clear the colours, ship movement,animations and explanations were. Refer back to the user testing. Mention the problems with the ship timing when doing the auto play
+**TODO: CRITICAL:** evaluate how clear the colours, ship movement,animations and explanations were. Refer back to the user testing. Mention the problems with the ship timing when doing the auto play
 
 #### Subcomponent Six : User Interface
 
-**TODO:** evaluate the menus, navigation and screen layout on different devices. Say how well they fitted.
+**TODO: CRITICAL:** evaluate the menus, navigation and screen layout on different devices. Say how well they fitted.
 
 ##### Text Based SwiftUI pages
 One small thing I found was that the text and image based information pages were quite static and boring. One reason was that I used images in these screens which were simply screenshots. It may have been better if I had used small SpriteKit windows in the SwiftUI view to make them more interactive. This would future-proof it too, as if I updated the gameplay screens it would automatically update in the information pages instead of me having to take new screenshots.
