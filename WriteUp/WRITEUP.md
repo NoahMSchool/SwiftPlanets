@@ -1377,13 +1377,13 @@ This testing was also useful for the user experience, not just correctness. Duri
 
 ##### Unweighted Tree Test Graph
 
-| Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image              |
-| ------------------------ | ------------- | --------------: | --------------- | ------------------------------- |
-| BFS                      | **Y**         |           **3** | **13**          | ![[BreadthFirstTreeSolved.png]] |
-| DFS                      | **Y**         |           **3** | **7**           | ![[DepthFirstTreeSolved.png]]   |
-| Greedy Best First Search | **Y**         |           **3** | **4**           | ![[GreedyTreeSolved.png]]       |
-| Dijkstra                 | **Y**         |           **3** | **13**          | ![[DijkstraTreeSolved.png]]     |
-| A*                       | **Y**         |           **3** | **4**           | ![[AStarTreeSolved.png]]        |
+| Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image                                         |
+| ------------------------ | ------------- | --------------: | --------------- | ---------------------------------------------------------- |
+| BFS                      | **Y**         |           **3** | **13**          | ![Breadth First Tree Solved](./BreadthFirstTreeSolved.png) |
+| DFS                      | **Y**         |           **3** | **7**           | ![Depth First Tree Solved](./DepthFirstTreeSolved.png)     |
+| Greedy Best First Search | **Y**         |           **3** | **4**           | ![Greedy Tree Solved](./GreedyTreeSolved.png)              |
+| Dijkstra                 | **Y**         |           **3** | **13**          | ![Dijkstra Tree Solved](./DijkstraTreeSolved.png)          |
+| A*                       | **Y**         |           **3** | **4**           | ![A Star Tree Solved](./AStarTreeSolved.png)               |
 For the tree graph
 
 ##### Weighted Square Test Graph
@@ -1391,11 +1391,11 @@ Remove Bolds
 
 | Algorithm                | Correct (Y/N) |    Cost | Number of steps | Solved Graph Image                |
 | ------------------------ | ------------- | ------: | --------------- | --------------------------------- |
-| BFS                      | **Y**         |     N/A | 11              | ![[BreadthFirstSquareSolved.png]] |
-| DFS                      | **Y**         | **N/A** | 5               | ![[DepthFirstSquareSolved.png]]   |
-| Greedy Best First Search | **Y**         |  **11** | 5               | ![[GreedySquareSolved.png]]       |
-| Dijkstra                 | **Y**         |   **8** | 7               | ![[DijkstraSquareSolved.png]]     |
-| A*                       | **Y**         |  **11** | 5               | ![[AStarSquareSolved.png]]        |
+| BFS                      | **Y**         |     N/A | 11              | ![Breadth First Square Solved](./BreadthFirstSquareSolved.png) |
+| DFS                      | **Y**         | **N/A** | 5               | ![Depth First Square Solved](./DepthFirstSquareSolved.png)   |
+| Greedy Best First Search | **Y**         |  **11** | 5               | ![Greedy Square Solved](./GreedySquareSolved.png)       |
+| Dijkstra                 | **Y**         |   **8** | 7               | ![Dijkstra Square Solved](./DijkstraSquareSolved.png)     |
+| A*                       | **Y**         |  **11** | 5               | ![A Star Square Solved](./AStarSquareSolved.png)        |
 For the square the 
 The only graph that found the shortest path was dijkstra.
 Even though A* is also designed to find the shortest path and in most cases it does but the awkward route that dijkstra had to take mean that 
