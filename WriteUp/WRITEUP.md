@@ -1,7 +1,7 @@
 # A Level Computer Science - Engaging Space Graphing Simulator
 
-| **Name: Noah Marks  **                       | **Candidate Number: 1146** |
-| ------------------------------------------- | --------------------------- |
+| **Name: Noah Marks  **                    | **Candidate Number: 1146** |
+| ----------------------------------------- | -------------------------- |
 | **Project: Engaging Graphing Simulator ** | **Centre Number: 10132**   |
 
 <p align="center"><img src="./screenshots/IntroScreen.png" alt="Intro Screen" width="75%"></p>
@@ -12,12 +12,15 @@
 
 This project was to create an educational graph algorithm simulator with a space theme. The main aim was to make graph algorithms more engaging and easier to understand by allowing the user to interact with them in an app, rather than only reading about them or solving them from boring diagrams. The finished program allows the user to generate or choose a graph, select an algorithm, and then step through the solution while seeing what is happening visually on the graph.
 
-This document is organised into the main stages of the project. It begins with analysis of the problem, the audience, and existing solutions, and then moves into the design of the system. In the design section I use tables, hand-drawn sketches, and diagrams such as hierarchy diagrams, navigation diagrams, and class diagrams to show how the solution was planned.
+This document is organised into the main stages of the project. It begins with analysis of the problem, the audience and stakeholders, and existing solutions, and then moves into the design of the system. 
+In the design section I use tables, hand-drawn sketches, and diagrams such as hierarchy diagrams, navigation diagrams, and class diagrams to show how the solution was planned.
+The development section then explains how the main parts of the program were implemented, using screenshots, code samples, and further diagrams where they help explain the structure. I tried to show the most interesting algorithms and code snippets. 
+When designing and developing I divided the program into six main components and each section tries to cover them separately.
+After this there are sections on testing during development, testing after development. At the end there is the evaluation section where I revisited my requirements from analysis to evaluate how well the final program met my specified criteria
+Finally there is a appendix containing the sources used.
 
-The development section then explains how the main parts of the program were implemented, using screenshots, code samples, and further diagrams where they help explain the structure. I tried to show the most interesting algorithms and code snippets. After this there are sections on testing during development, testing after development, evaluation of the finished project, and finally an appendix containing the sources used.
 
-I have divided the project into six main components and each section tries to cover them separately.
-
+There is a video of the final project in use with other key tools I used on the way.
 I hope you enjoy reading it as much as I enjoyed writing it!
 
 <div style="page-break-before: always;"></div>
@@ -84,11 +87,13 @@ Since my program is only one tool, I can take advantage of this and make my proj
 
 #### Research Takeaways
 
-The main things I took away were that I wanted to make the program approachable and relatable to the user, intuitive to use, and not rely on any prior knowledge from the user. This would make it accessible to my whole audience, which is anyone seeking to learn about graphing algorithms. 
-
+The main takeways are that I wanted to make the program approachable and relatable to the user, intuitive to use with step by step instructions, and not rely on any prior knowledge from the user. 
+I believe stepping through the steps of the algorithm giving explanations and showing state will be an essential part of the program as it is about teaching the algorithms not showing them.
+I noticed the graphing simulations out there had interfaces with lots of options.
+At the cost of making it more approachable my program may have less features exposed to the user which should make it easier to use. 
+This will differentiate my program to the competition which should make it more appealing to my audience which is anyone seeking to learn about graphing algorithms with less experience or from scratch. 
 
 <div style="page-break-before: always;"></div>
-
 ### Stakeholders and Audience
 
 My audience is anyone who is interested in learning about CS. This could be anyone from the age of 8 to 80 who is interested. This may seem like quite a broad audience due to the wide age range, but I can narrow it slightly to those who are more STEM focused.
@@ -109,6 +114,8 @@ I am going to refer back to these stakeholders once I have developed the app and
 | Stakeholder 2: Rocco                                       | OCR comp-sci A-Level                                                                                 |
 | Stakeholder 3 : Jim                                        | A Level Computer Sci                                                                                 |
 | Stakeholder 4 : Jon                                        | I am not currently studying computer science but finished a degree in comp-sci and maths a while ago |
+| Stakeholder 5 : Willow                                     |                                                                                                      |
+| Stakeholder 6 : Caspian                                    |                                                                                                      |
 
 From this it seems like my stakeholders will, or already have, encountered graphing algorithms, which gives me confidence that I have selected a useful topic. 
 
@@ -116,8 +123,10 @@ From this it seems like my stakeholders will, or already have, encountered graph
 | ------------------------------------------ | ------------------------------------------- |
 | Stakeholder 1: Rambo                       | I got a ipad 9th gen which I use for school |
 | Stakeholder 2: Rocco                       | I use a m2 macbook pro                      |
-| Stakeholder 3 : Jim                        | I have a m2 macbook air                     |
+| Stakeholder 3 : Jim                        | I have a iPad Pro M4                        |
 | Stakeholder 4 : Jon                        | Mac Mini desktop for work                   |
+| Stakeholder 5 : Willow                     |                                             |
+| Stakeholder 6 : Caspian                    |                                             |
 
 I noticed all my stakeholders use Apple iOS devices. It is only a small sample but I do think targeting this audience is a good start.
 
@@ -127,6 +136,8 @@ I noticed all my stakeholders use Apple iOS devices. It is only a small sample b
 | Stakeholder 2: Rocco                                         | 20 minutes for something small                             |
 | Stakeholder 3 : Jim                                          | half a school period or half an hour                       |
 | Stakeholder 4 : Jon                                          | half an hour                                               |
+| Stakeholder 5 : Willow                                       |                                                            |
+| Stakeholder 6 : Caspian                                      |                                                            |
 
 I wouldn't be surprised if it takes slightly longer (or shorter) than the stakeholders quoted times but my target is that this should be done in about half a school lesson. The tool will not be used the whole time so this would also provide time for other forms of research or creating trace tables while using the program.
 
@@ -136,31 +147,33 @@ I wouldn't be surprised if it takes slightly longer (or shorter) than the stakeh
 | Stakeholder 2: Rocco                                                                     | Space or City would be interesting                                       |
 | Stakeholder 3 : Jim                                                                      | I like the idea of a rural geographical map but Space would also be cool |
 | Stakeholder 4 : Jon                                                                      | The Industrial Map would be cool but also the Space                      |
+| Stakeholder 5 : Willow                                                                   |                                                                          |
+| Stakeholder 6 : Caspian                                                                  |                                                                          |
 
 Space seems to be the most popular theme among my stakeholders.
 
-| **When using a tool to learn a new subject would you rather have :** | Options: more freedom or a more guided path or other                                                                                                               |
-| -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Stakeholder 1: Rambo                                                 | More control would be nice but it should be easy and intuitive to use                                                                                              |
-| Stakeholder 2: Rocco                                                 | I would like both, maybe you could start with a more guided approach and then once you are more familiar you could be given more control                           |
-| Stakeholder 3 : Jim                                                  | I would rather be guided at the start as I can find the options overwhelming                                                                                       |
+| **When using a tool to learn a new subject would you rather have :** | Options: more control or a more guided path or other                                                                                                                   |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stakeholder 1: Rambo                                                 | More control would be nice but it should be easy and intuitive to use                                                                                                  |
+| Stakeholder 2: Rocco                                                 | I would like both, maybe you could start with a more guided approach and then once you are more familiar you could be given more control                               |
+| Stakeholder 3 : Jim                                                  | I would rather be guided at the start as I can find the options overwhelming                                                                                           |
 | Stakeholder 4 : Jon                                                  | I think it is good to take it slow while learning, so I think there should be the ability to experiment on top of an overall guide to make sure we don't go off track. |
+| Stakeholder 5 : Willow                                               |                                                                                                                                                                        |
+| Stakeholder 6 : Caspian                                              |                                                                                                                                                                        |
 
 #### Client Questionnaire takeaways
 
-I believe a space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM, so they were already fascinated by space.
+I believe a space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM, so they were already fascinated by space. This will influence choices of themes and visuals of the program when designing and developing.
 
-I think it is important to have at least a gentle introduction to the algorithms. From research into other tools I found the solutions that had an easy onboarding to be more useful, and my stakeholders backed this up.
+I think it is important to have at least a gentle introduction to the algorithms and a clear easy to use interface. From research into other tools I found the solutions that had an direct onboarding were more useful, and my stakeholders backed this up. This will also mean I will have a multi-page interface so the user can focus on individual sections at once with each page having clear start and end points so the user knows when to move on.
+
+These answers also supported my view that I should sacrifice control over the program for ease of use and not confusing the user.
 
 I think that 30 minutes is a suitable length of time for the user to spend on the program. This is close to the length of a school lesson and I believe it will take slightly longer than they first expect so this will allow people more flexibility around time.
 
-I believe an app is the most accessible form for this audience, especially as the stakeholders seem to be using Apple devices. Apple makes it easy to develop for their platforms, so it seems suitable.
-
-**TODO:** improve this section by linking each takeaway directly to a design decision.
-* State which questionnaire result led to each design choice.
-* Explain how the preference for guidance affected onboarding, help screens, and step-by-step controls.
-* Explain how device answers supported choosing Swift, SwiftUI, and Apple platforms.
-* Explain why the space theme was chosen even though not every stakeholder chose it as their first preference.
+I believe an app is the most accessible form for this audience, especially as the stakeholders seem to be using Apple devices.
+I understand my sample was small but if I can focus on a smaller group I can focus on creating the best experience for them. 
+Apple also makes it easy to develop for their platforms, which further supports the suitability. However In future an android or web based version would be nice to make it more accessible to a wider audience.
 
 <div style="page-break-before: always;"></div>
 
@@ -2075,13 +2088,14 @@ I also thought the text and UI components did not optimise space particularly we
 
 ## Conclusion
 
-In conclusion, I think I achieved the main goal of this project. I created a final app that can generate graphs, solve them using multiple algorithms, and show the solution step by step in a way that is easier to follow. The main functional requirements were met, and I think the program succeeded in making graph algorithms more accessible and easier to learn.
+To Conclude, I think I have achieved the main goal of this project. I created a final app that can generate graphs, solve them using multiple algorithms, and show the solution step by step in a way that is easier to follow. The main functional requirements were met, and  the program succeeded in making graph algorithms more accessible and easier to learn by using an engaging analalogy that was relatable to my stakeholders.
 
-One of the main strengths of the project is that it is interactive. The user can generate different graphs, choose different algorithms, and watch the process happen visually instead of only reading about it. I think the step-by-step system, the colour coding, and the movement of the ship all helped make the algorithms clearer. The feedback from stakeholders was also positive, and they said that they enjoyed using it.
+One of the main strengths of the project is that it is interactive. The user can generate different graphs, choose different algorithms, and watch the process happen visually instead of only reading about it. I beleve I gave the user just the right amount of control to allow the user to create usefull interesting graphs without being overwhelming.
+I think the step-by-step system, the colour coding, and the movement of the ship all helped make the algorithms clearer. The feedback from stakeholders was also positive, and they said that they enjoyed using it, found it pretty and engaging, and better understood the algorithms by the end.
 
-Another important outcome of the project was what I learned while making it. I developed the app in Swift, which was a new language for me, so this project helped me learn a new programming language as well as new frameworks like SwiftUI and SpriteKit. This made the project more difficult, but it also made it more fun.
+Another important outcome of the project was what I learned while making it. I developed the app in Swift, which was a new language for me, so this project helped me learn a new programming language as well as new frameworks like SwiftUI and SpriteKit. I also had to learn about new programming concepts like protocols and optionals and new design patterns like Model View Controller. This made the project more difficult, but it also made it more fun.
 
-There are still some improvements that could be made in future, such as refining parts of the interface further, improving some of the timings and animations, and extending the app with more features. However, overall I think the project was successful and produced a useful educational tool.
+There are still some improvements that could be made in future, such as refining parts of the interface further, improving some of the timings and animations, and extending the app with more features. However, overall I think the project was successful and produced a useful engaging educational tool.
 
 <p align="center"><img src="./screenshots/ConclusionScreen.png" alt="Conclusion Screen" width="75%"></p>
 
@@ -2110,3 +2124,4 @@ There are still some improvements that could be made in future, such as refining
 - Obsidian - https://obsidian.md/
 - Obsidian Markdown Editor - https://obsidian.md/
 - Mermaid JS Chart Library - https://mermaid.js.org/
+

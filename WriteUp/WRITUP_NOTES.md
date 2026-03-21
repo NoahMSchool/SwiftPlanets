@@ -118,5 +118,3 @@ Make more clear inputs and and outputs in first section of design using table wi
 
 
 Deciding on rengenerating graph when changing graph generation parameters
-
-Fided bugs
