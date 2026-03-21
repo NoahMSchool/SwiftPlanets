@@ -25,8 +25,8 @@ I have selected a few educational tools that aimed to create an interactive way 
 
 This is a basic graphing simulator I found online. 
 It lets you create a graph manually, to do this there were a few tools: panning, dragging, adding nodes, adding edges and more.
-The UI was quite tedious, especially when moving nodes and edges or creating a connection between two nodes, where there is a menu for selecting weights and direction and text which seemed unncessary and time consuming.
-<img width="371" height="322" alt="image" src="https://github.com/user-attachments/assets/3ee0ca7a-41fe-48b0-8e66-f04a5cb3dc73" />
+The UI was quite tedious, especially when moving nodes and edges or creating a connection between two nodes, where there is a menu for selecting weights and direction and text which seemed unnecessary and time consuming.
+<img width="40%" alt="image" src="https://github.com/user-attachments/assets/3ee0ca7a-41fe-48b0-8e66-f04a5cb3dc73" />
 
 I thought it was frustrating to make a graph manually and that it would be unhelpful if this was your first time encountering a graph, because you may not know what graph to make.  
 I found the options overwhelming and not focused on anything specific. I thought it was more suitable for people who were already familiar with the basics. I want my project to be accessible to people who do not even know what a graph is.
@@ -55,7 +55,7 @@ This is a math simulation that shows you the derivitive of a function. I thought
 
 
 The following simulation is about keplers laws, you can choose between the three (this screenshot is specifically for keplers 3rd law). This is a theme across most simulations but you can turn of relevant information. Lots of the tools to help learn were consistant across the simulations. This would mean that the user is familiar of how to use these tools before even starting the simulation.
-<img width="939" height="446" alt="image" src="https://github.com/user-attachments/assets/cf1432e1-f6b3-4230-beee-052b980449d5" />
+<img alt="image" src="https://github.com/user-attachments/assets/cf1432e1-f6b3-4230-beee-052b980449d5" />
 
 I loved using all the simulations and found them very useful however one thing I would have liked is if it added a creative twist to keep the user engaged. As this is a large platform with lots of similar simulations I understand that it is good to keep consistancy between them so I understand why they in some cases can look a bit boring. Since my program is only for one tool I can take advantage to this to make my project more unique to make the program more relatable to use.
 
@@ -74,12 +74,12 @@ I am going to refer back to these stakeholders once I have developed the app and
 
 ### Questionnaire for target market
 
-| **Are you studying computer science, if so what course: ** | A level, GCSE, University, None or Other                                                               |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Stakeholder 1: Rambo                                       | GCSE OCR computer Science                                                                                |
-| Stakeholder 2: Rocco                                       | OCR comp-sci A-Le                                                                                      |
-| Stakeholder 3 : Jim                                        | A Level Computer Sci                                                                                   |
-| Stakeholder 4 : Jon                                     I am not currently studying computer science but finished a degree in comp-sci and maths a while back e, I  |
+| **Are you studying computer science, if so what course: **                                                                                                         | A level, GCSE, University, None or Other |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
+| Stakeholder 1: Rambo                                                                                                                                               | GCSE OCR computer Science                |
+| Stakeholder 2: Rocco                                                                                                                                               | OCR comp-sci A-Le                        |
+| Stakeholder 3 : Jim                                                                                                                                                | A Level Computer Sci                     |
+| Stakeholder 4 : Jon                                     I am not currently studying computer science but finished a degree in comp-sci and maths a while back e, I |                                          |
 From this It seems like my stakeholders will or already have encountered graphing algorithms which gives me confidence that I have selected a useful topic. 
 
 | What devices do you use the most to learn:** | Options: Tablet, Phone, Desktop or other    |
@@ -1042,10 +1042,6 @@ The priority function only uses the distance to the node
 So for Dijkstra I overrode `usesWeights()` and `getQueuePriority()`:
 
 ```swift
-override class func usesWeights()->Bool{
-    return true
-}
-
 override func getQueuePriority(n : (neighbour : any Traversable, weight : Double), to: any Traversable) -> Double {
     return getNewWeight(n: n)
 }
@@ -1120,8 +1116,6 @@ struct AlgorithmState{
     var explanation : String
 }
 ```
-
-
 
 #### Steps to Undo
 To Undo I pop the last Algorithm State of the Object. I override the current algorithm state.
@@ -1295,6 +1289,9 @@ This is a screen that shows the user how to interact with the program in case th
 It also shows the user the controls and how to interact with the program.
 
 #### Algorithms Descriptions Page
+
+TODO addd screenshot
+
 The start of my algorithms page is generic to all the algorithms. Similar to how I realised how similar the algorithms core concepts really are I wanted to amplify this in the descriptions.
 
 For the algorithm description I wrote it so the information is not stored as text strings in the page.
@@ -1378,18 +1375,41 @@ This testing was also useful for the user experience, not just correctness. Duri
 
 #### Test Results Summary
 
-| Test graph | Algorithm | Correct (Y/N) | Shortest length | Number of steps | Number of nodes explored |
-| ---------- | --------- | ------------- | --------------- | --------------- | ------------------------ |
-| Weighted square graph | BFS | **TODO** | **TODO** | **TODO** | **TODO** |
-| Weighted square graph | DFS | **TODO** | **TODO** | **TODO** | **TODO** |
-| Weighted square graph | Dijkstra | **TODO** | **TODO** | **TODO** | **TODO** |
-| Weighted square graph | Greedy Best First Search | **TODO** | **TODO** | **TODO** | **TODO** |
-| Weighted square graph | A* | **TODO** | **TODO** | **TODO** | **TODO** |
-| Tree graph | BFS | **TODO** | **TODO** | **TODO** | **TODO** |
-| Tree graph | DFS | **TODO** | **TODO** | **TODO** | **TODO** |
-| Tree graph | Dijkstra | **TODO** | **TODO** | **TODO** | **TODO** |
-| Tree graph | Greedy Best First Search | **TODO** | **TODO** | **TODO** | **TODO** |
-| Tree graph | A* | **TODO** | **TODO** | **TODO** | **TODO** |
+##### Unweighted Tree Test Graph
+
+| Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image              |
+| ------------------------ | ------------- | --------------: | --------------- | ------------------------------- |
+| BFS                      | **Y**         |           **3** | **13**          | ![[BreadthFirstTreeSolved.png]] |
+| DFS                      | **Y**         |           **3** | **7**           | ![[DepthFirstTreeSolved.png]]   |
+| Greedy Best First Search | **Y**         |           **3** | **4**           | ![[GreedyTreeSolved.png]]       |
+| Dijkstra                 | **Y**         |           **3** | **13**          | ![[DijkstraTreeSolved.png]]     |
+| A*                       | **Y**         |           **3** | **4**           | ![[AStarTreeSolved.png]]        |
+For the tree graph
+
+##### Weighted Square Test Graph
+
+| Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image |
+| ------------------------ | ------------- | --------------: | --------------- | ------------------ |
+| BFS                      | **Y**         |           **3** |                 |                    |
+| DFS                      | **Y**         |           **3** |                 |                    |
+| Greedy Best First Search | **Y**         |        **TODO** |                 |                    |
+| Dijkstra                 | **Y**         |           **3** |                 |                    |
+| A*                       | **Y**         |        **TODO** |                 |                    |
+For the square the 
+
+
+##### Generated Graph
+
+| Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image |
+| ------------------------ | ------------- | --------------: | --------------- | ------------------ |
+| BFS                      | **Y**         |           **3** | **13**          |                    |
+| DFS                      | **Y**         |           **3** | **7**           |                    |
+| Greedy Best First Search | **Y**         |        **TODO** | **4**           |                    |
+| Dijkstra                 | **Y**         |           **3** | **13**          |                    |
+| A*                       | **Y**         |        **TODO** | **4**           |                    |
+For the Generated Graph the 
+
+
 
 **TODO:** fill this table with the actual measured results from the fixed test graphs and refer back to it in the algorithm-solving and evaluation sections.
 * Use real values taken from the finished program, not estimated ones.
@@ -1400,7 +1420,6 @@ This testing was also useful for the user experience, not just correctness. Duri
 * Make sure the trace table matches the screenshots and the implementation.
 * Use this as direct evidence that the step system is correct.
 
-![[Screenshot 2026-03-17 at 21.50.43.png]]
 ## Testing to Inform Evaluation
 
 **TODO:** add brief evidence from post-development user testing here, including who tested it, what level of experience they had, and what I asked them to try.
