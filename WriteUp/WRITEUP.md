@@ -179,7 +179,7 @@ My program does not require any data mining as I am not storing data.
 ##### Heuristics
 Algorithms like A* use heuristics to help guide the search. For graph algorithms a sensible heuristic is the absolute distance to the target node
 ##### Pipelining
-I doubt I am going to be doing pipelining myself as I am going to use a high level language.
+Pipelining is not something I am directly controlling in this project, so it is not a major computational method in my solution.
 ##### Performance modelling
 I can look at the time complexities of the components of the solution to see if the calculations are realistic on the kind of hardware I am using. I can look at the time complexities of the graphing algorithms I am using.
 #### Abstraction
@@ -1048,12 +1048,12 @@ classDiagram
 
 Here is the table of the different search algorithms and how they differ, which helps to understand what functions need to be overridden for each.
 
-| Feature                 | Breadth First | Depth First    | Greedy BFS     | Dijkstra       | A*                 |
-| ----------------------- | ------------- | -------------- | -------------- | -------------- | ------------------ |
-| Frontier Data Structure | Stack         | Priority Queue | Priority Queue | Priority Queue | Priority Queue     |
-| Use Weights             | ---           | ---            | Y              | Y              | Y                  |
-| Use Heuristic           | ---           | ---            | Y              | ---            | Y                  |
-| Priority Function       | ---           | ---            | Heuristic      | Weight         | Heuristic + Weight |
+| Feature                 | Breadth First | Depth First | Greedy BFS     | Dijkstra       | A*                 |
+| ----------------------- | ------------- | ----------- | -------------- | -------------- | ------------------ |
+| Frontier Data Structure | Normal Queue  | Stack       | Priority Queue | Priority Queue | Priority Queue     |
+| Use Weights             | ---           | ---         | ---            | Y              | Y                  |
+| Use Heuristic           | ---           | ---         | Y              | ---            | Y                  |
+| Priority Function       | ---           | ---         | Heuristic      | Weight         | Heuristic + Weight |
 
 I also had one shared function in `BaseSearch` that made the frontier work like a priority queue for the algorithms that needed one:
 
@@ -1080,7 +1080,7 @@ Breadth First Search did not need its own `getNextFrontier()` override because t
 
 ```swift
 func getNextFrontier()->(neighbour: any Traversable, weight: Double){
-    currentState.frontier.removeFirst()
+    return currentState.frontier.removeFirst()
 }
 ```
 
@@ -1092,7 +1092,7 @@ To turn the frontier into a stack instead of a queue, I overrode `getNextFrontie
 
 ```swift
 override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
-    currentState.frontier.removeLast()
+    return currentState.frontier.removeLast()
 }
 ```
 
@@ -1105,9 +1105,9 @@ override func getFrontier()->[any Traversable]
 }
 ```
 #### Greedy Best First Search 
-This priority function only used the heuristic. In my random graphs, with some exceptions when the start and end are separated by a void without nodes, it often found the shortest path quickly as my weights were based on the distance to the node.
+Greedy Best First Search only uses the heuristic to decide which node to visit next. This means it often finds a path quickly, but it does not always find the shortest path.
 
-For Greedy Best First Search I overrode the class flags so the UI knows it uses both weights and a heuristic, and then set the priority queue to use only the heuristic:
+For Greedy Best First Search I set it so the UI knows it uses a heuristic, and then I made the priority queue use only the heuristic:
 
 ```swift
 override class func useHeuristic()->Bool{
@@ -1122,6 +1122,7 @@ override func getQueuePriority(n : (neighbour : any Traversable, weight : Double
     return n.neighbour.heuristic(to: to)
 }
 ```
+This means Greedy Best First Search chooses the node that looks closest to the goal. The queue priority is based on the heuristic, not the total path cost so far.
 
 #### Dijkstra
 
@@ -1545,11 +1546,388 @@ This background is shown behind all the screens in the game
 <div style="page-break-before: always;"></div>
 
 ## Testing to Inform Development
-#### Test Results Summary
+#### Test Plan
+
+Before finishing the program I made a test plan so I could check the main functional parts of the app and also note down bugs that appeared during development. I used this to test the algorithm logic, the step system, the graph generation, and the UI state. If a test failed, I then used the result to find the cause of the bug and fix it. In reality I fixed bugs as I found them, but this table is showing tests that failed at least once during testing.
+
+| Test ID | Area being tested            | What I tested                                                                             | Expected result                                                                         | Actual result before fix                                                                   | Status before fix                                          |
+| ------- | ---------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| DEV-01  | Graph generation             | Generating a random graph with valid settings                                             | A graph should be created with connected planets and paths                              | Graph generated correctly                                                                  | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-02  | Graph generation             | Checking that generated lines do not cross each other                                     | Paths should avoid overlapping where possible                                           | Graph generated correctly                                                                  | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-03  | Path reconstruction          | Solving a graph where no valid path exists                                                | The app should finish safely and not try to draw a final path                           | The program could still try to reconstruct and draw a path, which caused a crash           | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-04  | Path drawing                 | Solving a graph where the reconstructed path only contains one node                       | The program should handle this safely without crashing                                  | The code assumed the path had more than one node and could crash                           | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-05  | Step system                  | Pressing step forward once at the start of a search                                       | The current node, frontier, and explored list should update once                        | Updated correctly                                                                          | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-06  | Step system                  | Pressing step backward after moving forward                                               | The program should return to the previous stored state                                  | Returned to the previous state correctly                                                   | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-07  | Ship animation / step system | Moving between steps where there was no movement animation to play                        | The update closure should still run so the UI and graph state continue updating         | The action was empty, so the closure did not run and the update never happened             | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-08  | Search algorithm state       | Stepping through an algorithm and checking when nodes are added to `explored`             | A node should only be added to `explored` when it is actually visited                   | Nodes were being marked explored too early when they were only discovered                  | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-09  | Graph controls               | Changing the start node                                                                   | The start node should update and the visual state should change clearly                 | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-10  | Graph controls               | Changing the end node                                                                     | The end node should update and the visual state should change clearly                   | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-11  | Graph recalculation          | Changing `maxDistance` after generating a graph                                           | The paths, neighbours, and drawn lines should all update together                       | Only the paths were recalculated, so related graph state became wrong                      | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-12  | Graph rebuilding             | Regenerating a graph after changing planet count                                          | The graph should regenerate with the new number of planets                              | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-13  | Priority frontier            | Running weighted algorithms on graphs where the same node could be reached more than once | The frontier should not contain duplicate entries for the same node                     | The same node could appear in the frontier multiple times                                  | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-14  | Explored list                | Stepping through algorithms repeatedly and checking the explored list                     | A node should only appear once in `explored`                                            | The same node could be added to the explored list more than once                           | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-15  | Screen navigation            | Moving between the main menu, about page, and simulator                                   | The app should change screens without losing state unexpectedly                         | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-16  | Rebuilding graphs            | Changing the selected graph type and then recalculating paths                             | The current graph builder should be used when recalculating paths                       | The program recalculated using the base builder instead of the selected builder            | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-17  | Weighted display             | Running a weighted algorithm and checking displayed costs                                 | The UI should show cost values where relevant                                           | Cost values were not always shown correctly at first                                       | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-18  | Weighted display             | Running a weighted algorithm after the fix and checking displayed costs                   | The explored and frontier displays should show useful cost values                       | Worked correctly after fix                                                                 | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-19  | Algorithm descriptions       | Opening the algorithm descriptions page                                                   | Each algorithm should show the correct information from the model                       | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-20  | UI layout                    | Viewing the screens on different device sizes                                             | The main content should still fit and remain readable                                   | Mostly worked, with some minor spacing issues                                              | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-21  | Help screen                  | Opening the help screen and reading the controls                                          | The controls and colour meanings should be explained clearly                            | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-22  | Animation timing             | Running autoplay on a solved graph                                                        | The ship and state changes should remain understandable                                 | Mostly worked, but some timings could still be improved                                    | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-23  | Random graph solving         | Solving multiple generated graphs in a row                                                | The app should keep updating correctly and not crash                                    | Worked correctly after the main fixes                                                      | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-24  | Algorithm correctness        | BFS on the unweighted tree graph                                                          | The algorithm should find the correct path for the tree graph                           | Correct path found                                                                         | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-25  | Algorithm correctness        | DFS on the unweighted tree graph                                                          | The algorithm should find the correct path for the tree graph                           | Correct path found                                                                         | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-26  | Algorithm correctness        | Greedy Best First Search on the unweighted tree graph                                     | The algorithm should find the correct path for the tree graph                           | Correct path found                                                                         | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-27  | Algorithm correctness        | Dijkstra on the unweighted tree graph                                                     | The algorithm should find the correct path for the tree graph                           | Correct path found                                                                         | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-28  | Algorithm correctness        | A* on the unweighted tree graph                                                           | The algorithm should find the correct path for the tree graph                           | Correct path found                                                                         | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-29  | Algorithm correctness        | BFS on the weighted square graph                                                          | The algorithm should solve the graph in a valid way for its own logic                   | Valid path found                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-30  | Algorithm correctness        | DFS on the weighted square graph                                                          | The algorithm should solve the graph in a valid way for its own logic                   | Valid path found                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-31  | Algorithm correctness        | Greedy Best First Search on the weighted square graph                                     | The algorithm should prioritise using the heuristic and solve according to greedy logic | The priority logic was not set up properly yet, so the solving behaviour was wrong         | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-32  | Algorithm correctness        | Dijkstra on the weighted square graph                                                     | The algorithm should find the shortest weighted path                                    | Dijkstra was originally behaving like a stack-based search, so the solving order was wrong | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-33  | Algorithm correctness        | A* on the weighted square graph                                                           | The algorithm should solve the graph using both cost so far and heuristic               | The queue priority was not combining the real cost with the heuristic correctly            | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-34  | Algorithm correctness        | BFS on a generated random graph                                                           | The algorithm should solve the graph without crashing                                   | Correct path found for the generated graph                                                 | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-35  | Algorithm correctness        | DFS on a generated random graph                                                           | The algorithm should solve the graph without crashing                                   | Correct path found for the generated graph                                                 | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-36  | Algorithm correctness        | Greedy Best First Search on a generated random graph                                      | The algorithm should solve the graph using heuristic priority                           | The queue priority logic was still wrong at first, so Greedy was not behaving properly     | <span style="color: red;"><strong>FAILED</strong></span>   |
+| DEV-37  | Algorithm correctness        | Dijkstra on a generated random graph                                                      | The algorithm should solve the graph and return the shortest weighted path              | Correct weighted path found for the generated graph after the fix                          | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-38  | Algorithm correctness        | A* on a generated random graph                                                            | The algorithm should solve the graph and use the heuristic correctly                    | Correct path found for the generated graph after the fix                                   | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-39  | Graph generation             | Generating several random graphs one after another                                        | The app should generate a new valid graph each time                                     | Worked correctly across repeated generations                                               | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-40  | Visual feedback              | Checking the colour of the start and end planets after selection                          | The start and end planets should always be clearly highlighted                          | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-41  | Reset behaviour              | Resetting the graph after partially solving it                                            | The graph state should return to its initial unsolved state                             | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-42  | Frontier display             | Viewing the frontier panel while stepping through an algorithm                            | The frontier list should update to match the current algorithm state                    | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-43  | Explored display             | Viewing the explored panel while stepping through an algorithm                            | The explored list should update to match the current algorithm state                    | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-44  | Algorithm switching          | Changing algorithm before solving the same graph                                          | The selected algorithm should change and the solver should use the new one              | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-45  | Graph type switching         | Changing between a random graph and a fixed test graph                                    | The app should load the selected graph type correctly                                   | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-46  | About / help pages           | Opening the information pages and returning to the simulator                              | Navigation should work and return the user to the correct place                         | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-47  | Algorithm completion         | Running an algorithm until the end                                                        | The final path should be shown and the solved state should be clear                     | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-48  | Input robustness             | Trying a range of graph settings such as different planet counts and maximum distances    | The app should continue working with valid values without crashing                      | Worked correctly with the tested valid values                                              | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-49  | Step controls                | Pressing step backward when already at the first step                                     | The app should not go back any further and should keep the current state                | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-50  | Step controls                | Pressing step forward when already at the final step                                      | The app should not move forward any further and should keep the solved state            | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-51  | Unsolvable graphs            | Running an algorithm on a graph where the end node cannot be reached                      | The app should stop safely, show that no path was found, and not crash                  | Worked correctly after the earlier path reconstruction fix                                | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-52  | Input validation             | Creating a graph where the start and end node could become the same                       | The app should always make sure the start and end node are different                    | The start and end could both be chosen as the same planet                                 | <span style="color: red;"><strong>FAILED</strong></span> |
+
+#### Bugs Fixed During Testing
+
+During development I found several bugs by stepping through the algorithms, changing graph settings, and testing the User Interface. These bugs were useful because they helped me improve the logic of the program and make the visualisation more reliable. This section shows the commits I made to fix some of the bugs I found. Because I was using Github it was easy to see the changes I made to fix these.
+
+##### DEV-03 BUG: Crash when reconstructing an empty path
+
+I found a bug where the app could still try to draw a completed path even when no path had actually been found. This meant the code could access the first element of an empty list and crash.
+
+Before:
+
+```swift
+if path.completed{
+    var complete_path = path.getPath()
+    var from = complete_path[0]
+```
+
+After:
+
+```swift
+if path.pathExists{
+    var complete_path = path.getPath()
+    var from = complete_path[0]
+```
+
+I also added a separate variable in the search class:
+
+```swift
+var pathExists : Bool
+```
+
+This fixed the bug because `completed` only means the algorithm has finished, while `pathExists` means a real path was successfully found. The program now only tries to draw the final path when one actually exists.
+
+##### DEV-04 BUG: Crash when the path only had one node
+
+I also found a crash when the reconstructed path only had one node in it. The old code removed the first item from the list and then assumed there were still nodes left to process.
+
+Before:
+
+```swift
+var complete_path = path.getPath()
+var from = complete_path.removeFirst()
+for to in complete_path{
+```
+
+After:
+
+```swift
+var complete_path = path.getPath()
+var from = complete_path[0]
+for to in complete_path{
+```
+
+This fixed the bug because the code no longer changes the list before looping through it. It simply reads the first node safely and keeps the path list intact.
+
+##### DEV-07 BUG: Empty animation meant the update never happened
+
+When stepping through the algorithm, sometimes there was no movement animation to run. In that case the closure after the animation did not run, which meant the UI update did not happen.
+
+Before:
+
+```swift
+ship.shape.run(moveAction){
+    [self] in 
+    if hasAnimation{
+        x.pulseRing(outerDistance: self.maxDistance)
+    }
+```
+
+After:
+
+```swift
+let actionToRun = moveAction ?? SKAction.run {}
+
+ship.shape.run(actionToRun){ [self] in
+    if hasAnimation{
+        x.pulseRing(outerDistance: self.maxDistance)
+    }
+```
+
+This fixed the bug because an empty `SKAction` is still a valid action, so the closure now always runs. That means the step system continues updating even when there is no visible movement.
+
+##### DEV-08 BUG: Nodes were being added to explored too early
+
+When testing the step-by-step state, I found that some nodes were being added to `explored` as soon as they were discovered, instead of when they were actually visited. This made the visualisation less logical.
+
+Before:
+
+```swift
+currentState = AlgorithmState(
+    current: start,
+    frontier: [(neighbour: start, weight : 0)],
+    explored: [start],
+```
+
+```swift
+if !currentState.explored.contains(where: {$0.isEqual(to: n.neighbour)}){
+    currentState.frontier.append(n)
+    currentState.cameFrom[n.neighbour.id] = currentState.current
+    currentState.explanation += " adding \(n.neighbour)"
+    currentState.explored.append(n.neighbour)
+}
+```
+
+After:
+
+```swift
+currentState = AlgorithmState(
+    current: start,
+    frontier: [(neighbour: start, weight : 0)],
+    explored: [],
+```
+
+```swift
+currentState.current = getNextFrontier().neighbour
+currentState.explored.append(currentState.current)
+```
+
+```swift
+if !currentState.explored.contains(where: {$0.isEqual(to: n.neighbour)}) &&
+   !currentState.frontier.contains(where: {$0.neighbour.isEqual(to: n.neighbour)}) {
+    currentState.frontier.append(n)
+    currentState.cameFrom[n.neighbour.id] = currentState.current
+    currentState.explanation += " adding \(n.neighbour)"
+}
+```
+
+This fixed the bug because a node is now only marked as explored when it is actually taken from the frontier and visited. That made the trace tables and the on-screen state match properly.
+
+##### DEV-11 BUG: Changing max distance did not fully rebuild the graph
+
+When I changed the maximum connection distance, the graph paths changed but the neighbour data and drawn path lines were not fully rebuilt.
+
+Before:
+
+```swift
+didSet{
+    self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)
+}
+```
+
+After:
+
+```swift
+didSet{
+    self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)
+    self.setPlanetNeighbours()
+    self.setInitialPlanetPathsSKNodes()
+}
+```
+
+This fixed the bug because all of the related graph data is now refreshed together. The visual graph and the underlying model stay in sync.
+
+##### DEV-13 BUG: Duplicate nodes in the frontier
+
+While testing the weighted algorithms, I found that the same node could appear in the frontier multiple times. This made the search state harder to understand.
+
+Before:
+
+```swift
+prioritizeFrontier()
+```
+
+After:
+
+```swift
+prioritizeAndDedupeFrontier()
+```
+
+```swift
+func prioritizeAndDedupeFrontier() {
+    currentState.frontier.sort { $0.weight < $1.weight }
+
+    var seen: Set<UUID> = []
+    currentState.frontier = currentState.frontier.filter { entry in
+        let id = entry.neighbour.id
+        return seen.insert(id).inserted
+    }
+}
+```
+
+This fixed the bug because the frontier is now sorted and then filtered so only the first copy of each node remains. That made the frontier display and the step logic much cleaner.
+
+##### DEV-14 BUG: A node could be added to explored more than once
+
+I also found that the same node could be added to the explored list multiple times when stepping through the algorithm.
+
+Before:
+
+```swift
+currentState.explored.append(currentState.current)
+```
+
+After:
+
+```swift
+if !currentState.explored.contains(where: { $0.id == currentState.current.id }) {
+    currentState.explored.append(currentState.current)
+}
+```
+
+This fixed the bug because the code now checks whether the node is already in the list before adding it. That made the explored list accurate.
+
+##### DEV-16 BUG: Recalculating paths used the wrong graph builder
+
+When I changed graph settings, the app sometimes recalculated paths using the base builder instead of the currently selected graph builder. This caused the wrong graph logic to be used.
+
+Before:
+
+```swift
+self.planetPaths = GalaxyBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)
+```
+
+After:
+
+```swift
+let myBuilder = Galaxy.builderTypes[selectedBuilder] ?? RandomGalaxyBuilder.self
+
+self.planetPaths = myBuilder.calculatePlanetPaths(planets: self.planets, maxDistance: self.maxDistance)
+```
+
+This fixed the bug because the app now uses the correct builder for the current graph type. That means recalculating paths behaves properly for different kinds of graphs.
+
+##### DEV-32 BUG: Dijkstra was behaving like DFS
+
+When I first added Dijkstra, it was not actually choosing the next node based on the smallest current path cost. Instead, it was removing the last item from the frontier like a stack. This meant it could solve weighted graphs in the wrong order and return the wrong weighted path.
+
+Before:
+
+```swift
+class Dijkstra: BaseSearch{
+    override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
+        currentState.frontier.removeLast()
+    }
+    override func getFrontier()->[any Traversable] {
+        super.getFrontier().reversed()
+    }
+}
+```
+
+After:
+
+```swift
+override func getQueuePriority(n : (neighbour : any Traversable, weight : Double), to: any Traversable) -> Double {
+    return getNewWeight(n: n)
+}
+```
+
+This fixed the bug because Dijkstra now uses the cost so far as the queue priority. That means it chooses the next node in the correct order for shortest path solving.
+
+##### DEV-33 BUG: A* and Greedy were not using the right queue priority
+
+I also found a more serious algorithm bug in A* and Greedy Best First Search. At first, the frontier stored the normal path cost as its weight for every algorithm. This meant Greedy was not properly using the heuristic, and A* was not correctly combining the heuristic with the cost so far.
+
+Before:
+
+```swift
+let newWeight = getNewWeight(n: n)
+if shouldAddToFrontier(n : n, newWeight : newWeight){
+    currentState.frontier.append((neighbour: n.neighbour, weight: newWeight))
+}
+```
+
+After:
+
+```swift
+let newWeight = getNewWeight(n: n)
+let queuePriority = getQueuePriority(n : n, to:end!)
+
+currentState.frontier.append((neighbour: n.neighbour, weight: queuePriority))
+currentState.weightSoFar[n.neighbour.id] = newWeight
+```
+
+For Greedy:
+
+```swift
+override func getQueuePriority(n : (neighbour : any Traversable, weight : Double), to: any Traversable) -> Double {
+    return n.neighbour.heuristic(to: to)
+}
+```
+
+For A*:
+
+```swift
+override func getQueuePriority(n : (neighbour : any Traversable, weight : Double), to: any Traversable) -> Double {
+    return getNewWeight(n: n) + n.neighbour.heuristic(to: to)
+}
+```
+
+This fixed the bug because the frontier priority is now different for each algorithm. Greedy uses only the heuristic, while A* uses both the real cost and the estimated remaining cost. This made their solving behaviour match the actual algorithms.
+
+##### DEV-52 BUG: Start and end could be the same node
+
+I also found a bug where the graph could choose the same planet for both the start and end. This made the graph invalid because the algorithm would begin and finish on the same node.
+
+Before:
+
+```swift
+self.startPlanet = randomPlanet()
+self.endPlanet = randomPlanet()
+```
+
+After:
+
+```swift
+self.startPlanet = planets[0]
+self.endPlanet = planets[1]
+```
+
+The old helper function was also removed:
+
+```swift
+func randomPlanet()->Planet?{
+    planets.randomElement()
+}
+```
+
+This fixed the bug because the program now deliberately chooses two different planets instead of choosing both randomly. That guarantees that the start and end are not the same, as long as there are at least two planets in the graph. I only found this bug quite late because it was not likely to happen on a big random graph.
+
+#### Testing the Graph Algorithms
 
 When writing the algorithms, in order to debug them and ensure they were working as intended, I needed graphs that would produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. During development I then compared the program state with the expected state to make sure the implementations were correct.
 
-These test graphs looked more artificial than the random galaxies because their purpose was correctness rather than appearance. In my random graph generation the weights are usually proportional to the distance between nodes, with some random noise for variation, but for the fixed tests I wanted graphs that clearly separated the behaviour of the algorithms.
+These test graphs looked more artificial than the random galaxies because their purpose was correctness rather than appearance. In my random graph generation the weights are usually proportional to the distance between nodes with some randomness for variation, but for the fixed tests I wanted graphs that clearly separated the behaviour of the algorithms.
 
 I ended up using two main non-random test graphs throughout development:
 * A weighted square graph, which was useful for comparing algorithms that do and do not account for edge weights.
@@ -1557,11 +1935,9 @@ I ended up using two main non-random test graphs throughout development:
 
 I used the weighted square graph and the tree graph repeatedly while implementing the algorithms and the step system. These were useful because they gave me known expected answers, so I could check whether the frontier, explored nodes, and final path matched what I had worked out on paper.
 
-This testing was also useful for the user experience, not just correctness. During stakeholder play testing, one piece of feedback was that random graphs could look impressive but it was hard to tell whether the answer was actually right. That feedback was one of the reasons I added the fixed test graphs and changed the galaxy generator into subclasses so I could deliberately choose between a random graph and a known test case.
-
+This testing was also useful for the user experience, not just correctness. During stakeholder play testing, one piece of feedback was that random graphs could look impressive but it was hard to tell whether the answer was actually right. That feedback was one of the reasons I added the fixed test graphs and changed the galaxy generator into subclasses so I could choose between a random graph and a known test case.
 
 <div style="page-break-before: always;"></div>
-
 ##### Unweighted Tree Test Graph
 
 TODO: For the tree graph there is no weighting and only one path. All of the algorithms find the path, but they take very different numbers of steps.
@@ -1591,7 +1967,6 @@ Remove Bolds
 For the weighted square graph, Dijkstra was the only algorithm that found the shortest path.
 
 Even though A* is also designed to find the shortest path and in most cases it does, in this test the route with the lowest total cost was not the most direct-looking path. Dijkstra still found that lower-cost route, but it also took the second longest to solve after Breadth First Search.
-
 <div style="page-break-before: always;"></div>
 
 ##### Generated Graph Test Example
