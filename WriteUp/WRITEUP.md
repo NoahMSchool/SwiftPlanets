@@ -567,16 +567,7 @@ A* uses a priority queue based on a combination (A 50/50 split) between the clos
 ##### Greedy Best First Search (Bonus)
 When researching the algorithms I found there was one more algorithm that would complete the program. Although Greedy (BFS) is not in the A-Level spec it has the same core idea of the others as it uses a priority queue which only has
 
-
 Here is a summary table of the algorithms and the features they use:
-
-| Feature | GalaxyBuilder | BFS | DFS | Greedy BFS | Dijkstra | A* |
-| --- | --- | --- | --- | --- | --- | --- |
-| Frontier Data Structure | Queue | Stack | Priority Queue | Priority Queue | Priority Queue | Priority Queue |
-| Use Weights | --- | --- | --- | Y | Y | Y |
-| Use Heuristic | --- | --- | --- | Y | --- | Y |
-| Priority Function | --- | --- | --- | Heuristic | Weight | Heuristic + Weight |
-
 
 #### Subcomponent Four : Algorithm Control : Model
 
@@ -662,7 +653,7 @@ I therefore should make sure my app can adjust the size and locations of UI elem
 ##### Navigation
 As I am going to allow the user to navigate around different Views.
 I am going to use SwiftUI's Navigation stack for this.
-As I want to have control and stylise my app I am not going to be using Apples built in components and will heavily customise them.
+As I want to have control and stylise my app I am not going to be using Apple's built in components and will heavily customise them.
 
 These screens should include:
 * Menu (for selection)
@@ -671,7 +662,9 @@ These screens should include:
 * About Graphs/Algorithms (Teaches the user about graphs using a text page (not the simulation)
 * Graph/Galaxy Builder (Allows the user to create/select/generate graph)
 * Simulation (Where the program performs the Graph Traversal Algorithms on the generated graph
-Here is a short graph of how these screens will interact
+
+Here is a short graph of how the user can navigate between these screens.
+
 ```mermaid
 stateDiagram-v2
 	[*] --> Menu
@@ -696,7 +689,7 @@ stateDiagram-v2
 
 
 ##### Menu Screen
-This is the Screen that the user will start with. The user should be able to navigate to all the other screens from here
+This is the Screen that the user will start with. The user should be able to navigate to all the other screens from here.
 ![StartScreen](https://github.com/user-attachments/assets/da99b1e1-7ab1-4a8d-8e15-9ca406712a2f)
 ##### About Graphs/Algorithms
 This is going to be a scrollable text screen that will tell the user about the algorithms.
@@ -748,14 +741,13 @@ The SwiftUI controls will be mostly output based:
 
 Throughout development I used source control with Git and GitHub. This was useful because it allowed me to save versions of the project over time, experiment with changes more safely, and go back to an earlier version if I introduced a bug. It also helped me keep a clearer record of how the project developed, which is useful when reviewing progress across multiple stages. I made over 300 commits to this project, although about half of these were to this file, the WRITEUP.md file.
 
-<img width="945" height="524" alt="image" src="https://github.com/user-attachments/assets/d22bb71f-91e8-48b0-942a-282ccc3b1125" />
+<img  alt="image" src="https://github.com/user-attachments/assets/d22bb71f-91e8-48b0-942a-282ccc3b1125" />
 
 Git was especially useful for a project like this because I was changing several parts of the program at once, such as the graph generation, algorithm logic, and user interface. Source control reduced the risk of losing work and made it easier to compare new code with older versions when I was debugging.
 
 I also tried to use GitHub Issues to track tasks and bugs during development. This was helpful when I remembered to use it, because it gave me a simple way to record problems and planned improvements in one place. However, I was not very consistent in using it, so it was only a partial record of the work rather than a complete project log. The issues page is here: [GitHub Issues](https://github.com/NoahMSchool/SwiftPlanets/issues).
 
-<img width="828" height="573" alt="image" src="https://github.com/user-attachments/assets/29c8c4d2-4f8e-40d2-b66e-061032ac5594" />
-
+<img  alt="image" src="https://github.com/user-attachments/assets/29c8c4d2-4f8e-40d2-b66e-061032ac5594" />
 
 I used GitHub desktop on my Mac as the source control client. I used Obsidian as a markdown editor for the writeup. I used Mermaid.js for the charts in this write up as you can describe different kinds of diagrams using Markdown. Markdown was a good choice because I think the diagrams are clear and they work on the GitHub markdown pages.
 
@@ -954,20 +946,84 @@ The functions that are required are:
 * **isEqual** will alow two nodes to be compared to check if two nodes are the same so the program knows if the graph has been solved when (current node == target node).
 
 #### BaseSearch
-I made my Search Algorithms all inherit from a Generic BaseSearch class.
-This acted partly like a protocol as it defined the functions the child classes should have. However the base search implemented some basic generic functionality that was overriden when neccesary.
+At this stage I implemented the different graph search algorithms by building them all on top of the same `BaseSearch` class. The base search implemented some basic generic functionality that was overriden when neccesary This meant the shared logic for stepping forward, tracking the frontier, storing history, and reconstructing the final path only had to be written once. Each individual algorithm then only needed to override the small parts that changed its behaviour, such as how the frontier was read or how priorities were calculated.
+
+Here is the table of the different search algorithms and how they differ, which helps to understand what functions need to be overridden for each.
+
+| Feature                 | Breadth First | Depth First    | Greedy BFS     | Dijkstra       | A*                 |
+| ----------------------- | ------------- | -------------- | -------------- | -------------- | ------------------ |
+| Frontier Data Structure | Stack         | Priority Queue | Priority Queue | Priority Queue | Priority Queue     |
+| Use Weights             | ---           | ---            | Y              | Y              | Y                  |
+| Use Heuristic           | ---           | ---            | Y              | ---            | Y                  |
+| Priority Function       | ---           | ---            | Heuristic      | Weight         | Heuristic + Weight |
 
 #### Breadth First Search
 Breadth First Search uses a queue to decide which is the next node to visit. 
 This provides a broad search around the start node in general visiting closer nodes before further nodes
 
+Breadth First Search did not need its own `getNextFrontier()` override because the default implementation in `BaseSearch` already behaves like a queue:
+
+```swift
+func getNextFrontier()->(neighbour: any Traversable, weight: Double){
+    currentState.frontier.removeFirst()
+}
+```
+
 #### Depth First Search
 Depth First provides a deep search so it will search deeper unitl it reaches a dead end before backtracking.
 I am using a pre order traversal so on a tree it will go root left right.
+
+To turn the frontier into a stack instead of a queue, I overrode `getNextFrontier()` so it removes the most recently added node:
+
+```swift
+override func getNextFrontier()->(neighbour: any Traversable, weight: Double){
+    currentState.frontier.removeLast()
+}
+```
+
+I also overrode `getFrontier()` so the visualised frontier appears in the same order that the stack will process it:
+
+```swift
+override func getFrontier()->[any Traversable]
+{
+    super.getFrontier().reversed()
+}
+```
+#### Greedy Best First Search 
+This priority function only used the heuristic. In my random graphs, with some exceptions when the start and end are separated by a void without nodes, it often found the shortest path quickly as my weights were based on the distance to the node.
+
+For Greedy Best First Search I overrode the class flags so the UI knows it uses both weights and a heuristic, and then set the priority queue to use only the heuristic:
+
+```swift
+override class func useHeuristic()->Bool{
+    return true
+}
+
+override class func usesWeights()->Bool{
+    return true
+}
+
+override func getQueuePriority(n : (neighbour : any Traversable, weight : Double), to: any Traversable) -> Double {
+    return n.neighbour.heuristic(to: to)
+}
+```
+
 #### Dijkstra
 
 For the algorithms that uses weights I decided to show them on the edges. 
 The priority function only uses the distance to the node
+
+So for Dijkstra I overrode `usesWeights()` and `getQueuePriority()`:
+
+```swift
+override class func usesWeights()->Bool{
+    return true
+}
+
+override func getQueuePriority(n : (neighbour : any Traversable, weight : Double), to: any Traversable) -> Double {
+    return getNewWeight(n: n)
+}
+```
 
 #### A*
 
@@ -975,10 +1031,6 @@ For A* the priority function was still extremely simple:
 ```swift
 getNewWeight(n: n) + n.neighbour.heuristic(to: to)
 ```
-
-#### Greedy Best First Search 
-This priority function only used the heuristic. In my random graphs, with some exceptions when the start and end are separated by a void without nodes, it often found the shortest path quickly as my weights were based on the distance to the node.
-
 
 #### Diagram of searching components
 
