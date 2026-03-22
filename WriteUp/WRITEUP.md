@@ -25,7 +25,7 @@
       <li><a href="#features-of-proposed-solution">Features of Proposed solution</a></li>
       <li><a href="#limitations-of-solution">Limitations of Solution</a></li>
       <li><a href="#other-requirements">Other Requirements</a></li>
-      <li><a href="#success-criteria">Success Criteria</a></li>
+      <li><a href="#success-criteria-definition">Success Criteria Definition</a></li>
     </ul>
   </li>
   <li><a href="#design">Design</a>
@@ -74,7 +74,7 @@
   </li>
   <li><a href="#evaluation">Evaluation</a>
     <ul>
-      <li><a href="#success-criteria-1">Success Criteria</a></li>
+      <li><a href="#success-criteria-evaluation">Success Criteria Evaluation</a></li>
       <li><a href="#component-evaluation">Component Evaluation</a>
         <ul>
           <li><a href="#subcomponent-one--graph-generation-1">Subcomponent One : Graph generation</a></li>
@@ -2489,28 +2489,23 @@ This table shows the responses to the open feedback questions in the survey:
 ## Evaluation
 
 In this section I will go through the different components, show the related success criteria in a table, and mention any relevant added features and improvements that could be made. This will be based on the development test results and the user post evaluation survey.
+### Usefulness and Improvements
 
 **TODO: CRITICAL:** summarise the most common positive comments and the most common suggested improvements from stakeholder testing.
 
-**TODO: CRITICAL:** add the findings from this testing and explain what I changed because of them.
-* For each finding, state the issue, the evidence, the change made, and whether the issue was fully resolved.
-* Found a bug generating a galaxy with 0 planets.
-* Found the colours quite confusing.
-* Nobody bothered reading the help section.
-* It was hard to know if the algorithm found the correct path.
+### High Level Evaluation
 
-<div style="page-break-before: always;"></div>
-From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. Some users found it harder than I expected to think in terms of logical rather than physical concepts.
+**TODO: CRITICAL:** summarise the main findings from stakeholder testing and explain any changes I made because of them.
+* For each key finding, state the issue, the evidence, the change made, and whether the issue was fully resolved.
+* Examples include: generating a galaxy with 0 planets, confusion over colours, low use of the help section, and uncertainty about whether the algorithm had found the correct path.
 
 Most of the Usability Tests were well met although people did not find the explanation text as useful as I thought.
 
-**TODO: CRITICAL:** evaluate each success criterion one by one using evidence.
-* For every criterion, state whether it was met, partially met, or not met.
-* Quote the evidence source, such as a test table, screenshot, stakeholder result, or specific implementation section.
-* Keep the judgement honest where the evidence is mixed.
-**TODO: CRITICAL:** say clearly what works well, what does not, and what I would improve next.
-* Separate strengths, weaknesses, and future improvements instead of mixing them together.
+**TODO: CRITICAL:** use this section to summarise the overall strengths, weaknesses, and future improvements after filling in the table and component discussion below.
+* Keep this at the whole-project level rather than repeating the detailed component points.
 * Make sure every proposed improvement links back to a limitation or partially met criterion.
+* 
+From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. Some users found it harder than I expected to think in terms of logical rather than physical concepts.
 
 ### Success Criteria Evaluation
 
@@ -2556,6 +2551,8 @@ These work well because they are simple, clear, and easy to justify with evidenc
 
 #### Subcomponent One : Graph generation
 
+**TODO: CRITICAL:** discuss `FR1`, `FR8`, `FR10`, and `PR3` here.
+
 ##### Learnings and things added
 I later added non-random test galaxies so that I could verify whether each algorithm had solved the graph correctly. This was useful because random graphs were not always easy to judge by eye. Edges should not intersect as it makes the graph harder to visualise. This is why I introduced the `CheckLines` stage.
 
@@ -2568,6 +2565,8 @@ For the way I have structured the graph generation, I think all of these would h
 
 #### Subcomponent Two : Graph Rendering
 
+**TODO: CRITICAL:** discuss `FR6`, `FR10`, and `UR1` here.
+
 For visualising the difference in the algorithms I definitely achieved the main goal of getting them all running correctly, and visualising the backtracking helps a lot. However, the way the random graphs were generated, with weights proportional to the distance to the node, meant that a few algorithms performed quite similarly. What I could have done was add more noise to the weights in generation.
 
 
@@ -2575,17 +2574,25 @@ For visualising the difference in the algorithms I definitely achieved the main 
 
 #### Subcomponent Three : Algorithm Solving
 
+**TODO: CRITICAL:** discuss `FR3`, `FR8`, and `PR4` here.
+
 **TODO: CRITICAL:** say whether each algorithm worked correctly and refer directly to the weighted square graph and tree graph test results table.
 
 #### Subcomponent Four : Algorithm Control
+
+**TODO: CRITICAL:** discuss `FR4`, `FR5`, and `PR2` here.
 
 **TODO: CRITICAL:** evaluate the step system and undo system.
 
 #### Subcomponent Five : Algorithm Visualisation
 
+**TODO: CRITICAL:** discuss `FR6`, `FR7`, `FR9`, `UR3`, and `UR5` here.
+
 **TODO: CRITICAL:** evaluate how clear the colours, ship movement,animations and explanations were. Refer back to the user testing. Mention the problems with the ship timing when doing the auto play
 
 #### Subcomponent Six : User Interface
+
+**TODO: CRITICAL:** discuss `FR2`, `UR1`, `UR2`, `UR4`, and `UR6` here.
 
 **TODO: CRITICAL:** evaluate the menus, navigation and screen layout on different devices. Say how well they fitted.
 
