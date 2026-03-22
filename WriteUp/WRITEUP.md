@@ -1657,10 +1657,8 @@ self.planetUILabel = TextBubbleNode(textString: "")
 self.planetUILabel.position = CGPoint(x: 0, y: -35)
 ```
 
-I added the ability to show and hide text on the edges
-<div style="page-break-before: always;"></div>
-Here is an updated planetNode:
-<p align="center"><img src="./screenshots/IndividualPlanetNode.png" alt="Individual Planet Node" width="55%"></p>
+I added the ability to show and hide text on the edges. Here is an updated planetNode:
+<p align="center"><img src="./IndividualPlanetNode.png" alt="Individual Planet Node" width="100"></p>
 #### ShipNode
 The Ship turned out to be more of a UI element than an actual object that I expected. I used a SKSpriteNode for this, these are nodes that take in an image which should be in the projects filesystem. I used an AI generated image for this which I will talk about later in Use of AI
 
