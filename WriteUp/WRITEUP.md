@@ -667,18 +667,10 @@ When writing these algorithms normally, as described previously in algorithm sol
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | Pausing the execution in the loop waiting for user input before continuing                                                                               | Relatively easy to implement                                                                                                                                                       | The algorithm code would need to be run in a separate thread so it does not pause execution of the main program. |
 | Storing state of the variables externally so they persist in memory so I can jump to certain steps without having to rerun the algorithm from the start. | I need to make a data structure to store the state of the algorithm and write other functionality to use this data structure to step forward and back or to steps in the algorithm | I am storing additional data for every step in the algorithm.                                                    |
-|                                                                                                                                                          |                                                                                                                                                                                    |                                                                                                                  |
 
 I am going to go with the 2nd choice as I believe the ability to undo, redo, and move to certain steps is important.
 
 One thing worth mentioning about this decision is that running these search algorithms is not computationally expensive, especially as I would do it on input, so running it every time on user input is not actually a major problem. Running it once compared to 10 times will have almost zero effect on performance. It is likely the processes rendering the graphics are more expensive than these algorithms. Although this is also likely not expensive as I am keeping it simple to allow it to run on low-end or old hardware.
-
-**TODO:** replace this note with a clear explanation of why fixed test graphs were needed, how they were introduced, and how they supported step-by-step verification during development.
-
-**TODO:** explain the design decision for what happens when graph-generation parameters change, for example whether the graph should regenerate immediately or only when the user presses a button, and justify why that is better for usability.
-* State the final behaviour in the app.
-* Explain how this avoids confusing the user or unexpectedly losing a graph they were studying.
-* Refer to any stakeholder feedback or testing that influenced this decision.
 
 ##### Example of Step by step running
 When testing running the algorithm step by step I wanted to make sure it was done correctly.
@@ -868,9 +860,11 @@ My first task was to randomly generate a graph or galaxy. This would consist of 
 * Select the number of nodes in the graph and the lengths of paths
 * The graph should look visually appealing and look like a galaxy
 
+If the graph generation parameter ***number of planets*** changed, I immediately regenerate the entire graph and recalculate the path. However, if the ***max connection length*** changed I only recalculate the paths but leave the planets as they were. This allows the user to slide the max length and see how the paths work.
+
 I started by using a nested `for` loop to create a square grid of possible positions for a planet and I added these to an array. I then needed to select a fixed number of positions from this list. To do this I randomised the order of the options array and selected the first `planetCount` positions.
 
-I then added a small random offset to each selected position so the planets did not sit in a perfectly regular grid. This kept a minimum spacing between planets while still making the galaxy feel more natural. After generating the planets, the next stage was to calculate which planets should be connected based on distance and then remove bad-looking edge intersections. Later in development, after stakeholder feedback, I also introduced subclasses for fixed test graphs so I could swap between random generation and known graphs for testing.
+I then added a small random offset to each selected position so the planets did not sit in a perfectly regular grid. This kept a minimum spacing between planets while still making the galaxy feel more natural. After generating the planets, the next stage was to calculate which planets should be connected based on distance and then remove bad-looking edge intersections. 
 
 Here is the create Planets for random galaxy
 ```swift
@@ -903,6 +897,7 @@ override class func createPlanets(planetCount: Int, spacing : Double = 100, mapS
     }
 ```
 
+Later in development, after stakeholder feedback and me trying to test the algorithms, I also introduced subclasses for fixed test graphs so I could swap between random generation and known graphs for testing. Initially I only planned to have the random galaxies. The class hierarchy looked like this once I introduce the new Galaxy Builder - TreeGalaxyBuilder and SquareGalaxyBuilder.
 
 ```mermaid
 classDiagram
@@ -921,7 +916,7 @@ classDiagram
     GalaxyBuilder <|-- SquareGalaxyBuilder
     GalaxyBuilder <|-- TreeGalaxyBuilder
 ```
-#### CheckLines
+#### Check Lines
 After creating the random galaxy generator I realised there were lots of intersections of edges in the graph. Some edges went through planets. This looked ugly and could be confusing to the user.
 
 In order to delete edges I needed to decide which edges to remove.
@@ -982,6 +977,58 @@ func checkIntersections(p1: CGPoint, q1: CGPoint, p2: CGPoint, q2: CGPoint) -> B
 ```
 
 This works because the orientation (which is the direction we travel to visit the three points) tells me which side of a line another point is on. If the two points from one line are on different sides of the other line, and the same is also true the other way round, then the two lines must cross. I also added a small check to ignore lines that share an endpoint, because graph edges meeting at a node should not count as an intersection.
+
+#### Test Galaxy Builders
+
+These galaxies were not random but designed so that I could test on known graphs with known results. 
+
+The square and tree galaxy builder let me create the same fixed graph every time, which was useful when comparing how the different algorithms behaved on exactly the same layout and weights. The code below shows how I just give it the positions of the planets and the paths between them. This also gives you a better idea of the kind of objects that the random builder generates.
+
+```swift
+class SquareGalaxyBuilder : GalaxyBuilder {
+  
+    override class func createPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
+        
+        var planetNamesShuffled = planetNames.shuffled()
+
+        let PA = Planet(position: CGPoint(x:-200,y:200), name: planetNamesShuffled.removeFirst())        
+        let PB = Planet(position: CGPoint(x:0,y:200), name: planetNamesShuffled.removeFirst())
+        let PC = Planet(position: CGPoint(x:-100,y:000), name: planetNamesShuffled.removeFirst())
+        let PD = Planet(position: CGPoint(x:100,y:000), name: planetNamesShuffled.removeFirst())
+        let PE = Planet(position: CGPoint(x:200,y:200), name: planetNamesShuffled.removeFirst())
+        let PF = Planet(position: CGPoint(x:200,y:000), name: planetNamesShuffled.removeFirst())
+        let PG = Planet(position: CGPoint(x:0,y:-100), name: planetNamesShuffled.removeFirst())
+        let PH = Planet(position: CGPoint(x:0,y:-200), name: planetNamesShuffled.removeFirst())
+        let PX = Planet(position: CGPoint(x:-200,y:0), name: planetNamesShuffled.removeFirst()) 
+        let PY = Planet(position: CGPoint(x:-200,y:-200), name: planetNamesShuffled.removeFirst())
+        let PI = Planet(position: CGPoint(x:200,y:-200), name: planetNamesShuffled.removeFirst())
+        
+        return [PA, PB, PC, PD, PE, PF, PG, PH, PX, PY, PI]
+    }
+    
+    override class func calculatePlanetPaths(planets : [Planet], maxDistance : CGFloat)->[(start : Planet, end : Planet, distance : Double)]{
+        return [
+            (planets[0], planets[1],1),
+            (planets[1], planets[4],4),
+            (planets[0], planets[2],3),
+            (planets[1], planets[3],2),
+            (planets[4], planets[5],1),
+            (planets[2], planets[3],1),
+            (planets[3], planets[5],5),
+            (planets[2], planets[6],7),
+            (planets[5], planets[10],2),
+            (planets[6], planets[7],7),
+            (planets[7], planets[10],2),
+            (planets[0], planets[8],10),
+            (planets[8], planets[7],10),
+            (planets[8], planets[9],2),
+            (planets[9], planets[7],2)
+        ]
+    }
+}
+```
+
+This was especially useful for the weighted shortest path algorithms, because I could choose exact weights that made Dijkstra and A* behave differently and then check that the program matched my expected result.
 
 ### Stage Two : Galaxy Rendering
 #### Procedural Planet appearance
@@ -1722,8 +1769,7 @@ It also shows the user the controls and how to interact with the program.
 
 The start of my algorithms page is generic to all the algorithms. Similar to how I realised how similar the algorithms' core concepts really are, I wanted to amplify this in the descriptions.
 
-For the algorithm description I wrote it so the information is not stored as text strings in the page, but is accessed from the algorithm object itself. I loop through all the algorithms and then display their individual descriptions.
-This way, if I add new algorithms I do not need to edit the descriptions page, but if I add a description to the algorithm object it will just update the page automatically.
+For the algorithm description I wrote it so the information is not stored as text strings in the page, but is accessed from the algorithm object itself. I loop through all the algorithms and then display their individual descriptions and if they use heuristics or weights. This way, if I add new algorithms I do not need to edit the descriptions page, but if I add a description to the algorithm object it will just update the page automatically.
 
 Here is the code in the algorithm descriptions page that loops through all the algorithms and adds the descriptions to the page:
 
@@ -2052,7 +2098,7 @@ This fixed the bug because a node is now only marked as explored when it is actu
 
 ##### DEV-11 BUG: Changing max distance did not fully rebuild the graph
 
-When I changed the maximum connection distance, the graph paths changed but the neighbour data and drawn path lines were not fully rebuilt.
+When I changed the maximum connection distance, the graph paths changed but the neighbour data and drawn path lines were not fully rebuilt. This was confusing because the graph looked correct but they paths were not.
 
 Before:
 
@@ -2257,48 +2303,43 @@ This testing was also useful for the user experience, not just correctness. Duri
 <div style="page-break-before: always;"></div>
 ##### Unweighted Tree Test Graph
 
-TODO: For the tree graph there is no weighting and only one path. All of the algorithms find the path, but they take very different numbers of steps.
+For the tree graph there is no weighting and only one path. All of the algorithms find the path, but they take very different numbers of steps. Greedy BFS and A* were the quickest because the heuristic guided them down the correct branch early. The distance heuristic is very accurate on an unweighted graph.
 
 | Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image                                                                                                    |
 | ------------------------ | ------------- | --------------: | --------------- | --------------------------------------------------------------------------------------------------------------------- |
-| BFS                      | **Y**         |           **3** | **13**          | <img src="./solvedgraphs/BreadthFirstTreeSolved.png" alt="Breadth First Tree Solved" style="width:70%; height:auto;"> |
-| DFS                      | **Y**         |           **3** | **7**           | <img src="./solvedgraphs/DepthFirstTreeSolved.png" alt="Depth First Tree Solved" style="width:70%; height:auto;">     |
-| Greedy Best First Search | **Y**         |           **3** | **4**           | <img src="./solvedgraphs/GreedyTreeSolved.png" alt="Greedy Tree Solved" style="width:70%; height:auto;">              |
-| Dijkstra                 | **Y**         |           **3** | **13**          | <img src="./solvedgraphs/DijkstraTreeSolved.png" alt="Dijkstra Tree Solved" style="width:70%; height:auto;">          |
-| A*                       | **Y**         |           **3** | **4**           | <img src="./solvedgraphs/AStarTreeSolved.png" alt="A Star Tree Solved" style="width:70%; height:auto;">               |
+| BFS                      | Y             |              3 | 13              | <img src="./solvedgraphs/BreadthFirstTreeSolved.png" alt="Breadth First Tree Solved" style="width:70%; height:auto;"> |
+| DFS                      | Y             |              3 | 7               | <img src="./solvedgraphs/DepthFirstTreeSolved.png" alt="Depth First Tree Solved" style="width:70%; height:auto;">     |
+| Greedy Best First Search | Y             |              3 | 4               | <img src="./solvedgraphs/GreedyTreeSolved.png" alt="Greedy Tree Solved" style="width:70%; height:auto;">              |
+| Dijkstra                 | Y             |              3 | 13              | <img src="./solvedgraphs/DijkstraTreeSolved.png" alt="Dijkstra Tree Solved" style="width:70%; height:auto;">          |
+| A*                       | Y             |              3 | 4               | <img src="./solvedgraphs/AStarTreeSolved.png" alt="A Star Tree Solved" style="width:70%; height:auto;">               |
 
 <div style="page-break-before: always;"></div>
 
 ##### Weighted Square Test Graph
-
-TODO: Remove Bolds
 
 | Algorithm                | Correct (Y/N) |  Cost | Number of steps | Solved Graph Image                                                                                                        |
 | ------------------------ | ------------- | ----: | --------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | BFS                      | Y             |   N/A | 11              | <img src="./solvedgraphs/BreadthFirstSquareSolved.png" alt="Breadth First Square Solved" style="width:56%; height:auto;"> |
 | DFS                      | Y             |   N/A | 5               | <img src="./solvedgraphs/DepthFirstSquareSolved.png" alt="Depth First Square Solved" style="width:56%; height:auto;">     |
 | Greedy Best First Search | Y             |    11 | 5               | <img src="./solvedgraphs/GreedySquareSolved.png" alt="Greedy Square Solved" style="width:56%; height:auto;">              |
-| Dijkstra                 | Y             | **8** | 7               | <img src="./solvedgraphs/DijkstraSquareSolved.png" alt="Dijkstra Square Solved" style="width:56%; height:auto;">          |
+| Dijkstra                 | Y             |     8 | 7               | <img src="./solvedgraphs/DijkstraSquareSolved.png" alt="Dijkstra Square Solved" style="width:56%; height:auto;">          |
 | A*                       | Y             |    11 | 5               | <img src="./solvedgraphs/AStarSquareSolved.png" alt="A Star Square Solved" style="width:56%; height:auto;">               |
 
-For the weighted square graph, Dijkstra was the only algorithm that found the shortest path.
-
-Even though A* is also designed to find the shortest path and in most cases it does, in this test the route with the lowest total cost was not the most direct-looking path. Dijkstra still found that lower-cost route, but it also took the second longest to solve after Breadth First Search.
+For the weighted square graph, Dijkstra was the only algorithm that found the shortest path. Even though A* is also designed to find the shortest path and in most cases it does, in this test the route with the lowest total cost was not the most direct-looking path. Dijkstra still found that lower-cost route, but it also took the second longest to solve after Breadth First Search. The heuristic is not that accurate in this weighted graph, which is what I wanted.
 <div style="page-break-before: always;"></div>
 
-##### Generated Graph Test Example
+##### Generated Random Graph Test Example
+This table shows the results of running all the algorithms on one of the random graphs. Both Dijkstra and A* found the same shortest path although A* did it a lot more quickly. This makes sense because for the Generated Graph the heuristic is very good because the path weights and heuristic both rely on the distance between two nodes.
 
 | Algorithm                | Correct (Y/N) | Cost | Number of steps | Solved Graph Image                |
 | ------------------------ | ------------- | ---: | --------------- | --------------------------------- |
-| BFS                      | **Y**         |  N/A | **13**          | ![[BreadthFirstRandomSolved.png]] |
-| DFS                      | **Y**         |  N/A | 5               | ![[DepthFirstRandomSolved.png]]   |
-| Greedy Best First Search | **Y**         |  N/A | 5               | ![[GreedyRandomSolved.png]]       |
-| Dijkstra                 | **Y**         |   34 | 11              | ![[DijkstraRandomSolved.png]]     |
-| A*                       | **Y**         |   34 | 6               | ![[AStarRandomSolved.png]]        |
-For the Generated Graph the heuristic is very good because the path weights and heuristic both rely on the distance between two nodes.
+| BFS                      | Y             |  N/A | 13              | <img src="./solvedgraphs/BreadthFirstRandomSolved.png" alt="Breadth First Random Solved" style="width:56%; height:auto;"> |
+| DFS                      | Y             |  N/A | 5               | <img src="./solvedgraphs/DepthFirstRandomSolved.png" alt="Depth First Random Solved" style="width:56%; height:auto;"> |
+| Greedy Best First Search | Y             |  N/A | 5               | <img src="./solvedgraphs/GreedyRandomSolved.png" alt="Greedy Random Solved" style="width:56%; height:auto;"> |
+| Dijkstra                 | Y             |   34 | 11              | <img src="./solvedgraphs/DijkstraRandomSolved.png" alt="Dijkstra Random Solved" style="width:56%; height:auto;"> |
+| A*                       | Y             |   34 | 6               | <img src="./solvedgraphs/AStarRandomSolved.png" alt="A Star Random Solved" style="width:56%; height:auto;"> |
 
-Breadth First 
-
+##### Generated Random Graph BFS Trace
 
 
 **TODO: CRITICAL:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
@@ -2309,39 +2350,39 @@ Breadth First
 
 ## Testing to Inform Evaluation
 
-To evaluate whether the final program met the success criteria, I planned a short set of stakeholder questions to ask after users had tested the app. This focuses on the main usability, learning, and functionality goals of the program. The table below can be used to record each stakeholder's answer and then summarise the overall pattern at the end.
+To evaluate whether the final program met the success criteria, I planned a short set of stakeholder questions to ask after users had tested the app. This focuses on the main usability, learning, and functionality goals of the program. The results of this testing will help me have an evaluation that is based on real user feedback.
 
 ### Stakeholder Testing Results
 
-The options for all of these questions were one of Yes (Y), Partly (P), No (N). I made a mistake on the form because the last two questions had N as a good result and Y as a bad result which makes the form more confusing. In this table I change the wording to be the opposite and changed N to Y.
-
-These are pictures of some of the surveys that were filled in.
+These are pictures of some of the surveys that were filled in after the users had used the app.
 
 <p align="center"><img src="./surveys/post_surveys.jpeg" alt="Post evaluation surveys" width="75%"></p>
 
-| Question                                                     | Rambo                                                  | Rocco                                                  | Jim                                                   | Jon                                                    | Willow                                                 | Caspian                                                | Inge                                                   | Totals |
-| ------------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ----------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------ |
-| Could move between the main screens without help             | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span> |
-| Screens were easy to read on their device                    | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: red;"><strong>N</strong></span>   | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: red;"><strong>1 N</strong></span> |
-| Space theme was engaging and suitable                        | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: orange;"><strong>P</strong></span> | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span> |
-| Step-by-step simulation helped them understand the algorithm | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: orange;"><strong>P</strong></span> | <span style="color: orange;"><strong>P</strong></span> | <span style="color: orange;"><strong>P</strong></span> | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>3 P</strong></span> |
+The options for all of these questions were one of Yes (Y), Partly (P), No (N). I made a mistake on the form because the last two questions had N as a good result and Y as a bad result which makes the form more confusing. The table below shows all the responses to the multiple choice questions. In this table I change the wording to be the opposite for the bad question and changed N to Y to that I could show what is good and what is bad.
+
+| Question                                                     | Rambo                                                  | Rocco                                                  | Jim                                                   | Jon                                                    | Willow                                                 | Caspian                                                | Inge                                                   | Totals                                                                                                                                                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ----------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Could move between the main screens without help             | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  |
+| Screens were easy to read on their device                    | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: red;"><strong>N</strong></span>   | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: red;"><strong>1 N</strong></span>                                                           |
+| Space theme was engaging and suitable                        | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: orange;"><strong>P</strong></span> | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span>                                                        |
+| Step-by-step simulation helped them understand the algorithm | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: orange;"><strong>P</strong></span> | <span style="color: orange;"><strong>P</strong></span> | <span style="color: orange;"><strong>P</strong></span> | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>3 P</strong></span>                                                        |
 | Could explain what the `Frontier` box meant                  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: orange;"><strong>P</strong></span> | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: orange;"><strong>P</strong></span> | <span style="color: red;"><strong>N</strong></span>    | <span style="color: red;"><strong>N</strong></span>    | <span style="color: green;"><strong>3 Y</strong></span>, <span style="color: orange;"><strong>2 P</strong></span>, <span style="color: red;"><strong>2 N</strong></span> |
 | Could explain what the `Explored` box meant                  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: red;"><strong>N</strong></span>    | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: orange;"><strong>P</strong></span> | <span style="color: red;"><strong>N</strong></span>    | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span>, <span style="color: red;"><strong>2 N</strong></span> |
-| Ship movement helped show visit order                        | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span> |
+| Ship movement helped show visit order                        | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  |
 | Text explanations were helpful                               | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: red;"><strong>N</strong></span>   | <span style="color: orange;"><strong>P</strong></span> | <span style="color: orange;"><strong>P</strong></span> | <span style="color: orange;"><strong>P</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>3 Y</strong></span>, <span style="color: orange;"><strong>3 P</strong></span>, <span style="color: red;"><strong>1 N</strong></span> |
-| Felt they understood graph algorithms better after use       | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: orange;"><strong>P</strong></span> | <span style="color: orange;"><strong>P</strong></span> | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: orange;"><strong>2 P</strong></span> |
+| Felt they understood graph algorithms better after use       | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: orange;"><strong>P</strong></span> | <span style="color: orange;"><strong>P</strong></span> | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: orange;"><strong>2 P</strong></span>                                                        |
 | Could explain a difference between two algorithms            | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: red;"><strong>N</strong></span>   | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: orange;"><strong>P</strong></span> | <span style="color: red;"><strong>N</strong></span>    | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span>, <span style="color: red;"><strong>2 N</strong></span> |
-| Could generate a graph successfully                          | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span> |
-| Could step forwards and backwards through the algorithm      | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span> |
-| Could use auto-play successfully                             | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span> |
-| Unsolvable graphs were clearly shown                         | <span style="color: red;"><strong>N</strong></span>    | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: red;"><strong>N</strong></span>    | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: red;"><strong>2 N</strong></span> |
-| Graph looked clear and easy to follow                        | <span style="color: orange;"><strong>P</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span> |
-| There were NO crossing lines                                 | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span> |
-| App did NOT crash at any point                               | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span> |
-| NO bugs or confusing behaviour                               | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: red;"><strong>N</strong></span>   | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: red;"><strong>N</strong></span>    | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: red;"><strong>2 N</strong></span> |
-| Overall, the app helped them learn graph algorithms          | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span> |
+| Could generate a graph successfully                          | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  |
+| Could step forwards and backwards through the algorithm      | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  |
+| Could use auto-play successfully                             | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  |
+| Unsolvable graphs were clearly shown                         | <span style="color: red;"><strong>N</strong></span>    | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: red;"><strong>N</strong></span>    | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: red;"><strong>2 N</strong></span>                                                           |
+| Graph looked clear and easy to follow                        | <span style="color: orange;"><strong>P</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span>                                                        |
+| There were **NO** crossing lines                             | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  |
+| App did **NOT** crash at any point                           | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  |
+| NO bugs or confusing behaviour                               | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: red;"><strong>N</strong></span>   | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: red;"><strong>N</strong></span>    | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: red;"><strong>2 N</strong></span>                                                           |
+| Overall, the app helped them learn graph algorithms          | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span> | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>Y</strong></span>  | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  |
 
-The following table is a summary of the responses. I have included an average where I count Y=2, P=1 and N=0, along with my ideas on the reasons for the responses.
+The following table is a summary of the responses. I have included an average where I count Y=2, P=1 and N=0, along with my ideas on the reasons for the responses. 
 
 | Question | Totals | Average | Summary |
 | -------- | ------ | ------- | ------- |
@@ -2365,20 +2406,31 @@ The following table is a summary of the responses. I have included an average wh
 | NO bugs or confusing behaviour | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: red;"><strong>2 N</strong></span> | <span style="color: orange;"><strong>1.43</strong></span> | Two users noticed confusing behaviour, mainly autoplay jumping on large graphs and awkward scrolling. |
 | Overall, the app helped them learn graph algorithms | <span style="color: green;"><strong>7 Y</strong></span> | <span style="color: green;"><strong>2.00</strong></span> | All stakeholders said the app helped them understand graph algorithms better. |
 
-From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. I did not think they were used to thinking in a certain way especially about logical not physical concepts.
-
-Most of the Usability Tests were well met although people did not find the explanation text as useful as I thought. 
-
 ### Open Feedback Summary
 
+This table shows the responses to the open feedback questions in the survey:
+
+| Question                                  | Response                                                             |
+| ----------------------------------------- | -------------------------------------------------------------------- |
+| What was the most useful part of the app? | Made the algorithms clear                                            |
+| What was the most useful part of the app? | Helping to understand the graphs                                     |
+| What was the most useful part of the app? | Stepping through the algorithms                                      |
+| What was the most useful part of the app? | Good intro to graphs                                                 |
+| What was the most useful part of the app? | I liked the graphics                                                 |
+| What most needs improving?                | Nothing!                                                             |
+| What most needs improving?                | It is difficult to know if the solution to a random graph is correct |
+| What most needs improving?                | Sound                                                                |
+| What most needs improving?                | I'd like to build my own graphs or upload standard graph formats     |
+| What most needs improving?                | An explanations of concepts like stacks and queues                   |
+| What most needs improving?                | A bit complicated for me                                             |
+| What most needs improving?                | More explanation for someone who is not tech savvy like me           |
+
+
+## Evaluation
+
+In this section I will go through the different components, show the related success criteria in a table, and mention any relevant added features and improvements that could be made. This will be based on the development test results and the user post evaluation survey.
+
 **TODO: CRITICAL:** summarise the most common positive comments and the most common suggested improvements from stakeholder testing.
-
-| Question                                  | Summary of answers                                                                                                                                                                                                                                                                                  |
-| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| What was the most useful part of the app? | Made the algorithms clear<br>Helping to understand the graphs<br>Stepping through the algorithms<br>Good intro to graphs<br>I liked the graphics                                                                                                                                                    |
-| What most needs improving?                | Nothing!<br>Sound<br>I'd like to build my own graphs or upload standard graph formats<br>The explanations of concepts the user needs to know like stacks and queues should be included as this is needed and a lot of my target audience are brand new to concepts.<br>A bit complicated for me<br> |
-|                                           | More explanation for someone who is not tech savvy like me                                                                                                                                                                                                                                          |
-
 
 **TODO: CRITICAL:** add the findings from this testing and explain what I changed because of them.
 * For each finding, state the issue, the evidence, the change made, and whether the issue was fully resolved.
@@ -2388,10 +2440,9 @@ Most of the Usability Tests were well met although people did not find the expla
 * It was hard to know if the algorithm found the correct path.
 
 <div style="page-break-before: always;"></div>
+From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. I did not think they were used to thinking in a certain way especially about logical not physical concepts.
 
-## Evaluation
-
-In this section I will go through the different components, show the related success criteria in a table, and mention any relevant added features and improvements that could be made.
+Most of the Usability Tests were well met although people did not find the explanation text as useful as I thought. 
 
 **TODO: CRITICAL:** evaluate each success criterion one by one using evidence.
 * For every criterion, state whether it was met, partially met, or not met.
@@ -2490,14 +2541,17 @@ I also thought the text and UI components did not optimise space particularly we
 
 ## Conclusion
 
-To Conclude, I think I have achieved the main goal of this project. I created a final app that can generate graphs, solve them using multiple algorithms, and show the solution step by step in a way that is easier to follow. The main functional requirements were met, and  the program succeeded in making graph algorithms more accessible and easier to learn by using an engaging analalogy that was relatable to my stakeholders.
+To Conclude, I think I have achieved the main goal of this project. I created a final app that can generate graphs, solve them using multiple algorithms, and show the solution step by step in a way that is easier to follow. The main functional requirements were met, and  the program succeeded in making graph algorithms more accessible and easier to learn by using an engaging analogy that was relatable to my stakeholders.
 
-One of the main strengths of the project is that it is interactive. The user can generate different graphs, choose different algorithms, and watch the process happen visually instead of only reading about it. I beleve I gave the user just the right amount of control to allow the user to create usefull interesting graphs without being overwhelming.
+One of the main strengths of the project is that it is interactive. The user can generate different graphs, choose different algorithms, and watch the process happen visually instead of only reading about it. I believe I gave the user just the right amount of control to allow the user to create useful interesting graphs without being overwhelming.
+
 I think the step-by-step system, the colour coding, and the movement of the ship all helped make the algorithms clearer. The feedback from stakeholders was also positive, and they said that they enjoyed using it, found it pretty and engaging, and better understood the algorithms by the end.
+
+Based on the user feedback, it probably is not a great tool for people that know nothing about computer science. It might be best to use it for students doing GCSE computer science or above.
 
 Another important outcome of the project was what I learned while making it. I developed the app in Swift, which was a new language for me, so this project helped me learn a new programming language as well as new frameworks like SwiftUI and SpriteKit. I also had to learn about new programming concepts like protocols and optionals and new design patterns like Model View Controller. This made the project more difficult, but it also made it more fun.
 
-There are still some improvements that could be made in future, such as refining parts of the interface further, improving some of the timings and animations, and extending the app with more features. However, overall I think the project was successful and produced a useful engaging educational tool.
+There are still some improvements that could be made in future, such as refining parts of the interface further, improving some of the timings and animations, and extending the app with more features such as sound or ability to add your own graphs. However, overall I think the project was successful and produced a useful engaging educational tool.
 
 <p align="center"><img src="./screenshots/ConclusionScreen.png" alt="Conclusion Screen" width="75%"></p>
 
