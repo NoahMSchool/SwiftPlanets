@@ -601,6 +601,7 @@ This will mean that my UI will adapt to all screen sizes with little effort! Thi
 The controller, while not included directly in the subcomponents, is still a large section of the program. It provides a bridge between the Models and the Views and is essential for the program to run.
 I am going to use a SwiftUI observable object, which is an object that will notify and update observers when it changes.
 
+This diagram shows the main flow of data for one user action in the finished program:
 ### Implementation of Subcomponents
 
 #### Subcomponent One : Graph generation : Model
@@ -866,6 +867,7 @@ I then added a small random offset to each selected position so the planets did 
 
 This part of the generator is quite efficient for the size of graphs I use. Shuffling and sorting  positions or paths is fast enough for small (less than 100 node) graphs, and I accepted the more expensive intersection checks because they greatly improved the look of the final graph.
 
+This flowchart summarises the main stages of the random galaxy generation process:
 Here is the create Planets for random galaxy
 ```swift
 override class func createPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
@@ -1279,6 +1281,7 @@ At a high level to solve step by step I have a current state, a forward function
 Different to design, I did not include a redo Stack that stored the future stages. The argument that it is less efficient I do not think is a problem as it is only being done on an event and the calculations are actually not that big.
 
 This design uses more memory because every step stores a full `AlgorithmState`, but I thought this was a good trade-off. The graphs are small enough that the extra storage is not a problem, and it makes stepping backwards immediate instead of having to rerun the whole algorithm from the beginning every time.
+
 #### Undo Stack
 I made an UNDO stack to store the history of the algorithm.
 When I went forward in the algorithm I created an object that stored all the key variables of the algorithm state and pushed this object onto the stack. This is similar to how the contents of the registers are pushed onto a stack when there is an interrupt. I could then freely change the original variables for the next step without losing the data for the previous step.
