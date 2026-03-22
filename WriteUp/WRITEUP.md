@@ -62,18 +62,30 @@
       <li><a href="#stage-four--algorithm-control">Stage Four : Algorithm Control</a></li>
       <li><a href="#stage-five--algorithm-visualisation">Stage Five : Algorithm Visualisation</a></li>
       <li><a href="#stage-six--user-interface">Stage Six : User Interface</a></li>
-      <li><a href="#source-control-project-tracking-tools-and-ai">Source Control, Project Tracking, Tools and AI</a></li>
-    </ul>
-  </li>
-  <li><a href="#testing-to-inform-development">Testing to Inform Development</a></li>
-  <li><a href="#testing-to-inform-evaluation">Testing to Inform Evaluation</a>
-    <ul>
-      <li><a href="#stakeholder-testing-results">Stakeholder Testing Results</a></li>
-      <li><a href="#open-feedback-summary">Open Feedback Summary</a></li>
+      <li><a href="#source-control-project-tracking-tools-and-ai">Source Control, Project Tracking, Tools and AI</a>
+        <ul>
+          <li><a href="#source-control">Source Control</a></li>
+          <li><a href="#issue-tracking">Issue Tracking</a></li>
+          <li><a href="#development-environment">Development Environment</a></li>
+          <li><a href="#use-of-ai">Use of AI</a></li>
+        </ul>
+      </li>
+      <li><a href="#testing-to-inform-development">Testing to Inform Development</a>
+        <ul>
+          <li><a href="#test-plan">Test Plan</a></li>
+          <li><a href="#testing-the-graph-algorithms">Testing the Graph Algorithms</a></li>
+          <li><a href="#bugs-fixed-during-testing">Bugs Fixed During Testing</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li><a href="#evaluation">Evaluation</a>
     <ul>
+      <li><a href="#testing-to-inform-evaluation">Testing to Inform Evaluation</a></li>
+      <li><a href="#stakeholder-testing-results">Stakeholder Testing Results</a></li>
+      <li><a href="#open-feedback-summary">Open Feedback Summary</a></li>
+      <li><a href="#usefulness-and-improvements">Usefulness and Improvements</a></li>
+      <li><a href="#high-level-evaluation">High Level Evaluation</a></li>
       <li><a href="#success-criteria-evaluation">Success Criteria Evaluation</a></li>
       <li><a href="#component-evaluation">Component Evaluation</a>
         <ul>
@@ -1988,6 +2000,7 @@ This background is shown behind all the screens in the game
 <div style="page-break-before: always;"></div>
 
 ### Source Control, Project Tracking, Tools and AI
+#### Source Control
 
 Throughout development I used source control with Git and GitHub. This was useful because it allowed me to save versions of the project over time, experiment with changes more safely, and go back to an earlier version if I introduced a bug. It also helped me keep a clearer record of how the project developed, which is useful when reviewing progress across multiple stages. I made over 300 commits to this project, although about half of these were to this file, the WRITEUP.md file.
 
@@ -2020,9 +2033,11 @@ I used GitHub desktop on my Mac as the source control client. I used Obsidian as
 
 ### Testing to Inform Development
 
-### Test Plan
+Although this section is presented near the end of Development, the testing itself happened iteratively throughout development. As I built each part of the program, I tested it, found bugs, and then used those results to improve the next version before continuing.
 
-Before finishing the program I made a test plan so I could check the main functional parts of the app and also note down bugs that appeared during development. I used this to test the algorithm logic, the step system, the graph generation, and the UI state. If a test failed, I then used the result to find the cause of the bug and fix it. In reality I fixed bugs as I found them, but this table is showing tests that failed at least once during testing.
+#### Test Plan
+
+Before finishing the program I made a test plan so I could check the main functional parts of the app and also note down bugs that appeared during development. I used this to test the algorithm logic, the step system, the graph generation, and the UI state. If a test failed, I then used the result to find the cause of the bug and fix it. In reality I fixed bugs as I found them, but this table is showing tests that failed at least once during testing. After the plan, I first show the fixed graph algorithm tests that I used to check correctness, and then I show some of the bugs that those tests uncovered and how I fixed them.
 
 | Test ID | Area being tested            | What I tested                                                                             | Expected result                                                                         | Actual result before fix                                                                   | Status before fix                                          |
 | ------- | ---------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
@@ -2079,9 +2094,73 @@ Before finishing the program I made a test plan so I could check the main functi
 | DEV-51  | Unsolvable graphs            | Running an algorithm on a graph where the end node cannot be reached                      | The app should stop safely, show that no path was found, and not crash                  | Worked correctly after the earlier path reconstruction fix                                | <span style="color: green;"><strong>PASSED</strong></span> |
 | DEV-52  | Input validation             | Creating a graph where the start and end node could become the same                       | The app should always make sure the start and end node are different                    | The start and end could both be chosen as the same planet                                 | <span style="color: red;"><strong>FAILED</strong></span> |
 
-### Bugs Fixed During Testing
+#### Testing the Graph Algorithms
 
-During development I found several bugs by stepping through the algorithms, changing graph settings, and testing the User Interface. These bugs were useful because they helped me improve the logic of the program and make the visualisation more reliable. This section shows the commits I made to fix some of the bugs I found. Because I was using Github it was easy to see the changes I made to fix these.
+When writing the algorithms, in order to debug them and ensure they were working as intended, I needed graphs that would produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. During development I then compared the program state with the expected state to make sure the implementations were correct. This comes before the bug-fix examples because these correctness tests were one of the main ways I discovered which parts of the search logic still needed to be improved.
+
+These test graphs looked more artificial than the random galaxies because their purpose was correctness rather than appearance. In my random graph generation the weights are usually proportional to the distance between nodes with some randomness for variation, but for the fixed tests I wanted graphs that clearly separated the behaviour of the algorithms.
+
+I ended up using two main non-random test graphs throughout development:
+* A weighted square graph, which was useful for comparing algorithms that do and do not account for edge weights.
+* A tree graph, which was useful for checking traversal order and the behaviour of stacks and queues.
+
+I used the weighted square graph and the tree graph repeatedly while implementing the algorithms and the step system. These were useful because they gave me known expected answers, so I could check whether the frontier, explored nodes, and final path matched what I had worked out on paper.
+
+This testing was also useful for the user experience, not just correctness. During stakeholder play testing, one piece of feedback was that random graphs could look impressive but it was hard to tell whether the answer was actually right. That feedback was one of the reasons I added the fixed test graphs and changed the galaxy generator into subclasses so I could choose between a random graph and a known test case.
+
+<div style="page-break-before: always;"></div>
+##### Unweighted Tree Test Graph
+
+For the tree graph there is no weighting and only one path. All of the algorithms find the path, but they take very different numbers of steps. Greedy BFS and A* were the quickest because the heuristic guided them down the correct branch early. The distance heuristic is very accurate on an unweighted graph.
+
+| Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image                                                                                                    |
+| ------------------------ | ------------- | --------------: | --------------- | --------------------------------------------------------------------------------------------------------------------- |
+| BFS                      | Y             |              3 | 13              | <img src="./solvedgraphs/BreadthFirstTreeSolved.png" alt="Breadth First Tree Solved" style="width:70%; height:auto;"> |
+| DFS                      | Y             |              3 | 7               | <img src="./solvedgraphs/DepthFirstTreeSolved.png" alt="Depth First Tree Solved" style="width:70%; height:auto;">     |
+| Greedy Best First Search | Y             |              3 | 4               | <img src="./solvedgraphs/GreedyTreeSolved.png" alt="Greedy Tree Solved" style="width:70%; height:auto;">              |
+| Dijkstra                 | Y             |              3 | 13              | <img src="./solvedgraphs/DijkstraTreeSolved.png" alt="Dijkstra Tree Solved" style="width:70%; height:auto;">          |
+| A*                       | Y             |              3 | 4               | <img src="./solvedgraphs/AStarTreeSolved.png" alt="A Star Tree Solved" style="width:70%; height:auto;">               |
+
+<div style="page-break-before: always;"></div>
+
+##### Weighted Square Test Graph
+
+| Algorithm                | Correct (Y/N) |  Cost | Number of steps | Solved Graph Image                                                                                                        |
+| ------------------------ | ------------- | ----: | --------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| BFS                      | Y             |   N/A | 11              | <img src="./solvedgraphs/BreadthFirstSquareSolved.png" alt="Breadth First Square Solved" style="width:56%; height:auto;"> |
+| DFS                      | Y             |   N/A | 5               | <img src="./solvedgraphs/DepthFirstSquareSolved.png" alt="Depth First Square Solved" style="width:56%; height:auto;">     |
+| Greedy Best First Search | Y             |    11 | 5               | <img src="./solvedgraphs/GreedySquareSolved.png" alt="Greedy Square Solved" style="width:56%; height:auto;">              |
+| Dijkstra                 | Y             |     8 | 7               | <img src="./solvedgraphs/DijkstraSquareSolved.png" alt="Dijkstra Square Solved" style="width:56%; height:auto;">          |
+| A*                       | Y             |    11 | 5               | <img src="./solvedgraphs/AStarSquareSolved.png" alt="A Star Square Solved" style="width:56%; height:auto;">               |
+
+For the weighted square graph, Dijkstra was the only algorithm that found the shortest path. Even though A* is also designed to find the shortest path and in most cases it does, in this test the route with the lowest total cost was not the most direct-looking path. Dijkstra still found that lower-cost route, but it also took the second longest to solve after Breadth First Search. The heuristic is not that accurate in this weighted graph, which is what I wanted.
+<div style="page-break-before: always;"></div>
+
+##### Generated Random Graph Test Example
+This table shows the results of running all the algorithms on one of the random graphs. Both Dijkstra and A* found the same shortest path although A* did it a lot more quickly. This makes sense because for the Generated Graph the heuristic is very good because the path weights and heuristic both rely on the distance between two nodes.
+
+| Algorithm                | Correct (Y/N) | Cost | Number of steps | Solved Graph Image                |
+| ------------------------ | ------------- | ---: | --------------- | --------------------------------- |
+| BFS                      | Y             |  N/A | 13              | <img src="./solvedgraphs/BreadthFirstRandomSolved.png" alt="Breadth First Random Solved" style="width:56%; height:auto;"> |
+| DFS                      | Y             |  N/A | 5               | <img src="./solvedgraphs/DepthFirstRandomSolved.png" alt="Depth First Random Solved" style="width:56%; height:auto;"> |
+| Greedy Best First Search | Y             |  N/A | 5               | <img src="./solvedgraphs/GreedyRandomSolved.png" alt="Greedy Random Solved" style="width:56%; height:auto;"> |
+| Dijkstra                 | Y             |   34 | 11              | <img src="./solvedgraphs/DijkstraRandomSolved.png" alt="Dijkstra Random Solved" style="width:56%; height:auto;"> |
+| A*                       | Y             |   34 | 6               | <img src="./solvedgraphs/AStarRandomSolved.png" alt="A Star Random Solved" style="width:56%; height:auto;"> |
+
+##### Generated Random Graph BFS Trace
+
+
+**TODO: CRITICAL:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
+* Make sure the trace table matches the screenshots and the implementation.
+* Use this as direct evidence that the step system is correct.
+
+<div style="page-break-before: always;"></div>
+
+<div style="page-break-before: always;"></div>
+
+#### Bugs Fixed During Testing
+
+After carrying out the development tests, I found several bugs by stepping through the algorithms, changing graph settings, and testing the User Interface. These bugs were useful because they helped me improve the logic of the program and make the visualisation more reliable. This section shows some of the commits I made to fix the bugs I found. Because I was using GitHub it was easy to see the changes I made to fix them. The testing and bug fixing was an iterative process.
 
 ##### DEV-03 BUG: Crash when reconstructing an empty path
 
@@ -2396,99 +2475,6 @@ func randomPlanet()->Planet?{
 ```
 
 This fixed the bug because the program now deliberately chooses two different planets instead of choosing both randomly. That guarantees that the start and end are not the same, as long as there are at least two planets in the graph. I only found this bug quite late because it was not likely to happen on a big random graph.
-
-### Testing the Graph Algorithms
-
-When writing the algorithms, in order to debug them and ensure they were working as intended, I needed graphs that would produce different outcomes for each algorithm. I wrote some down on paper and manually solved them step by step using a trace table. During development I then compared the program state with the expected state to make sure the implementations were correct.
-
-These test graphs looked more artificial than the random galaxies because their purpose was correctness rather than appearance. In my random graph generation the weights are usually proportional to the distance between nodes with some randomness for variation, but for the fixed tests I wanted graphs that clearly separated the behaviour of the algorithms.
-
-I ended up using two main non-random test graphs throughout development:
-* A weighted square graph, which was useful for comparing algorithms that do and do not account for edge weights.
-* A tree graph, which was useful for checking traversal order and the behaviour of stacks and queues.
-
-I used the weighted square graph and the tree graph repeatedly while implementing the algorithms and the step system. These were useful because they gave me known expected answers, so I could check whether the frontier, explored nodes, and final path matched what I had worked out on paper.
-
-This testing was also useful for the user experience, not just correctness. During stakeholder play testing, one piece of feedback was that random graphs could look impressive but it was hard to tell whether the answer was actually right. That feedback was one of the reasons I added the fixed test graphs and changed the galaxy generator into subclasses so I could choose between a random graph and a known test case.
-
-<div style="page-break-before: always;"></div>
-##### Unweighted Tree Test Graph
-
-For the tree graph there is no weighting and only one path. All of the algorithms find the path, but they take very different numbers of steps. Greedy BFS and A* were the quickest because the heuristic guided them down the correct branch early. The distance heuristic is very accurate on an unweighted graph.
-
-| Algorithm                | Correct (Y/N) | Shortest length | Number of steps | Solved Graph Image                                                                                                    |
-| ------------------------ | ------------- | --------------: | --------------- | --------------------------------------------------------------------------------------------------------------------- |
-| BFS                      | Y             |              3 | 13              | <img src="./solvedgraphs/BreadthFirstTreeSolved.png" alt="Breadth First Tree Solved" style="width:70%; height:auto;"> |
-| DFS                      | Y             |              3 | 7               | <img src="./solvedgraphs/DepthFirstTreeSolved.png" alt="Depth First Tree Solved" style="width:70%; height:auto;">     |
-| Greedy Best First Search | Y             |              3 | 4               | <img src="./solvedgraphs/GreedyTreeSolved.png" alt="Greedy Tree Solved" style="width:70%; height:auto;">              |
-| Dijkstra                 | Y             |              3 | 13              | <img src="./solvedgraphs/DijkstraTreeSolved.png" alt="Dijkstra Tree Solved" style="width:70%; height:auto;">          |
-| A*                       | Y             |              3 | 4               | <img src="./solvedgraphs/AStarTreeSolved.png" alt="A Star Tree Solved" style="width:70%; height:auto;">               |
-
-<div style="page-break-before: always;"></div>
-
-##### Weighted Square Test Graph
-
-| Algorithm                | Correct (Y/N) |  Cost | Number of steps | Solved Graph Image                                                                                                        |
-| ------------------------ | ------------- | ----: | --------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| BFS                      | Y             |   N/A | 11              | <img src="./solvedgraphs/BreadthFirstSquareSolved.png" alt="Breadth First Square Solved" style="width:56%; height:auto;"> |
-| DFS                      | Y             |   N/A | 5               | <img src="./solvedgraphs/DepthFirstSquareSolved.png" alt="Depth First Square Solved" style="width:56%; height:auto;">     |
-| Greedy Best First Search | Y             |    11 | 5               | <img src="./solvedgraphs/GreedySquareSolved.png" alt="Greedy Square Solved" style="width:56%; height:auto;">              |
-| Dijkstra                 | Y             |     8 | 7               | <img src="./solvedgraphs/DijkstraSquareSolved.png" alt="Dijkstra Square Solved" style="width:56%; height:auto;">          |
-| A*                       | Y             |    11 | 5               | <img src="./solvedgraphs/AStarSquareSolved.png" alt="A Star Square Solved" style="width:56%; height:auto;">               |
-
-For the weighted square graph, Dijkstra was the only algorithm that found the shortest path. Even though A* is also designed to find the shortest path and in most cases it does, in this test the route with the lowest total cost was not the most direct-looking path. Dijkstra still found that lower-cost route, but it also took the second longest to solve after Breadth First Search. The heuristic is not that accurate in this weighted graph, which is what I wanted.
-<div style="page-break-before: always;"></div>
-
-##### Generated Random Graph Test Example
-This table shows the results of running all the algorithms on one of the random graphs. Both Dijkstra and A* found the same shortest path although A* did it a lot more quickly. This makes sense because for the Generated Graph the heuristic is very good because the path weights and heuristic both rely on the distance between two nodes.
-
-| Algorithm                | Correct (Y/N) | Cost | Number of steps | Solved Graph Image                |
-| ------------------------ | ------------- | ---: | --------------- | --------------------------------- |
-| BFS                      | Y             |  N/A | 13              | <img src="./solvedgraphs/BreadthFirstRandomSolved.png" alt="Breadth First Random Solved" style="width:56%; height:auto;"> |
-| DFS                      | Y             |  N/A | 5               | <img src="./solvedgraphs/DepthFirstRandomSolved.png" alt="Depth First Random Solved" style="width:56%; height:auto;"> |
-| Greedy Best First Search | Y             |  N/A | 5               | <img src="./solvedgraphs/GreedyRandomSolved.png" alt="Greedy Random Solved" style="width:56%; height:auto;"> |
-| Dijkstra                 | Y             |   34 | 11              | <img src="./solvedgraphs/DijkstraRandomSolved.png" alt="Dijkstra Random Solved" style="width:56%; height:auto;"> |
-| A*                       | Y             |   34 | 6               | <img src="./solvedgraphs/AStarRandomSolved.png" alt="A Star Random Solved" style="width:56%; height:auto;"> |
-
-##### Generated Random Graph BFS Trace
-
-
-**TODO: CRITICAL:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
-* Make sure the trace table matches the screenshots and the implementation.
-* Use this as direct evidence that the step system is correct.
-
-<div style="page-break-before: always;"></div>
-
-#### Source Control
-
-Throughout development I used source control with Git and GitHub. This was useful because it allowed me to save versions of the project over time, experiment with changes more safely, and go back to an earlier version if I introduced a bug. It also helped me keep a clearer record of how the project developed, which is useful when reviewing progress across multiple stages. I made over 300 commits to this project, although about half of these were to this file, the WRITEUP.md file.
-
-<img  alt="image" src="https://github.com/user-attachments/assets/d22bb71f-91e8-48b0-942a-282ccc3b1125" />
-
-Git was especially useful for a project like this because I was changing several parts of the program at once, such as the graph generation, algorithm logic, and user interface. Source control reduced the risk of losing work and made it easier to compare new code with older versions when I was debugging.
-
-#### Issue Tracking
-
-I also tried to use GitHub Issues to track tasks and bugs during development. This was helpful when I remembered to use it, because it gave me a simple way to record problems and planned improvements in one place. However, I was not very consistent in using it and only made 23 issues so it was only a partial record of the work rather than a complete project log. I think it would be more useful if more than one person was working on the project. The issues page is here: [GitHub Issues](https://github.com/NoahMSchool/SwiftPlanets/issues).
-
-<img  alt="image" src="https://github.com/user-attachments/assets/29c8c4d2-4f8e-40d2-b66e-061032ac5594" />
-
-#### Development Environment
-
-The IDE that I used was Swift Playgrounds, which is slightly easier to use than XCode for iOS Projects. I referred heavily to the Swift Documentation. Links to all of these tools can be found at the end of this document.
-
-I used GitHub desktop on my Mac as the source control client. I used Obsidian as a markdown editor for the writeup. Obsidian is quite good at exporting markdown as a PDF I think. I used Mermaid.js for the charts in this write up as you can describe different kinds of diagrams using Markdown. Markdown was a good choice because I think the diagrams are clear and they work on the GitHub markdown pages.
-
-
-#### Use of AI
-
-| Type      | Use                                                                                                                                  | Example                                                                                                                                                                                           |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with OpenAI ChatGPT (19 Feb 2025).                    | "Prompt: Generate a transparent PNG image that I can download of a cartoony silver spaceship with cyan accents that would explore a galaxy" <img src="./Ship8.png" alt="Ship sprite" width="20%"> |
-| Code<br>  | None of the code in the project was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections.    | "What is the easiest way to tell if two line segments intersect if I have the x,y positions of their start and end points"                                                                        |
-| Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand. It helped me understand the root cause. | What does “Value of optional type must be unwrapped” mean?<br>Why am I getting “Operation not permitted” when running my program?<br>                                                             |
-
-<div style="page-break-before: always;"></div>
 
 ## Evaluation
 
