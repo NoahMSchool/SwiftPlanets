@@ -944,7 +944,7 @@ erDiagram
 
 ```
 
-This diagram shows the main file structure of the project and how I separated all of the Swift code into Model, View and Controller sections. The Controller is only one file. The models contain the Galaxy and Planet, as well as all the Builder and Pathing code. The View is split into SpriteKit and SwiftUI.
+This diagram shows the final file structure of the project and how I separated all of the Swift code into Model, View and Controller sections. The Controller is only one file. The models contain the Galaxy and Planet, as well as all the Builder and Pathing code. The View is split into SpriteKit and SwiftUI. This structure developed iteratively as I built and refined the project, which can be seen in the commit history.
 
 ```mermaid
 flowchart LR
