@@ -1122,7 +1122,7 @@ To fix the Lines going through planets  I thought of putting edges across the pl
 
 Here is a diagram of the checklines on a Planet Node
 
-**TODO:** DRAW THE PLANET WITH LINES SHOWING A COLLISION
+![[Checklines diagram.png]]
 
 Here is the function on the planet that returns an array of four checklines for a planet:
 
@@ -2247,7 +2247,30 @@ This table shows the results of running all the algorithms on one of the random 
 
 Taken together, these development tests show that the final program can generate graphs, solve the fixed and random test cases correctly, step through and replay algorithm state reliably, and recover from the main bugs that were found during implementation.
 
-##### Generated Random Graph BFS Trace
+##### Generated Random Graph Breadth First Search Trace Table
+
+This is a trace table for the following graph using Breadth First Search on the following graph. The start node is planet "Gelyra" and the end is planet "Yithos"
+![[BFSTraceTableStep0.png]]
+
+| Step | Current  | Frontier                                   | Explored                                                              | Image                              |
+| ---- | -------- | ------------------------------------------ | --------------------------------------------------------------------- | ---------------------------------- |
+| 0    | ---      | Gelyra                                     | ---                                                                   | ![[BFSTraceTableStep0 Small.jpeg]] |
+| 1    | Gelyra   | Borealis, Hextara                          | Gelyra                                                                | ![[BFSTraceTableStep1 Small.jpeg]] |
+| 2    | Borealis | Hexara, Draxion, Arkena                    | Gelyra, Borealis                                                      | ![[BFSTraceTableStep2 Small.jpeg]] |
+| 3    | Hextara  | Draxion, Arkena, Wytheris, Odythos         | Gelyra, Borealis, Hextara                                             | ![[BFSTraceTableStep3 Small.jpeg]] |
+| 4    | Draxion  | Arkena, Wytheris, Odythos, Yithos, Zenthos | Gelyra, Borealis, Hextara, Draxion                                    | ![[BFSTraceTableStep4 Small.jpeg]] |
+| 5    | Arkena   | Wytheris, Odythos, Yithos, Zenthos         | Gelyra, Borealis, Hextara, Draxion, Arkena                            | ![[BFSTraceTableStep5 Small.jpeg]] |
+| 6    | Wytheris | Odythos, Yithos, Zenthos                   | Gelyra, Borealis, Hextara, Draxion, Arkena, Wytheris                  | ![[BFSTraceTableStep6 Small.jpeg]] |
+| 7    | Odythos  | Yithos, Zenthos                            | Gelyra, Borealis, Hextara, Draxion, Arkena, Wytheris, Odythos         | ![[BFSTraceTableStep7 Small.jpeg]] |
+| 8    | Yithos   | Zenthos                                    | Gelyra, Borealis, Hextara, Draxion, Arkena, Wytheris, Odythos, Yithos | ![[BFSTraceTableStep8 Small.jpeg]] |
+
+
+##### Generated Random Graph Dijkstra Trace Table
+
+| Step | Current | CostSoFar | Frontier | Explored | Image |
+| ---- | ------- | --------- | -------- | -------- | ----- |
+|      |         |           |          |          |       |
+
 
 
 **TODO: CRITICAL:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
