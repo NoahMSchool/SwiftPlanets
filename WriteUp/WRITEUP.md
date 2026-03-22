@@ -473,18 +473,34 @@ Based on the problem I'm trying to solve, the responses from my client stakehold
 I have broken down my problem into the following subcomponents. When developing I will do sprints for each of these components. At a very high level, these are the six subcomponents I am going to divide the problem into:
 
 ```mermaid
-
 flowchart LR
+    Program["Program"]
+
+    subgraph Row1[" "]
+        direction LR
+        GraphGeneration["Graph Generation"]
+        GraphRendering["Graph Rendering"]
+    end
+
+    subgraph Row2[" "]
+        direction LR
+        AlgorithmControl["Algorithm Control"]
+        AlgorithmSolving["Algorithm Solving"]
+
+    end
+
+    subgraph Row3[" "]
+        direction LR
+        AlgorithmVisualisation["Algorithm Visualisation"]
+        UserInterface["User Interface"]
+    end
+    
     Program --> GraphGeneration
     Program --> GraphRendering
     Program --> AlgorithmSolving
     Program --> AlgorithmControl
     Program --> AlgorithmVisualisation
     Program --> UserInterface
-
-    %%AlgorithmControl ---> |uses| AlgorithmSolving
-    %%AlgorithmVisualisation ---> |uses| AlgorithmControl
-    %%AlgorithmVisualisation ---> |uses| GraphRendering
 ```
 
 * **Graph generation** : This generates a random graph of planets for algorithms to solve
@@ -497,7 +513,6 @@ flowchart LR
 Here is an in depth summary of the inputs, outputs, preconditions with suitable validation and error handling for the main components of my solution. I have also listed which of my success criteria belong in each subcomponent. The only exception is PR1 (No crashes), which affects the whole program rather than one specific subcomponent because any part of the system could cause the app to crash.
 
 <div style="page-break-before: always;"></div>
-
 #### Subcomponent One : Graph generation
 ##### Description
 Generates an undirected graph that the algorithms can operate on and the spaceship can move between. Each node will be a planet in the graph which knows its neighbours. I will start more simply by using an unweighted graph, or all the weights equal to one, and then add weights later for necessary algorithms. To keep with the analogy I will call the weights fuel needed. This will also include choosing a start planet and an end planet. The graph does not necessarily have to be solvable.
@@ -664,11 +679,13 @@ The View provides a GUI for the user to see and interact with the program.
 For this I will need to use a graphics library. I am going to be using two, SpriteKit and SwiftUI. SpriteKit will be used for the areas where I need more control such as drawing graphs and custom animations. SwiftUI is going to be used for the overall adaptive app UI and navigation between screens.
 ##### SpriteKit 
 > SpriteKit is a general-purpose framework for drawing shapes, particles, text, images, and video in two dimensions.
+
 SpriteKit is imperative so I have control over exactly what is being rendered. It has a 2D coordinate system and allows me to place nodes in precise positions and draw shapes. This is important as I have control so I can draw graphs exactly how I want.
 It is a game engine that uses Apple's Metal framework which will mean high performance rendering.
 
 ##### SwiftUI
 > SwiftUI is a declarative framework for building user interfaces for iOS, iPadOS, watchOS, tvOS, visionOS and macOS, developed by Apple Inc.
+
 Declarative programming languages are higher level than imperative so they use abstraction and I do not need to worry about the low-level details of how the UI is created. This will mean that my UI will adapt to all screen sizes with little effort! This is because I define what I want the UI to look like and it will generate it so it is not generated with a particular screen size in mind.
 
 #### Controller (Program Logic)
@@ -678,13 +695,26 @@ The controller, while not included directly in the subcomponents, is still a lar
 This diagram shows the main flow of data for one user action in the finished program:
 
 ```mermaid
-flowchart LR
-    A["User presses a control in SwiftUI"] --> B["Controller updates state"]
-    B --> C["BaseSearch / Galaxy model changes"]
-    C --> D["AlgorithmState is updated"]
-    D --> E["SpriteKit graph redraws highlights and ship"]
-    D --> F["SwiftUI lists and explanation boxes refresh"]
-    E --> G["User sees the new step"]
+flowchart TD
+    A["User presses a control in SwiftUI"]
+    B["Controller updates state"]
+    C["BaseSearch / Galaxy model changes"]
+    D["AlgorithmState is updated"]
+
+    subgraph Outputs[" "]
+        direction LR
+        E["SpriteKit graph redraws highlights and ship"]
+        F["SwiftUI lists and explanation boxes refresh"]
+    end
+
+    G["User sees the new step"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    D --> F
+    E --> G
     F --> G
 ```
 
@@ -930,14 +960,38 @@ This flowchart summarises the main stages of the random galaxy generation proces
 
 ```mermaid
 flowchart TD
-    A["Create grid of possible positions"] --> B["Shuffle positions"]
-    B --> C["Select first n positions"]
-    C --> D["Add random jitter to each planet"]
-    D --> E["Create candidate paths based on distance"]
-    E --> F["Sort candidate paths by distance"]
-    F --> G["Remove paths that intersect shorter paths"]
-    G --> H["Choose start and end planets"]
-    H --> I["Return finished galaxy"]
+    A["Create position grid"]
+
+    subgraph Setup["Planet setup"]
+        direction LR
+        B["Shuffle positions"]
+        C["Select first n"]
+        D["Add random jitter"]
+    end
+
+    subgraph Paths["Path building"]
+        direction LR
+        E["Create candidate paths"]
+        F["Sort paths by distance"]
+        G["Remove intersecting paths"]
+    end
+
+    subgraph Finish["Finish"]
+        direction LR
+        H["Choose start and end"]
+        I["Return galaxy"]
+    end
+
+    A --> B
+    A --> C
+    B --> D
+    C --> D
+    D --> E
+    E --> F
+    E --> G
+    F --> H
+    G --> H
+    H --> I
 ```
 
 Here is the create Planets for random galaxy
@@ -1650,7 +1704,7 @@ I made two stylised buttons that I could reuse. These are custom small SwiftUI v
 SpaceButton(imageSystemName: "moon", textLabel: "SpaceStyle", disabled: false, action: {print("hello there")})
 LargeSpaceButton(text: "SpaceIsBig", imageSystemName: "star", action: {print("spaceIsBig")})
 ```
-<img width="251" height="225" alt="image" src="https://github.com/user-attachments/assets/82fde299-3d98-4bce-95fc-3ce84f15b713" />
+<p align="center"><img src="./screenshots/BottomPlayingHUD.png" alt="Reusable Buttons and HUD Controls" width="70%"></p>
 
 ##### SpaceList
 This and the remaining components are primarily used for the HUD for the algorithm Control
@@ -1680,7 +1734,7 @@ This UI component allows me to pick from a list of elements. I will use it when 
 #### Menu Screen
 This is the first screen that is shown on launch, so it should allow the user to navigate from here to the rest of the program. I did this by passing closures to change the state of the app. The Main Menu Screen was made up of the main title text, which was defined in `SpaceText`, and three large Space Buttons.
 
-<img width="622" height="347" alt="image" src="https://github.com/user-attachments/assets/187e5d8b-58a2-48d6-bb88-78cb56637585" />
+<p align="center"><img src="./screenshots/IntroScreen.png" alt="Main Menu Screen" width="75%"></p>
 
 #### SpriteKit Screens
 
@@ -1941,7 +1995,7 @@ This background is shown behind all the screens in the game
 
 Throughout development I used source control with Git and GitHub. This was useful because it allowed me to save versions of the project over time, experiment with changes more safely, and go back to an earlier version if I introduced a bug. It also helped me keep a clearer record of how the project developed, which is useful when reviewing progress across multiple stages. I made over 300 commits to this project, although about half of these were to this file, the WRITEUP.md file.
 
-<img  alt="image" src="https://github.com/user-attachments/assets/d22bb71f-91e8-48b0-942a-282ccc3b1125" />
+<p align="center"><img src="./screenshots/github_code.png" alt="GitHub Commit History" width="85%"></p>
 
 Git was especially useful for a project like this because I was changing several parts of the program at once, such as the graph generation, algorithm logic, and user interface. Source control reduced the risk of losing work and made it easier to compare new code with older versions when I was debugging.
 
@@ -1949,7 +2003,7 @@ Git was especially useful for a project like this because I was changing several
 
 I also tried to use GitHub Issues to track tasks and bugs during development. This was helpful when I remembered to use it, because it gave me a simple way to record problems and planned improvements in one place. However, I was not very consistent in using it and only made 23 issues so it was only a partial record of the work rather than a complete project log. I think it would be more useful if more than one person was working on the project. The issues page is here: [GitHub Issues](https://github.com/NoahMSchool/SwiftPlanets/issues).
 
-<img  alt="image" src="https://github.com/user-attachments/assets/29c8c4d2-4f8e-40d2-b66e-061032ac5594" />
+<p align="center"><img src="./screenshots/github_issues.png" alt="GitHub Issues" width="85%"></p>
 
 #### Development Environment
 
