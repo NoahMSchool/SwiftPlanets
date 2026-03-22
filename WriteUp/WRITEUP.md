@@ -481,6 +481,8 @@ Based on the problem I'm trying to solve, the responses from my client stakehold
 
 ## Design
 
+Using the requirements, stakeholder feedback, and success criteria from the analysis, I then designed the structure of the system before implementation.
+
 ### Problem Decomposition
 I have broken down my problem into the following subcomponents. When developing I will do sprints for each of these components. At a very high level, these are the six subcomponents I am going to divide the problem into:
 
@@ -906,6 +908,8 @@ The SwiftUI controls will be mostly output-based:
 <div style="page-break-before: always;"></div>
 
 ## Development
+
+After planning the system in the design section, I implemented the solution in stages. I kept the same six-subcomponent structure so it was easier to build, test, and explain each part.
 
 ### Object Model
 
@@ -2000,6 +2004,9 @@ This background is shown behind all the screens in the game
 <div style="page-break-before: always;"></div>
 
 ### Source Control, Project Tracking, Tools and AI
+
+Alongside implementing the app itself, I also used supporting tools to manage the project, track changes, and speed up development.
+
 #### Source Control
 
 Throughout development I used source control with Git and GitHub. This was useful because it allowed me to save versions of the project over time, experiment with changes more safely, and go back to an earlier version if I introduced a bug. It also helped me keep a clearer record of how the project developed, which is useful when reviewing progress across multiple stages. I made over 300 commits to this project, although about half of these were to this file, the WRITEUP.md file.
@@ -2486,6 +2493,8 @@ To evaluate whether the final program met the success criteria, I planned a shor
 
 ### Stakeholder Testing Results
 
+The following results show the responses from the post-development stakeholder testing that I used as evidence in the evaluation.
+
 These are pictures of some of the surveys that were filled in after the users had used the app.
 
 <p align="center"><img src="./surveys/post_surveys.jpeg" alt="Post evaluation surveys" width="75%"></p>
@@ -2618,6 +2627,8 @@ These work well because they are simple, clear, and easy to justify with evidenc
 | UR6             | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                                  | 6/7 users said they enjoyed it in the survey.                                                                                                                                  | <span style="color: green;"><strong>Met</strong></span>            |
 
 ### Component Evaluation
+
+After judging the success criteria as a whole, I then evaluated each main component of the system in more detail. This helps show which parts of the app worked best, which were weaker, and what I would improve next.
 
 #### Subcomponent One : Graph generation
 
