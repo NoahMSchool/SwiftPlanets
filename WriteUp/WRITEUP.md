@@ -135,7 +135,7 @@ From experience I have noticed that when looking for resources online to help le
 
 I want to bridge that gap by creating a graph algorithm simulator that uses a fun analogy of space to keep the user engaged. From my research, which I will refer to later, I believe that space is an engaging subject for many people interested in computer science and, even if they are not, it is still a fun and different way to explore the algorithms.
 
-Graph algorithms are often a difficult topic for Computer Science students as they have not been exposed to these concepts before. I will make an educational tool that aims to create a fun way for anyone to learn about graph algorithms through space.
+Graph algorithms are often difficult for Computer Science students because they may not have been exposed to these ideas before. One limitation with learning them is that there are lots of things changing at once while the algorithm runs. The student has to keep track of the current node, which nodes have already been explored, which nodes are still waiting to be visited, and sometimes the cost so far as well. This can be difficult to follow on paper, especially for someone who is new to trace tables or weighted graphs. It can also mean that a student learns the order of the steps without fully understanding why the algorithm made that choice or how it is different from another algorithm. I will make an educational tool that aims to create a fun way for anyone to learn about graph algorithms through space.
 
 <div style="page-break-before: always;"></div>
 
@@ -677,9 +677,9 @@ I will explain the three components at a lower level next but at a high level:
 * The Controller ties the Model and the View together
 
 #### Model (Data Structures)
-As I am using the Model View Controller Pattern I am going to keep the data in the Model. This will ensure there is a single source of truth which ensures consistency of data. I am going to use an Observable Object which is a *"A type of object with a publisher that emits before the object has changed."* This means when changing the objects properties it will update any views using the data.
+I am going to keep the data in the Models. This will ensure there is a single source of truth which ensures consistency of data. I am going to use an Observable Object which is a *"A type of object with a publisher that emits before the object has changed."* This means when changing the objects properties it will update any views using the data.
 
-##### The Models include :
+The Models include :
 * Graph Generation
 * Algorithm Solving
 * Algorithm Control
@@ -946,6 +946,56 @@ erDiagram
 
 ```
 
+This diagram shows the main file structure of the project and how I separated all of the Swift code into Model, View and Controller sections. The Controller is only one file. The models contain the Galaxy and Planet, as well as all the Builder and Pathing code. The View is split into SpriteKit and SwiftUI.
+
+```mermaid
+flowchart LR
+    Root["PlanetPathingSim.swiftpm"]
+
+    Root --> Model["Model"]
+    Root --> View["View"]
+    Root --> Controller["Controller"]
+
+    Model --> Galaxy["Galaxy.swift"]
+    Model --> Planet["Planet.swift"]
+    Model --> Builders["Builders"]
+    Model --> Pathing["Pathing"]
+
+    Builders --> BuilderBase["GalaxyBuilder.swift"]
+    Builders --> BuilderRandom["RandomGalaxyBuilder.swift"]
+    Builders --> BuilderSquare["SquareGalaxyBuilder.swift"]
+    Builders --> BuilderTree["TreeGalaxyBuilder.swift"]
+
+    Pathing --> Traversable["Traversable.swift"]
+    Pathing --> Explanations["SpaceExplanations.swift"]
+    Pathing --> Algorithms["Algorithms"]
+
+    Algorithms --> BFS["BreadthFirst.swift"]
+    Algorithms --> DFS["DepthFirst.swift"]
+    Algorithms --> Dijkstra["Dijkstra.swift"]
+    Algorithms --> Greedy["GreedyBestFirst.swift"]
+    Algorithms --> AStar["A-Star.swift"]
+    Algorithms --> SearchBase["SearchAlgorithms.swift"]
+
+    View --> SwiftUI["SwiftUI"]
+    View --> SpriteKit["SpriteKit"]
+
+    SwiftUI --> ContentView["ContentView.swift"]
+    SwiftUI --> HomeView["HomeView.swift"]
+    SwiftUI --> InstructionsView["InstructionsView.swift"]
+    SwiftUI --> AboutView["AboutView.swift"]
+    SwiftUI --> AlgorithmsView["AlgorithmsView.swift"]
+    SwiftUI --> HUDView["HUDView"]
+    SwiftUI --> SpaceElements["SpaceElements"]
+
+    SpriteKit --> MainScene["MainScene.swift"]
+    SpriteKit --> DrawHelper["DrawHelper.swift"]
+    SpriteKit --> Actions["Actions.swift"]
+    SpriteKit --> SKNodes["SKNodes"]
+
+    Controller --> GameController["GameController.swift"]
+```
+
 
 <div style="page-break-before: always;"></div>
 
@@ -1074,7 +1124,7 @@ To fix the Lines going through planets  I thought of putting edges across the pl
 
 Here is a diagram of the checklines on a Planet Node
 
-**TODO:** DRAW THE PLANET WITH LINE 
+**TODO:** DRAW THE PLANET WITH LINES SHOWING A COLLISION
 
 Here is the function on the planet that returns an array of four checklines for a planet:
 
