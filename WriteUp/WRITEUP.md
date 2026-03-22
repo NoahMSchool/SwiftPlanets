@@ -209,12 +209,12 @@ These are pictures of some of the surveys that were filled in.
 
 | **Are you studying computer science, if so what course: ** | A level, GCSE, University, None or Other                                                             |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Stakeholder 1 : Rambo                                       | GCSE OCR computer Science                                                                            |
-| Stakeholder 2 : Rocco                                       | OCR comp-sci A-Level                                                                                 |
+| Stakeholder 1 : Rambo                                      | GCSE OCR computer Science                                                                            |
+| Stakeholder 2 : Rocco                                      | OCR comp-sci A-Level                                                                                 |
 | Stakeholder 3 : Jim                                        | A Level Computer Sci                                                                                 |
 | Stakeholder 4 : Jon                                        | I am not currently studying computer science but finished a degree in comp-sci and maths a while ago |
-| Stakeholder 5 : Willow                                     | GCSE                                                                                                     |
-| Stakeholder 6 : Caspian                                    | no                                                                                                    |
+| Stakeholder 5 : Willow                                     | GCSE                                                                                                 |
+| Stakeholder 6 : Caspian                                    | no                                                                                                   |
 | Stakeholder 7 : Inge                                       | no                                                                                                   |
 
 From this it seems like my stakeholders will, or already have, encountered graphing algorithms, which gives me confidence that I have selected a useful topic.
@@ -1988,7 +1988,6 @@ This background is shown behind all the screens in the game
 <div style="page-break-before: always;"></div>
 
 ### Source Control, Project Tracking, Tools and AI
-#### Source Control
 
 Throughout development I used source control with Git and GitHub. This was useful because it allowed me to save versions of the project over time, experiment with changes more safely, and go back to an earlier version if I introduced a bug. It also helped me keep a clearer record of how the project developed, which is useful when reviewing progress across multiple stages. I made over 300 commits to this project, although about half of these were to this file, the WRITEUP.md file.
 
@@ -2019,7 +2018,8 @@ I used GitHub desktop on my Mac as the source control client. I used Obsidian as
 
 <div style="page-break-before: always;"></div>
 
-## Testing to Inform Development
+### Testing to Inform Development
+
 ### Test Plan
 
 Before finishing the program I made a test plan so I could check the main functional parts of the app and also note down bugs that appeared during development. I used this to test the algorithm logic, the step system, the graph generation, and the UI state. If a test failed, I then used the result to find the cause of the bug and fix it. In reality I fixed bugs as I found them, but this table is showing tests that failed at least once during testing.
@@ -2459,7 +2459,42 @@ This table shows the results of running all the algorithms on one of the random 
 
 <div style="page-break-before: always;"></div>
 
-## Testing to Inform Evaluation
+#### Source Control
+
+Throughout development I used source control with Git and GitHub. This was useful because it allowed me to save versions of the project over time, experiment with changes more safely, and go back to an earlier version if I introduced a bug. It also helped me keep a clearer record of how the project developed, which is useful when reviewing progress across multiple stages. I made over 300 commits to this project, although about half of these were to this file, the WRITEUP.md file.
+
+<img  alt="image" src="https://github.com/user-attachments/assets/d22bb71f-91e8-48b0-942a-282ccc3b1125" />
+
+Git was especially useful for a project like this because I was changing several parts of the program at once, such as the graph generation, algorithm logic, and user interface. Source control reduced the risk of losing work and made it easier to compare new code with older versions when I was debugging.
+
+#### Issue Tracking
+
+I also tried to use GitHub Issues to track tasks and bugs during development. This was helpful when I remembered to use it, because it gave me a simple way to record problems and planned improvements in one place. However, I was not very consistent in using it and only made 23 issues so it was only a partial record of the work rather than a complete project log. I think it would be more useful if more than one person was working on the project. The issues page is here: [GitHub Issues](https://github.com/NoahMSchool/SwiftPlanets/issues).
+
+<img  alt="image" src="https://github.com/user-attachments/assets/29c8c4d2-4f8e-40d2-b66e-061032ac5594" />
+
+#### Development Environment
+
+The IDE that I used was Swift Playgrounds, which is slightly easier to use than XCode for iOS Projects. I referred heavily to the Swift Documentation. Links to all of these tools can be found at the end of this document.
+
+I used GitHub desktop on my Mac as the source control client. I used Obsidian as a markdown editor for the writeup. Obsidian is quite good at exporting markdown as a PDF I think. I used Mermaid.js for the charts in this write up as you can describe different kinds of diagrams using Markdown. Markdown was a good choice because I think the diagrams are clear and they work on the GitHub markdown pages.
+
+
+#### Use of AI
+
+| Type      | Use                                                                                                                                  | Example                                                                                                                                                                                           |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with OpenAI ChatGPT (19 Feb 2025).                    | "Prompt: Generate a transparent PNG image that I can download of a cartoony silver spaceship with cyan accents that would explore a galaxy" <img src="./Ship8.png" alt="Ship sprite" width="20%"> |
+| Code<br>  | None of the code in the project was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections.    | "What is the easiest way to tell if two line segments intersect if I have the x,y positions of their start and end points"                                                                        |
+| Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand. It helped me understand the root cause. | What does “Value of optional type must be unwrapped” mean?<br>Why am I getting “Operation not permitted” when running my program?<br>                                                             |
+
+<div style="page-break-before: always;"></div>
+
+## Evaluation
+
+In this section I will go through the different components, show the related success criteria in a table, and mention any relevant added features and improvements that could be made. This will be based on the development test results and the user post evaluation survey.
+
+### Testing to Inform Evaluation
 
 To evaluate whether the final program met the success criteria, I planned a short set of stakeholder questions to ask after users had tested the app. This focuses on the main usability, learning, and functionality goals of the program. The results of this testing will help me have an evaluation that is based on real user feedback.
 
@@ -2495,27 +2530,27 @@ The options for all of these questions were one of Yes (Y), Partly (P), No (N). 
 
 The following table is a summary of the responses. I have included an average where I count Y=2, P=1 and N=0, along with my ideas on the reasons for the responses.
 
-| Question | Totals | Average | Summary |
-| -------- | ------ | ------- | ------- |
-| Could move between the main screens without help | <span style="color: green;"><strong>7 Y</strong></span> | <span style="color: green;"><strong>2.00</strong></span> | All of my stakeholders could navigate the app without help, which suggests the main navigation was clear. |
-| Screens were easy to read on their device | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: red;"><strong>1 N</strong></span> | <span style="color: green;"><strong>1.71</strong></span> | The UI adapted well to different screen sizes, although Jim said the large screen on his 13-inch iPad Pro was not used well enough. |
-| Space theme was engaging and suitable | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span> | <span style="color: green;"><strong>1.86</strong></span> | The theme was received positively overall, although one stakeholder was less enthusiastic than the others. |
-| Step-by-step simulation helped them understand the algorithm | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>3 P</strong></span> | <span style="color: green;"><strong>1.57</strong></span> | Most found the step-by-step process useful, but for the non comp sci people it did not explain everything. |
-| Could explain what the `Frontier` box meant | <span style="color: green;"><strong>3 Y</strong></span>, <span style="color: orange;"><strong>2 P</strong></span>, <span style="color: red;"><strong>2 N</strong></span> | <span style="color: orange;"><strong>1.14</strong></span> | Many stakeholders did not understand the Frontier box clearly, often because they did not understand queues or the overall search process. |
-| Could explain what the `Explored` box meant | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span>, <span style="color: red;"><strong>2 N</strong></span> | <span style="color: orange;"><strong>1.29</strong></span> | More users understood the Explored box than the Frontier box, probably because the name is more self-explanatory. |
-| Ship movement helped show visit order | <span style="color: green;"><strong>7 Y</strong></span> | <span style="color: green;"><strong>2.00</strong></span> | The ship gave a clear pointer of what users should focus on, and Jon said the backtracking helped show what the algorithm was actually doing. |
-| Text explanations were helpful | <span style="color: green;"><strong>3 Y</strong></span>, <span style="color: orange;"><strong>3 P</strong></span>, <span style="color: red;"><strong>1 N</strong></span> | <span style="color: orange;"><strong>1.29</strong></span> | The response was positive overall, but some felt the wording was not technical enough. |
-| Felt they understood graph algorithms better after use | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: orange;"><strong>2 P</strong></span> | <span style="color: green;"><strong>1.71</strong></span> | Everyone said it made more sense afterwards, although some younger users still did not fully understand the wider point. |
-| Could explain a difference between two algorithms | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span>, <span style="color: red;"><strong>2 N</strong></span> | <span style="color: orange;"><strong>1.29</strong></span> | Most explained differences correctly, but some likely repeated what they had read rather than fully understanding it. |
-| Could generate a graph successfully | <span style="color: green;"><strong>7 Y</strong></span> | <span style="color: green;"><strong>2.00</strong></span> | They all spent time making graphs and said this part was fun and visually appealing. |
-| Could step forwards and backwards through the algorithm | <span style="color: green;"><strong>7 Y</strong></span> | <span style="color: green;"><strong>2.00</strong></span> | The labelled buttons made this easy to use. |
-| Could use auto-play successfully | <span style="color: green;"><strong>7 Y</strong></span> | <span style="color: green;"><strong>2.00</strong></span> | The labelled button and the play/pause icon did not confuse anyone. |
-| Unsolvable graphs were clearly shown | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: red;"><strong>2 N</strong></span> | <span style="color: orange;"><strong>1.43</strong></span> | Some missed the explanation text at the end, so a clearer visual indicator would help. |
-| Graph looked clear and easy to follow | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span> | <span style="color: green;"><strong>1.86</strong></span> | The graph was generally clear and easy to follow. |
-| There were NO crossing lines | <span style="color: green;"><strong>7 Y</strong></span> | <span style="color: green;"><strong>2.00</strong></span> | No stakeholder reported crossing lines in the tested graphs. |
-| App did NOT crash at any point | <span style="color: green;"><strong>7 Y</strong></span> | <span style="color: green;"><strong>2.00</strong></span> | No crashes occurred during any of the stakeholder test runs. |
-| NO bugs or confusing behaviour | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: red;"><strong>2 N</strong></span> | <span style="color: orange;"><strong>1.43</strong></span> | Two users noticed confusing behaviour, mainly autoplay jumping on large graphs and awkward scrolling. |
-| Overall, the app helped them learn graph algorithms | <span style="color: green;"><strong>7 Y</strong></span> | <span style="color: green;"><strong>2.00</strong></span> | All stakeholders said the app helped them understand graph algorithms better. |
+| Question                                                     | Totals                                                                                                                                                                   | Average                                                   | Summary                                                                                                                                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Could move between the main screens without help             | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  | <span style="color: green;"><strong>2.00</strong></span>  | All of my stakeholders could navigate the app without help, which suggests the main navigation was clear.                                     |
+| Screens were easy to read on their device                    | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: red;"><strong>1 N</strong></span>                                                           | <span style="color: green;"><strong>1.71</strong></span>  | The UI adapted well to different screen sizes, although Jim said the large screen on his 13-inch iPad Pro was not used well enough.           |
+| Space theme was engaging and suitable                        | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span>                                                        | <span style="color: green;"><strong>1.86</strong></span>  | The theme was received positively overall, although one stakeholder was less enthusiastic than the others.                                    |
+| Step-by-step simulation helped them understand the algorithm | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>3 P</strong></span>                                                        | <span style="color: green;"><strong>1.57</strong></span>  | Most found the step-by-step process useful, but for the non comp sci people it did not explain everything.                                    |
+| Could explain what the `Frontier` box meant                  | <span style="color: green;"><strong>3 Y</strong></span>, <span style="color: orange;"><strong>2 P</strong></span>, <span style="color: red;"><strong>2 N</strong></span> | <span style="color: orange;"><strong>1.14</strong></span> | Many stakeholders did not understand the Frontier box clearly, often because they did not understand queues or the overall search process.    |
+| Could explain what the `Explored` box meant                  | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span>, <span style="color: red;"><strong>2 N</strong></span> | <span style="color: orange;"><strong>1.29</strong></span> | More users understood the Explored box than the Frontier box, probably because the name is more self-explanatory.                             |
+| Ship movement helped show visit order                        | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  | <span style="color: green;"><strong>2.00</strong></span>  | The ship gave a clear pointer of what users should focus on, and Jon said the backtracking helped show what the algorithm was actually doing. |
+| Text explanations were helpful                               | <span style="color: green;"><strong>3 Y</strong></span>, <span style="color: orange;"><strong>3 P</strong></span>, <span style="color: red;"><strong>1 N</strong></span> | <span style="color: orange;"><strong>1.29</strong></span> | The response was positive overall, but some felt the wording was not technical enough.                                                        |
+| Felt they understood graph algorithms better after use       | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: orange;"><strong>2 P</strong></span>                                                        | <span style="color: green;"><strong>1.71</strong></span>  | Everyone said it made more sense afterwards, although some younger users still did not fully understand the wider point.                      |
+| Could explain a difference between two algorithms            | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span>, <span style="color: red;"><strong>2 N</strong></span> | <span style="color: orange;"><strong>1.29</strong></span> | Most explained differences correctly, but some likely repeated what they had read rather than fully understanding it.                         |
+| Could generate a graph successfully                          | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  | <span style="color: green;"><strong>2.00</strong></span>  | They all spent time making graphs and said this part was fun and visually appealing.                                                          |
+| Could step forwards and backwards through the algorithm      | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  | <span style="color: green;"><strong>2.00</strong></span>  | The labelled buttons made this easy to use.                                                                                                   |
+| Could use auto-play successfully                             | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  | <span style="color: green;"><strong>2.00</strong></span>  | The labelled button and the play/pause icon did not confuse anyone.                                                                           |
+| Unsolvable graphs were clearly shown                         | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: red;"><strong>2 N</strong></span>                                                           | <span style="color: orange;"><strong>1.43</strong></span> | Some missed the explanation text at the end, so a clearer visual indicator would help.                                                        |
+| Graph looked clear and easy to follow                        | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span>                                                        | <span style="color: green;"><strong>1.86</strong></span>  | The graph was generally clear and easy to follow.                                                                                             |
+| There were NO crossing lines                                 | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  | <span style="color: green;"><strong>2.00</strong></span>  | No stakeholder reported crossing lines in the tested graphs.                                                                                  |
+| App did NOT crash at any point                               | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  | <span style="color: green;"><strong>2.00</strong></span>  | No crashes occurred during any of the stakeholder test runs.                                                                                  |
+| NO bugs or confusing behaviour                               | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: red;"><strong>2 N</strong></span>                                                           | <span style="color: orange;"><strong>1.43</strong></span> | Two users noticed confusing behaviour, mainly autoplay jumping on large graphs and awkward scrolling.                                         |
+| Overall, the app helped them learn graph algorithms          | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  | <span style="color: green;"><strong>2.00</strong></span>  | All stakeholders said the app helped them understand graph algorithms better.                                                                 |
 
 ### Open Feedback Summary
 
@@ -2535,14 +2570,12 @@ This table shows the responses to the open feedback questions in the survey:
 | What most needs improving?                | An explanation of concepts like stacks and queues                    |
 | What most needs improving?                | A bit complicated for me                                             |
 | What most needs improving?                | More explanation for someone who is not tech savvy like me           |
-
-
-## Evaluation
-
-In this section I will go through the different components, show the related success criteria in a table, and mention any relevant added features and improvements that could be made. This will be based on the development test results and the user post evaluation survey.
 ### Usefulness and Improvements
 
 **TODO: CRITICAL:** summarise the most common positive comments and the most common suggested improvements from stakeholder testing.
+
+
+
 
 ### High Level Evaluation
 
@@ -2572,31 +2605,31 @@ These work well because they are simple, clear, and easy to justify with evidenc
 
 **TODO: CRITICAL:** fill the Evidence / Summary column for each success criterion using the testing tables, screenshots, and development evidence.
 
-| ID              | Description                                                                                                                     | Evidence / Summary                                          | Status                                                             |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
-| **Functional**  |                                                                                                                                 |                                                             |                                                                    |
-| FR1             | The user can generate a graph using simple controls.                                                                            |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR2             | The app includes a page that explains what graphs and the algorithms are used for.                                              |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR3             | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.                           |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR4             | The user can step forwards and backwards through the algorithm one step at a time.                                              |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR5             | The user can auto-play the whole algorithm from start to finish.                                                                |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR6             | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes.            |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR7             | The simulation gives a text explanation of what is happening at each step.                                                      |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| FR8             | The simulation shows when a graph cannot be solved by ending safely and displaying that no path was found.                      |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR9             | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                                  |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| FR10            | Graphs should not be rendered with lines crossing each other where possible.                                                    |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| **Performance** |                                                                                                                                 |                                                             |                                                                    |
-| PR1             | The app does not crash during normal use or robustness testing.                                                                 |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| PR2             | On the tested devices, the app updates without noticeable delay when the user changes the graph or uses the algorithm controls. |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| PR3             | The app checks inputs and prevents invalid graph setups.                                                                        |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| PR4             | The algorithms do not give incorrect or misleading results on the fixed test graphs.                                            |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| **Usability**   |                                                                                                                                 |                                                             |                                                                    |
-| UR1             | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.                    |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| UR2             | Most stakeholder testers can move between the main screens without help.                                                        |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| UR3             | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.                   |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| UR4             | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app.                 |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| UR5             | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                                 | A few of the stakeholders had no idea what the frontier was | <span style="color: red;"><strong>Not Met</strong></span>          |
-| UR6             | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                                  |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| ID              | Description                                                                                                                     | Evidence / Summary                                                                                                                                                             | Status                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| **Functional**  |                                                                                                                                 |                                                                                                                                                                                |                                                                    |
+| FR1             | The user can generate a graph using simple controls.                                                                            | All 7 of my stakeholders were able to make the graph and it was the most positively commented on across all sections                                                           | <span style="color: green;"><strong>Met</strong></span>            |
+| FR2             | The app includes a page that explains what graphs and the algorithms are used for.                                              | Satisfied by about page and algorithm page.                                                                                                                                    | <span style="color: orange;"><strong>PartiallyMet</strong></span>  |
+| FR3             | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.                           | All the algorithms I implemented passed the tests producing the correct output for each step.                                                                                  | <span style="color: green;"><strong>Met</strong></span>            |
+| FR4             | The user can step forwards and backwards through the algorithm one step at a time.                                              | The two forwards and backwards buttons were clear and none of my users had problems with these controls.                                                                       | <span style="color: green;"><strong>Met</strong></span>            |
+| FR5             | The user can auto-play the whole algorithm from start to finish.                                                                | Two of the users noticed that for large graphs the ship would jump between nodes. However for small graphs the users thought it was a useful feature that worked great         | <span style="color: orange;"><strong>PartiallyMet</strong></span>  |
+| FR6             | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes.            | The UI showed two labeled lists and the connections with nodes had arrows and could change color                                                                               | <span style="color: green;"><strong>Met</strong></span>            |
+| FR7             | The simulation gives a text explanation of what is happening at each step.                                                      | There is a text element at the centre of the page which the users read, It states exactly what the algorithm is doing at that step in simple language the user can understand. | <span style="color: green;"><strong> Met</strong></span>           |
+| FR8             | The simulation shows when a graph cannot be solved by ending safely and displaying that no path was found.                      |                                                                                                                                                                                | <span style="color: orange;"><strong>PartiallyMet</strong></span>  |
+| FR9             | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                                  |                                                                                                                                                                                | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| FR10            | Graphs should not be rendered with lines crossing each other where possible.                                                    |                                                                                                                                                                                | <span style="color: green;"><strong>Met</strong></span>            |
+| **Performance** |                                                                                                                                 |                                                                                                                                                                                |                                                                    |
+| PR1             | The app does not crash during normal use or robustness testing.                                                                 |                                                                                                                                                                                | <span style="color: green;"><strong>Met</strong></span>            |
+| PR2             | On the tested devices, the app updates without noticeable delay when the user changes the graph or uses the algorithm controls. |                                                                                                                                                                                | <span style="color: green;"><strong>Met</strong></span>            |
+| PR3             | The app checks inputs and prevents invalid graph setups.                                                                        |                                                                                                                                                                                | <span style="color: green;"><strong>Met</strong></span>            |
+| PR4             | The algorithms do not give incorrect or misleading results on the fixed test graphs.                                            |                                                                                                                                                                                | <span style="color: green;"><strong>Met</strong></span>            |
+| **Usability**   |                                                                                                                                 |                                                                                                                                                                                |                                                                    |
+| UR1             | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.                    | They all were able to                                                                                                                                                          | <span style="color: green;"><strong>Met</strong></span>            |
+| UR2             | Most stakeholder testers can move between the main screens without help.                                                        | None of the stakeholders had problems navigating and passed the relevant tests                                                                                                 | <span style="color: green;"><strong>Met</strong></span>            |
+| UR3             | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.                   |                                                                                                                                                                                | <span style="color: green;"><strong> Met</strong></span>           |
+| UR4             | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app.                 |                                                                                                                                                                                | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| UR5             | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                                 |                                                                                                                                                                                | <span style="color: red;"><strong>Not Met</strong></span>          |
+| UR6             | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                                  | 6/7 users said they enjoyed it in the survey.                                                                                                                                  | <span style="color: green;"><strong>Met</strong></span>            |
 
 ### Component Evaluation
 
@@ -2632,6 +2665,7 @@ For visualising the difference in the algorithms I definitely achieved the main 
 #### Subcomponent Four : Algorithm Control
 
 **TODO: CRITICAL:** discuss `FR4`, `FR5`, and `PR2` here.
+UR5 was not met as the majority of the stakeholders had no idea what the frontier was and complained that it could be better explained.
 
 **TODO: CRITICAL:** evaluate the step system and undo system.
 
@@ -2644,6 +2678,16 @@ For visualising the difference in the algorithms I definitely achieved the main 
 #### Subcomponent Six : User Interface
 
 **TODO: CRITICAL:** discuss `FR2`, `UR1`, `UR2`, `UR4`, and `UR6` here.
+
+FR2 was met as I included the how to use and algorithms text based pages. 
+This requirement was 
+If I were to redo this requirement it would be that this page was useful useful to all users. I could measure this by giving the users a test after they read these pages and see what they understand.
+In this case it would only be partially met as some youger less experienced users thought it assumed too much computer science knowledge paticularly around stacks and queues. I found these pages to be a weaker section of the app which could be improved in future.
+
+
+UR1 was met as the users did not have problems reading the text or information on the screen with no complaints it was too small to read. However Jim infomed me that It would be nice to take advantage if the user has a bigger screen
+
+For the space theme and visuals UR6 My stakeholders gave complements and were engaged in the theme and visuals
 
 **TODO: CRITICAL:** evaluate the menus, navigation and screen layout on different devices. Say how well they fitted.
 
