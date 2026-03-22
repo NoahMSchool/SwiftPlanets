@@ -109,6 +109,10 @@ I am going to refer back to these stakeholders once I have developed the app and
 
 #### Questionnaire for target market
 
+These are pictures of some of the surveys that were filled in.
+
+<p align="center"><img src="./surveys/pre_surveys.jpeg" alt="Pre evaluation surveys" width="75%"></p>
+
 | **Are you studying computer science, if so what course: ** | A level, GCSE, University, None or Other                                                             |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Stakeholder 1 : Rambo                                       | GCSE OCR computer Science                                                                            |
@@ -2337,6 +2341,11 @@ To evaluate whether the final program met the success criteria, I planned a shor
 From the stakeholder testing I concluded that The program could assume too much if the user is brand new to computer science. I did not think they were used to thinking in a certain way especially about logical not physical concepts.
 
 Most of the Usability Tests were well met 
+The options for all of these questions were one of Yes (Y), Partly (P), No (N). I made a mistake on the form because the last two questions had N as a good result and Y as a bad result which makes the form more confusing. In this table I change the wording to be the opposite and changed N to Y.
+
+These are pictures of some of the surveys that were filled in.
+
+<p align="center"><img src="./surveys/post_surveys.jpeg" alt="Post evaluation surveys" width="75%"></p>
 
 ### Open Feedback Summary
 
@@ -2378,7 +2387,6 @@ In the status column I will use the following labels:
 | <span style="color: green;"><strong>Met</strong></span>            | The success criterion was achieved fully.                                                          |
 | <span style="color: orange;"><strong>Partially Met</strong></span> | The success criterion was achieved to some extent, but there were still weaknesses or limitations. |
 | <span style="color: red;"><strong>Not Met</strong></span>          | The success criterion was not achieved.                                                            |
-|                                                                    |                                                                                                    |
 
 These work well because they are simple, clear, and easy to justify with evidence from testing and stakeholder feedback.
 
