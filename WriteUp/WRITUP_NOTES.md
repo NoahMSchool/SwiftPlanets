@@ -116,14 +116,18 @@ Bugs and issues and fixes
 
 Make more clear inputs and and outputs in first section of design using table with datatype
 
-Deciding on rengenerating graph when changing graph generation parameters
+Deciding on regenerating graph when changing graph generation parameters
 
 Trace Table of random galaxy
 Add CheckLines diagram
 
-Add SwiftUI heirachy of components
 Fil in Clint Questionaire Final
 Evaluation
 
 Fill in the answers to the Evaluation Questions from the stakeholders
 
+Fill in willow rocco and caspian responses to questionaire in analysis.
+
+Look at critical 
+
+UI adaptability section

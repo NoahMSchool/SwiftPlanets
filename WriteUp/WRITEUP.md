@@ -1,4 +1,4 @@
-# A Level Computer Science - Engaging Space Graphing Simulator
+# A Level Computer Science Programming Project WriteUp
 
 | **Name: Noah Marks  **                    | **Candidate Number: 1146** |
 | ----------------------------------------- | -------------------------- |
@@ -10,7 +10,8 @@
 
 ## Introduction
 
-This project was to create an educational graph algorithm simulator with a space theme. The main aim was to make graph algorithms more engaging and easier to understand by allowing the user to interact with them in an app, rather than only reading about them or solving them from boring diagrams. The finished program allows the user to generate or choose a graph, select an algorithm, and then step through the solution while seeing what is happening visually on the graph.
+This project is an engaging educational graph algorithm simulator with a space theme. The main aim was to make graph algorithms more engaging and easier to understand by allowing the user to interact with them in an app, rather than only reading about them or solving them from boring diagrams. The finished program allows the user to generate or choose a graph, select an algorithm, and then step through the solution while seeing what is happening visually on the graph.
+I be using Swift and SwiftUI to develop an app which will be able to run on 2.5 billion apple devices all over the world.
 
 This document is organised into the main stages of the project. It begins with analysis of the problem, the audience and stakeholders, and existing solutions, and then moves into the design of the system. 
 In the design section I use tables, hand-drawn sketches, and diagrams such as hierarchy diagrams, navigation diagrams, and class diagrams to show how the solution was planned.
@@ -35,7 +36,7 @@ From experience I have noticed that when looking for resources online to help le
 
 I want to bridge that gap by creating a graph algorithm simulator that uses a fun analogy of space to keep the user engaged. From my research, which I will refer to later, I believe that space is an engaging subject for many people interested in computer science and, even if they are not, it is still a fun and different way to explore the algorithms.
 
-Graph algorithms are often a difficult topic for Computer Science students as they have not been exposed to these concepts before. I will make an educational tool that aims to create a fun way for anyone to learn about graph algorithms through space. I will do this in the form of an app using Swift and SwiftUI.
+Graph algorithms are often a difficult topic for Computer Science students as they have not been exposed to these concepts before. I will make an educational tool that aims to create a fun way for anyone to learn about graph algorithms through space.
 
 <div style="page-break-before: always;"></div>
 
@@ -196,7 +197,7 @@ All graph algorithms use backtracking all the time either if they reach a dead-e
 ##### Data mining
 My program does not require any data mining as I am not storing data.
 ##### Heuristics
-Algorithms like A* use heuristics to help guide the search. For graph algorithms a sensible heuristic is the absolute distance to the target node
+Algorithms like A* use heuristics to help guide the search. For graph algorithms a sensible heuristic is the absolute distance to the target node.
 ##### Pipelining
 Pipelining is not something I am directly controlling in this project, so it is not a relevent method in my solution.
 ##### Performance modelling
@@ -228,12 +229,12 @@ Lots of parts of my program will happen at the same time. The ship will need to 
 ### Choosing a Framework
 #### Framework Options
 
-| **Platform**                                | **Description**                                                                                                                                                                                     | **Pros**                                                                                                                                                                                                                                       | **Cons**                                                                                                                                                                                                                                                                                                                          |
-| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Unity](https://unity.com/)/Unreal          | Game engines will provide me with<br><br>Some examples of game engines I could use are Godot, Unity and Unreal Engine.                                                                              | I could make the program 3D if I wanted to.<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine, meaning I will not have to code these elements.  | A game engine like this can be overly complex for my program, as they are designed for video games involving more complex graphics. <br><br>I will have less control over the program if it is using pre-made functions, which means I don't write as many algorithms. For a unique project like graphing I would want more control. |
-| [Godot](https://godotengine.org/)           | Godot is a lightweight game engine used for both 2D and 3D games                                                                                                                                    | Very lightweight and simple to use.<br><br>I can write in GDScript, which is a simple language similar to Python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms including iOS devices | Like Unity, this is probably overkill.<br><br>Too many functions are provided in the framework, so there are fewer algorithms for me to write                                                                                                                                                                                      |
-| [Swift](https://www.swift.org/) / SpriteKit | Swift is Apple's programming language and SpriteKit is a simple graphics API I could use with it to make my game. SpriteKit is still feature rich and powerful with its node system and SKActions. | I could make my app work on all Apple devices such as tablets and phones which is more convenient for my target audience.<br><br>It will be more efficient as Swift is statically typed, meaning it will be more optimised by the compiler    | The game will not be playable on other platforms like Android or Windows as it will be exclusively iOS.                                                                                                                                                                                                                              |
-| [Pygame](https://www.pygame.org/)<br>       | Pygame is a simple 2D graphics library that uses python.                                                                                                                                            | I can write the project in Python which has easy syntax and is quite lightweight.                                                                                                                                                              | It is very basic so I will have to program all user interface components from scratch                                                                                                                                                                                                                                             |
+| **Platform**                                                             | **Description**                                                                                                                                                                                    | **Pros**                                                                                                                                                                                                                                          | **Cons**                                                                                                                                                                                                                                                                                                                             |
+| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Unity](https://unity.com/)[Unreal] (https://www.unrealengine.com/en-US) | Large Scale Game engines such as Unity and Unreal Engine will provide me with lots of tools and options for creating the project.<br>                                                              | I could make the program 3D if I wanted to.<br><br>Lots of lower-level UI interactions, e.g. panning, can be managed by the engine.<br><br>Lots of functionality is pre-baked into the engine, meaning I will not have to code these elements.    | A game engine like this can be overly complex for my program, as they are designed for video games involving more complex graphics. <br><br>I will have less control over the program if it is using pre-made functions, which means I don't write as many algorithms. For a unique project like graphing I would want more control. |
+| [Godot](https://godotengine.org/)                                        | Godot is a lightweight game engine used for both 2D and 3D games                                                                                                                                   | Very lightweight and simple to use.<br><br>I can write in GDScript, which is a simple language similar to Python but can still be statically typed for efficiency.<br><br>I can easily export to many different platforms including iOS devices   | Like Unity, this is probably overkill.<br><br>Too many functions are provided in the framework, so there are fewer algorithms for me to write                                                                                                                                                                                        |
+| [Swift](https://www.swift.org/) / SpriteKit                              | Swift is Apple's programming language and SpriteKit is a simple graphics API I could use with it to make my game. SpriteKit is still feature rich and powerful with its node system and SKActions. | I could make my app work on all Apple devices such as tablets and phones which is more convenient for my target audience.<br><br>It will be more efficient as Swift is statically typed, meaning it will be more optimised by the compiler        | The game will not be playable on other platforms like Android or Windows as it will be exclusively iOS.                                                                                                                                                                                                                              |
+| [Pygame](https://www.pygame.org/)<br>                                    | Pygame is a simple 2D graphics library that uses python.                                                                                                                                           | I can write the project in Python which has easy syntax and is quite lightweight. This means I will have lots of control. I can also make it playable in the web which would mean it is usable by almost anyone if they have internet connection. | It is very basic so I will have to program all user interface components from scratch                                                                                                                                                                                                                                                |
 
 #### Final Choice
 
@@ -241,9 +242,9 @@ The main three contenders are Swift (using SpriteKit), Pygame and Godot.
 
 After considering the benefits and drawbacks of each framework I have decided to use Swift for my project. I will specifically be using SpriteKit for the graphics and SwiftUI for the controls and User Interface. I like the simplicity of this as it means I have more control over my game. 
 
-Another main factor in my decision means I can program it in Swift which is a strongly typed language meaning great efficiency compared to something like using python with Pygame which was a close second choice. I prefer this over a game engine which would require me to code in C# or C++ which are more complex.
+Another factor in my decision means I can program it in Swift which is a strongly typed language meaning great efficiency compared to something like using python with Pygame which was a close second choice. I prefer this over a game engine which would require me to code in C# or C++ which are more complex.
 
-However this will mean that the app can only be played on Apple devices, this could be a good start as they are popular with my audience. I found it is also quite difficult to have an Android version as I would need to rewrite it due to the specific frameworks I have selected. It may be more accessible if I make a Web App but Swift does not allow this.
+However this will mean that the app can only be played on Apple devices, this could be a good start as they are popular with my audience. I found it is also quite difficult to have an Android version as I would need to rewrite it due to the specific frameworks I have selected. It may be more accessible if I make a Web App but Swift does not allow this. 
 
 To develop I am going to be using Swift Playgrounds. This is a simple environment that should make it fast and easy to develop in. I may consider moving it to Xcode later if necessary, but to start Swift Playgrounds is sufficient.
 <div style="page-break-before: always;"></div>
@@ -281,11 +282,11 @@ To develop I am going to be using Swift Playgrounds. This is a simple environmen
 
 ### Limitations of Solution
 
-| Limitation                         | Explanation                                                                                                                                         | Justification                                                                                                                                                                                                                  |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Simplicity                         | The program will have an easy to use simple interface                                                                                                | As I am targeting the simulator at introducing graphs it is naturally going to be less feature rich and the user will not have full control over the program.                               |
+| Limitation                         | Explanation                                                                                                                                         | Justification                                                                                                                                                                                                              |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Simplicity                         | The program will have an easy to use simple interface                                                                                               | As I am targeting the simulator at introducing graphs it is naturally going to be less feature rich and the user will not have full control over the program.                                                              |
 | Less Control over Graph Generation | As I am quickly generating the graph with minimal inputs it means the user will not be able to have the control to create the exact graph they want | Giving more control to the user will make it more complicated to use. It is not targeted at experienced people simulating lots of graphs to test efficiency or unusual cases on algorithms. It is more of a learning tool. |
-| No Saved Data                      | I have not included the ability to store app data.                                                                                                  | I could not find enough features and reasons to store user data. There are no major practical benefits and the user likely prefers not to be tracked.                                                                            |
+| No Saved Data                      | I have not included the ability to store app data.                                                                                                  | I could not find enough features and reasons to store user data. There are no major practical benefits and the user likely prefers not to be tracked.                                                                      |
 
 ### Other Requirements
 #### Usability Requirements
@@ -302,7 +303,6 @@ There should not be any Major bugs or Exploits in the program.   My focus will b
 
 #### Information/Teaching
 As this is an educational tool everything needs to be factually correct. After and during development I will run tests involving trace tables to check the algorithms are doing the correct steps. When writing factual information I will refer to credible sources. I will also make small quality of life improvements that make the explanations more true to what is actually happening.
-
 
 <div style="page-break-before: always;"></div>
 
@@ -388,12 +388,12 @@ A Graph Object with connected nodes or planets. The nodes themselves should also
 Before using the inputs I need to check they are reasonable. There must be at least two planets and up to a sensible limit roughly around 10, but this will be finalised in development when I can test and visualise to choose the suitable count. The start and end planets should not be the same planet as the graph would already be solved, and the graph should not be within less than 3 steps of completion so runs do not end instantly. Planets should not be too close to each other or go on top of each other, as this will confuse the user.
 ##### Related Success Criteria
 
-| ID  | Criteria                     | Why this subcomponent supports it |
-| --- | ---------------------------- | --------------------------------- |
-| FR1 | Generate a graph             | This subcomponent is responsible for generating the graph the user will work with. |
-| FR8 | Show unsolvable graphs       | It can produce graphs that are unsolvable, so it must support that case properly. |
-| FR10 | Avoid crossing lines        | The generation logic should try to avoid creating graphs with crossing edges. |
-| PR3 | Prevent invalid graph setups | It must validate inputs and avoid invalid graph setups such as impossible start and end choices. |
+| ID   | Criteria                     | Why this subcomponent supports it                                                                |
+| ---- | ---------------------------- | ------------------------------------------------------------------------------------------------ |
+| FR1  | Generate a graph             | This subcomponent is responsible for generating the graph the user will work with.               |
+| FR8  | Show unsolvable graphs       | It can produce graphs that are unsolvable, so it must support that case properly.                |
+| FR10 | Avoid crossing lines         | The generation logic should try to avoid creating graphs with crossing edges.                    |
+| PR3  | Prevent invalid graph setups | It must validate inputs and avoid invalid graph setups such as impossible start and end choices. |
 
 <div style="page-break-before: always;"></div>
 
@@ -455,14 +455,13 @@ Not Undo at the first stage and redo at the last stage.
 
 ##### Related Success Criteria
 
-| ID  | Criteria                    | Why this subcomponent supports it |
-| --- | --------------------------- | --------------------------------- |
-| FR4 | Step through the algorithm  | It allows the user to move forwards and backwards through the algorithm one step at a time. |
-| FR5 | Auto-play the full algorithm | It controls the automatic playback of the whole algorithm. |
-| PR2 | Quick response              | The controls need to respond quickly when the user interacts with them. |
+| ID  | Criteria                     | Why this subcomponent supports it                                                           |
+| --- | ---------------------------- | ------------------------------------------------------------------------------------------- |
+| FR4 | Step through the algorithm   | It allows the user to move forwards and backwards through the algorithm one step at a time. |
+| FR5 | Auto-play the full algorithm | It controls the automatic playback of the whole algorithm.                                  |
+| PR2 | Quick response               | The controls need to respond quickly when the user interacts with them.                     |
 
 <div style="page-break-before: always;"></div>
-
 
 #### Subcomponent Five : Algorithm Visualisation
 ##### Description
@@ -480,13 +479,13 @@ This component will be built on top of the graph which has lots of validataion t
 
 ##### Related Success Criteria
 
-| ID  | Criteria                           | Why this subcomponent supports it |
-| --- | ---------------------------------- | --------------------------------- |
-| FR6 | Show the algorithm state           | It shows the algorithm state such as the current node, explored nodes, frontier, and final path. |
-| FR7 | Explain each step                  | It displays the text explanations for what is happening at each step. |
-| FR9 | Show visit order with the ship     | It includes the ship movement that shows visit order and backtracking. |
-| UR3 | Help users understand the algorithm | The step-by-step visualisation should help users understand the algorithm. |
-| UR5 | Explain the Frontier and Explored boxes | It contains the Frontier and Explored boxes that users need to understand. |
+| ID  | Criteria                                | Why this subcomponent supports it                                                                |
+| --- | --------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| FR6 | Show the algorithm state                | It shows the algorithm state such as the current node, explored nodes, frontier, and final path. |
+| FR7 | Explain each step                       | It displays the text explanations for what is happening at each step.                            |
+| FR9 | Show visit order with the ship          | It includes the ship movement that shows visit order and backtracking.                           |
+| UR3 | Help users understand the algorithm     | The step-by-step visualisation should help users understand the algorithm.                       |
+| UR5 | Explain the Frontier and Explored boxes | It contains the Frontier and Explored boxes that users need to understand.                       |
 
 <div style="page-break-before: always;"></div>
 
@@ -499,22 +498,21 @@ This is not just putting the screens together but also covers the creation of th
 This kind of input is passed from the user not other components of the program. Examples are just UI elements such as:
 * Buttons that the user can press.
 * Menus the user can select.
-
 ##### Outputs
-Affect program when buttons are pressed or items are selected by calling functions or updating variables.
-Give a visual interface of the program
+Again these include outputs to the user and also converts the inputs to outputs to the rest of the program.
+* Give a visual interface of the program.
+* Affect program when buttons are pressed or items are selected by calling functions or updating variables.
 ##### Validation
 The views should only allow for valid inputs such as selecting objects that exist or numbers in a correct range. 
-
 ##### Related Success Criteria
 
-| ID  | Criteria                              | Why this subcomponent supports it |
-| --- | ------------------------------------- | --------------------------------- |
-| FR2 | Teach what graphs and algorithms are used for | The user interface includes the information page about graphs and algorithms. |
-| UR1 | Readable on tested devices            | The screens need to be readable and usable on the tested devices. |
-| UR2 | Easy to navigate                      | Navigation between the main screens is handled by this part of the solution. |
-| UR4 | Help users compare algorithms         | The interface allows the user to choose algorithms and view information pages that help them compare them. |
-| UR6 | Use an engaging space theme           | The overall look and feel of the app, including the space theme, is presented through the interface. |
+| ID  | Criteria                                      | Why this subcomponent supports it                                                                          |
+| --- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| FR2 | Teach what graphs and algorithms are used for | The user interface includes the information page about graphs and algorithms.                              |
+| UR1 | Readable on tested devices                    | The screens need to be readable and usable on the tested devices.                                          |
+| UR2 | Easy to navigate                              | Navigation between the main screens is handled by this part of the solution.                               |
+| UR4 | Help users compare algorithms                 | The interface allows the user to choose algorithms and view information pages that help them compare them. |
+| UR6 | Use an engaging space theme                   | The overall look and feel of the app, including the space theme, is presented through the interface.       |
 
 <div style="page-break-before: always;"></div>
 
@@ -563,33 +561,6 @@ This will mean that my UI will adapt to all screen sizes with little effort! Thi
 
 The controller, while not included directly in the subcomponents, is still a large section of the program. It provides a bridge between the Models and the Views and is essential for the program to run.
 I am going to use a SwiftUI observable object, which is an object that will notify and update observers when it changes.
-
-
-```mermaid
-erDiagram
-	GALAXY {
-	}
-	PLANET {
-	}
-	SHIP {
-	}
-	BUILDER {
-	}
-	ALGORITHM {
-	}
-	TRAVERSABLE {
-	}
-	GALAXY||--|{PLANET:"has"
-	GALAXY||--||SHIP:"owns"
-	SHIP||--||PLANET:"located_on"
-	GALAXY||--||BUILDER:"generated_by"
-	GALAXY||--||ALGORITHM:"uses"
-	PLANET||--||TRAVERSABLE:"implements"
-	ALGORITHM||--|{TRAVERSABLE:"operates_on"
-
-```
-
-<div style="page-break-before: always;"></div>
 
 ### Implementation of Subcomponents
 
@@ -808,33 +779,40 @@ The SwiftUI controls will be mostly output based:
 
 ## Development
 
-### Source Control, Project Tracking and Tools
-#### Source Control
+### Object Model
 
-Throughout development I used source control with Git and GitHub. This was useful because it allowed me to save versions of the project over time, experiment with changes more safely, and go back to an earlier version if I introduced a bug. It also helped me keep a clearer record of how the project developed, which is useful when reviewing progress across multiple stages. I made over 300 commits to this project, although about half of these were to this file, the WRITEUP.md file.
+There is a series of objects that rely on each other in the program which work together to implement all the subcomponents. 
+* The Galaxy is the Graph which stores nodes it will be created in the Graph generation and visualised in the Graph Visualiation
+* The Builder is the Object that Generates the Galaxy Graph this will be classes with static methods to return a genrated graph. This will be covered in the graph generation subcomponents
+* The planet is a single node in the graph so will sit under 
+* The Ship is a pointer to the current node to highlight which node is currently being visited. It is the object that will traverse the graph moving between nodes and exploring This will be a part of algorithm control and algorithm visualisation.
+* Traversable is a protocol that the graph algorithm operates on. This means that the algorithm can operate on any graph that follows this protocol which doesn't need to be a planet.
+* The algorithm class will contain the logic of all the implemented graph algortims. I will use inheritance to implement the core similar functionality of these algorithms.
 
-<img  alt="image" src="https://github.com/user-attachments/assets/d22bb71f-91e8-48b0-942a-282ccc3b1125" />
+Here is an Entity Relationship diagram of the components:
+```mermaid
+erDiagram
+	GALAXY {
+	}
+	PLANET {
+	}
+	SHIP {
+	}
+	BUILDER {
+	}
+	ALGORITHM {
+	}
+	TRAVERSABLE {
+	}
+	GALAXY||--|{PLANET:"has"
+	GALAXY||--||SHIP:"owns"
+	SHIP||--||PLANET:"located_on"
+	GALAXY||--||BUILDER:"generated_by"
+	GALAXY||--||ALGORITHM:"uses"
+	PLANET||--||TRAVERSABLE:"implements"
+	ALGORITHM||--|{TRAVERSABLE:"operates_on"
 
-Git was especially useful for a project like this because I was changing several parts of the program at once, such as the graph generation, algorithm logic, and user interface. Source control reduced the risk of losing work and made it easier to compare new code with older versions when I was debugging.
-
-#### Issue Tracking
-
-I also tried to use GitHub Issues to track tasks and bugs during development. This was helpful when I remembered to use it, because it gave me a simple way to record problems and planned improvements in one place. However, I was not very consistent in using it and only made 23 issues so it was only a partial record of the work rather than a complete project log. I think it would be more useful if more than one person was working on the project. The issues page is here: [GitHub Issues](https://github.com/NoahMSchool/SwiftPlanets/issues).
-
-<img  alt="image" src="https://github.com/user-attachments/assets/29c8c4d2-4f8e-40d2-b66e-061032ac5594" />
-
-#### Development Environment
-The IDE that I used was Swift Playgrounds, which is slightly easier to use than XCode for iOS Projects. I referred heavily to the Swift Documentation. Links to all of these tools can be found at the end of this document.
-
-I used GitHub desktop on my Mac as the source control client. I used Obsidian as a markdown editor for the writeup. Obsidian is quite good at exporting markdown as a PDF I think. I used Mermaid.js for the charts in this write up as you can describe different kinds of diagrams using Markdown. Markdown was a good choice because I think the diagrams are clear and they work on the GitHub markdown pages.
-
-#### Use of AI
-
-| Type      | Use                                                                                                                                  | Example                                                                                                                                                                                           |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with OpenAI ChatGPT (19 Feb 2025).                    | "Prompt: Generate a transparent PNG image that I can download of a cartoony silver spaceship with cyan accents that would explore a galaxy" <img src="./Ship8.png" alt="Ship sprite" width="20%"> |
-| Code<br>  | None of the code in the project was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections.    | "What is the easiest way to tell if two line segments intersect if I have the x,y positions of their start and end points"                                                                        |
-| Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand. It helped me understand the root cause. | What does “Value of optional type must be unwrapped” mean?<br>Why am I getting “Operation not permitted” when running my program?<br>                                                             |
+```
 
 
 <div style="page-break-before: always;"></div>
@@ -989,14 +967,11 @@ static func generatePlanet(baseColor: UIColor, accentColor: UIColor, size: CGFlo
 }
 ```
 
-#### Planet UI elements
+#### Planet Border
 
-Once the PlanetNode has been added the other UI elements are then added as a child of it
+Once the PlanetNode has been added I gave it a border which was a child of the planet.
 This code is run on the SpriteKit node to generate this
-```swift 
-//name of planet
-self.planetNameLabel = TextBubbleNode(textString: planetName)
-self.planetNameLabel.position = CGPoint(x: 0, y: 35)
+```swift
 //border which is used to highlight
 self.border = SKShapeNode(circleOfRadius: borderRadius)        
 self.border.lineWidth = 2
@@ -1024,12 +999,7 @@ func drawLine(from start: CGPoint, to end: CGPoint, lineWidth: CGFloat, color: U
     return line    
 }
 ```
-
-I added the ability to show and hide text on the edges 
-
-<div style="page-break-before: always;"></div>
-
-### Stage Three - **Implementing Search Algorithms**
+### Stage Three - Implementing Search Algorithms
 
 #### Traversable protocol
 As I want my code to be generic to any graph. I defined a protocol that nodes in a graph must conform to. The functions are quite simple and is a requirement for any graph to be traversed so it should not be that hard to adapt some other graphs protocol to work with this.
@@ -1047,7 +1017,7 @@ protocol Traversable: Identifiable {
 ```
 The functions that are required are:
 * **getNeighbours** which should return the nodes that a node is connected to. These will be added to the frontier list
-* **heuristic** will give a the chosen heuristic to guide the search. In my case this was the absolute distance to the target.
+* **heuristic** will give a the chosen heuristic to guide the search. In my case this was the absolute distance to the target which is calculated using Pythagoras .
 * **isEqual** will alow two nodes to be compared to check if two nodes are the same so the program knows if the graph has been solved when (current node == target node).
 
 #### BaseSearch
@@ -1344,26 +1314,41 @@ func calculatePathFromPreviousToCurrent(previousNode: any Traversable){
 
 This works by finding the point where the two routes share a common node. The ship can then move back to that shared point and then out to the next node, which makes the movement look much more natural.
 
-
-
 <div style="page-break-before: always;"></div>
+
 ### Stage Five : Algorithm Visualisation
-This stage was taking longer than expected and I found a few improvements I found necessary as well as using a new part of SpriteKit SKActions which allowed me to animate things
+This stage took longer than expected as I found a few improvements I found necessary as well as using a new part of SpriteKit SKActions which allowed me to create animation. 
+The first part was easier where I added a few more spriteKit nodes which were added to the graph
 
-#### Hierarchy of SpriteKit elements
 
-##### Text Bubble
-To put UI elemnts over the spritekit scene turned out to be difficult and not the best way to do it. Instead I created my own SpriteKit elements which I could reuse. This inherited from SKNode and uses a labelNode for text and a shapeNode for the border.
+#### Reusable Text Bubble
+To put UI elements over the spritekit scene turned out to be difficult and not the best way to do it. Instead I created my own SpriteKit elements which I could reuse. This inherited from SKNode and uses a labelNode for text and a shapeNode for the border.
 The size of the border is not passed in but is calculated to fit the passed text. This means it is easy to use this UI element. The text can be changed and this simply recalculates the border size.
 
-##### ShipNode
-The Ship turned out to be more of a UI element than an actual object that I expected. I used a SKspriteNode for this, these are nodes that take in an image which should be in the projects filesystem
+This was reused in any area where I need to create labels on the graph such as planet names and labelling weights on the graph.
+
+This is it being used to give a planet a label for its name and other information
+
+```swift 
+self.planetNameLabel = TextBubbleNode(textString: planetName)
+self.planetNameLabel.position = CGPoint(x: 0, y: 35)
+self.planetUILabel = TextBubbleNode(textString: "")
+self.planetUILabel.position = CGPoint(x: 0, y: -35)
+```
+
+I added the ability to show and hide text on the edges 
+<div style="page-break-before: always;"></div>
+Here is a updated planetNode:
+![[IndividualPlanetNode.png]]
+#### ShipNode
+The Ship turned out to be more of a UI element than an actual object that I expected. I used a SKSpriteNode for this, these are nodes that take in an image which should be in the projects filesystem. I used an AI generated image for this which I will talk about later in Use of AI
 
 #### SKActions
 To create animations in the program I used SKActions. SKActions are a class that allows me to transition properties and run actions one after each other. This is how I added all the animations and moving elements in my game, it is not only for animations but is also used for moving nodes and can even run code. I used this for these purposes.
 
 ##### Pulsing action
-For example, I used SKActions to create a repeating pulse animation:
+For example, I used SKActions to create a repeating pulse animation
+Here is the code that generates it:
 
 ```swift
 func createPulsingAction(scaleAmount: CGFloat, duration: TimeInterval) -> SKAction {
@@ -1401,12 +1386,11 @@ func pulseRing(outerDistance : CGFloat){
     ring.run(ringPulseAction(scaleBy: outerDistance/self.planetRadius))
 }
 ```
-
+As you can see I I run this on a blue circule circle that increases in radius and fades out to create a scanning effect. The radius of the scan is equal to the maximum distance nodes can be connected by which is set when creating the graph.
 This was useful because it made the current search radius visible without permanently changing the planet itself.
+
 ##### MoveShipNode
-
 For the main ship movement I used another SKAction that rotates the ship to face the direction of travel and then moves it smoothly:
-
 ```swift
 func moveShipNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAction {
     let dy = to.y-from.y
@@ -1428,12 +1412,38 @@ func moveShipNode(from : CGPoint, to : CGPoint, duration: TimeInterval) -> SKAct
 
 The ship turns to face the next planet which uses the tan function to get the direction, then moves there. While moving it slightly shrinks and grows to make it feel like it is taking off and landing.
 
+I also made a ```teleportNode``` action which instantly moves the ship. This was because I found moving backwards strange and confusing and thought just skipping back would be better. This just uses the move SKaction with a duration of 0.
 #### Algorithm Backtracking
-After implementing the search algorithms I realised algorithms that used backtracking would do large jumps across the graph. I thought this was unclear and may be confusing for my target audience. I wanted to implement a feature that showed the nodes the spaceship backtracks to on the way to the next node. To do this I made each node store the node which the ship came from.
+After implementing the search algorithms I realised algorithms that used backtracking would do large jumps across the graph. I thought this was unclear and may be confusing for my target audience. I wanted to implement a feature that showed the nodes the spaceship backtracks to on the way to the next node. To do this I made each node store the node which the ship came from. It finds the intersection of the two paths from the current node and the next node and returns to this point before going forwards
 
+To animate this I added an action to move the ship multiple steps which just repeats move ShipNode.
 
+#### AutoPlay
+This feature aims to run the steps slowly without the user having to press forward. I had to use the async await feature in swift.
+
+The isRunning is a boolean variable that will be controlled by the User Interface. This is the condition I use to decide if I should be autoplaying.
+If it is autoplaying every 2.5s (the sleep uses nanoseconds so I have to convert) I will try run the next step. Most steps are under this length but it was a bit buggy and jumped around for when there are lots of movements in the step. 
+
+```swift 
+func startLoop() {
+        isRunning = true
+        Task {
+            while isRunning {
+                await performTask()
+                try? await Task.sleep(nanoseconds: 2500000000)
+            }
+        }
+    }
+    
+    func performTask() async {
+        await MainActor.run {
+            forward() 
+        }
+    }
+
+```
+The overall implementation I found difficult and the final result did not work perfectly for long sequences with backtracking.
 <div style="page-break-before: always;"></div>
-
 ### Stage Six : User Interface
 
 My user interface needs to adapt and scale to fit different sized screens while looking consistent, visible, and un-intrusive for different devices. During this stage I used my iPad mini a lot for testing and tested using different window sizes on my laptop. 
@@ -1470,13 +1480,14 @@ struct SpaceText: ViewModifier{
 }
 ```
 Here is an example of them being used
-```swift Text("this is a subheading").modifier(SpaceSubheading()) ```
+```swift 
+Text("this is a subheading").modifier(SpaceSubheading()) ```
+```
 I also made a title View which was a fixed string I could use from the title screen
 ##### Space Buttons
 I made two stylised buttons that I could reuse. These are custom small SwiftUI views that I can reuse. They use the standard swiftUI buttons but apply further styling. This includes adding the spaceText modifier I already created.
 SwiftUI buttons take in a closure which is a function that is called when they are pressed. This meant my buttons had to take in a closure and then relay it to the button I use in the view.
 For the larger buttons I wanted to pass in text to them
-
 ```swift 
 SpaceButton(imageSystemName: "moon", textLabel: "SpaceStyle", disabled: false, action: {print("hello there")})
 LargeSpaceButton(text: "SpaceIsBig", imageSystemName: "star", action: {print("spaceIsBig")})
@@ -1510,8 +1521,7 @@ struct SpaceSlider: View {
 ```
 
 ##### SpacePicker
-
-This UI component allows me to pick between a list of elements. Here is the actual version I used in the program for selecting 
+This UI component allows me to pick between a list of elements. I will use when thre is many options for the user to choose between. There will be lots of images of these components being used when I piece the UI together in the next sections
 
 #### Menu Screen
 This is the first screen that is shown on launch, so it should allow the user to navigate from here to the rest of the program. I did this by passing closures to change the state of the app.
@@ -1519,7 +1529,7 @@ The Main Menu Screen was made up of the main title text, which was defined in `S
 
 <img width="622" height="347" alt="image" src="https://github.com/user-attachments/assets/187e5d8b-58a2-48d6-bb88-78cb56637585" />
 
-### SpriteKit Screens
+#### SpriteKit Screens
 
 There are two swiftUI screens that overlay on top of the SpriteKit View.
 They are the Graph Generation and the Graph Solving.
@@ -1634,10 +1644,11 @@ struct GalaxySliders : View{
 ```
 For the bottom I made a large Space Button to start and used the Galaxy Sliders and the Algorithm Selector
 ![[BottomPlayingHUD.png]]
+
 #### Graph Solving Screen
 
-
 This is the BottomHUDView for the graph solving screen
+
 ```swift
 struct BottomPlayingHUDRow : View {
     @EnvironmentObject var galaxy : GameController
@@ -1657,13 +1668,16 @@ struct BottomPlayingHUDRow : View {
 
     }
 ```
+
 The ButtonsAndExplanationBlock is another container view I created to decompose it further
 Here is the image of the generated view.
+
 ![[BottomPlayingHUD 1.png]]
 #### How to use Screen
 
 This is a screen that shows the user how to interact with the program in case they are confused. It tells them what the colour codes mean and what the stacks and other UI elements represent.
 It also shows the user the controls and how to interact with the program.
+
 ![[HowToUseScreen.png]]
 #### Algorithms Descriptions Page
 
@@ -1704,12 +1718,56 @@ override class func getDescription()->String{
 #### Hierarchy of SwiftUI elements
 Similar to SpriteKit I used reusable components to save development time and increase consistency in the UI.
 
-Here is a heirachy of the swiftUI elements that I used
-**Todo**
+Here is a hierachy of how the reuseable swiftUI views I created are being used. 
+Note that I ommited SpaceText as it is a viewmodifier that was placed on other UI views but kept when it was simply applied to a Text() View
 
-#### Making it adapt to screen size.
+```
+HomeView - MenuScreen
+	TitleNameView
+	LargeSpaceButton X3
+	StarryBackgroundView
+
+AboutView - How to use
+	SpaceHeading
+	SpaceText
+	LargeSpaceButton
+	StarryBackgroundView
+	
+AlgorithmsView - descriptions
+	SpaceHeading
+	SpaceText
+	LargeSpaceButton
+	StarryBackground
+
+ContentView - both graph screens
+	SpriteKitView
+	
+	TopHUDRow
+		SpaceButton X2
+		SpaceText
+	
+	StartBottomHUDRow
+		SpaceButton X3
+		SpaceText
+		GalaxySliders
+		LargeSpaceButton
+		SpacePicker
+	
+	PlayingBottomHUDRow
+		SpaceList
+		ButtonsAndExplanationBlock
+		SpaceList
+```
+
+#### Making UI adapt to screen size.
 I found this to be the most challenging part of creating the UI. 
 
+From My Research I found there are four main methods frontend languages use for this.
+
+**Anchoring** is a method that instead of giving absolute coordinates you give positions reletive to a side or corner. This is good as it ensures UI will not go through the edge of the screen.
+
+
+SwiftUI I found confusing as there are lots of different components that are used 
 #### Starry Background
 This is a bonus SpriteKitView I created for decorative reasons. It uses SpriteKit to create a nice starry background for the screens. Its algorithm was random so each starry background is different. The algorithm is very simple as it simply places a random number of stars in random positions in a given range for a set number of iterations. I used some of SpriteKit's effects like glow which gave a glow around the border on the individual stars which were just small dots or circles.
 
@@ -1731,6 +1789,37 @@ let stars = SKNode()
 
 This background is shown behind all the screens in the game
 
+<div style="page-break-before: always;"></div>
+
+### Source Control, Project Tracking and Tools
+#### Source Control
+
+Throughout development I used source control with Git and GitHub. This was useful because it allowed me to save versions of the project over time, experiment with changes more safely, and go back to an earlier version if I introduced a bug. It also helped me keep a clearer record of how the project developed, which is useful when reviewing progress across multiple stages. I made over 300 commits to this project, although about half of these were to this file, the WRITEUP.md file.
+
+<img  alt="image" src="https://github.com/user-attachments/assets/d22bb71f-91e8-48b0-942a-282ccc3b1125" />
+
+Git was especially useful for a project like this because I was changing several parts of the program at once, such as the graph generation, algorithm logic, and user interface. Source control reduced the risk of losing work and made it easier to compare new code with older versions when I was debugging.
+
+#### Issue Tracking
+
+I also tried to use GitHub Issues to track tasks and bugs during development. This was helpful when I remembered to use it, because it gave me a simple way to record problems and planned improvements in one place. However, I was not very consistent in using it and only made 23 issues so it was only a partial record of the work rather than a complete project log. I think it would be more useful if more than one person was working on the project. The issues page is here: [GitHub Issues](https://github.com/NoahMSchool/SwiftPlanets/issues).
+
+<img  alt="image" src="https://github.com/user-attachments/assets/29c8c4d2-4f8e-40d2-b66e-061032ac5594" />
+
+#### Development Environment
+
+The IDE that I used was Swift Playgrounds, which is slightly easier to use than XCode for iOS Projects. I referred heavily to the Swift Documentation. Links to all of these tools can be found at the end of this document.
+
+I used GitHub desktop on my Mac as the source control client. I used Obsidian as a markdown editor for the writeup. Obsidian is quite good at exporting markdown as a PDF I think. I used Mermaid.js for the charts in this write up as you can describe different kinds of diagrams using Markdown. Markdown was a good choice because I think the diagrams are clear and they work on the GitHub markdown pages.
+
+
+#### Use of AI
+
+| Type      | Use                                                                                                                                  | Example                                                                                                                                                                                           |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with OpenAI ChatGPT (19 Feb 2025).                    | "Prompt: Generate a transparent PNG image that I can download of a cartoony silver spaceship with cyan accents that would explore a galaxy" <img src="./Ship8.png" alt="Ship sprite" width="20%"> |
+| Code<br>  | None of the code in the project was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections.    | "What is the easiest way to tell if two line segments intersect if I have the x,y positions of their start and end points"                                                                        |
+| Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand. It helped me understand the root cause. | What does “Value of optional type must be unwrapped” mean?<br>Why am I getting “Operation not permitted” when running my program?<br>                                                             |
 
 <div style="page-break-before: always;"></div>
 
@@ -2145,13 +2234,13 @@ TODO: For the tree graph there is no weighting and only one path. All of the alg
 
 TODO: Remove Bolds
 
-| Algorithm                | Correct (Y/N) |   Cost | Number of steps | Solved Graph Image                                             |
-| ------------------------ | ------------- | -----: | --------------- | -------------------------------------------------------------- |
-| BFS                      | Y             |    N/A | 11              | <img src="./solvedgraphs/BreadthFirstSquareSolved.png" alt="Breadth First Square Solved" style="width:56%; height:auto;"> |
-| DFS                      | Y             |    N/A | 5               | <img src="./solvedgraphs/DepthFirstSquareSolved.png" alt="Depth First Square Solved" style="width:56%; height:auto;">     |
-| Greedy Best First Search | Y             |     11 | 5               | <img src="./solvedgraphs/GreedySquareSolved.png" alt="Greedy Square Solved" style="width:56%; height:auto;">              |
-| Dijkstra                 | **Y**         |  **8** | 7               | <img src="./solvedgraphs/DijkstraSquareSolved.png" alt="Dijkstra Square Solved" style="width:56%; height:auto;">          |
-| A*                       | **Y**         | **11** | 5               | <img src="./solvedgraphs/AStarSquareSolved.png" alt="A Star Square Solved" style="width:56%; height:auto;">               |
+| Algorithm                | Correct (Y/N) |  Cost | Number of steps | Solved Graph Image                                                                                                        |
+| ------------------------ | ------------- | ----: | --------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| BFS                      | Y             |   N/A | 11              | <img src="./solvedgraphs/BreadthFirstSquareSolved.png" alt="Breadth First Square Solved" style="width:56%; height:auto;"> |
+| DFS                      | Y             |   N/A | 5               | <img src="./solvedgraphs/DepthFirstSquareSolved.png" alt="Depth First Square Solved" style="width:56%; height:auto;">     |
+| Greedy Best First Search | Y             |    11 | 5               | <img src="./solvedgraphs/GreedySquareSolved.png" alt="Greedy Square Solved" style="width:56%; height:auto;">              |
+| Dijkstra                 | Y             | **8** | 7               | <img src="./solvedgraphs/DijkstraSquareSolved.png" alt="Dijkstra Square Solved" style="width:56%; height:auto;">          |
+| A*                       | Y             |    11 | 5               | <img src="./solvedgraphs/AStarSquareSolved.png" alt="A Star Square Solved" style="width:56%; height:auto;">               |
 
 For the weighted square graph, Dijkstra was the only algorithm that found the shortest path.
 
@@ -2173,11 +2262,6 @@ Breadth First
 
 
 
-**TODO: CRITICAL:** fill this table with the actual measured results from the fixed test graphs and refer back to it in the algorithm-solving and evaluation sections.
-* Use real values taken from the finished program, not estimated ones.
-* Highlight where different algorithms behave differently on the same graph.
-* State explicitly which algorithms found the shortest path and which did not.
-
 **TODO: CRITICAL:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
 * Make sure the trace table matches the screenshots and the implementation.
 * Use this as direct evidence that the step system is correct.
@@ -2194,36 +2278,39 @@ To evaluate whether the final program met the success criteria, I planned a shor
 
 **TODO: CRITICAL:** fill in the Summary column with overall patterns such as "6/7 said yes" or "most found this helpful".
 
-| Question                                                     | Rambo | Rocco | Jim | Jon | Willow | Caspian | Inge | Summary |
-| ------------------------------------------------------------ | ----- | ----- | --- | --- | ------ | ------- | ---- | ------- |
-| Could move between the main screens without help             |       |       |     | Y   |        |         |      |         |
-| Screens were easy to read on their device                    |       |       |     | Y   |        |         |      |         |
-| Space theme was engaging and suitable                        |       |       |     | Y   |        |         |      |         |
-| Step-by-step simulation helped them understand the algorithm |       |       |     | Y   |        |         |      |         |
-| Could explain what the `Frontier` box meant                  |       |       |     | Y   |        |         |      |         |
-| Could explain what the `Explored` box meant                  |       |       |     | Y   |        |         |      |         |
-| Ship movement helped show visit order                        |       |       |     | Y   |        |         |      |         |
-| Text explanations were helpful                               |       |       |     | N   |        |         |      |         |
-| Felt they understood graph algorithms better after use       |       |       |     | Y   |        |         |      |         |
-| Could explain a difference between two algorithms            |       |       |     | Y   |        |         |      |         |
-| Could generate a graph successfully                          |       |       |     | Y   |        |         |      |         |
-| Could step forwards and backwards through the algorithm      |       |       |     | Y   |        |         |      |         |
-| Could use auto-play successfully                             |       |       |     | Y   |        |         |      |         |
-| Unsolvable graphs were clearly shown                         |       |       |     | Y   |        |         |      |         |
-| Graph looked clear and easy to follow                        |       |       |     | Y   |        |         |      |         |
-| Crossing lines made the graph harder to read                 |       |       |     | N   |        |         |      |         |
-| App crashed at any point                                     |       |       |     | N   |        |         |      |         |
-| Noticed bugs or confusing behaviour                          |       |       |     | Y   |        |         |      |         |
-| Overall, the app helped them learn graph algorithms          |       |       |     | Y   |        |         |      |         |
+| Question                                                     | Rambo | Rocco | Jim | Jon | Willow | Caspian | Inge | Summary                                                                                                                                                                                                                                      |
+| ------------------------------------------------------------ | ----- | ----- | --- | --- | ------ | ------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Could move between the main screens without help             | Y     | Y     | Y   | Y   | Y      | Y       | Y    | All my stakeholders could navigate the app. This was good                                                                                                                                                                                    |
+| Screens were easy to read on their device                    | Y     | Y     | N   | Y   | Y      | Y       | Y    | The UI adapted well to the different screen sizes However Jim did say that he felt the large screen on his 13" ipad pro was wasted as UI components did not scale enough.                                                                    |
+| Space theme was engaging and suitable                        |       |       |     |     |        |         |      | I can't please everyone as people like different things but they all still liked it                                                                                                                                                          |
+| Step-by-step simulation helped them understand the algorithm | Y     | Y     | Y   | N   | Y      | Y       | Y    | They all aggreed that they found the step by step useful but Jon asked if there were more information that could have been mentioned but caspian asked for less.                                                                             |
+| Could explain what the `Frontier` box meant                  | N     | N     | N   | Y   | Y      | N       | Y    | A few stakehoders did not understand what the point was as they either did not understand stacks or (priority) queues or missed the overall idea of the algorithm.                                                                           |
+| Could explain what the `Explored` box meant                  | N     | N     | Y   | Y   | Y      | Y       | Y    | More of the users understood the explored list, likely because the name is more self explanatory and each node had been added one by one when visited.                                                                                       |
+| Ship movement helped show visit order                        | N     | Y     | Y   | Y   | Y      | N       | Y    | They liked that the ship provided a clear pointer of whatt they shoud focus on (perhaps too much). Jon said the backtracking helps see what the algorithm is acctually doing.                                                                |
+| Text explanations were helpful                               | Y     | Y     | N   | Y   | N      | Y       | Y    | Overall positive but some mixed feelings about this as they some stakeholders felt the words used were not technical enough                                                                                                                  |
+| Felt they understood graph algorithms better after use       | Y     | Y     | Y   | Y   | Y      | Y       | Y    | They all said it made more sense after. Some of the younger students still did not get the point but they understood the concept better. The users who picked it up quickly said it provided a new way to look at it that they will remember |
+| Could explain a difference between two algorithms            | N     | Y     | N   | Y   | Y      | Y       | Y    | They mosly got the differences correct but some did not acctually understand what this meant. Some were likely just copying what they heard in the algorithm description page.                                                               |
+| Could generate a graph successfully                          | Y     | Y     | Y   | Y   | Y      | Y       | Y    | They all spent lots of time making a graph as they said it was pretty and fun.                                                                                                                                                               |
+| Could step forwards and backwards through the algorithm      | Y     | Y     | Y   | Y   | Y      | Y       | Y    | I think the labeled buttons made this easy.                                                                                                                                                                                                  |
+| Could use auto-play successfully                             | Y     | Y     | Y   | Y   | Y      | Y       | Y    | Again the labeled button was useful for them and the icon switching between play and pause did not confuse anyone.                                                                                                                           |
+| Unsolvable graphs were clearly shown                         | N     | Y     | Y   | N   | Y      | Y       | N    | Many did not read the explanation text every time so missed it at the end. I think a more visual indicator would be more usefull. some did fall into the trap of creating graphs with no connections which confused them.                    |
+| Graph looked clear and easy to follow                        | N     | Y     | Y   | Y   | Y      | Y       | N    | I did not notice any confusion with this.                                                                                                                                                                                                    |
+| Crossing lines made the graph harder to read                 | N     | N     | N   | N   | N      | N       | N    | I patched this                                                                                                                                                                                                                               |
+| App crashed at any point                                     | N     | N     | N   | N   | N      | N       | N    | No crashes occured during any of the runs which made sense as I could not crash the final version.                                                                                                                                           |
+| Noticed bugs or confusing behaviour                          | N     | Y     | N   | Y   | N      | N       | N    | Two bugs were noticed confusing behaviour saw was large graphs where the autoplay was jumping. Secondly they found the scrolling action unnatural which I would like to address.                                                             |
+| Overall, the app helped them learn graph algorithms          | Y     | Y     | Y   | Y   | Y      | Y       | Y    | All the stakeholders found it useful and said they understood them better                                                                                                                                                                    |
+From the stakeholder testing I concluded that The program could assume too much if the user is brand new to computer science. I did not think they were used to thinking in a certain way especially about logical not physical concepts.
+
+Most of the Usability Tests were well met 
 
 ### Open Feedback Summary
 
 **TODO: CRITICAL:** summarise the most common positive comments and the most common suggested improvements from stakeholder testing.
 
-| Question                                  | Summary of answers |
-| ----------------------------------------- | ------------------ |
-| What was the most useful part of the app? |                    |
-| What most needs improving?                |                    |
+| Question                                  | Summary of answers                                                                                                                                                         |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| What was the most useful part of the app? | The users found the interactive graph and the                                                                                                                              |
+| What most needs improving?                | The explanations of concepts the user needs to know like stacks and queues should be included as this is needed and a lot of my target audience are brand new to concepts. |
 
 
 **TODO: CRITICAL:** add the findings from this testing and explain what I changed because of them.
@@ -2251,11 +2338,12 @@ In this section I will go through the different components, show the related suc
 
 In the status column I will use the following labels:
 
-| Label | Meaning |
-| ----- | ------- |
-| <span style="color: green;"><strong>Met</strong></span> | The success criterion was achieved fully. |
+| Label                                                              | Meaning                                                                                            |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| <span style="color: green;"><strong>Met</strong></span>            | The success criterion was achieved fully.                                                          |
 | <span style="color: orange;"><strong>Partially Met</strong></span> | The success criterion was achieved to some extent, but there were still weaknesses or limitations. |
-| <span style="color: red;"><strong>Not Met</strong></span> | The success criterion was not achieved. |
+| <span style="color: red;"><strong>Not Met</strong></span>          | The success criterion was not achieved.                                                            |
+|                                                                    |                                                                                                    |
 
 These work well because they are simple, clear, and easy to justify with evidence from testing and stakeholder feedback.
 
@@ -2362,6 +2450,7 @@ There are still some improvements that could be made in future, such as refining
 - Swift Documentation - https://www.swift.org/documentation/
 - SwiftUI Documentation - https://developer.apple.com/documentation/swiftui/
 - SpriteKit Documentation - https://developer.apple.com/documentation/spritekit/
+- Reddit 
 - OCR Guidance - https://www.ocr.org.uk/Images/324587-project-setting-guidance.pdf
 - OCR Specification - https://www.ocr.org.uk/images/170844-specification-accredited-a-level-gce-computer-science-h446.pdf
 
