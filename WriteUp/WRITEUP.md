@@ -11,13 +11,14 @@
 ## Introduction
 
 This project is an engaging educational graph algorithm simulator with a space theme. The main aim was to make graph algorithms more engaging and easier to understand by allowing the user to interact with them in an app, rather than only reading about them or solving them from boring diagrams. The finished program allows the user to generate or choose a graph, select an algorithm, and then step through the solution while seeing what is happening visually on the graph.
-I be using Swift and SwiftUI to develop an app which will be able to run on 2.5 billion apple devices all over the world.
 
-This document is organised into the main stages of the project. It begins with analysis of the problem, the audience and stakeholders, and existing solutions, and then moves into the design of the system. 
+I will be using Swift and SwiftUI to develop an app which will be able to run on 2.5 billion Apple devices all over the world.
+
+This document is organised into the main stages of the project. It begins with analysis of the problem, the audience and stakeholders interviews, and existing solutions, and then moves into the design of the system. 
 In the design section I use tables, hand-drawn sketches, and diagrams such as hierarchy diagrams, navigation diagrams, and class diagrams to show how the solution was planned.
 The development section then explains how the main parts of the program were implemented, using screenshots, code samples, and further diagrams where they help explain the structure. I tried to show the most interesting algorithms and code snippets. 
 When designing and developing I divided the program into six main components and each section tries to cover them separately.
-After this there are sections on testing during development and testing after development. At the end there is the evaluation section, where I revisit my requirements from analysis to evaluate how well the final program met my specified criteria.
+After this there are sections on testing during development and testing after development. At the end there is the evaluation section, where I revisit my requirements from analysis and re-interview my stakeholders to evaluate how well the final program met my specified criteria.
 Finally there is an appendix containing the sources used.
 
 There is also a video of the final project in use, alongside other key tools I used during development.
@@ -85,17 +86,17 @@ I loved using all the simulations and found them very useful. However, one thing
 
 Since my program is only one tool, I can take advantage of this and make my project more unique and more relatable to use.
 
+#### Research Takeaways
+
 To compare the three solutions more directly, I made the following table. This helps me identify the main areas where I want my own solution to be different.
 
 | Aspect to Compare | Graph Online | TUM Shortest Path | PhET | How My Solution Will Be Different |
 | ----------------- | ------------ | ----------------- | ---- | --------------------------------- |
-| Ease of use for beginners |  |  |  |  |
-| Step-by-step explanation of the algorithm |  |  |  |  |
-| How the user creates or interacts with the graph |  |  |  |  |
-| How engaging the visuals and theme are |  |  |  |  |
-| Range of algorithms or learning content included |  |  |  |  |
-
-#### Research Takeaways
+| Ease of use for beginners | Quite difficult for beginners because there are lots of controls and little guidance. | Better than Graph Online, but still expects some understanding of graphs. | Very approachable, with simple controls and clear instructions. | **TODO:** explain how my app aims to be easier for beginners. |
+| Step-by-step explanation of the algorithm | Very limited, as it mainly just solves the graph. | Strong step-by-step explanation with colouring and detailed descriptions. | Strong step-by-step teaching in general, but not for graph algorithms specifically. | **TODO:** explain how my app combines step-by-step solving with teaching. |
+| How the user creates or interacts with the graph | The user builds a graph manually, which can be slow and awkward. | The user can edit an existing graph, but the graph creation is still limited. | The user interacts with ready-made simulations using simple controls. | **TODO:** explain how my app simplifies graph interaction. |
+| How engaging the visuals and theme are | Functional but not very visually engaging. | Clear and useful, but not especially exciting or creative. | Polished and attractive, but mostly consistent rather than themed. | **TODO:** explain how my space theme makes the app more engaging. |
+| Range of algorithms or learning content included | Covers graph solving, but not much teaching support. | Focuses mostly on shortest path algorithms. | Wide range of science and maths topics, but not graph theory. | **TODO:** explain how my app combines graph teaching with multiple algorithms. |
 
 The main takeaways are that I wanted to make the program approachable and relatable to the user, intuitive to use with step-by-step instructions, and not rely on any prior knowledge from the user. 
 I believe stepping through the algorithm while giving explanations and showing state will be an essential part of the program, as it is about teaching the algorithms rather than just showing them.
@@ -835,7 +836,7 @@ The SwiftUI controls will be mostly output-based:
 
 There is a series of objects that rely on each other in the program which work together to implement all the subcomponents. 
 * The Galaxy is the Graph which stores nodes it will be created in the Graph generation and visualised in the Graph Visualiation
-* The Builder is the Object that Generates the Galaxy Graph this will be classes with static methods to return a genrated graph. This will be covered in the graph generation subcomponents
+* The Builder is the object that generates the galaxy graph. These will be classes with static methods to return a generated graph. This will be covered in the graph generation subcomponents.
 * The planet is a single node in the graph so will sit under 
 * The Ship is a pointer to the current node to highlight which node is currently being visited. It is the object that will traverse the graph moving between nodes and exploring This will be a part of algorithm control and algorithm visualisation.
 * Traversable is a protocol that the graph algorithm operates on. This means that the algorithm can operate on any graph that follows this protocol which doesn't need to be a planet.
@@ -1108,7 +1109,7 @@ I made a separate draw helper file which provided me with a few functions with a
 These functions currently include:
 * **drawline** which draws a line between two given positions
 * **drawArrow** which uses drawline and places a arrowhead SKShape node. There was a bit more complexity here with rotation which I solved with a bit of trig.
-* **drawlines** which takes in a list of lines and draws them all using drawLine. This was not only usefull for drawing lots of lines at the same time but also puts them all under a container node so these lines are in the same place.
+* **drawlines** which takes in a list of lines and draws them all using `drawLine`. This was not only useful for drawing lots of lines at the same time but also puts them all under a container node so these lines are in the same place.
 
 This is the code for drawline. It takes in the two points and relevant parameters and creates a CGMutablePath Object.
 ```swift
@@ -1144,7 +1145,7 @@ The functions that are required are:
 * **isEqual** will alow two nodes to be compared to check if two nodes are the same so the program knows if the graph has been solved when (current node == target node).
 
 #### BaseSearch
-At this stage I implemented the different graph search algorithms by building them all on top of the same `BaseSearch` class. The base search implemented some basic generic functionality that was overriden when neccesary This meant the shared logic for stepping forward, tracking the frontier, storing history, and reconstructing the final path only had to be written once. Each individual algorithm then only needed to override the small parts that changed its behaviour, such as how the frontier was read or how priorities were calculated.
+At this stage I implemented the different graph search algorithms by building them all on top of the same `BaseSearch` class. The base search implemented some basic generic functionality that was overridden when necessary. This meant the shared logic for stepping forward, tracking the frontier, storing history, and reconstructing the final path only had to be written once. Each individual algorithm then only needed to override the small parts that changed its behaviour, such as how the frontier was read or how priorities were calculated.
 
 #### Diagram of searching components
 
@@ -1213,7 +1214,7 @@ func getNextFrontier()->(neighbour: any Traversable, weight: Double){
 ```
 
 #### Depth First Search
-Depth First provides a deep search so it will search deeper unitl it reaches a dead end before backtracking.
+Depth First provides a deep search so it will search deeper until it reaches a dead end before backtracking.
 I am using a pre order traversal so on a tree it will go root left right.
 
 To turn the frontier into a stack instead of a queue, I overrode `getNextFrontier()` so it removes the most recently added node:
@@ -1376,7 +1377,7 @@ func storeHistory(){
 ```
 
 In the second part there are few steps
-* Get the Next node (this uses the frontier queue which is based of the priorities of the chosen algorithm)
+* Get the next node (this uses the frontier queue which is based on the priorities of the chosen algorithm)
 * Check if the next node is the target node
 
 This is the code. There is some additional validation that I had to include.
@@ -1481,8 +1482,8 @@ self.planetUILabel.position = CGPoint(x: 0, y: -35)
 
 I added the ability to show and hide text on the edges 
 <div style="page-break-before: always;"></div>
-Here is a updated planetNode:
-![[IndividualPlanetNode.png]]
+Here is an updated planetNode:
+<p align="center"><img src="./screenshots/IndividualPlanetNode.png" alt="Individual Planet Node" width="55%"></p>
 #### ShipNode
 The Ship turned out to be more of a UI element than an actual object that I expected. I used a SKSpriteNode for this, these are nodes that take in an image which should be in the projects filesystem. I used an AI generated image for this which I will talk about later in Use of AI
 
@@ -1529,7 +1530,7 @@ func pulseRing(outerDistance : CGFloat){
     ring.run(ringPulseAction(scaleBy: outerDistance/self.planetRadius))
 }
 ```
-As you can see I I run this on a blue circule circle that increases in radius and fades out to create a scanning effect. The radius of the scan is equal to the maximum distance nodes can be connected by which is set when creating the graph.
+As you can see I run this on a blue circle that increases in radius and fades out to create a scanning effect. The radius of the scan is equal to the maximum distance nodes can be connected by, which is set when creating the graph.
 This was useful because it made the current search radius visible without permanently changing the planet itself.
 
 ##### MoveShipNode
@@ -1592,7 +1593,7 @@ The overall implementation I found difficult and the final result did not work p
 My user interface needs to adapt and scale to fit different sized screens while looking consistent, visible, and un-intrusive for different devices. During this stage I used my iPad mini a lot for testing and tested using different window sizes on my laptop. 
 Overall I found this to be harder than expected.
 
-The Screens that I included were the Menu Screen, Graph screen, How to use screen and a Algorithms Descriptions screen.
+The screens that I included were the Menu Screen, Graph screen, How to use screen, and an Algorithms Descriptions screen.
 I did not include a settings page as I did not find there were many controls in the program so I didn't think it was necessary.
 
 In the controller I used `@Published` properties so that changing a setting in SwiftUI would automatically update the app state:
@@ -1628,7 +1629,7 @@ Text("this is a subheading").modifier(SpaceSubheading()) ```
 ```
 I also made a title View which was a fixed string I could use from the title screen
 ##### Space Buttons
-I made two stylised buttons that I could reuse. These are custom small SwiftUI views that I can reuse. They use the standard swiftUI buttons but apply further styling. This includes adding the spaceText modifier I already created.
+I made two stylised buttons that I could reuse. These are custom small SwiftUI views. They use the standard SwiftUI buttons but apply further styling. This includes adding the `SpaceText` modifier I already created.
 SwiftUI buttons take in a closure which is a function that is called when they are pressed. This meant my buttons had to take in a closure and then relay it to the button I use in the view.
 For the larger buttons I wanted to pass in text to them
 ```swift 
@@ -1640,10 +1641,10 @@ LargeSpaceButton(text: "SpaceIsBig", imageSystemName: "star", action: {print("sp
 ##### SpaceList
 This and the remaining components are primarily used for the HUD for the algorithm Control
 ##### SpaceSlider
-![[GalaxySlider.png]]
+<p align="center"><img src="./screenshots/GalaxySlider.png" alt="Galaxy Slider" width="40%"></p>
 This is a slider ui element which will be used to easily change numerical values.
 It has a title which can show the user what it does aswell as placing the current value so the user can see the exact selected number.
-This is usefull for if the user wants an exact number of nodes in the graph.
+This is useful if the user wants an exact number of nodes in the graph.
 I experimented with text fields but decided as the majority of users are using on touch first devices a slider is more intuitive.
 The value variable has a binding property wrapper () which tells it 
 ```swift
@@ -1674,11 +1675,11 @@ The Main Menu Screen was made up of the main title text, which was defined in `S
 
 #### SpriteKit Screens
 
-There are two swiftUI screens that overlay on top of the SpriteKit View.
+There are two SwiftUI screens that overlay on top of the SpriteKit view.
 They are the Graph Generation and the Graph Solving.
 
-For the UI elements of these two swiftUI control views I realised that half of the swiftUI components were shared the two views. The repeated sections were actually the top half only which was for navigation of the SpriteKit scene and app navigation.
-This meant that I can just reuse the top half of the swiftUI that I created for the graph generation screen by packaging it into a reusable component. I used a 1 by 2 grid as it seemed to be the best way to be able to swap out the views
+For the UI elements of these two SwiftUI control views I realised that half of the SwiftUI components were shared between the two views. The repeated sections were mainly the top half, which was for navigation of the SpriteKit scene and app navigation.
+This meant that I could just reuse the top half of the SwiftUI that I created for the graph generation screen by packaging it into a reusable component. I used a 1 by 2 grid as it seemed to be the best way to swap out the views.
 
 ```swift
 var body : some View{
@@ -1699,7 +1700,7 @@ var body : some View{
 }
 ```
 
-To do the overlay I used a ZStack. I had been using HStacks and VStacks which alligned views horrozontally and veritcally but a zstack can place views ontop of each other from back to front which is perfect for overlaying a view on anouther one.
+To do the overlay I used a `ZStack`. I had been using `HStack` and `VStack`, which align views horizontally and vertically, but a `ZStack` can place views on top of each other from back to front, which is perfect for overlaying one view on another.
 I need to pass the environment object to the views as it is the data model.
 ```swift
 ZStack {
@@ -1785,8 +1786,8 @@ struct GalaxySliders : View{
 }
 
 ```
-For the bottom I made a large Space Button to start and used the Galaxy Sliders and the Algorithm Selector
-![[BottomPlayingHUD.png]]
+For the bottom I made a large Space Button to start and used the Galaxy Sliders and the Algorithm Selector.
+<p align="center"><img src="./screenshots/BottomPlayingHUD.png" alt="Bottom Playing HUD" width="70%"></p>
 
 #### Graph Solving Screen
 
@@ -2565,7 +2566,7 @@ I did mention this in design but the start and end planets should be a reasonabl
 * Whether the absolute distance between the start and end nodes is less than some predetermined threshold.
 * Check if the number of edges between the start and end, this will mean I can specify the minimum number of steps for an algorithm.
 * Check if the total weight to the finish is less than a certain value. This would be the same as the number of edges for algorithms that do not use weights.
-For the way I have structured the graph generation I think all of these will have similar effect as deciding if there is a connection and the weight is based off of absolute distance 
+For the way I have structured the graph generation, I think all of these would have a similar effect because deciding whether there is a connection and the weight itself are both based on absolute distance.
 
 #### Subcomponent Two : Graph Rendering
 
