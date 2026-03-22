@@ -1120,9 +1120,9 @@ let sortedPaths = potentialPaths.sorted {
 
 To fix the Lines going through planets  I thought of putting edges across the planet nodes. This meant that when an edge passed through a planet it would be deleted. However when developing this I encountered a bug that caused all edges to collide. This was because the start and end points of the lines were the exact center point of the planets. The fix to this was to put 4 lines from the centre of the planet to the circumference so no lines actually pass through the center, only started on it. The algorithm does not treat lines that start at the same point as a collision.
 
-Here is a diagram of the checklines on a Planet Node
+Here is a diagram of the four checklines on a Planet Node showing how any line through the planet will collide.
 
-![[Checklines diagram.png]]
+<p align="center"><img src="./sketches/Checklines diagram.png" alt="Checklines diagram" width="456"></p>
 
 Here is the function on the planet that returns an array of four checklines for a planet:
 
@@ -2058,16 +2058,6 @@ ContentView - both graph screens
 		SpaceList
 ```
 
-#### Making UI adapt to screen size.
-I found this to be the most challenging part of creating the UI.
-
-From My Research I found there are four main methods frontend languages use for this.
-
-**Anchoring** is a method that instead of giving absolute coordinates you give positions reletive to a side or corner. This is good as it ensures UI will not go through the edge of the screen.
-
-**TODO**: List the other three options and explain why I chose what I did
-
-SwiftUI I found confusing as there are lots of different components that are used
 #### Starry Background
 This is a bonus SpriteKitView I created for decorative reasons. It uses SpriteKit to create a nice starry background for the screens. Its algorithm was random so each starry background is different. The algorithm is very simple as it simply places a random number of stars in random positions in a given range for a set number of iterations. I used some of SpriteKit's effects like glow which gave a glow around the border on the individual stars which were just small dots or circles.
 
@@ -2235,47 +2225,100 @@ For the weighted square graph, Dijkstra was the only algorithm that found the sh
 ##### Generated Random Graph Test Example
 This table shows the results of running all the algorithms on one of the random graphs. Both Dijkstra and A* found the same shortest path although A* did it a lot more quickly. This makes sense because for the Generated Graph the heuristic is very good because the path weights and heuristic both rely on the distance between two nodes.
 
-| Algorithm                | Correct (Y/N) | Cost | Number of steps | Solved Graph Image                |
-| ------------------------ | ------------- | ---: | --------------- | --------------------------------- |
+| Algorithm                | Correct (Y/N) | Cost | Number of steps | Solved Graph Image                                                                                                        |
+| ------------------------ | ------------- | ---: | --------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | BFS                      | Y             |  N/A | 13              | <img src="./solvedgraphs/BreadthFirstRandomSolved.png" alt="Breadth First Random Solved" style="width:56%; height:auto;"> |
-| DFS                      | Y             |  N/A | 5               | <img src="./solvedgraphs/DepthFirstRandomSolved.png" alt="Depth First Random Solved" style="width:56%; height:auto;"> |
-| Greedy Best First Search | Y             |  N/A | 5               | <img src="./solvedgraphs/GreedyRandomSolved.png" alt="Greedy Random Solved" style="width:56%; height:auto;"> |
-| Dijkstra                 | Y             |   34 | 11              | <img src="./solvedgraphs/DijkstraRandomSolved.png" alt="Dijkstra Random Solved" style="width:56%; height:auto;"> |
-| A*                       | Y             |   34 | 6               | <img src="./solvedgraphs/AStarRandomSolved.png" alt="A Star Random Solved" style="width:56%; height:auto;"> |
+| DFS                      | Y             |  N/A | 5               | <img src="./solvedgraphs/DepthFirstRandomSolved.png" alt="Depth First Random Solved" style="width:56%; height:auto;">     |
+| Greedy Best First Search | Y             |  N/A | 5               | <img src="./solvedgraphs/GreedyRandomSolved.png" alt="Greedy Random Solved" style="width:56%; height:auto;">              |
+| Dijkstra                 | Y             |   34 | 11              | <img src="./solvedgraphs/DijkstraRandomSolved.png" alt="Dijkstra Random Solved" style="width:56%; height:auto;">          |
+| A*                       | Y             |   34 | 6               | <img src="./solvedgraphs/AStarRandomSolved.png" alt="A Star Random Solved" style="width:56%; height:auto;">               |
 
 Taken together, these development tests show that the final program can generate graphs, solve the fixed and random test cases correctly, step through and replay algorithm state reliably, and recover from the main bugs that were found during implementation.
 
 ##### Generated Random Graph Breadth First Search Trace Table
 
 This is a trace table for the following graph using Breadth First Search on the following graph. The start node is planet "Gelyra" and the end is planet "Yithos"
-![[BFSTraceTableStep0.png]]
 
-| Step | Current  | Frontier                                   | Explored                                                              | Image                              |
-| ---- | -------- | ------------------------------------------ | --------------------------------------------------------------------- | ---------------------------------- |
-| 0    | ---      | Gelyra                                     | ---                                                                   | ![[BFSTraceTableStep0 Small.jpeg]] |
-| 1    | Gelyra   | Borealis, Hextara                          | Gelyra                                                                | ![[BFSTraceTableStep1 Small.jpeg]] |
-| 2    | Borealis | Hexara, Draxion, Arkena                    | Gelyra, Borealis                                                      | ![[BFSTraceTableStep2 Small.jpeg]] |
-| 3    | Hextara  | Draxion, Arkena, Wytheris, Odythos         | Gelyra, Borealis, Hextara                                             | ![[BFSTraceTableStep3 Small.jpeg]] |
-| 4    | Draxion  | Arkena, Wytheris, Odythos, Yithos, Zenthos | Gelyra, Borealis, Hextara, Draxion                                    | ![[BFSTraceTableStep4 Small.jpeg]] |
-| 5    | Arkena   | Wytheris, Odythos, Yithos, Zenthos         | Gelyra, Borealis, Hextara, Draxion, Arkena                            | ![[BFSTraceTableStep5 Small.jpeg]] |
-| 6    | Wytheris | Odythos, Yithos, Zenthos                   | Gelyra, Borealis, Hextara, Draxion, Arkena, Wytheris                  | ![[BFSTraceTableStep6 Small.jpeg]] |
-| 7    | Odythos  | Yithos, Zenthos                            | Gelyra, Borealis, Hextara, Draxion, Arkena, Wytheris, Odythos         | ![[BFSTraceTableStep7 Small.jpeg]] |
-| 8    | Yithos   | Zenthos                                    | Gelyra, Borealis, Hextara, Draxion, Arkena, Wytheris, Odythos, Yithos | ![[BFSTraceTableStep8 Small.jpeg]] |
+<p align="center"><img src="./tracetables/BFSTraceTableStep0.png" alt="Breadth First Search trace graph" width="600"></p>
 
+<table>
+  <thead>
+    <tr>
+      <th style="width:5%;">Step</th>
+      <th style="width:8%;">Current</th>
+      <th style="width:14%;">Frontier</th>
+      <th style="width:13%;">Explored</th>
+      <th style="width:60%;">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>---</td>
+      <td>Gelyra</td>
+      <td>---</td>
+      <td><img src="./tracetables/BFSTraceTableStep0.png" alt="BFS trace step 0" width="100%"></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Gelyra</td>
+      <td>Borealis, Hextara</td>
+      <td>Gelyra</td>
+      <td><img src="./tracetables/BFSTraceTableStep1.png" alt="BFS trace step 1" width="100%"></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Borealis</td>
+      <td>Hexara, Draxion, Arkena</td>
+      <td>Gelyra, Borealis</td>
+      <td><img src="./tracetables/BFSTraceTableStep2.png" alt="BFS trace step 2" width="100%"></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Hextara</td>
+      <td>Draxion, Arkena, Wytheris, Odythos</td>
+      <td>Gelyra, Borealis, Hextara</td>
+      <td><img src="./tracetables/BFSTraceTableStep3.png" alt="BFS trace step 3" width="100%"></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Draxion</td>
+      <td>Arkena, Wytheris, Odythos, Yithos, Zenthos</td>
+      <td>Gelyra, Borealis, Hextara, Draxion</td>
+      <td><img src="./tracetables/BFSTraceTableStep4.png" alt="BFS trace step 4" width="100%"></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Arkena</td>
+      <td>Wytheris, Odythos, Yithos, Zenthos</td>
+      <td>Gelyra, Borealis, Hextara, Draxion, Arkena</td>
+      <td><img src="./tracetables/BFSTraceTableStep5.png" alt="BFS trace step 5" width="100%"></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Wytheris</td>
+      <td>Odythos, Yithos, Zenthos</td>
+      <td>Gelyra, Borealis, Hextara, Draxion, Arkena, Wytheris</td>
+      <td><img src="./tracetables/BFSTraceTableStep6.png" alt="BFS trace step 6" width="100%"></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Odythos</td>
+      <td>Yithos, Zenthos</td>
+      <td>Gelyra, Borealis, Hextara, Draxion, Arkena, Wytheris, Odythos</td>
+      <td><img src="./tracetables/BFSTraceTableStep7.png" alt="BFS trace step 7" width="100%"></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Yithos</td>
+      <td>Zenthos</td>
+      <td>Gelyra, Borealis, Hextara, Draxion, Arkena, Wytheris, Odythos, Yithos</td>
+      <td><img src="./tracetables/BFSTraceTableStep8.png" alt="BFS trace step 8" width="100%"></td>
+    </tr>
+  </tbody>
+</table>
 
-##### Generated Random Graph Dijkstra Trace Table
-
-| Step | Current | CostSoFar | Frontier | Explored | Image |
-| ---- | ------- | --------- | -------- | -------- | ----- |
-|      |         |           |          |          |       |
-
-
-
-**TODO: CRITICAL:** add one worked step-by-step trace table for at least one algorithm on one test graph, showing the frontier, visited list, current node, and any distance updates at each step.
-* Make sure the trace table matches the screenshots and the implementation.
-* Use this as direct evidence that the step system is correct.
-
-<div style="page-break-before: always;"></div>
+The trace table correctly shows that the shortest path is shown in the correct way for the algorithm. You can see the blue frontier box and the red explored box at each step. It explores 8 planets and finds a path 4 long. You can see the explored planets are coloured in red until the final path is revealed in yellow.
 
 <div style="page-break-before: always;"></div>
 
