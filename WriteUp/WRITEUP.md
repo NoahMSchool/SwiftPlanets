@@ -358,33 +358,33 @@ As this is an educational tool everything needs to be factually correct. After a
 
 ### Success Criteria
 
-Based on the problem I'm trying to solve, the responses from my client stakeholders and the features and limitations of the proposed solution I have come up with the following success criteria. I will compare against these in the evaluation of the project.
+Based on the problem I'm trying to solve, the responses from my client stakeholders and the features and limitations of the proposed solution I have come up with the following success criteria. I will compare against these in the evaluation of the project. I have tried to make sure that they are all measurable so I will know if I have succeeded on each.
 
-| ID              | **Criteria**                                  | **Description**                                                                                                 | **Reason**                                                                                                              | **Analysis Link**             |
-| --------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| **Functional**  |                                               |                                                                                                                 |                                                                                                                         |                               |
-| FR1             | Generate a graph                              | The user can generate a graph using simple controls.                                                            | This allows the user to create a graph quickly without having to build one manually.                                    | Features of Proposed solution |
-| FR2             | Teach what graphs and algorithms are used for | The app includes a page that explains what graphs and the algorithms are used for.                              | The user needs some background knowledge before using the simulator so they understand why these algorithms matter.     | Features of Proposed solution |
-| FR3             | Simulate the algorithms                       | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.           | These are the main algorithms I want to teach, so the program must implement them correctly.                            | Features of Proposed solution |
-| FR4             | Step through the algorithm                    | The user can step forwards and backwards through the algorithm one step at a time.                              | This helps the user follow the algorithm carefully and create a trace table if needed.                                  | Features of Proposed solution |
-| FR5             | Auto-play the full algorithm                  | The user can auto-play the whole algorithm from start to finish.                                                | This gives the user a quicker way to watch the full process and compare it with manual step-by-step control.            | Features of Proposed solution |
-| FR6             | Show the algorithm state                      | The simulation shows the current node, explored nodes, frontier nodes, and final path clearly.                  | The user needs to be able to see the state of the algorithm clearly while it is running.                                | Features of Proposed solution |
-| FR7             | Explain each step                             | The simulation gives a text explanation of what is happening at each step.                                      | The visual changes alone may not be enough for a new user to understand the algorithm.                                  | Features of Proposed solution |
-| FR8             | Show unsolvable graphs                        | The simulation clearly shows when a graph cannot be solved.                                                     | Some generated graphs may not contain a valid path, so the user should not be misled.                                   | Limitations of Solution       |
-| FR9             | Show visit order with the ship                | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                  | This makes the search order easier to follow and helps the user understand what the algorithm is doing.                 | Features of Proposed solution |
-| FR10            | Avoid crossing lines                          | Graphs should not be rendered with lines crossing each other where possible.                                    | Crossing lines make the graph harder to read and can confuse the user when following the algorithm.                     | Features of Proposed solution |
-| **Performance** |                                               |                                                                                                                 |                                                                                                                         |                               |
-| PR1             | No crashes                                    | The app does not crash during normal use or robustness testing.                                                 | Crashes would interrupt learning and make the program unreliable to use in a lesson.                                    | Other Requirements            |
-| PR2             | Quick response                                | The app responds quickly on supported devices when the user changes the graph or uses the algorithm controls.   | Delays would make the simulator frustrating to use and would weaken the learning experience.                            | System Requirements           |
-| PR3             | Prevent invalid graph setups                  | The app checks inputs and prevents invalid graph setups.                                                        | Validation is needed so the program stays in a valid state and the user cannot accidentally create a broken simulation. | Other Requirements            |
-| PR4             | No misleading algorithm results               | The algorithms do not give incorrect or misleading results on the fixed test graphs.                            | As this is an educational tool, the algorithms must behave correctly and not teach the user the wrong thing.            | Information/Teaching          |
-| **Usability**   |                                               |                                                                                                                 |                                                                                                                         |                               |
-| UR1             | Readable on tested devices                    | The main screens are readable and usable on the tested iPad and Mac screen sizes.                               | The app should work well on the devices most likely to be used by my stakeholders.                                      | Client Questionnaire          |
-| UR2             | Easy to navigate                              | Most stakeholder testers can move between the main screens without help.                                        | The user should be able to find the main parts of the app easily instead of wasting time looking for them.              | Usability Requirements        |
-| UR3             | Help users understand the algorithm           | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.   | The main purpose of the app is to make graph algorithms easier to understand.                                           | Client Questionnaire          |
-| UR4             | Help users compare algorithms                 | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app. | The app should help users understand that the algorithms behave differently, not just show them as animations.          | Problem Recognition           |
-| UR5             | Explain the Frontier and Explored boxes       | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                 | These boxes are a key part of the simulation, so users need to understand them for the app to teach effectively.        | Features of Proposed solution |
-| UR6             | Use an engaging space theme                   | Most stakeholder testers find the space theme engaging and suitable for the target audience.                    | The theme is an important part of making the app feel more appealing and less dry than a standard graph simulator.      | Client Questionnaire          |
+| ID              | **Criteria**                                  | **Description**                                                                                                                 | **Reason**                                                                                                              | **Analysis Link**             |
+| --------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| **Functional**  |                                               |                                                                                                                                 |                                                                                                                         |                               |
+| FR1             | Generate a graph                              | The user can generate a graph using simple controls.                                                                            | This allows the user to create a graph quickly without having to build one manually.                                    | Features of Proposed solution |
+| FR2             | Teach what graphs and algorithms are used for | The app includes a page that explains what graphs and the algorithms are used for.                                              | The user needs some background knowledge before using the simulator so they understand why these algorithms matter.     | Features of Proposed solution |
+| FR3             | Simulate the algorithms                       | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.                           | These are the main algorithms I want to teach, so the program must implement them correctly.                            | Features of Proposed solution |
+| FR4             | Step through the algorithm                    | The user can step forwards and backwards through the algorithm one step at a time.                                              | This helps the user follow the algorithm carefully and create a trace table if needed.                                  | Features of Proposed solution |
+| FR5             | Auto-play the full algorithm                  | The user can auto-play the whole algorithm from start to finish.                                                                | This gives the user a quicker way to watch the full process and compare it with manual step-by-step control.            | Features of Proposed solution |
+| FR6             | Show the algorithm state                      | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes.            | The user needs to be able to tell the state of the algorithm apart while it is running.                                 | Features of Proposed solution |
+| FR7             | Explain each step                             | The simulation gives a text explanation of what is happening at each step.                                                      | The visual changes alone may not be enough for a new user to understand the algorithm.                                  | Features of Proposed solution |
+| FR8             | Show unsolvable graphs                        | The simulation shows when a graph cannot be solved by ending safely and displaying that no path was found.                      | Some generated graphs may not contain a valid path, so the user should not be misled.                                   | Limitations of Solution       |
+| FR9             | Show visit order with the ship                | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                                  | This makes the search order easier to follow and helps the user understand what the algorithm is doing.                 | Features of Proposed solution |
+| FR10            | Avoid crossing lines                          | Graphs should not be rendered with lines crossing each other where possible.                                                    | Crossing lines make the graph harder to read and can confuse the user when following the algorithm.                     | Features of Proposed solution |
+| **Performance** |                                               |                                                                                                                                 |                                                                                                                         |                               |
+| PR1             | No crashes                                    | The app does not crash during normal use or robustness testing.                                                                 | Crashes would interrupt learning and make the program unreliable to use in a lesson.                                    | Other Requirements            |
+| PR2             | Quick response                                | On the tested devices, the app updates without noticeable delay when the user changes the graph or uses the algorithm controls. | Delays would make the simulator frustrating to use and would weaken the learning experience.                            | System Requirements           |
+| PR3             | Prevent invalid graph setups                  | The app checks inputs and prevents invalid graph setups.                                                                        | Validation is needed so the program stays in a valid state and the user cannot accidentally create a broken simulation. | Other Requirements            |
+| PR4             | No misleading algorithm results               | The algorithms do not give incorrect or misleading results on the fixed test graphs.                                            | As this is an educational tool, the algorithms must behave correctly and not teach the user the wrong thing.            | Information/Teaching          |
+| **Usability**   |                                               |                                                                                                                                 |                                                                                                                         |                               |
+| UR1             | Readable on tested devices                    | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.                    | The app should work well on the devices most likely to be used by my stakeholders.                                      | Client Questionnaire          |
+| UR2             | Easy to navigate                              | Most stakeholder testers can move between the main screens without help.                                                        | The user should be able to find the main parts of the app easily instead of wasting time looking for them.              | Usability Requirements        |
+| UR3             | Help users understand the algorithm           | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.                   | The main purpose of the app is to make graph algorithms easier to understand.                                           | Client Questionnaire          |
+| UR4             | Help users compare algorithms                 | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app.                 | The app should help users understand that the algorithms behave differently, not just show them as animations.          | Problem Recognition           |
+| UR5             | Explain the Frontier and Explored boxes       | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                                 | These boxes are a key part of the simulation, so users need to understand them for the app to teach effectively.        | Features of Proposed solution |
+| UR6             | Use an engaging space theme                   | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                                  | The theme is an important part of making the app feel more appealing and less dry than a standard graph simulator.      | Client Questionnaire          |
 
 
 <div style="page-break-before: always;"></div>
@@ -441,7 +441,7 @@ Before using the inputs I need to check they are reasonable. There must be at le
 | ID   | Criteria                     | Why this subcomponent supports it                                                                |
 | ---- | ---------------------------- | ------------------------------------------------------------------------------------------------ |
 | FR1  | Generate a graph             | This subcomponent is responsible for generating the graph the user will work with.               |
-| FR8  | Show unsolvable graphs       | It can produce graphs that are unsolvable, so it must support that case properly.                |
+| FR8  | Show unsolvable graphs       | It can produce graphs that are unsolvable, so it must support ending safely and showing that no path was found. |
 | FR10 | Avoid crossing lines         | The generation logic should try to avoid creating graphs with crossing edges.                    |
 | PR3  | Prevent invalid graph setups | It must validate inputs and avoid invalid graph setups such as impossible start and end choices. |
 
@@ -463,9 +463,9 @@ The nodes and edges in the graph are in valid locations and are linked correctly
 
 | ID  | Criteria                  | Why this subcomponent supports it |
 | --- | ------------------------- | --------------------------------- |
-| FR6 | Show the algorithm state  | It is responsible for displaying nodes, edges, and the final path clearly. |
+| FR6 | Show the algorithm state  | It is responsible for displaying nodes, edges, and the final path using distinct visual changes. |
 | FR10 | Avoid crossing lines     | If crossing lines are left in the graph, the rendered graph becomes harder to understand. |
-| UR1 | Readable on tested devices | The graph display must remain readable on the tested screen sizes. |
+| UR1 | Readable on tested devices | The graph display must remain easy for most stakeholder testers to read and use on the tested devices. |
 
 <div style="page-break-before: always;"></div>
 
@@ -486,7 +486,7 @@ There should be a start and and end node and an algorithm to use needs to be sel
 | ID  | Criteria                      | Why this subcomponent supports it |
 | --- | ----------------------------- | --------------------------------- |
 | FR3 | Simulate the algorithms       | This is where the search algorithms themselves are implemented and solved. |
-| FR8 | Show unsolvable graphs        | It must detect when no valid path exists and report that outcome. |
+| FR8 | Show unsolvable graphs        | It must detect when no valid path exists, end safely, and report that no path was found. |
 | PR4 | No misleading algorithm results | The correctness of the algorithms depends on this subcomponent. |
 <div style="page-break-before: always;"></div>
 
@@ -509,7 +509,7 @@ Not Undo at the first stage and redo at the last stage.
 | --- | ---------------------------- | ------------------------------------------------------------------------------------------- |
 | FR4 | Step through the algorithm   | It allows the user to move forwards and backwards through the algorithm one step at a time. |
 | FR5 | Auto-play the full algorithm | It controls the automatic playback of the whole algorithm.                                  |
-| PR2 | Quick response               | The controls need to respond quickly when the user interacts with them.                     |
+| PR2 | Quick response               | The controls need to update without noticeable delay when the user interacts with them.     |
 
 <div style="page-break-before: always;"></div>
 
@@ -531,7 +531,7 @@ This component will be built on top of the graph which has lots of validataion t
 
 | ID  | Criteria                                | Why this subcomponent supports it                                                                |
 | --- | --------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| FR6 | Show the algorithm state                | It shows the algorithm state such as the current node, explored nodes, frontier, and final path. |
+| FR6 | Show the algorithm state                | It shows the algorithm state such as the current node, explored nodes, frontier, and final path using distinct visual changes. |
 | FR7 | Explain each step                       | It displays the text explanations for what is happening at each step.                            |
 | FR9 | Show visit order with the ship          | It includes the ship movement that shows visit order and backtracking.                           |
 | UR3 | Help users understand the algorithm     | The step-by-step visualisation should help users understand the algorithm.                       |
@@ -559,10 +559,10 @@ The views should only allow for valid inputs such as selecting objects that exis
 | ID  | Criteria                                      | Why this subcomponent supports it                                                                          |
 | --- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | FR2 | Teach what graphs and algorithms are used for | The user interface includes the information page about graphs and algorithms.                              |
-| UR1 | Readable on tested devices                    | The screens need to be readable and usable on the tested devices.                                          |
+| UR1 | Readable on tested devices                    | The screens need to be easy for most stakeholder testers to read and use on the tested devices.           |
 | UR2 | Easy to navigate                              | Navigation between the main screens is handled by this part of the solution.                               |
 | UR4 | Help users compare algorithms                 | The interface allows the user to choose algorithms and view information pages that help them compare them. |
-| UR6 | Use an engaging space theme                   | The overall look and feel of the app, including the space theme, is presented through the interface.       |
+| UR6 | Use an engaging space theme                   | The overall look and feel of the app, including the space theme, should be engaging and suitable for the target audience. |
 
 <div style="page-break-before: always;"></div>
 
@@ -738,9 +738,9 @@ I will pre-make a selection of strings that allow me to insert specific informat
 I will also give the user the ability to swap between Space Explanations, which use space vocabulary to increase engagement, and more technically accurate Graph Explanations, which use words like graph, node, and edge.
 
 ##### Planet and Path Colouring
-As the user Is looking at the graph for most of their time using the program the graph should also show the state of the algorithm.
-These will be the same colours as I coloured the lists for the frontier and the visited. I am going to highlight different nodes and color code them based off their significance.
-I am going to do this using the graph's interface i will create
+As the user is looking at the graph for most of their time using the program, the graph should also show the state of the algorithm.
+These will be the same colours as I used for the frontier and visited lists. I am going to highlight different nodes and colour-code them based on their significance.
+I am going to do this using the graph's interface that I will create.
 
 #### Subcomponent Six : User Interface : View
 
@@ -753,7 +753,7 @@ I therefore should make sure my app can adjust the size and locations of UI elem
 ##### Navigation
 As I am going to allow the user to navigate around different Views.
 I am going to use SwiftUI's Navigation stack for this.
-As I want to have control and stylise my app I am not going to be using Apple's built in components and will heavily customise them.
+As I want to have control and stylise my app, I am not going to be using Apple's built-in components and will heavily customise them.
 
 These screens should include:
 * Menu (for selection)
@@ -761,7 +761,7 @@ These screens should include:
 * How to use (explains how to use the program)
 * About Graphs/Algorithms (Teaches the user about graphs using a text page (not the simulation)
 * Graph/Galaxy Builder (Allows the user to create/select/generate graph)
-* Simulation (Where the program performs the Graph Traversal Algorithms on the generated graph
+* Simulation (where the program performs the graph traversal algorithms on the generated graph)
 
 Here is a short graph of how the user can navigate between these screens.
 
@@ -835,12 +835,12 @@ The SwiftUI controls will be mostly output-based:
 ### Object Model
 
 There is a series of objects that rely on each other in the program which work together to implement all the subcomponents. 
-* The Galaxy is the Graph which stores nodes it will be created in the Graph generation and visualised in the Graph Visualiation
+* The Galaxy is the graph that stores the nodes. It will be created in graph generation and visualised in graph visualisation.
 * The Builder is the object that generates the galaxy graph. These will be classes with static methods to return a generated graph. This will be covered in the graph generation subcomponents.
 * The planet is a single node in the graph so will sit under 
 * The Ship is a pointer to the current node to highlight which node is currently being visited. It is the object that will traverse the graph moving between nodes and exploring This will be a part of algorithm control and algorithm visualisation.
 * Traversable is a protocol that the graph algorithm operates on. This means that the algorithm can operate on any graph that follows this protocol which doesn't need to be a planet.
-* The algorithm class will contain the logic of all the implemented graph algortims. I will use inheritance to implement the core similar functionality of these algorithms.
+* The algorithm class will contain the logic of all the implemented graph algorithms. I will use inheritance to implement the core shared functionality of these algorithms.
 
 Here is an Entity Relationship diagram of the components:
 ```mermaid
@@ -1074,8 +1074,8 @@ This was especially useful for the weighted shortest path algorithms, because I 
 Each planet has a border which is used to indicate the information about the planet.
 Inside the border there is a procedurally generated planet which is not conveying any information.
 
-The following code is a static function on the PlanetNode class that will return a SpriteKit Node which is the planetNode. It takes in a base colour and an accent colour and applies them to the `fillColor` and `strokeColor` which are attributes of all `SKShapeNode`s. `SKShapeNode`s are SpriteKit nodes that can be given a shape which it renders as, and a circle is suitable for a planet.
-SKShapeNodes has a built in glow parameter which added a subtle effect.
+The following code is a static function on the `PlanetNode` class that returns a SpriteKit node for the planet. It takes in a base colour and an accent colour and applies them to the `fillColor` and `strokeColor`, which are attributes of all `SKShapeNode`s. `SKShapeNode`s are SpriteKit nodes that can be given a shape to render, and a circle is suitable for a planet.
+`SKShapeNode` has a built-in glow parameter which adds a subtle effect.
 I made this a static function as there is no functionality related to a specific planet.
 
 ```swift 
@@ -1466,7 +1466,7 @@ The first part was easier where I added a few more spriteKit nodes which were ad
 
 
 #### Reusable Text Bubble
-To put UI elements over the spritekit scene turned out to be difficult and not the best way to do it. Instead I created my own SpriteKit elements which I could reuse. This inherited from SKNode and uses a labelNode for text and a shapeNode for the border.
+Putting UI elements over the SpriteKit scene turned out to be difficult and not the best way to do it. Instead I created my own reusable SpriteKit elements. This inherited from `SKNode` and uses a `labelNode` for text and a `shapeNode` for the border.
 The size of the border is not passed in but is calculated to fit the passed text. This means it is easy to use this UI element. The text can be changed and this simply recalculates the border size.
 
 This was reused in any area where I need to create labels on the graph such as planet names and labelling weights on the graph.
@@ -1643,7 +1643,7 @@ This and the remaining components are primarily used for the HUD for the algorit
 ##### SpaceSlider
 <p align="center"><img src="./screenshots/GalaxySlider.png" alt="Galaxy Slider" width="40%"></p>
 This is a slider ui element which will be used to easily change numerical values.
-It has a title which can show the user what it does aswell as placing the current value so the user can see the exact selected number.
+It has a title which can show the user what it does, as well as the current value so the user can see the exact selected number.
 This is useful if the user wants an exact number of nodes in the graph.
 I experimented with text fields but decided as the majority of users are using on touch first devices a slider is more intuitive.
 The value variable has a binding property wrapper () which tells it 
@@ -1665,7 +1665,7 @@ struct SpaceSlider: View {
 ```
 
 ##### SpacePicker
-This UI component allows me to pick between a list of elements. I will use when thre is many options for the user to choose between. There will be lots of images of these components being used when I piece the UI together in the next sections
+This UI component allows me to pick from a list of elements. I will use it when there are many options for the user to choose between. There will be lots of images of these components being used when I piece the UI together in the next sections.
 
 #### Menu Screen
 This is the first screen that is shown on launch, so it should allow the user to navigate from here to the rest of the program. I did this by passing closures to change the state of the app.
@@ -1718,8 +1718,8 @@ ZStack {
 ```
 The HUDView is a new view that just swaps between the Graph generation HUD and the Graph solving HUD
 
-The Two HUD's are very similar as they both share the top half
-This is the generic top HudView which was placed at the top of both of the SpriteKit screens 
+The two HUDs are very similar because they both share the top half.
+This is the generic top `HUDView`, which was placed at the top of both SpriteKit screens.
 ```swift
 struct TopPlayingHUDRow : View{
     @Environment(\.presentationMode) var presentationMode
@@ -2525,31 +2525,31 @@ These work well because they are simple, clear, and easy to justify with evidenc
 
 **TODO: CRITICAL:** fill the Evidence / Summary column for each success criterion using the testing tables, screenshots, and development evidence.
 
-| ID              | Description                                                                                                     | Evidence / Summary                                          | Status                                                             |
-| --------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
-| **Functional**  |                                                                                                                 |                                                             |                                                                    |
-| FR1             | The user can generate a graph using simple controls.                                                            |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR2             | The app includes a page that explains what graphs and the algorithms are used for.                              |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR3             | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.           |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR4             | The user can step forwards and backwards through the algorithm one step at a time.                              |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR5             | The user can auto-play the whole algorithm from start to finish.                                                |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR6             | The simulation shows the current node, explored nodes, frontier nodes, and final path clearly.                  |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR7             | The simulation gives a text explanation of what is happening at each step.                                      |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| FR8             | The simulation clearly shows when a graph cannot be solved.                                                     |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| FR9             | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                  |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| FR10            | Graphs should not be rendered with lines crossing each other where possible.                                    |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| **Performance** |                                                                                                                 |                                                             |                                                                    |
-| PR1             | The app does not crash during normal use or robustness testing.                                                 |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| PR2             | The app responds quickly on supported devices when the user changes the graph or uses the algorithm controls.   |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| PR3             | The app checks inputs and prevents invalid graph setups.                                                        |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| PR4             | The algorithms do not give incorrect or misleading results on the fixed test graphs.                            |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| **Usability**   |                                                                                                                 |                                                             |                                                                    |
-| UR1             | The main screens are readable and usable on the tested iPad and Mac screen sizes.                               |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| UR2             | Most stakeholder testers can move between the main screens without help.                                        |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
-| UR3             | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.   |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| UR4             | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app. |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| UR5             | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                 | A few of the stakeholders had no idea what the frontier was | <span style="color: red;"><strong>Not Met</strong></span>          |
-| UR6             | Most stakeholder testers find the space theme engaging and suitable for the target audience.                    |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| ID              | Description                                                                                                                     | Evidence / Summary                                          | Status                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Functional**  |                                                                                                                                 |                                                             |                                                                    |
+| FR1             | The user can generate a graph using simple controls.                                                                            |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR2             | The app includes a page that explains what graphs and the algorithms are used for.                                              |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR3             | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.                           |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR4             | The user can step forwards and backwards through the algorithm one step at a time.                                              |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR5             | The user can auto-play the whole algorithm from start to finish.                                                                |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR6             | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes.            |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR7             | The simulation gives a text explanation of what is happening at each step.                                                      |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| FR8             | The simulation shows when a graph cannot be solved by ending safely and displaying that no path was found.                      |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| FR9             | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                                  |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| FR10            | Graphs should not be rendered with lines crossing each other where possible.                                                    |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| **Performance** |                                                                                                                                 |                                                             |                                                                    |
+| PR1             | The app does not crash during normal use or robustness testing.                                                                 |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| PR2             | On the tested devices, the app updates without noticeable delay when the user changes the graph or uses the algorithm controls. |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| PR3             | The app checks inputs and prevents invalid graph setups.                                                                        |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| PR4             | The algorithms do not give incorrect or misleading results on the fixed test graphs.                                            |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| **Usability**   |                                                                                                                                 |                                                             |                                                                    |
+| UR1             | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.                    |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| UR2             | Most stakeholder testers can move between the main screens without help.                                                        |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
+| UR3             | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.                   |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| UR4             | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app.                 |                                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| UR5             | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                                 | A few of the stakeholders had no idea what the frontier was | <span style="color: red;"><strong>Not Met</strong></span>          |
+| UR6             | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                                  |                                                             | <span style="color: green;"><strong>Met</strong></span>            |
 
 For visualising the difference in the algorithms I definitely achieved the main goal of getting them all running correctly, and visualising the backtracking helps a lot.
 However, the way the random graphs were generated, with weights proportional to the distance to the node, meant that a few algorithms performed quite similarly. What I could have done was add more noise to the weights in generation.
@@ -2602,7 +2602,7 @@ In terms of maintainability, I think the system is reasonably strong. The progra
 
 ## Conclusion
 
-To Conclude, I think I have achieved the main goal of this project. I created a final app that can generate graphs, solve them using multiple algorithms, and show the solution step by step in a way that is easier to follow. The main functional requirements were met, and  the program succeeded in making graph algorithms more accessible and easier to learn by using an engaging analogy that was relatable to my stakeholders.
+To conclude, I think I achieved the main goal of this project. I created an app that can generate graphs, solve them using multiple algorithms, and show the solution step by step in a way that is easier to follow. The main functional requirements were met, and the program succeeded in making graph algorithms more accessible and easier to learn by using an engaging analogy that was relatable to my stakeholders.
 
 One of the main strengths of the project is that it is interactive. The user can generate different graphs, choose different algorithms, and watch the process happen visually instead of only reading about it. I believe I gave the user just the right amount of control to allow the user to create useful interesting graphs without being overwhelming.
 
