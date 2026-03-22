@@ -1212,7 +1212,7 @@ This works because the orientation (which is the direction we travel to visit th
 
 These galaxies were not random but designed so that I could test on known graphs with known results. I only decided to make them when I started testing the algorithms as they were more predictable.
 
-The square and tree galaxy builder let me create the same fixed graph every time, which was useful when comparing how the different algorithms behaved on exactly the same layout and weights. The code below shows how I just give it the positions of the planets and the paths between them. This also gives you a better idea of the kind of objects that the random builder generates.
+The square and tree galaxy builder let me create the same fixed graph every time, which was useful when comparing how the different algorithms behaved on exactly the same layout and weights. The code below shows how I just give it the positions of the planets and the paths between them. This also gives you a better idea of the kind of objects that the random builder generates. I used ChatGPT to generate the lines that start "let PA" etc by passing it all the x,y coordinates.
 
 ```swift
 class SquareGalaxyBuilder : GalaxyBuilder {
@@ -2109,11 +2109,12 @@ The one big problem I had with the markdown and Obsidian is that is could not ge
 
 #### Use of AI
 
-| Type      | Use                                                                                                                                  | Example                                                                                                                                                                                           |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with OpenAI ChatGPT (19 Feb 2025).                    | "Prompt: Generate a transparent PNG image that I can download of a cartoony silver spaceship with cyan accents that would explore a galaxy" <img src="./screenshots/Ship8.png" alt="Ship sprite" width="20%"> |
-| Code<br>  | None of the code in the project was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections.    | "What is the easiest way to tell if two line segments intersect if I have the x,y positions of their start and end points"                                                                        |
-| Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand. It helped me understand the root cause. | What does “Value of optional type must be unwrapped” mean?<br>Why am I getting “Operation not permitted” when running my program?<br>                                                             |
+| Type       | Use                                                                                                                                       | Example                                                                                                                                                                                                       |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Assets     | The only AI generated item in my project was the Spaceship sprite which I made with OpenAI ChatGPT (19 Feb 2025).                         | "Prompt: Generate a transparent PNG image that I can download of a cartoony silver spaceship with cyan accents that would explore a galaxy" <img src="./screenshots/Ship8.png" alt="Ship sprite" width="20%"> |
+| Code<br>   | None of the code in the project was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections.         | "What is the easiest way to tell if two line segments intersect if I have the x,y positions of their start and end points"                                                                                    |
+| Test Graph | For the test graph, I passed ChatGPT a list of co-ordinates and edges, and it gave me the repetitive code to add all the nodes and edges. | "Given these co-ordinates can you generate the code to add the nodes and the edges using the functions available in the galaxy builder"                                                                       |
+| Debugging  | I did ask ChatGPT for help when I had problems and error messages that I did not understand. It helped me understand the root cause.      | What does “Value of optional type must be unwrapped” mean?<br>Why am I getting “Operation not permitted” when running my program?<br>                                                                         |
 
 <div style="page-break-before: always;"></div>
 
