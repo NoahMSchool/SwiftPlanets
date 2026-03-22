@@ -1,0 +1,49 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >> endobj
+4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+5 0 obj << /Length 2119 >> stream
+BT
+/F1 18 Tf
+1 0 0 1 50 790 Tm (Noah's Graph Simulator - Pre-Evaluation Stakeholder Survey) Tj
+/F1 12 Tf
+1 0 0 1 50 746 Tm (Name: ________________________________    Date: __________________) Tj
+1 0 0 1 50 706 Tm (1. Are you currently studying Computer Science?) Tj
+1 0 0 1 50 688 Tm (____________________________________________________________) Tj
+1 0 0 1 50 664 Tm (2. If yes, what course or level are you studying?) Tj
+1 0 0 1 50 646 Tm (____________________________________________________________) Tj
+1 0 0 1 50 622 Tm (3. What device do you use most for learning?) Tj
+1 0 0 1 50 604 Tm (____________________________________________________________) Tj
+1 0 0 1 50 580 Tm (4. Roughly how long would you be willing to spend learning a new topic with an app like this?) Tj
+1 0 0 1 50 562 Tm (____________________________________________________________) Tj
+1 0 0 1 50 538 Tm (5. Which theme do you find most interesting for learning graph algorithms?) Tj
+1 0 0 1 50 520 Tm ([ ] Space   [ ] Map / City   [ ] Rural Map   [ ] Other: ____________) Tj
+1 0 0 1 50 496 Tm (6. When using a tool to learn a new topic, would you prefer?) Tj
+1 0 0 1 50 478 Tm ([ ] More control   [ ] A more guided path   [ ] A mixture of both) Tj
+1 0 0 1 50 454 Tm (7. Before using this app, how confident do you feel about graph algorithms?) Tj
+/F1 11 Tf
+1 0 0 1 50 436 Tm ([ ] Very confident   [ ] Fairly confident   [ ] Not very confident   [ ] Not confident at all) Tj
+/F1 12 Tf
+1 0 0 1 50 412 Tm (8. Before using this app, how well do you understand the following?) Tj
+1 0 0 1 50 394 Tm (Graphs: [ ] Well  [ ] A little  [ ] Not at all) Tj
+1 0 0 1 50 374 Tm (BFS / DFS: [ ] Well  [ ] A little  [ ] Not at all) Tj
+1 0 0 1 50 354 Tm (Dijkstra / A*: [ ] Well  [ ] A little  [ ] Not at all) Tj
+1 0 0 1 50 330 Tm (9. What would you expect from a good learning app for graph algorithms?) Tj
+1 0 0 1 50 312 Tm (____________________________________________________________) Tj
+1 0 0 1 50 292 Tm (____________________________________________________________) Tj
+1 0 0 1 50 272 Tm (____________________________________________________________) Tj
+ET
+endstream endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+2482
+%%EOF

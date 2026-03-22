@@ -1,0 +1,61 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >> endobj
+4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+5 0 obj << /Length 2719 >> stream
+BT
+/F1 16 Tf
+1 0 0 1 50 790 Tm (Noah's Graph Simulator - Post-Evaluation Stakeholder Survey) Tj
+/F1 11 Tf
+1 0 0 1 50 750 Tm (Name: ________________________________    Date: __________________) Tj
+/F1 10 Tf
+1 0 0 1 50 712 Tm (1. Were you able to move between the main screens without help?) Tj
+1 0 0 1 50 696 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 676 Tm (2. Were the screens easy to read on your device?) Tj
+1 0 0 1 50 660 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 640 Tm (3. Was the space theme engaging and suitable for the app?) Tj
+1 0 0 1 50 624 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 604 Tm (4. Did the step-by-step simulation help you understand what the algorithm was doing?) Tj
+1 0 0 1 50 588 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 568 Tm (5. Could you explain what the Frontier box meant?) Tj
+1 0 0 1 50 552 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 532 Tm (6. Could you explain what the Explored box meant?) Tj
+1 0 0 1 50 516 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 496 Tm (7. Did the ship movement help you follow the order in which the algorithm visited nodes?) Tj
+1 0 0 1 50 480 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 460 Tm (8. Were the text explanations at each step helpful?) Tj
+1 0 0 1 50 444 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 424 Tm (9. Do you feel you understand graph algorithms better after using the app?) Tj
+1 0 0 1 50 408 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 388 Tm (10. Could you explain at least one difference between two algorithms after using the app?) Tj
+1 0 0 1 50 372 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 352 Tm (11. Were you able to generate a graph, step forwards/backwards, and use auto-play successfully?) Tj
+1 0 0 1 50 336 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 316 Tm (12. Was it clear when a graph could not be solved?) Tj
+1 0 0 1 50 300 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 280 Tm (13. Did the graph look clear and easy to follow?) Tj
+1 0 0 1 50 264 Tm (   [ ] Yes   [ ] Partly   [ ] No) Tj
+1 0 0 1 50 244 Tm (14. Did any crossing lines make the graph harder to read?) Tj
+1 0 0 1 50 228 Tm (   [ ] No   [ ] Partly   [ ] Yes) Tj
+1 0 0 1 50 208 Tm (15. Did the app crash or behave in a confusing way at any point?) Tj
+1 0 0 1 50 192 Tm (   [ ] No   [ ] Yes) Tj
+1 0 0 1 50 172 Tm (   If yes: _________________________________________________) Tj
+1 0 0 1 50 150 Tm (16. What was the most useful part of the app?) Tj
+1 0 0 1 50 134 Tm (   _________________________________________________) Tj
+1 0 0 1 50 112 Tm (17. What most needs improving?) Tj
+1 0 0 1 50 96 Tm (   _________________________________________________) Tj
+ET
+endstream endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+3082
+%%EOF
