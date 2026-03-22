@@ -20,7 +20,6 @@ When designing and developing I divided the program into six main components and
 After this there are sections on testing during development, testing after development. At the end there is the evaluation section where I revisited my requirements from analysis to evaluate how well the final program met my specified criteria
 Finally there is a appendix containing the sources used.
 
-
 There is a video of the final project in use with other key tools I used on the way.
 I hope you enjoy reading it as much as I enjoyed writing it!
 
@@ -112,61 +111,97 @@ I am going to refer back to these stakeholders once I have developed the app and
 
 | **Are you studying computer science, if so what course: ** | A level, GCSE, University, None or Other                                                             |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Stakeholder 1: Rambo                                       | GCSE OCR computer Science                                                                            |
-| Stakeholder 2: Rocco                                       | OCR comp-sci A-Level                                                                                 |
+| Stakeholder 1 : Rambo                                       | GCSE OCR computer Science                                                                            |
+| Stakeholder 2 : Rocco                                       | OCR comp-sci A-Level                                                                                 |
 | Stakeholder 3 : Jim                                        | A Level Computer Sci                                                                                 |
 | Stakeholder 4 : Jon                                        | I am not currently studying computer science but finished a degree in comp-sci and maths a while ago |
-| Stakeholder 5 : Willow                                     |                                                                                                      |
-| Stakeholder 6 : Caspian                                    |                                                                                                      |
-| Stakeholder 7 : Inge                                       |                                                                                                      |
+| Stakeholder 5 : Willow                                     | GCSE                                                                                                     |
+| Stakeholder 6 : Caspian                                    | no                                                                                                    |
+| Stakeholder 7 : Inge                                       | no                                                                                                   |
 
 From this it seems like my stakeholders will, or already have, encountered graphing algorithms, which gives me confidence that I have selected a useful topic. 
 
 | What devices do you use the most to learn: | Options: Tablet, Phone, Desktop or other    |
 | ------------------------------------------ | ------------------------------------------- |
-| Stakeholder 1: Rambo                       | I got a ipad 9th gen which I use for school |
-| Stakeholder 2: Rocco                       | I use a m2 macbook pro                      |
+| Stakeholder 1 : Rambo                      | I got a ipad 9th gen which I use for school |
+| Stakeholder 2 : Rocco                      | I use a m2 macbook pro                      |
 | Stakeholder 3 : Jim                        | I have a iPad Pro M4                        |
 | Stakeholder 4 : Jon                        | Mac Mini desktop for work                   |
-| Stakeholder 5 : Willow                     |                                             |
-| Stakeholder 6 : Caspian                    |                                             |
-| Stakeholder 7 : Inge                       |                                             |
+| Stakeholder 5 : Willow                     | Laptop - MacBook                            |
+| Stakeholder 6 : Caspian                    | iPad                                        |
+| Stakeholder 7 : Inge                       | Chrome or iPhone                            |
 
 I noticed all my stakeholders use Apple iOS devices. It is only a small sample but I do think targeting this audience is a good start.
 
 | **How Long are you willing to spend to learn a new topic: ** | A time based measurement from 5 minutes to over a few days |
 | ------------------------------------------------------------ | ---------------------------------------------------------- |
-| Stakeholder 1: Rambo                                         | 40 minutes, just under a lesson                            |
-| Stakeholder 2: Rocco                                         | 20 minutes for something small                             |
+| Stakeholder 1 : Rambo                                         | 40 minutes, just under a lesson                            |
+| Stakeholder 2 : Rocco                                         | 20 minutes for something small                             |
 | Stakeholder 3 : Jim                                          | half a school period or half an hour                       |
 | Stakeholder 4 : Jon                                          | half an hour                                               |
-| Stakeholder 5 : Willow                                       |                                                            |
-| Stakeholder 6 : Caspian                                      |                                                            |
-| Stakeholder 7 : Inge                                         |                                                            |
+| Stakeholder 5 : Willow                                       | 1 hour                                                          |
+| Stakeholder 6 : Caspian                                      | 20 minutes                                                           |
+| Stakeholder 7 : Inge                                         | 1 hour                                                           |
 
 I wouldn't be surprised if it takes slightly longer (or shorter) than the stakeholders quoted times but my target is that this should be done in about half a school lesson. The tool will not be used the whole time so this would also provide time for other forms of research or creating trace tables while using the program.
 
 | **Which of the following analogies do you find most relatable and interesting out of: ** | Options: Space, A Map (City or Rural) or other                           |
 | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| Stakeholder 1: Rambo                                                                     | I would love a space analogy                                             |
-| Stakeholder 2: Rocco                                                                     | Space or City would be interesting                                       |
-| Stakeholder 3 : Jim                                                                      | I like the idea of a rural geographical map but Space would also be cool |
-| Stakeholder 4 : Jon                                                                      | The Industrial Map would be cool but also the Space                      |
-| Stakeholder 5 : Willow                                                                   |                                                                          |
-| Stakeholder 6 : Caspian                                                                  |                                                                          |
-| Stakeholder 7 : Inge                                                                     |                                                                          |
+| Stakeholder 1 : Rambo                                                                     | Space                                             |
+| Stakeholder 2 : Rocco                                                                     | Space or City                                        |
+| Stakeholder 3 : Jim                                                                      | Rural or Space |
+| Stakeholder 4 : Jon                                                                      | The Industrial Map or Space                      |
+| Stakeholder 5 : Willow                                                                   | Map/City                                                                        |
+| Stakeholder 6 : Caspian                                                                  | Space                                                                       |
+| Stakeholder 7 : Inge                                                                     | Other: Fantasy                                                                         |
 
 Space seems to be the most popular theme among my stakeholders.
 
 | **When using a tool to learn a new subject would you rather have :** | Options: more control or a more guided path or other                                                                                                                   |
 | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Stakeholder 1: Rambo                                                 | More control would be nice but it should be easy and intuitive to use                                                                                                  |
-| Stakeholder 2: Rocco                                                 | I would like both, maybe you could start with a more guided approach and then once you are more familiar you could be given more control                               |
-| Stakeholder 3 : Jim                                                  | I would rather be guided at the start as I can find the options overwhelming                                                                                           |
-| Stakeholder 4 : Jon                                                  | I think it is good to take it slow while learning, so I think there should be the ability to experiment on top of an overall guide to make sure we don't go off track. |
-| Stakeholder 5 : Willow                                               |                                                                                                                                                                        |
-| Stakeholder 6 : Caspian                                              |                                                                                                                                                                        |
-| Stakeholder 7 : Inge                                                 |                                                                                                                                                                        |
+| Stakeholder 1 : Rambo                                                 | More control                                                                                                  |
+| Stakeholder 2 : Rocco                                                 | A mixture of both                               |
+| Stakeholder 3 : Jim                                                  | More guided                                                                                           |
+| Stakeholder 4 : Jon                                                  | More control |
+| Stakeholder 5 : Willow                                               | A mixture of both                                                                                                                                                                       |
+| Stakeholder 6 : Caspian                                              | More guided                                                                                                                                                                    |
+| Stakeholder 7 : Inge                                                 | A mixture of both                                                                                                                                                                       |
+
+There is a wide range of all the answers here.
+
+| **Before using this app, how confident do you feel about graph algorithms :** | Options: very, fairly, not very, not at all                                                                                                                  |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stakeholder 1: Rambo                                                 | fairly                                                                                                  |
+| Stakeholder 2: Rocco                                                 | very                               |
+| Stakeholder 3 : Jim                                                  | fairly                                                                                           |
+| Stakeholder 4 : Jon                                                  | very |
+| Stakeholder 5 : Willow                                               | not at all                                                                                                                                                                       |
+| Stakeholder 6 : Caspian                                              | not at all                                                                                                                                                                       |
+| Stakeholder 7 : Inge                                                 | not at all                                                                                                                                                                       |
+
+The Comp Sci students are quite confident, and the others are not at all confident.
+
+| **Before using this app, how well do you understand BFS/DFS/Dijkstra/A Star :** | Options: well, little, not at all                                                                                                                  |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stakeholder 1: Rambo                                                 | little                                                                                                  |
+| Stakeholder 2: Rocco                                                 | well                               |
+| Stakeholder 3 : Jim                                                  | little                                                                                           |
+| Stakeholder 4 : Jon                                                  | well |
+| Stakeholder 5 : Willow                                               | not at all                                                                                                                                                                       |
+| Stakeholder 6 : Caspian                                              | not at all                                                                                                                                                                       |
+| Stakeholder 7 : Inge                                                 | not at all                                                                                                                                                                       |
+
+The answers to this were pretty much the same as the the previous question. I don't think I needed this question.
+
+| Question                                                             | Summary of answers                                                               |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| What would you expect from a good learning app for graph algorithms? | Easy to understand and nice graphs.                                              |
+| What would you expect from a good learning app for graph algorithms? | Clear visualisation of the steps and solution. Ability to step forward and back. |
+| What would you expect from a good learning app for graph algorithms? | To do all the work for me                                                        |
+| What would you expect from a good learning app for graph algorithms? | Clear instructions, fun, beautiful                                               |
+| What would you expect from a good learning app for graph algorithms? | Help me do well in my A Levels                                                   |
+| What would you expect from a good learning app for graph algorithms? | Make sure I understand everything                                                |
+The feedback from the Computer Science students was focussed on learning and understanding the algorithms. The feedback from the others was more about the graphics and UI and having fun.
 
 #### Client Questionnaire takeaways
 
