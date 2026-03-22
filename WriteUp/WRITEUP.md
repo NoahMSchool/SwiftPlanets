@@ -85,6 +85,16 @@ I loved using all the simulations and found them very useful. However, one thing
 
 Since my program is only one tool, I can take advantage of this and make my project more unique and more relatable to use.
 
+To compare the three solutions more directly, I made the following table. This helps me identify the main areas where I want my own solution to be different.
+
+| Aspect to Compare | Graph Online | TUM Shortest Path | PhET | How My Solution Will Be Different |
+| ----------------- | ------------ | ----------------- | ---- | --------------------------------- |
+| Ease of use for beginners |  |  |  |  |
+| Step-by-step explanation of the algorithm |  |  |  |  |
+| How the user creates or interacts with the graph |  |  |  |  |
+| How engaging the visuals and theme are |  |  |  |  |
+| Range of algorithms or learning content included |  |  |  |  |
+
 #### Research Takeaways
 
 The main takeaways are that I wanted to make the program approachable and relatable to the user, intuitive to use with step-by-step instructions, and not rely on any prior knowledge from the user. 
@@ -602,6 +612,18 @@ The controller, while not included directly in the subcomponents, is still a lar
 I am going to use a SwiftUI observable object, which is an object that will notify and update observers when it changes.
 
 This diagram shows the main flow of data for one user action in the finished program:
+
+```mermaid
+flowchart LR
+    A["User presses a control in SwiftUI"] --> B["Controller updates state"]
+    B --> C["BaseSearch / Galaxy model changes"]
+    C --> D["AlgorithmState is updated"]
+    D --> E["SpriteKit graph redraws highlights and ship"]
+    D --> F["SwiftUI lists and explanation boxes refresh"]
+    E --> G["User sees the new step"]
+    F --> G
+```
+
 ### Implementation of Subcomponents
 
 #### Subcomponent One : Graph generation : Model
@@ -868,6 +890,19 @@ I then added a small random offset to each selected position so the planets did 
 This part of the generator is quite efficient for the size of graphs I use. Shuffling and sorting  positions or paths is fast enough for small (less than 100 node) graphs, and I accepted the more expensive intersection checks because they greatly improved the look of the final graph.
 
 This flowchart summarises the main stages of the random galaxy generation process:
+
+```mermaid
+flowchart TD
+    A["Create grid of possible positions"] --> B["Shuffle positions"]
+    B --> C["Select first n positions"]
+    C --> D["Add random jitter to each planet"]
+    D --> E["Create candidate paths based on distance"]
+    E --> F["Sort candidate paths by distance"]
+    F --> G["Remove paths that intersect shorter paths"]
+    G --> H["Choose start and end planets"]
+    H --> I["Return finished galaxy"]
+```
+
 Here is the create Planets for random galaxy
 ```swift
 override class func createPlanets(planetCount: Int, spacing : Double = 100, mapSize : Double = 1000)->[Planet]{
@@ -1282,6 +1317,23 @@ Different to design, I did not include a redo Stack that stored the future stage
 
 This design uses more memory because every step stores a full `AlgorithmState`, but I thought this was a good trade-off. The graphs are small enough that the extra storage is not a problem, and it makes stepping backwards immediate instead of having to rerun the whole algorithm from the beginning every time.
 
+This flowchart shows the main logic of one step of the algorithm:
+
+```mermaid
+flowchart TD
+    A["User presses Forward"] --> B["Take next node from frontier"]
+    B --> C["Mark node as current and explored"]
+    C --> D{"Is it the target?"}
+    D -->|Yes| E["Reconstruct final path"]
+    E --> F["Mark search as completed"]
+    D -->|No| G["Check neighbours"]
+    G --> H["Add valid neighbours to frontier"]
+    H --> I["Update explanation and stored state"]
+    I --> J["Prioritise and dedupe frontier"]
+    J --> K{"Frontier empty?"}
+    K -->|Yes| L["Mark search as completed with no path"]
+    K -->|No| M["Wait for next step"]
+```
 #### Undo Stack
 I made an UNDO stack to store the history of the algorithm.
 When I went forward in the algorithm I created an object that stored all the key variables of the algorithm state and pushed this object onto the stack. This is similar to how the contents of the registers are pushed onto a stack when there is an interrupt. I could then freely change the original variables for the next step without losing the data for the previous step.
