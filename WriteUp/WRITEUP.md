@@ -1658,7 +1658,7 @@ self.planetUILabel.position = CGPoint(x: 0, y: -35)
 ```
 
 I added the ability to show and hide text on the edges. Here is an updated planetNode:
-<p align="center"><img src="./IndividualPlanetNode.png" alt="Individual Planet Node" width="100"></p>
+<p align="center"><img src="./screenshots/IndividualPlanetNode.png" alt="Individual Planet Node" width="100"></p>
 #### ShipNode
 The Ship turned out to be more of a UI element than an actual object that I expected. I used a SKSpriteNode for this, these are nodes that take in an image which should be in the projects filesystem. I used an AI generated image for this which I will talk about later in Use of AI
 
@@ -2111,7 +2111,7 @@ The one big problem I had with the markdown and Obsidian is that is could not ge
 
 | Type      | Use                                                                                                                                  | Example                                                                                                                                                                                           |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with OpenAI ChatGPT (19 Feb 2025).                    | "Prompt: Generate a transparent PNG image that I can download of a cartoony silver spaceship with cyan accents that would explore a galaxy" <img src="./Ship8.png" alt="Ship sprite" width="20%"> |
+| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with OpenAI ChatGPT (19 Feb 2025).                    | "Prompt: Generate a transparent PNG image that I can download of a cartoony silver spaceship with cyan accents that would explore a galaxy" <img src="./screenshots/Ship8.png" alt="Ship sprite" width="20%"> |
 | Code<br>  | None of the code in the project was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections.    | "What is the easiest way to tell if two line segments intersect if I have the x,y positions of their start and end points"                                                                        |
 | Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand. It helped me understand the root cause. | What does “Value of optional type must be unwrapped” mean?<br>Why am I getting “Operation not permitted” when running my program?<br>                                                             |
 
