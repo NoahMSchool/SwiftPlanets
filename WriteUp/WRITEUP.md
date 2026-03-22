@@ -17,10 +17,10 @@ This document is organised into the main stages of the project. It begins with a
 In the design section I use tables, hand-drawn sketches, and diagrams such as hierarchy diagrams, navigation diagrams, and class diagrams to show how the solution was planned.
 The development section then explains how the main parts of the program were implemented, using screenshots, code samples, and further diagrams where they help explain the structure. I tried to show the most interesting algorithms and code snippets. 
 When designing and developing I divided the program into six main components and each section tries to cover them separately.
-After this there are sections on testing during development, testing after development. At the end there is the evaluation section where I revisited my requirements from analysis to evaluate how well the final program met my specified criteria
-Finally there is a appendix containing the sources used.
+After this there are sections on testing during development and testing after development. At the end there is the evaluation section, where I revisit my requirements from analysis to evaluate how well the final program met my specified criteria.
+Finally there is an appendix containing the sources used.
 
-There is a video of the final project in use with other key tools I used on the way.
+There is also a video of the final project in use, alongside other key tools I used during development.
 I hope you enjoy reading it as much as I enjoyed writing it!
 
 <div style="page-break-before: always;"></div>
@@ -87,8 +87,8 @@ Since my program is only one tool, I can take advantage of this and make my proj
 
 #### Research Takeaways
 
-The main takeways are that I wanted to make the program approachable and relatable to the user, intuitive to use with step by step instructions, and not rely on any prior knowledge from the user. 
-I believe stepping through the steps of the algorithm giving explanations and showing state will be an essential part of the program as it is about teaching the algorithms not showing them.
+The main takeaways are that I wanted to make the program approachable and relatable to the user, intuitive to use with step-by-step instructions, and not rely on any prior knowledge from the user. 
+I believe stepping through the algorithm while giving explanations and showing state will be an essential part of the program, as it is about teaching the algorithms rather than just showing them.
 I noticed the graphing simulations out there had interfaces with lots of options.
 At the cost of making it more approachable my program may have less features exposed to the user which should make it easier to use. 
 This will differentiate my program to the competition which should make it more appealing to my audience which is anyone seeking to learn about graphing algorithms with less experience or from scratch. 
@@ -105,7 +105,7 @@ For my stakeholders I tried to find Computer Science students, who will likely s
 
 First I gave a quick questionnaire to these stakeholders and I aim to use this data to better understand my audience and tailor the experience to be more engaging to them. 
 
-I am going to refer back to these stakeholders once I have developed the app and allow them to test the feedback.
+I am going to refer back to these stakeholders once I have developed the app and allow them to test it.
 
 #### Questionnaire for target market
 
@@ -135,7 +135,7 @@ From this it seems like my stakeholders will, or already have, encountered graph
 | Stakeholder 6 : Caspian                    | iPad                                        |
 | Stakeholder 7 : Inge                       | Chrome or iPhone                            |
 
-I noticed all my stakeholders use Apple iOS devices. It is only a small sample but I do think targeting this audience is a good start.
+Most of my stakeholders use Apple devices. It is only a small sample, but I still think targeting this audience is a good start.
 
 | **How Long are you willing to spend to learn a new topic: ** | A time based measurement from 5 minutes to over a few days |
 | ------------------------------------------------------------ | ---------------------------------------------------------- |
@@ -195,7 +195,7 @@ The Comp Sci students are quite confident, and the others are not at all confide
 | Stakeholder 6 : Caspian                                              | not at all                                                                                                                                                                       |
 | Stakeholder 7 : Inge                                                 | not at all                                                                                                                                                                       |
 
-The answers to this were pretty much the same as the the previous question. I don't think I needed this question.
+The answers to this were pretty much the same as the previous question. I do not think I needed this question.
 
 | Question                                                             | Summary of answers                                                               |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
@@ -211,7 +211,7 @@ The feedback from the Computer Science students was focussed on learning and und
 
 I believe a space analogy will be the most suitable for the audience. This makes sense as my stakeholders are mostly into STEM, so they were already fascinated by space. This will influence choices of themes and visuals of the program when designing and developing.
 
-I think it is important to have at least a gentle introduction to the algorithms and a clear easy to use interface. From research into other tools I found the solutions that had an direct onboarding were more useful, and my stakeholders backed this up. This will also mean I will have a multi-page interface so the user can focus on individual sections at once with each page having clear start and end points so the user knows when to move on.
+I think it is important to have at least a gentle introduction to the algorithms and a clear, easy-to-use interface. From research into other tools I found the solutions that had direct onboarding were more useful, and my stakeholders backed this up. This will also mean I will have a multi-page interface so the user can focus on individual sections at once, with each page having clear start and end points so the user knows when to move on.
 
 These answers also supported my view that I should sacrifice control over the program for ease of use and not confusing the user.
 
@@ -238,11 +238,11 @@ My program does not require any data mining as I am not storing data.
 ##### Heuristics
 Algorithms like A* use heuristics to help guide the search. For graph algorithms a sensible heuristic is the absolute distance to the target node.
 ##### Pipelining
-Pipelining is not something I am directly controlling in this project, so it is not a relevent method in my solution.
+Pipelining is not something I am directly controlling in this project, so it is not a relevant method in my solution.
 ##### Performance modelling
 I can look at the time complexities of the components of the solution to see if the calculations are realistic on the kind of hardware I am using. I can look at the time complexities of the graphing algorithms I am using.
 #### Abstraction
-As My graphing simulator is set in space, I need to consider which features to keep to make the simulation at least somewhat accurate. This is a graphing simulator not an ultra-realistic space simulation so I am able to remove things without making the program useless to the user.
+As my graphing simulator is set in space, I need to consider which features to keep to make the simulation at least somewhat accurate. This is a graphing simulator, not an ultra-realistic space simulation, so I am able to remove things without making the program useless to the user.
 
 I will abstract lots of details of space and simplify it to just a graph with a few aesthetic objects in the background for visual appeal.
 
@@ -304,7 +304,7 @@ To develop I am going to be using Swift Playgrounds. This is a simple environmen
 | Computer Mouse or touchscreen | The device they use must be a touchscreen, or have a screen and mouse or trackpad or some mechanism to view and select elements                                                                                                                                     | Used for selecting objects and playing the game                                                     |
 | Apple Device                  | It must be an apple device such as an iPad, Mac or iPhone                                                                                                                                                                                                           | The device needs to run a required operating system                                                 |
 | Screen Aspect Ratio/Size      | I will not be too strict about the aspect ratio but it should not be too wide or too small. I am going to test it using an iPad and a Mac which have 3:2 and 16:10 aspect ratios so it will be designed around that as well as 2:3 for portrait iPads.              | Most users will be running this on iPads or Macs so optimising for these aspect ratios is important |
-| 8GB of RAM                    | At least 8gb of RAM will be required. For Intel Macs 16gb would be preffered as apple silicon macs are more efficient in managing RAM. 4gb is also okay on ipad as it is well optimised and my program itself is not storing much data so It will not use much RAM. | I need to be able to run swift playgrounds which is reccomened to have at least 8gb.                |
+| 8GB of RAM                    | At least 8GB of RAM will be required. For Intel Macs 16GB would be preferred, as Apple silicon Macs are more efficient in managing RAM. 4GB is also acceptable on iPad as it is well optimised and my program itself is not storing much data, so it will not use much RAM. | I need to be able to run Swift Playgrounds, which is recommended to have at least 8GB.                |
 
 <div style="page-break-before: always;"></div>
 
@@ -381,7 +381,7 @@ Based on the problem I'm trying to solve, the responses from my client stakehold
 ## Design
 
 ### Problem Decomposition
-I have broken down my problem into the following subcomponents. When developing I will do sprints for each of these components. At a very high level, this are the six subcomponents I'm going to divide the problem into:
+I have broken down my problem into the following subcomponents. When developing I will do sprints for each of these components. At a very high level, these are the six subcomponents I am going to divide the problem into:
 
 ```mermaid
 
@@ -618,7 +618,7 @@ I need to create some algorithm that I use to generate a 2D graph that fits the 
 
 #### Subcomponent Two : Graph rendering : View
 <p align="center"><img src="./sketches/sketch_visualise.jpeg" alt="Graph Rendering Sketch" width="75%"></p>
-For rendering the Graph I am going to use Spritekit. This is because I can draw exact shapes of planets and lines. I will have very exact control over what I am doing. 
+For rendering the graph I am going to use SpriteKit. This is because I can draw exact shapes of planets and lines. I will have precise control over what I am doing. 
 ##### Planets/Nodes
 The planets are going to be rendered using filled circles which are randomly selected from the planets. They will have a custom border whose color can be changed.
 The planets will have labels below them which should be readable. These will be used to show the name of which planet it is as the names will be used in other places.
@@ -652,7 +652,7 @@ I am using a Pre-Order Traversal so it will start at the root then go left then 
 Dijkstra uses a priority queue. The condition is that the selected node is the node with the current shortest distance to reach. This ensures it will not go to a node until there are no other nodes that are closer. This guarantees that there will be no shorter path to the next node through other nodes. Assuming there are no negative weights, this will always return the shortest path.
 
 ##### A* shortest path
-A* uses a priority queue based on a combination (A 50/50 split) between the closest node and a given Heuristic. The heuristic that I am going to use is the distance as the crow flies to the target node from the current node.
+A* uses a priority queue based on a combination of the current path cost and a heuristic. The heuristic that I am going to use is the distance as the crow flies to the target node from the current node.
 
 ##### Greedy Best First Search (Bonus)
 When researching the algorithms I found there was one more algorithm that would complete the program. Although Greedy Best First Search is not in the A-Level spec, it has the same core idea as the others because it also uses a priority queue.
@@ -733,7 +733,7 @@ As I want to have control and stylise my app I am not going to be using Apple's 
 
 These screens should include:
 * Menu (for selection)
-* Settings (changing preferences for user such as ship speed, space/graph descriptions, planet names, I will use a swiftUI element called a sheet which will provide a semi-transparent popup overlay to allow the user to see the content while changing the settings)
+* Settings (changing preferences for the user such as ship speed, space/graph descriptions, and planet names. I will use a SwiftUI element called a sheet, which will provide a semi-transparent popup overlay to allow the user to see the content while changing the settings)
 * How to use (explains how to use the program)
 * About Graphs/Algorithms (Teaches the user about graphs using a text page (not the simulation)
 * Graph/Galaxy Builder (Allows the user to create/select/generate graph)
@@ -784,13 +784,13 @@ The objectives of this screen are:
 
 ##### Settings View
 This is not so much going to be a separate screen but will be placed on top of the current view. This will always be the galaxy builder or simulation as it is only accessible via these pages.
-I am going to use a swiftUI element called a sheet which allows me to overlay the settings view on top of the current view, this will allow me to keep the background visible while changing settings to keep the context of the graph.
+I am going to use a SwiftUI element called a sheet which allows me to overlay the settings view on top of the current view. This will allow me to keep the background visible while changing settings so the context of the graph is not lost.
 
 <p align="center"><img src="./sketches/sketch_settings.jpeg" alt="Settings Sketch" width="75%"></p>
 This is what the sheet will look like. I will put the controls inside the sheet.
 ##### Graph Generation
 This will contain the SpriteKit View. Here the nodes will not be coloured, excluding colouring that indicates the start and end. This is because the algorithm is not currently being run.
-The swiftUI controls will mostly be inputs such as buttons and sliders.
+The SwiftUI controls will mostly be inputs such as buttons and sliders.
 There will be the controls for generating the graph and choosing the search algorithm for example:
 * Selecting the algorithm
 * Regenerating Graph
@@ -800,11 +800,9 @@ There will be the controls for generating the graph and choosing the search algo
 ##### Simulation
 This will contain the SpriteKit View which will include a ship and necessary highlight colours depending on the state of the algorithm.
 
-The SwiftUI controls will be mostly output based:
+The SwiftUI controls will be mostly output-based:
 * List of Frontier nodes and visited nodes
 * Explanation Boxes explaining the steps of the algorithms.
-
-<div style="page-break-before: always;"></div>
 
 <div style="page-break-before: always;"></div>
 
@@ -865,6 +863,8 @@ If the graph generation parameter ***number of planets*** changed, I immediately
 I started by using a nested `for` loop to create a square grid of possible positions for a planet and I added these to an array. I then needed to select a fixed number of positions from this list. To do this I randomised the order of the options array and selected the first `planetCount` positions.
 
 I then added a small random offset to each selected position so the planets did not sit in a perfectly regular grid. This kept a minimum spacing between planets while still making the galaxy feel more natural. After generating the planets, the next stage was to calculate which planets should be connected based on distance and then remove bad-looking edge intersections. 
+
+This part of the generator is quite efficient for the size of graphs I use. Shuffling and sorting  positions or paths is fast enough for small (less than 100 node) graphs, and I accepted the more expensive intersection checks because they greatly improved the look of the final graph.
 
 Here is the create Planets for random galaxy
 ```swift
@@ -1161,6 +1161,8 @@ func prioritizeAndDedupeFrontier() {
 
 This first sorts the frontier by priority, then removes duplicate nodes so the same node does not appear multiple times in the queue.
 
+This was also a sensible place to keep the more expensive frontier work. Breadth First Search and Depth First Search still behave like simple graph traversals, while Dijkstra, Greedy Best First Search, and A* pay the extra cost of sorting because they need a priority queue. That trade-off was worthwhile because my graphs are small, but correct queue ordering is essential for the weighted and heuristic algorithms.
+
 #### Breadth First Search
 Breadth First Search uses a queue to decide which is the next node to visit. 
 This provides a broad search around the start node in general visiting closer nodes before further nodes
@@ -1272,11 +1274,11 @@ classDiagram
 
 #### Step by Step Solving
 
-At A high level to solve step by step I have a current state, a forward function and a backward function. 
-I have a stack that stores the history of the algorithm with an object.
-When going forwards I do the necessary steps which will 
-Different to design I did not include a redo Stack that stored the future stages. The argument that it is less efficient I do not think is a problem as it is only being done on event and the calculations are actually not that big.
+At a high level to solve step by step I have a current state, a forward function and a backward function.  I have a stack that stores the history of the algorithm with an object.
 
+Different to design, I did not include a redo Stack that stored the future stages. The argument that it is less efficient I do not think is a problem as it is only being done on an event and the calculations are actually not that big.
+
+This design uses more memory because every step stores a full `AlgorithmState`, but I thought this was a good trade-off. The graphs are small enough that the extra storage is not a problem, and it makes stepping backwards immediate instead of having to rerun the whole algorithm from the beginning every time.
 #### Undo Stack
 I made an UNDO stack to store the history of the algorithm.
 When I went forward in the algorithm I created an object that stored all the key variables of the algorithm state and pushed this object onto the stack. This is similar to how the contents of the registers are pushed onto a stack when there is an interrupt. I could then freely change the original variables for the next step without losing the data for the previous step.
@@ -1758,13 +1760,13 @@ struct BottomPlayingHUDRow : View {
 The ButtonsAndExplanationBlock is another container view I created to decompose it further
 Here is the image of the generated view.
 
-![[BottomPlayingHUD 1.png]]
+<p align="center"><img src="./screenshots/BottomPlayingHUD 1.png" alt="Bottom Playing HUD Detail" width="70%"></p>
 #### How to use Screen
 
-This is a screen that shows the user how to interact with the program in case they are confused. It tells them what the colour codes mean and what the stacks and other UI elements represent.
+This is a screen that shows the user how to interact with the program if they are unsure. It tells them what the colour codes mean and what the stacks and other UI elements represent.
 It also shows the user the controls and how to interact with the program.
 
-![[HowToUseScreen.png]]
+<p align="center"><img src="./screenshots/HowToUseScreen.png" alt="How To Use Screen" width="70%"></p>
 #### Algorithms Descriptions Page
 
 The start of my algorithms page is generic to all the algorithms. Similar to how I realised how similar the algorithms' core concepts really are, I wanted to amplify this in the descriptions.
@@ -1799,12 +1801,12 @@ override class func getDescription()->String{
         return "Dijkstra's Algorithm was created by Edsger Dijkstra in 1956. It always finds the shortest weighted path from start to goal. It uses a priority queue to explore the lowest-cost path first."
     }  
 ```
-![[AboutScreen.png]]
+<p align="center"><img src="./screenshots/AboutScreen.png" alt="About Screen" width="70%"></p>
 #### Hierarchy of SwiftUI elements
 Similar to SpriteKit I used reusable components to save development time and increase consistency in the UI.
 
-Here is a hierachy of how the reuseable swiftUI views I created are being used. 
-Note that I ommited SpaceText as it is a viewmodifier that was placed on other UI views but kept when it was simply applied to a Text() View
+Here is a hierarchy of how the reusable SwiftUI views I created are being used. 
+Note that I omitted `SpaceText` as it is a view modifier that was placed on other UI views but kept when it was simply applied to a `Text()` view.
 
 ```
 HomeView - MenuScreen
@@ -1851,6 +1853,7 @@ From My Research I found there are four main methods frontend languages use for 
 
 **Anchoring** is a method that instead of giving absolute coordinates you give positions reletive to a side or corner. This is good as it ensures UI will not go through the edge of the screen.
 
+**TODO**: List the other three options and explain why I chose what I did
 
 SwiftUI I found confusing as there are lots of different components that are used 
 #### Starry Background
@@ -2386,9 +2389,9 @@ The following table is a summary of the responses. I have included an average wh
 
 | Question | Totals | Average | Summary |
 | -------- | ------ | ------- | ------- |
-| Could move between the main screens without help | <span style="color: green;"><strong>7 Y</strong></span> | <span style="color: green;"><strong>2.00</strong></span> | All my stakeholders could navigate the app. This was good. |
+| Could move between the main screens without help | <span style="color: green;"><strong>7 Y</strong></span> | <span style="color: green;"><strong>2.00</strong></span> | All of my stakeholders could navigate the app without help, which suggests the main navigation was clear. |
 | Screens were easy to read on their device | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: red;"><strong>1 N</strong></span> | <span style="color: green;"><strong>1.71</strong></span> | The UI adapted well to different screen sizes, although Jim said the large screen on his 13-inch iPad Pro was not used well enough. |
-| Space theme was engaging and suitable | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span> | <span style="color: green;"><strong>1.86</strong></span> | I cannot please everyone, but all of them still liked the theme overall. |
+| Space theme was engaging and suitable | <span style="color: green;"><strong>6 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span> | <span style="color: green;"><strong>1.86</strong></span> | The theme was received positively overall, although one stakeholder was less enthusiastic than the others. |
 | Step-by-step simulation helped them understand the algorithm | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>3 P</strong></span> | <span style="color: green;"><strong>1.57</strong></span> | Most found the step-by-step process useful, but for the non comp sci people it did not explain everything. |
 | Could explain what the `Frontier` box meant | <span style="color: green;"><strong>3 Y</strong></span>, <span style="color: orange;"><strong>2 P</strong></span>, <span style="color: red;"><strong>2 N</strong></span> | <span style="color: orange;"><strong>1.14</strong></span> | Many stakeholders did not understand the Frontier box clearly, often because they did not understand queues or the overall search process. |
 | Could explain what the `Explored` box meant | <span style="color: green;"><strong>4 Y</strong></span>, <span style="color: orange;"><strong>1 P</strong></span>, <span style="color: red;"><strong>2 N</strong></span> | <span style="color: orange;"><strong>1.29</strong></span> | More users understood the Explored box than the Frontier box, probably because the name is more self-explanatory. |
@@ -2421,7 +2424,7 @@ This table shows the responses to the open feedback questions in the survey:
 | What most needs improving?                | It is difficult to know if the solution to a random graph is correct |
 | What most needs improving?                | Sound                                                                |
 | What most needs improving?                | I'd like to build my own graphs or upload standard graph formats     |
-| What most needs improving?                | An explanations of concepts like stacks and queues                   |
+| What most needs improving?                | An explanation of concepts like stacks and queues                    |
 | What most needs improving?                | A bit complicated for me                                             |
 | What most needs improving?                | More explanation for someone who is not tech savvy like me           |
 
@@ -2440,7 +2443,7 @@ In this section I will go through the different components, show the related suc
 * It was hard to know if the algorithm found the correct path.
 
 <div style="page-break-before: always;"></div>
-From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. I did not think they were used to thinking in a certain way especially about logical not physical concepts.
+From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. Some users found it harder than I expected to think in terms of logical rather than physical concepts.
 
 Most of the Usability Tests were well met although people did not find the explanation text as useful as I thought. 
 
