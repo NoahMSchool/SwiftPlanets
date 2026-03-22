@@ -944,7 +944,7 @@ erDiagram
 
 ```
 
-This diagram shows the main file structure of the project and how I separated all of the Swift code into Model, View and Controller sections. The Controller is only one file. The models contain the Galaxy and Planet, as well as all the Builder and Pathing code. The View is split into SpriteKit and SwiftUI.
+This diagram shows the final file structure of the project and how I separated all of the Swift code into Model, View and Controller sections. The Controller is only one file. The models contain the Galaxy and Planet, as well as all the Builder and Pathing code. The View is split into SpriteKit and SwiftUI. This structure developed iteratively as I built and refined the project, which can be seen in the commit history.
 
 ```mermaid
 flowchart LR
@@ -1657,10 +1657,8 @@ self.planetUILabel = TextBubbleNode(textString: "")
 self.planetUILabel.position = CGPoint(x: 0, y: -35)
 ```
 
-I added the ability to show and hide text on the edges
-<div style="page-break-before: always;"></div>
-Here is an updated planetNode:
-<p align="center"><img src="./screenshots/IndividualPlanetNode.png" alt="Individual Planet Node" width="55%"></p>
+I added the ability to show and hide text on the edges. Here is an updated planetNode:
+<p align="center"><img src="./IndividualPlanetNode.png" alt="Individual Planet Node" width="100"></p>
 #### ShipNode
 The Ship turned out to be more of a UI element than an actual object that I expected. I used a SKSpriteNode for this, these are nodes that take in an image which should be in the projects filesystem. I used an AI generated image for this which I will talk about later in Use of AI
 
