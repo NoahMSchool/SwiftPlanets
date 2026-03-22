@@ -830,12 +830,12 @@ I used GitHub desktop on my Mac as the source control client. I used Obsidian as
 
 #### Use of AI
 
-| Type      | Use                                                                                                                | Example                     |
-| --------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------- |
-| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with ChatGPT.                       | <img src="./Ship8.png" alt="Ship sprite" width="20%"> |
-| Code<br>  | None of the code was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections. |                             |
-| Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand.                       |                             |
-| Writeup   | None of the write up is AI generated                                                                               |                             |
+| Type      | Use                                                                                                                                  | Example                                                                                                                                                                                           |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Assets    | The only AI generated item in my project was the Spaceship sprite which I made with OpenAI ChatGPT (19 Feb 2025).                    | "Prompt: Generate a transparent PNG image that I can download of a cartoony silver spaceship with cyan accents that would explore a galaxy" <img src="./Ship8.png" alt="Ship sprite" width="20%"> |
+| Code<br>  | None of the code in the project was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections.    | "What is the easiest way to tell if two line segments intersect if I have the x,y positions of their start and end points"                                                                        |
+| Debugging | I did ask ChatGPT for help when I had problems and error messages that I did not understand. It helped me understand the root cause. | What does “Value of optional type must be unwrapped” mean?<br>Why am I getting “Operation not permitted” when running my program?<br>                                                             |
+
 
 <div style="page-break-before: always;"></div>
 
