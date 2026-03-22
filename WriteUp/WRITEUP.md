@@ -10,105 +10,103 @@
 
 ## Table of Contents
 
-<div>
-<small>
+<div style="font-size: 0.72em; line-height: 1.15;">
 <ul>
-  <li><a href="#introduction">Introduction</a></li>
-  <li><a href="#analysis">Analysis</a>
+  <li><a href="#introduction">Introduction</a> .... 3</li>
+  <li><a href="#analysis">Analysis</a> .... 3
     <ul>
-      <li><a href="#problem-recognition">Problem Recognition</a></li>
-      <li><a href="#analysing-other-solutions">Analysing Other Solutions</a></li>
-      <li><a href="#stakeholders-and-audience">Stakeholders and Audience</a></li>
-      <li><a href="#using-computational-methods-in-the-solution">Using Computational Methods in the solution</a></li>
-      <li><a href="#choosing-a-framework">Choosing a Framework</a></li>
-      <li><a href="#system-requirements">System Requirements</a></li>
-      <li><a href="#features-of-proposed-solution">Features of Proposed solution</a></li>
-      <li><a href="#limitations-of-solution">Limitations of Solution</a></li>
-      <li><a href="#other-requirements">Other Requirements</a></li>
-      <li><a href="#success-criteria-definition">Success Criteria Definition</a></li>
+      <li><a href="#problem-recognition">Problem Recognition</a> .... 4</li>
+      <li><a href="#analysing-other-solutions">Analysing Other Solutions</a> .... 5</li>
+      <li><a href="#stakeholders-and-audience">Stakeholders and Audience</a> .... 9</li>
+      <li><a href="#using-computational-methods-in-the-solution">Using Computational Methods in the solution</a> .... 14</li>
+      <li><a href="#choosing-a-framework">Choosing a Framework</a> .... 16</li>
+      <li><a href="#system-requirements">System Requirements</a> .... 18</li>
+      <li><a href="#features-of-proposed-solution">Features of Proposed solution</a> .... 19</li>
+      <li><a href="#limitations-of-solution">Limitations of Solution</a> .... 19</li>
+      <li><a href="#other-requirements">Other Requirements</a> .... 19</li>
+      <li><a href="#success-criteria-definition">Success Criteria Definition</a> .... 21</li>
     </ul>
   </li>
-  <li><a href="#design">Design</a>
+  <li><a href="#design">Design</a> .... 23
     <ul>
-      <li><a href="#problem-decomposition">Problem Decomposition</a>
+      <li><a href="#problem-decomposition">Problem Decomposition</a> .... 23
         <ul>
-          <li><a href="#subcomponent-one--graph-generation">Subcomponent One : Graph generation</a></li>
-          <li><a href="#subcomponent-two--graph-rendering">Subcomponent Two : Graph Rendering</a></li>
-          <li><a href="#subcomponent-three--algorithm-solving">Subcomponent Three : Algorithm Solving</a></li>
-          <li><a href="#subcomponent-four--algorithm-control">Subcomponent Four : Algorithm Control</a></li>
-          <li><a href="#subcomponent-five--algorithm-visualisation">Subcomponent Five : Algorithm Visualisation</a></li>
-          <li><a href="#subcomponent-six--user-interface">Subcomponent Six : User Interface</a></li>
+          <li><a href="#subcomponent-one--graph-generation">Subcomponent One : Graph generation</a> .... 25</li>
+          <li><a href="#subcomponent-two--graph-rendering">Subcomponent Two : Graph Rendering</a> .... 27</li>
+          <li><a href="#subcomponent-three--algorithm-solving">Subcomponent Three : Algorithm Solving</a> .... 28</li>
+          <li><a href="#subcomponent-four--algorithm-control">Subcomponent Four : Algorithm Control</a> .... 29</li>
+          <li><a href="#subcomponent-five--algorithm-visualisation">Subcomponent Five : Algorithm Visualisation</a> .... 30</li>
+          <li><a href="#subcomponent-six--user-interface">Subcomponent Six : User Interface</a> .... 31</li>
         </ul>
       </li>
-      <li><a href="#system-overview--architecture">System Overview / Architecture</a></li>
-      <li><a href="#implementation-of-subcomponents">Implementation of Subcomponents</a>
+      <li><a href="#system-overview--architecture">System Overview / Architecture</a> .... 32</li>
+      <li><a href="#implementation-of-subcomponents">Implementation of Subcomponents</a> .... 33
         <ul>
-          <li><a href="#subcomponent-one--graph-generation--model">Subcomponent One : Graph generation : Model</a></li>
-          <li><a href="#subcomponent-two--graph-rendering--view">Subcomponent Two : Graph rendering : View</a></li>
-          <li><a href="#subcomponent-three--algorithm-solving--model">Subcomponent Three : Algorithm Solving : Model</a></li>
-          <li><a href="#subcomponent-four--algorithm-control--model">Subcomponent Four : Algorithm Control : Model</a></li>
-          <li><a href="#subcomponent-five--algorithm-visualisation--view">Subcomponent Five : Algorithm Visualisation : View</a></li>
-          <li><a href="#subcomponent-six--user-interface--view">Subcomponent Six : User Interface : View</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><a href="#development">Development</a>
-    <ul>
-      <li><a href="#object-model">Object Model</a></li>
-      <li><a href="#stage-one--random-galaxy-generation">Stage One : Random Galaxy Generation</a></li>
-      <li><a href="#stage-two--galaxy-rendering">Stage Two : Galaxy Rendering</a></li>
-      <li><a href="#stage-three---implementing-search-algorithms">Stage Three - Implementing Search Algorithms</a></li>
-      <li><a href="#stage-four--algorithm-control">Stage Four : Algorithm Control</a></li>
-      <li><a href="#stage-five--algorithm-visualisation">Stage Five : Algorithm Visualisation</a></li>
-      <li><a href="#stage-six--user-interface">Stage Six : User Interface</a></li>
-      <li><a href="#source-control-project-tracking-tools-and-ai">Source Control, Project Tracking, Tools and AI</a>
-        <ul>
-          <li><a href="#source-control">Source Control</a></li>
-          <li><a href="#issue-tracking">Issue Tracking</a></li>
-          <li><a href="#development-environment">Development Environment</a></li>
-          <li><a href="#use-of-ai">Use of AI</a></li>
-        </ul>
-      </li>
-      <li><a href="#testing-to-inform-development">Testing to Inform Development</a>
-        <ul>
-          <li><a href="#test-plan">Test Plan</a></li>
-          <li><a href="#testing-the-graph-algorithms">Testing the Graph Algorithms</a></li>
-          <li><a href="#bugs-fixed-during-testing">Bugs Fixed During Testing</a></li>
+          <li><a href="#subcomponent-one--graph-generation--model">Subcomponent One : Graph generation : Model</a> .... 33</li>
+          <li><a href="#subcomponent-two--graph-rendering--view">Subcomponent Two : Graph rendering : View</a> .... 34</li>
+          <li><a href="#subcomponent-three--algorithm-solving--model">Subcomponent Three : Algorithm Solving : Model</a> .... 35</li>
+          <li><a href="#subcomponent-four--algorithm-control--model">Subcomponent Four : Algorithm Control : Model</a> .... 36</li>
+          <li><a href="#subcomponent-five--algorithm-visualisation--view">Subcomponent Five : Algorithm Visualisation : View</a> .... 37</li>
+          <li><a href="#subcomponent-six--user-interface--view">Subcomponent Six : User Interface : View</a> .... 38</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li><a href="#evaluation">Evaluation</a>
+  <li><a href="#development">Development</a> .... 42
     <ul>
-      <li><a href="#testing-to-inform-evaluation">Testing to Inform Evaluation</a></li>
-      <li><a href="#stakeholder-testing-results">Stakeholder Testing Results</a></li>
-      <li><a href="#open-feedback-summary">Open Feedback Summary</a></li>
-      <li><a href="#usefulness-and-improvements">Usefulness and Improvements</a></li>
-      <li><a href="#high-level-evaluation">High Level Evaluation</a></li>
-      <li><a href="#success-criteria-evaluation">Success Criteria Evaluation</a></li>
-      <li><a href="#component-evaluation">Component Evaluation</a>
+      <li><a href="#object-model">Object Model</a> .... 42</li>
+      <li><a href="#stage-one--random-galaxy-generation">Stage One : Random Galaxy Generation</a> .... 45</li>
+      <li><a href="#stage-two--galaxy-rendering">Stage Two : Galaxy Rendering</a> .... 50</li>
+      <li><a href="#stage-three---implementing-search-algorithms">Stage Three - Implementing Search Algorithms</a> .... 52</li>
+      <li><a href="#stage-four--algorithm-control">Stage Four : Algorithm Control</a> .... 56</li>
+      <li><a href="#stage-five--algorithm-visualisation">Stage Five : Algorithm Visualisation</a> .... 61</li>
+      <li><a href="#stage-six--user-interface">Stage Six : User Interface</a> .... 65</li>
+      <li><a href="#source-control-project-tracking-tools-and-ai">Source Control, Project Tracking, Tools and AI</a> .... 74
         <ul>
-          <li><a href="#subcomponent-one--graph-generation-1">Subcomponent One : Graph generation</a></li>
-          <li><a href="#subcomponent-two--graph-rendering-1">Subcomponent Two : Graph Rendering</a></li>
-          <li><a href="#subcomponent-three--algorithm-solving-1">Subcomponent Three : Algorithm Solving</a></li>
-          <li><a href="#subcomponent-four--algorithm-control-1">Subcomponent Four : Algorithm Control</a></li>
-          <li><a href="#subcomponent-five--algorithm-visualisation-1">Subcomponent Five : Algorithm Visualisation</a></li>
-          <li><a href="#subcomponent-six--user-interface-1">Subcomponent Six : User Interface</a></li>
+          <li><a href="#source-control">Source Control</a> .... 74</li>
+          <li><a href="#issue-tracking">Issue Tracking</a> .... 74</li>
+          <li><a href="#development-environment">Development Environment</a> .... 75</li>
+          <li><a href="#use-of-ai">Use of AI</a> .... 75</li>
+        </ul>
+      </li>
+      <li><a href="#testing-to-inform-development">Testing to Inform Development</a> .... 76
+        <ul>
+          <li><a href="#test-plan">Test Plan</a> .... 76</li>
+          <li><a href="#testing-the-graph-algorithms">Testing the Graph Algorithms</a> .... 79</li>
+          <li><a href="#bugs-fixed-during-testing">Bugs Fixed During Testing</a> .... 87</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li><a href="#conclusion">Conclusion</a></li>
-  <li><a href="#appendix-sources">Appendix: Sources</a>
+  <li><a href="#evaluation">Evaluation</a> .... 93
     <ul>
-      <li><a href="#example-solutions">Example Solutions</a></li>
-      <li><a href="#documentation-and-reference-sources">Documentation and Reference Sources</a></li>
-      <li><a href="#software-and-tools">Software and Tools</a></li>
+      <li><a href="#testing-to-inform-evaluation">Testing to Inform Evaluation</a> .... 93</li>
+      <li><a href="#stakeholder-testing-results">Stakeholder Testing Results</a> .... 94</li>
+      <li><a href="#open-feedback-summary">Open Feedback Summary</a> .... 98</li>
+      <li><a href="#usefulness-and-improvements">Usefulness and Improvements</a> .... 98</li>
+      <li><a href="#high-level-evaluation">High Level Evaluation</a> .... 98</li>
+      <li><a href="#success-criteria-evaluation">Success Criteria Evaluation</a> .... 99</li>
+      <li><a href="#component-evaluation">Component Evaluation</a> .... 101
+        <ul>
+          <li><a href="#subcomponent-one--graph-generation-1">Subcomponent One : Graph generation</a> .... 101</li>
+          <li><a href="#subcomponent-two--graph-rendering-1">Subcomponent Two : Graph Rendering</a> .... 101</li>
+          <li><a href="#subcomponent-three--algorithm-solving-1">Subcomponent Three : Algorithm Solving</a> .... 101</li>
+          <li><a href="#subcomponent-four--algorithm-control-1">Subcomponent Four : Algorithm Control</a> .... 101</li>
+          <li><a href="#subcomponent-five--algorithm-visualisation-1">Subcomponent Five : Algorithm Visualisation</a> .... 102</li>
+          <li><a href="#subcomponent-six--user-interface-1">Subcomponent Six : User Interface</a> .... 102</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#conclusion">Conclusion</a> .... 103</li>
+  <li><a href="#appendix-sources">Appendix: Sources</a> .... 104
+    <ul>
+      <li><a href="#example-solutions">Example Solutions</a> .... 104</li>
+      <li><a href="#documentation-and-reference-sources">Documentation and Reference Sources</a> .... 104</li>
+      <li><a href="#software-and-tools">Software and Tools</a> .... 104</li>
     </ul>
   </li>
 </ul>
-</small>
 </div>
 
 <div style="page-break-before: always;"></div>
@@ -348,7 +346,7 @@ I can look at the time complexities of the components of the solution to see if 
 #### Abstraction
 As my graphing simulator is set in space, I need to consider which features to keep to make the simulation at least somewhat accurate. This is a graphing simulator, not an ultra-realistic space simulation, so I am able to remove things without making the program useless to the user.
 
-I will abstract lots of details of space and simplify it to just a graph with a few aesthetic objects in the background for visual appeal.
+I will abstract lots of details of space and simplify it to just a graph with a few aesthetic objects in the background for visual appeal. The planets are the nodes and the graphs are the edges. I also used a protocol to make sure my graph code could work on any graph, not just planets.
 
 I have looked at many aspects of space and noticed that there are many extra ideas that seem unnecessary and will overcomplicate the program. For example, adding planet Orbits would mean the nodes on the graph would have to move around. This not only complicates the development of the game but also adds extra complexities the user has to manage which would be frustrating, for example orbits would mean that the shortest path would be constantly changing. This would confuse the user which is a problem for an introduction to the subject.
 
@@ -1146,6 +1144,48 @@ func getCheckLines()->[(start: CGPoint, end: CGPoint)]{
 #### Intersection Algorithm using Orientation
 To check if two lines intersect I did some research online and found an algorithm that uses orientation to check if two lines intersect. I used an article from GeeksforGeeks to help understand the concepts before implementing it.
 
+Before writing the Swift code, I first planned the logic in pseudocode:
+
+```text
+FUNCTION linesIntersect(p1, q1, p2, q2)
+    // p1 to q1 is the first line
+    // p2 to q2 is the second line
+
+    IF the two lines share an endpoint
+        RETURN false
+
+    // Work out which side of the first line the two points
+    // from the second line are on
+    o1 = orientation(p1, q1, p2)
+    o2 = orientation(p1, q1, q2)
+
+    // Work out which side of the second line the two points
+    // from the first line are on
+    o3 = orientation(p2, q2, p1)
+    o4 = orientation(p2, q2, q1)
+
+    // If the two points from one line are on different sides
+    // of the other line, and vice versa, then the lines cross
+    IF o1 is different from o2 AND o3 is different from o4
+        RETURN true
+    ELSE
+        RETURN false
+END FUNCTION
+
+FUNCTION orientation(a, b, c)
+    // Look at the direction of the turn when moving
+    // from point a to point b to point c
+    // This tells us whether c is to one side of the line ab
+    // or the other side
+    value = sign of the cross product of a, b and c
+
+    IF value is positive
+        RETURN clockwise
+    ELSE
+        RETURN anticlockwise
+END FUNCTION
+```
+
 To determine the orientation of a line I used the sign of the cross product. Here is the code I used to check two lines intersect:
 ```swift
 func checkIntersections(p1: CGPoint, q1: CGPoint, p2: CGPoint, q2: CGPoint) -> Bool {
@@ -1170,7 +1210,7 @@ This works because the orientation (which is the direction we travel to visit th
 
 #### Test Galaxy Builders
 
-These galaxies were not random but designed so that I could test on known graphs with known results.
+These galaxies were not random but designed so that I could test on known graphs with known results. I only decided to make them when I started testing the algorithms as they were more predictable.
 
 The square and tree galaxy builder let me create the same fixed graph every time, which was useful when comparing how the different algorithms behaved on exactly the same layout and weights. The code below shows how I just give it the positions of the planets and the paths between them. This also gives you a better idea of the kind of objects that the random builder generates.
 
@@ -2536,6 +2576,8 @@ func randomPlanet()->Planet?{
 
 This fixed the bug because the program now deliberately chooses two different planets instead of choosing both randomly. That guarantees that the start and end are not the same, as long as there are at least two planets in the graph. I only found this bug quite late because it was not likely to happen on a big random graph.
 
+<div style="page-break-before: always;"></div>
+
 ## Evaluation
 
 In this section I will go through the different components, show the related success criteria in a table, and mention any relevant added features and improvements that could be made. This will be based on the development test results and the user post evaluation survey.
@@ -2543,6 +2585,8 @@ In this section I will go through the different components, show the related suc
 ### Testing to Inform Evaluation
 
 To evaluate whether the final program met the success criteria, I planned a short set of stakeholder questions to ask after users had tested the app. This focuses on the main usability, learning, and functionality goals of the program. The results of this testing will help me have an evaluation that is based on real user feedback.
+
+<div style="page-break-before: always;"></div>
 
 ### Stakeholder Testing Results
 
@@ -2612,6 +2656,8 @@ As a final check beyond the stakeholder questionnaire, I also reviewed the compl
 | EVAL-06  | Stability | Check for obvious invalid graph states                                                                | The start and end planets remained different and the graph stayed usable after rebuilding and recalculating                                                                | <span style="color: green;"><strong>PASSED</strong></span>         |
 | EVAL-07  | Stability | Use the app across the main tested screens during stakeholder testing                                 | No crashes occurred during stakeholder use and all seven stakeholders reported that the app did not crash                                                                  | <span style="color: green;"><strong>PASSED</strong></span>         |
 
+<div style="page-break-before: always;"></div>
+
 ### Open Feedback Summary
 
 This table shows the responses to the open feedback questions in the survey:
@@ -2650,6 +2696,8 @@ Most of the Usability Tests were well met although people did not find the expla
 * Make sure every proposed improvement links back to a limitation or partially met criterion.
 * 
 From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. Some users found it harder than I expected to think in terms of logical rather than physical concepts.
+
+<div style="page-break-before: always;"></div>
 
 ### Success Criteria Evaluation
 
@@ -2690,6 +2738,8 @@ These work well because they are simple, clear, and easy to justify with evidenc
 | UR4             | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app.                 |                                                                                                                                                                                | <span style="color: orange;"><strong>Partially Met</strong></span> |
 | UR5             | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                                 |                                                                                                                                                                                | <span style="color: red;"><strong>Not Met</strong></span>          |
 | UR6             | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                                  | 6/7 users said they enjoyed it in the survey.                                                                                                                                  | <span style="color: green;"><strong>Met</strong></span>            |
+
+<div style="page-break-before: always;"></div>
 
 ### Component Evaluation
 
