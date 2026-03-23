@@ -2783,7 +2783,7 @@ These work well because they are simple, clear, and easy to justify with evidenc
 | ID              | Description                                                                                                                     | Evidence / Summary                                                                                                                                                             | Status                                                             |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | **Functional**  |                                                                                                                                 |                                                                                                                                                                                |                                                                    |
-| FR1             | The user can generate a graph using simple controls.                                                                            | All 7 of my stakeholders were able to make the graph and it was the most positively commented on across all sections                                                           | <span style="color: green;"><strong>Met</strong></span>            |
+| FR1             | The user can generate a graph using simple controls.                                                                            | All 7 of my stakeholders were able to make the graph without difficulty                                                          | <span style="color: green;"><strong>Met</strong></span>            |
 | FR2             | The app includes a page that explains what graphs and the algorithms are used for.                                              | Satisfied by about page and algorithm page.                                                                                                                                    | <span style="color: orange;"><strong>Partially Met</strong></span> |
 | FR3             | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.                           | All the algorithms I implemented passed the tests producing the correct output for each step.                                                                                  | <span style="color: green;"><strong>Met</strong></span>            |
 | FR4             | The user can step forwards and backwards through the algorithm one step at a time.                                              | The two forwards and backwards buttons were clear and none of my users had problems with these controls.                                                                       | <span style="color: green;"><strong>Met</strong></span>            |
@@ -2816,6 +2816,11 @@ After judging the success criteria as a whole, I then evaluated each main compon
 
 **TODO: CRITICAL:** discuss `FR1`, `FR8`, `FR10`, and `PR3` here.
 
+For FR1 (Generate a graph) was definetely met and in fact it was the most positively commented on across all sections by the users. Some spend maybe too much time messing around with graph generation trying to create different shapes and patterns.
+
+FR8 was partially met as 
+
+
 ##### Learnings and things added
 I later added non-random test galaxies so that I could verify whether each algorithm had solved the graph correctly. This was useful because random graphs were not always easy to judge by eye. Edges should not intersect as it makes the graph harder to visualise. This is why I introduced the `CheckLines` stage.
 
@@ -2830,10 +2835,17 @@ For the way I have structured the graph generation, I think all of these would h
 
 **TODO: CRITICAL:** discuss `FR6`, `FR10`, and `UR1` here.
 
+
 For visualising the difference in the algorithms I definitely achieved the main goal of getting them all running correctly, and visualising the backtracking helps a lot. However, the way the random graphs were generated, with weights proportional to the distance to the node, meant that a few algorithms performed quite similarly. What I could have done was add more noise to the weights in generation.
 
+FR10 was met as I had a function that removed all intersecting paths. In my testing I could not see any intersecting paths.
 
-**TODO: CRITICAL:** say how well the graph was displayed and mention any visual problems.
+Something
+
+
+UR1 was met as none of the users had any issues with reading the text. The only comment was that the UI could have been bigger on larger screens however this did not cause any readability problems.
+
+I used layers to ensure UI elements did not appear ontop of each other prioritising showing text. I used high contrast for text with light colors on a black backround.
 
 #### Subcomponent Three : Algorithm Solving
 
@@ -2844,7 +2856,7 @@ For visualising the difference in the algorithms I definitely achieved the main 
 #### Subcomponent Four : Algorithm Control
 
 **TODO: CRITICAL:** discuss `FR4`, `FR5`, and `PR2` here.
-UR5 was not met as the majority of the stakeholders had no idea what the frontier was and complained that it could be better explained.
+UR5 (Most stakeholder testers can explain what the Frontier and Explored boxes mean) was not met as the majority of the stakeholders had no idea what the frontier was and complained that it could be better explained.
 
 **TODO: CRITICAL:** evaluate the step system and undo system.
 
@@ -2863,12 +2875,42 @@ This requirement was
 If I were to redo this requirement it would be that this page was useful useful to all users. I could measure this by giving the users a test after they read these pages and see what they understand.
 In this case it would only be partially met as some youger less experienced users thought it assumed too much computer science knowledge paticularly around stacks and queues. I found these pages to be a weaker section of the app which could be improved in future.
 
+FR1
+FR2
+FR3
+FR4
+FR5
+This had a bug for large graphs
+FR6
+Yes the graph could highlight and I chose different colors to help indicate the current node
 
+FR7
+The explanation box had suitable 
+However I would have
+FR8
+Some useres found this confusing as 
+When the graph had no connections it confused the user
+The only indication was in the explanation box which some users found texious to read each time
+FR9
+This was met as the ship would move between planets 1 after anouther and correctuly backtracks to the node.
+This was one aspect that was affected by the autoplay bug but if used step by step it works great.
+FR10
+
+UR1
 UR1 was met as the users did not have problems reading the text or information on the screen with no complaints it was too small to read. However Jim infomed me that It would be nice to take advantage if the user has a bigger screen
 
+UR6
 For the space theme and visuals UR6 My stakeholders gave complements and were engaged in the theme and visuals
+Some users with devices with OLED screens like Jims iPad Pro and Roccos Monitor said the blacks looked great and made it easy to look at 
+The Menu Screen looked good on all devices. This is because there are just three buttons and some text.
+The Algorithm Description and About pages are 
+
+I liked how swiftUI automatically wraps text on overflow and added "... " if out of space. This made lots of the text still look nice and not overlap with other elements.
 
 **TODO: CRITICAL:** evaluate the menus, navigation and screen layout on different devices. Say how well they fitted.
+
+
+
 
 ##### Text Based SwiftUI pages
 One small thing I found was that the text and image based information pages were quite static and boring. One reason was that I used images in these screens which were simply screenshots. It may have been better if I had used small SpriteKit windows in the SwiftUI view to make them more interactive. This would future-proof it too, as if I updated the gameplay screens it would automatically update in the information pages instead of me having to take new screenshots. This also meant that the starry background in the screenshots would move relative to the starry background in the page which was a small issue but still could be better.
@@ -2920,4 +2962,5 @@ There are still some improvements that could be made in future, such as refining
 - GitHub Desktop - https://desktop.github.com/
 - Obsidian - https://obsidian.md/
 - Obsidian Markdown Editor - https://obsidian.md/
+- Excalidraw Drawing Tool - https://excalidraw.com/
 - Mermaid JS Chart Library - https://mermaid.js.org/
