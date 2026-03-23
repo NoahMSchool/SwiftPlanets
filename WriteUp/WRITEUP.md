@@ -2178,8 +2178,8 @@ Before finishing the program I made a test plan so I could check the main functi
 | DEV-48  | Input robustness             | Trying a range of graph settings such as different planet counts and maximum distances    | The app should continue working with valid values without crashing                      | Worked correctly with the tested valid values                                              | <span style="color: green;"><strong>PASSED</strong></span> |
 | DEV-49  | Step controls                | Pressing step backward when already at the first step                                     | The app should not go back any further and should keep the current state                | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
 | DEV-50  | Step controls                | Pressing step forward when already at the final step                                      | The app should not move forward any further and should keep the solved state            | Worked correctly                                                                           | <span style="color: green;"><strong>PASSED</strong></span> |
-| DEV-51  | Unsolvable graphs            | Running an algorithm on a graph where the end node cannot be reached                      | The app should stop safely, show that no path was found, and not crash                  | Worked correctly after the earlier path reconstruction fix                                | <span style="color: green;"><strong>PASSED</strong></span> |
-| DEV-52  | Input validation             | Creating a graph where the start and end node could become the same                       | The app should always make sure the start and end node are different                    | The start and end could both be chosen as the same planet                                 | <span style="color: red;"><strong>FAILED</strong></span> |
+| DEV-51  | Unsolvable graphs            | Running an algorithm on a graph where the end node cannot be reached                      | The app should stop safely, show that no path was found, and not crash                  | Worked correctly after the earlier path reconstruction fix                                 | <span style="color: green;"><strong>PASSED</strong></span> |
+| DEV-52  | Input validation             | Creating a graph where the start and end node could become the same                       | The app should always make sure the start and end node are different                    | The start and end could both be chosen as the same planet                                  | <span style="color: red;"><strong>FAILED</strong></span>   |
 
 #### Testing the Graph Algorithms
 
@@ -2649,17 +2649,18 @@ In this section I will go through the different components, show the related suc
 
 ### Testing to Inform Evaluation
 
-To evaluate whether the final program met the success criteria, I planned a short set of stakeholder questions to ask after users had tested the app. This focuses on the main usability, learning, and functionality goals of the program. The results of this testing will help me have an evaluation that is based on real user feedback.
-
+To evaluate whether the final program met the success criteria, I planned a short set of stakeholder questions to ask after users had tested the app. This focuses on the main usability, learning, and functionality goals of the program. The results of this testing will help me have an evaluation that is based on real user feedback. I also ran a final check on the entire system once it was complete.
 <div style="page-break-before: always;"></div>
 
-### Stakeholder Testing Results
+#### Stakeholder Testing Results
 
 The following results show the responses from the post-development stakeholder testing that I used as evidence in the evaluation.
 
 These are pictures of some of the surveys that were filled in after the users had used the app.
 
 <p align="center"><img src="./surveys/post_surveys.jpeg" alt="Post evaluation surveys" width="75%"></p>
+
+#### Structured Feedback 
 
 The options for all of these questions were one of Yes (Y), Partly (P), No (N). I made a mistake on the form because the last two questions had N as a good result and Y as a bad result which makes the form more confusing. The table below shows all the responses to the multiple choice questions. In this table I change the wording to be the opposite for the bad question and changed N to Y to that I could show what is good and what is bad.
 
@@ -2709,23 +2710,7 @@ The following table is a summary of the responses. I have included an average wh
 | NO bugs or confusing behaviour                               | <span style="color: green;"><strong>5 Y</strong></span>, <span style="color: red;"><strong>2 N</strong></span>                                                           | <span style="color: orange;"><strong>1.43</strong></span> | Two users noticed confusing behaviour, mainly autoplay jumping on large graphs and awkward scrolling.                                         |
 | Overall, the app helped them learn graph algorithms          | <span style="color: green;"><strong>7 Y</strong></span>                                                                                                                  | <span style="color: green;"><strong>2.00</strong></span>  | All stakeholders said the app helped them understand graph algorithms better.                                                                 |
 
-As a final check beyond the stakeholder questionnaire, I also reviewed the completed app against the main functional and stability requirements using the finished version of the program after the development bug fixes had been applied.
-
-**TODO**: Refer to the video
-
-| Check ID | Area      | Final check carried out                                                                               | Evidence from final version                                                                                                                                                | Result                                                             |
-| -------- | --------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| EVAL-01  | Function  | Generate a random graph using normal settings and change graph size and distance                      | Graphs generated successfully and rebuilt correctly after the `planetCount` and `maxDistance` fixes from development testing                                               | <span style="color: green;"><strong>PASSED</strong></span>         |
-| EVAL-02  | Function  | Run BFS, DFS, Greedy Best First Search, Dijkstra, and A* on the fixed tree and weighted square graphs | The final results matched the expected behaviour shown in the development correctness tables, including Dijkstra finding the lowest-cost path on the weighted square graph | <span style="color: green;"><strong>PASSED</strong></span>         |
-| EVAL-03  | Function  | Step forwards and backwards through an algorithm run                                                  | The current node, explored list, frontier list, and explanation text updated consistently without losing state                                                             | <span style="color: green;"><strong>PASSED</strong></span>         |
-| EVAL-04  | Function  | Use auto-play from start to finish on typical graphs                                                  | The full algorithm could be played automatically to completion, although the ship timing was less clear on some larger graphs                                              | <span style="color: orange;"><strong>PARTLY PASSED</strong></span> |
-| EVAL-05  | Stability | Run an unsolvable graph to the end                                                                    | The algorithm finished safely without crashing and did not attempt to draw a completed path when no path existed                                                           | <span style="color: green;"><strong>PASSED</strong></span>         |
-| EVAL-06  | Stability | Check for obvious invalid graph states                                                                | The start and end planets remained different and the graph stayed usable after rebuilding and recalculating                                                                | <span style="color: green;"><strong>PASSED</strong></span>         |
-| EVAL-07  | Stability | Use the app across the main tested screens during stakeholder testing                                 | No crashes occurred during stakeholder use and all seven stakeholders reported that the app did not crash                                                                  | <span style="color: green;"><strong>PASSED</strong></span>         |
-
-<div style="page-break-before: always;"></div>
-
-### Open Feedback Summary
+#### Open Question Feedback
 
 This table shows the responses to the open feedback questions in the survey:
 
@@ -2743,83 +2728,91 @@ This table shows the responses to the open feedback questions in the survey:
 | What most needs improving?                | An explanation of concepts like stacks and queues                    |
 | What most needs improving?                | A bit complicated for me                                             |
 | What most needs improving?                | More explanation for someone who is not tech savvy like me           |
-### Usefulness and Improvements
 
-**TODO: CRITICAL:** summarise the most common positive comments and the most common suggested improvements from stakeholder testing.
+#### Final Systems Testing Results
 
+As a final check beyond the stakeholder questionnaire, I also reviewed the completed app against the main functional and stability requirements using the finished version of the program after the development bug fixes had been applied.
 
+**TODO**: Refer to the video
 
+| Check ID | Area      | Final check carried out                                                                               | Evidence from final version                                                                                                                                                | Result                                                             |
+| -------- | --------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| EVAL-01  | Function  | Generate a random graph using normal settings and change graph size and distance                      | Graphs generated successfully and rebuilt correctly after the `planetCount` and `maxDistance` fixes from development testing                                               | <span style="color: green;"><strong>PASSED</strong></span>         |
+| EVAL-02  | Function  | Run BFS, DFS, Greedy Best First Search, Dijkstra, and A* on the fixed tree and weighted square graphs | The final results matched the expected behaviour shown in the development correctness tables, including Dijkstra finding the lowest-cost path on the weighted square graph | <span style="color: green;"><strong>PASSED</strong></span>         |
+| EVAL-03  | Function  | Step forwards and backwards through an algorithm run                                                  | The current node, explored list, frontier list, and explanation text updated consistently without losing state                                                             | <span style="color: green;"><strong>PASSED</strong></span>         |
+| EVAL-04  | Function  | Use auto-play from start to finish on typical graphs                                                  | The full algorithm could be played automatically to completion, although the ship timing was less clear on some larger graphs                                              | <span style="color: orange;"><strong>PARTLY PASSED</strong></span> |
+| EVAL-05  | Stability | Run an unsolvable graph to the end                                                                    | The algorithm finished safely without crashing and did not attempt to draw a completed path when no path existed                                                           | <span style="color: green;"><strong>PASSED</strong></span>         |
+| EVAL-06  | Stability | Check for obvious invalid graph states                                                                | The start and end planets remained different and the graph stayed usable after rebuilding and recalculating                                                                | <span style="color: green;"><strong>PASSED</strong></span>         |
+| EVAL-07  | Stability | Use the app across the main tested screens during stakeholder testing                                 | No crashes occurred during stakeholder use and all seven stakeholders reported that the app did not crash                                                                  | <span style="color: green;"><strong>PASSED</strong></span>         |
 
-### High Level Evaluation
-
-**TODO: CRITICAL:** summarise the main findings from stakeholder testing and explain any changes I made because of them.
-* For each key finding, state the issue, the evidence, the change made, and whether the issue was fully resolved.
-* Examples include: generating a galaxy with 0 planets, confusion over colours, low use of the help section, and uncertainty about whether the algorithm had found the correct path.
-
-Most of the Usability Tests were well met although people did not find the explanation text as useful as I thought.
-
-**TODO: CRITICAL:** use this section to summarise the overall strengths, weaknesses, and future improvements after filling in the table and component discussion below.
-* Keep this at the whole-project level rather than repeating the detailed component points.
-* Make sure every proposed improvement links back to a limitation or partially met criterion.
-* 
-From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. Some users found it harder than I expected to think in terms of logical rather than physical concepts.
-
+<div style="page-break-before: always;"></div>
 <div style="page-break-before: always;"></div>
 
 ### Success Criteria Evaluation
 
 In the status column I will use the following labels:
 
-| Label                                                              | Meaning                                                                                            |
-| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
-| <span style="color: green;"><strong>Met</strong></span>            | The success criterion was achieved fully.                                                          |
-| <span style="color: orange;"><strong>Partially Met</strong></span> | The success criterion was achieved to some extent, but there were still weaknesses or limitations. |
-| <span style="color: red;"><strong>Not Met</strong></span>          | The success criterion was not achieved.                                                            |
+| Label                                                              | Meaning                                                                                                                                      |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| <span style="color: green;"><strong>Met</strong></span>            | The success criterion was achieved fully. Requires an average of 1.5 in user testing.                                                        |
+| <span style="color: orange;"><strong>Partially Met</strong></span> | The success criterion was achieved to some extent, but there were still weaknesses or limitations. Requires an average of 1 in user testing. |
+| <span style="color: red;"><strong>Not Met</strong></span>          | The success criterion was not achieved. Average of less than 1 in user testing.                                                              |
 
-These work well because they are simple, clear, and easy to justify with evidence from testing and stakeholder feedback.
+These work well because they are simple, clear, and easy to justify with evidence from testing and stakeholder feedback. 
 
-**TODO: CRITICAL:** fill the Evidence / Summary column for each success criterion using the testing tables, screenshots, and development evidence.
+| ID              | Description                                                                                                                     | Evidence / Summary                                                                              | Development Tests                                         | Status                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Functional**  |                                                                                                                                 |                                                                                                 |                                                           |                                                                    |
+| FR1             | The user can generate a graph using simple controls.                                                                            | 7/7 stakeholders were able to generate graphs                                                   | DEV-01, DEV-09, DEV-10, DEV-11, DEV-12, DEV-16            | <span style="color: green;"><strong>Met</strong></span>            |
+| FR2             | The app includes a page that explains what graphs and the algorithms are used for.                                              | Satisfied by about page and algorithm page.                                                     | DEV-19, DEV-46                                            | <span style="color: green;"><strong>Met</strong></span>            |
+| FR3             | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.                           | All the algorithms I implemented passed the tests producing the correct output for each step.   | DEV-24 to DEV-38                                          | <span style="color: green;"><strong>Met</strong></span>            |
+| FR4             | The user can step forwards and backwards through the algorithm one step at a time.                                              | 7/7 stakeholders were able to step through graphs                                               | DEV-05, DEV-06                                            | <span style="color: green;"><strong>Met</strong></span>            |
+| FR5             | The user can auto-play the whole algorithm from start to finish.                                                                | 7/7 stakeholders were able to auto play graphs<br>                                              | DEV-07, DEV-22, DEV-47, DEV-49, DEV-50                    | <span style="color: green;"><strong> Met</strong></span>           |
+| FR6             | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes.            | Satisfied by two labeled lists and the connections with nodes had arrows and could change color | DEV-40, DEV-42, DEV-43, DEV-47                            | <span style="color: green;"><strong>Met</strong></span>            |
+| FR7             | The simulation gives a text explanation of what is happening at each step.                                                      | Satisfied by the text element at the centre of the page                                         | No test supplied                                          | <span style="color: green;"><strong> Met</strong></span>           |
+| FR8             | The simulation shows when a graph cannot be solved by ending safely and displaying that no path was found.                      | 5/7 stakeholders felt this was clear. 2/7 did not see the message.                              | DEV-47,DEV-51                                             | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| FR9             | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                                  | This failed test EVAL-04 on large graphs on autoplay<br>2/7 stakeholders also reported this     | DEV-22                                                    | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| FR10            | Graphs should not be rendered with lines crossing each other where possible.                                                    | 7/7 stakeholders had no intersecting lines                                                      | DEV-02                                                    | <span style="color: green;"><strong>Met</strong></span>            |
+| **Performance** |                                                                                                                                 |                                                                                                 |                                                           |                                                                    |
+| PR1             | The app does not crash during normal use or robustness testing.                                                                 | 7/7 stakeholders reported no crash                                                              | All tests                                                 | <span style="color: green;"><strong>Met</strong></span>            |
+| PR2             | On the tested devices, the app updates without noticeable delay when the user changes the graph or uses the algorithm controls. | 7/7 stakeholders did not mention performance as an issue                                        | There was no noticable delay on any screens in my testing | <span style="color: green;"><strong>Met</strong></span>            |
+| PR3             | The app checks inputs and prevents invalid graph setups.                                                                        | 7/7 did not report issues                                                                       | DEV-52                                                    | <span style="color: green;"><strong>Met</strong></span>            |
+| PR4             | The algorithms do not give incorrect or misleading results on the fixed test graphs.                                            | 7/7 did not report issues                                                                       | DEV-24 to DEV-33                                          | <span style="color: green;"><strong>Met</strong></span>            |
+| **Usability**   |                                                                                                                                 |                                                                                                 |                                                           |                                                                    |
+| UR1             | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.                    | 6/7 stakeholders had no issues                                                                  | DEV-20                                                    | <span style="color: green;"><strong>Met</strong></span>            |
+| UR2             | Most stakeholder testers can move between the main screens without help.                                                        | 7/7 stakeholders could navigate                                                                 | DEV-15, DEV-46                                            | <span style="color: green;"><strong>Met</strong></span>            |
+| UR3             | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.                   | 5/7 stakeholders said yes, 2/7 said partially                                                   | DEV-05, DEV-06                                            | <span style="color: green;"><strong> Met</strong></span>           |
+| UR4             | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app.                 | 4/7 could expain                                                                                | Partially met user testing requirements                   | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| UR5             | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                                 | 4/7 for Explored<br>3/7 for Frontier                                                            | Failed user testing requirements                          | <span style="color: red;"><strong>Not Met</strong></span>          |
+| UR6             | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                                  | 6/7 users said they enjoyed it in the survey.                                                   | Passed user testing requirements                          | <span style="color: green;"><strong>Met</strong></span>            |
+While filling in this table for the success criteria, I realised that there were some important tests that I did not include in my test table in development. In particular **FR7** and **PR2** should have been covered.
+### Overall Program Evaluation
 
-| ID              | Description                                                                                                                     | Evidence / Summary                                                                                                                                                             | Status                                                             |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| **Functional**  |                                                                                                                                 |                                                                                                                                                                                |                                                                    |
-| FR1             | The user can generate a graph using simple controls.                                                                            | All 7 of my stakeholders were able to make the graph without difficulty                                                          | <span style="color: green;"><strong>Met</strong></span>            |
-| FR2             | The app includes a page that explains what graphs and the algorithms are used for.                                              | Satisfied by about page and algorithm page.                                                                                                                                    | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| FR3             | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.                           | All the algorithms I implemented passed the tests producing the correct output for each step.                                                                                  | <span style="color: green;"><strong>Met</strong></span>            |
-| FR4             | The user can step forwards and backwards through the algorithm one step at a time.                                              | The two forwards and backwards buttons were clear and none of my users had problems with these controls.                                                                       | <span style="color: green;"><strong>Met</strong></span>            |
-| FR5             | The user can auto-play the whole algorithm from start to finish.                                                                | Two of the users noticed that for large graphs the ship would jump between nodes. However for small graphs the users thought it was a useful feature that worked great         | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| FR6             | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes.            | The UI showed two labeled lists and the connections with nodes had arrows and could change color                                                                               | <span style="color: green;"><strong>Met</strong></span>            |
-| FR7             | The simulation gives a text explanation of what is happening at each step.                                                      | There is a text element at the centre of the page which the users read, It states exactly what the algorithm is doing at that step in simple language the user can understand. | <span style="color: green;"><strong> Met</strong></span>           |
-| FR8             | The simulation shows when a graph cannot be solved by ending safely and displaying that no path was found.                      |                                                                                                                                                                                | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| FR9             | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                                  |                                                                                                                                                                                | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| FR10            | Graphs should not be rendered with lines crossing each other where possible.                                                    |                                                                                                                                                                                | <span style="color: green;"><strong>Met</strong></span>            |
-| **Performance** |                                                                                                                                 |                                                                                                                                                                                |                                                                    |
-| PR1             | The app does not crash during normal use or robustness testing.                                                                 |                                                                                                                                                                                | <span style="color: green;"><strong>Met</strong></span>            |
-| PR2             | On the tested devices, the app updates without noticeable delay when the user changes the graph or uses the algorithm controls. |                                                                                                                                                                                | <span style="color: green;"><strong>Met</strong></span>            |
-| PR3             | The app checks inputs and prevents invalid graph setups.                                                                        |                                                                                                                                                                                | <span style="color: green;"><strong>Met</strong></span>            |
-| PR4             | The algorithms do not give incorrect or misleading results on the fixed test graphs.                                            |                                                                                                                                                                                | <span style="color: green;"><strong>Met</strong></span>            |
-| **Usability**   |                                                                                                                                 |                                                                                                                                                                                |                                                                    |
-| UR1             | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.                    | They all were able to                                                                                                                                                          | <span style="color: green;"><strong>Met</strong></span>            |
-| UR2             | Most stakeholder testers can move between the main screens without help.                                                        | None of the stakeholders had problems navigating and passed the relevant tests                                                                                                 | <span style="color: green;"><strong>Met</strong></span>            |
-| UR3             | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.                   |                                                                                                                                                                                | <span style="color: green;"><strong> Met</strong></span>           |
-| UR4             | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app.                 |                                                                                                                                                                                | <span style="color: orange;"><strong>Partially Met</strong></span> |
-| UR5             | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                                 |                                                                                                                                                                                | <span style="color: red;"><strong>Not Met</strong></span>          |
-| UR6             | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                                  | 6/7 users said they enjoyed it in the survey.                                                                                                                                  | <span style="color: green;"><strong>Met</strong></span>            |
+The feedback from the users was overall very positive. They thought that it made the problem clear with good visual explanations. The overall appearance and theme of the app was rated highly.
 
+The overall usability was great with no users struggling to perform all the functions.  There were some usability issues where I provided a feature but it wasn't understood well. These include the text explanation box and the message when a graph wasn't solvable.
+
+However, three of my users found the program assumed to much as it is meant to target a broad STEM audience. Even these people said it helped their understanding but they found some aspects such as stacks and queues confusing. The word Frontier also meant nothing to them.
+
+Missing features or requests included sound and more graph customisation.
+
+Most of the Usability Tests were well met although people did not find the explanation text as useful as I thought.
+
+From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. Some users found it harder than I expected to think in terms of logical rather than physical concepts.
 <div style="page-break-before: always;"></div>
 
 ### Component Evaluation
 
-After judging the success criteria as a whole, I then evaluated each main component of the system in more detail. This helps show which parts of the app worked best, which were weaker, and what I would improve next.
+After judging the success criteria as a whole, I then evaluated each main component of the system in more detail. This helps show which parts of the app worked best, which were weaker, and what I would improve next. 
 
 #### Subcomponent One : Graph generation
 
-**TODO: CRITICAL:** discuss `FR1`, `FR8`, `FR10`, and `PR3` here.
-
-For FR1 (Generate a graph) was definetely met and in fact it was the most positively commented on across all sections by the users. Some spend maybe too much time messing around with graph generation trying to create different shapes and patterns.
-
-FR8 was partially met as 
-
+| ID                                                                        | Description                                                                                                | Thoughts                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FR1<br><span style="color: green;"><strong>Met</strong></span>            | The user can generate a graph using simple controls.                                                       | I think the graph generation component was a big success. I could use it to build the random graphs and the test graphs. Every one of my users was able to generate graphs properly. In fact it was the most positively commented on across all sections by the users. Some spend maybe too much time messing around with graph generation trying to create different shapes and patterns.<br> |
+| FR8<br><span style="color: orange;"><strong>Partially Met</strong></span> | The simulation shows when a graph cannot be solved by ending safely and displaying that no path was found. | FR8 was partially met as                                                                                                                                                                                                                                                                                                                                                                       |
+| FR10<br><span style="color: green;"><strong>Met</strong></span>           | Graphs should not be rendered with lines crossing each other where possible.                               |                                                                                                                                                                                                                                                                                                                                                                                                |
+| PR3<br><span style="color: green;"><strong>Met</strong></span>            | The app checks inputs and prevents invalid graph setups.                                                   |                                                                                                                                                                                                                                                                                                                                                                                                |
 
 ##### Learnings and things added
 I later added non-random test galaxies so that I could verify whether each algorithm had solved the graph correctly. This was useful because random graphs were not always easy to judge by eye. Edges should not intersect as it makes the graph harder to visualise. This is why I introduced the `CheckLines` stage.
@@ -2833,15 +2826,16 @@ For the way I have structured the graph generation, I think all of these would h
 
 #### Subcomponent Two : Graph Rendering
 
-**TODO: CRITICAL:** discuss `FR6`, `FR10`, and `UR1` here.
+| ID                                                              | Description                                                                                                          | Thoughts |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
+| FR6<br><span style="color: green;"><strong>Met</strong></span>  | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes. |          |
+| FR10<br><span style="color: green;"><strong>Met</strong></span> | Graphs should not be rendered with lines crossing each other where possible.                                         |          |
+| UR1<br><span style="color: green;"><strong>Met</strong></span>  | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.         |          |
 
 
 For visualising the difference in the algorithms I definitely achieved the main goal of getting them all running correctly, and visualising the backtracking helps a lot. However, the way the random graphs were generated, with weights proportional to the distance to the node, meant that a few algorithms performed quite similarly. What I could have done was add more noise to the weights in generation.
 
 FR10 was met as I had a function that removed all intersecting paths. In my testing I could not see any intersecting paths.
-
-Something
-
 
 UR1 was met as none of the users had any issues with reading the text. The only comment was that the UI could have been bigger on larger screens however this did not cause any readability problems.
 
@@ -2849,26 +2843,47 @@ I used layers to ensure UI elements did not appear ontop of each other prioritis
 
 #### Subcomponent Three : Algorithm Solving
 
-**TODO: CRITICAL:** discuss `FR3`, `FR8`, and `PR4` here.
+| ID                                                                        | Description                                                                                                | Thoughts |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------- |
+| FR3<br><span style="color: green;"><strong>Met</strong></span>            | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.      |          |
+| FR8<br><span style="color: orange;"><strong>Partially Met</strong></span> | The simulation shows when a graph cannot be solved by ending safely and displaying that no path was found. |          |
+| PR4<br><span style="color: green;"><strong>Met</strong></span>            | The algorithms do not give incorrect or misleading results on the fixed test graphs.                       |          |
 
 **TODO: CRITICAL:** say whether each algorithm worked correctly and refer directly to the weighted square graph and tree graph test results table.
 
 #### Subcomponent Four : Algorithm Control
 
-**TODO: CRITICAL:** discuss `FR4`, `FR5`, and `PR2` here.
+| ID                                                                        | Description                                                                                                                     | Thoughts |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| FR4<br><span style="color: green;"><strong>Met</strong></span>            | The user can step forwards and backwards through the algorithm one step at a time.                                              |          |
+| FR5<br><span style="color: orange;"><strong>Partially Met</strong></span> | The user can auto-play the whole algorithm from start to finish.                                                                |          |
+| PR2<br><span style="color: green;"><strong>Met</strong></span>            | On the tested devices, the app updates without noticeable delay when the user changes the graph or uses the algorithm controls. |          |
+
 UR5 (Most stakeholder testers can explain what the Frontier and Explored boxes mean) was not met as the majority of the stakeholders had no idea what the frontier was and complained that it could be better explained.
 
 **TODO: CRITICAL:** evaluate the step system and undo system.
 
 #### Subcomponent Five : Algorithm Visualisation
 
-**TODO: CRITICAL:** discuss `FR6`, `FR7`, `FR9`, `UR3`, and `UR5` here.
+| ID                                                                        | Description                                                                                                          | Thoughts |
+| ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
+| FR6<br><span style="color: green;"><strong>Met</strong></span>            | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes. |          |
+| FR7<br><span style="color: green;"><strong>Met</strong></span>            | The simulation gives a text explanation of what is happening at each step.                                           |          |
+| FR9<br><span style="color: orange;"><strong>Partially Met</strong></span> | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                       |          |
+| UR3<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.        |          |
+| UR5<br><span style="color: red;"><strong>Not Met</strong></span>          | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                      |          |
 
 **TODO: CRITICAL:** evaluate how clear the colours, ship movement,animations and explanations were. Refer back to the user testing. Mention the problems with the ship timing when doing the auto play
 
 #### Subcomponent Six : User Interface
 
-**TODO: CRITICAL:** discuss `FR2`, `UR1`, `UR2`, `UR4`, and `UR6` here.
+| ID                                                                        | Description                                                                                                     | Thoughts |
+| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | -------- |
+| FR2<br><span style="color: green;"><strong>Met</strong></span>            | The app includes a page that explains what graphs and the algorithms are used for.                              |          |
+| UR1<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.    |          |
+| UR2<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers can move between the main screens without help.                                        |          |
+| UR4<br><span style="color: orange;"><strong>Partially Met</strong></span> | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app. |          |
+| UR6<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                  |          |
 
 FR2 was met as I included the how to use and algorithms text based pages. 
 This requirement was 
