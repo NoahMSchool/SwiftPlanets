@@ -2711,6 +2711,8 @@ The following table is a summary of the responses. I have included an average wh
 
 As a final check beyond the stakeholder questionnaire, I also reviewed the completed app against the main functional and stability requirements using the finished version of the program after the development bug fixes had been applied.
 
+**TODO**: Refer to the video
+
 | Check ID | Area      | Final check carried out                                                                               | Evidence from final version                                                                                                                                                | Result                                                             |
 | -------- | --------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | EVAL-01  | Function  | Generate a random graph using normal settings and change graph size and distance                      | Graphs generated successfully and rebuilt correctly after the `planetCount` and `maxDistance` fixes from development testing                                               | <span style="color: green;"><strong>PASSED</strong></span>         |
