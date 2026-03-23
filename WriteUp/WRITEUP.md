@@ -2814,127 +2814,95 @@ After judging the success criteria as a whole, I then evaluated each main compon
 | FR10<br><span style="color: green;"><strong>Met</strong></span>           | Graphs should not be rendered with lines crossing each other where possible.                               | This was met due to my algorithm that chose the selected nodes to keep. However something that may have given the graphs more variety would be if it didnt always choose the shortest path. This would have meant longer connections and closer nodes that would be disconnected which could have made more interesting results for the algorithms; this would mainly influence the algorithms using heuristic as it would make the absolute distance heuristic not always usefull. |
 | PR3<br><span style="color: green;"><strong>Met</strong></span>            | The app checks inputs and prevents invalid graph setups.                                                   | The user could not make invalid graphs however as I mentioned in the graph generation the user can create graphs that are not as useful.                                                                                                                                                                                                                                                                                                                                            |
 
-##### Learnings and things added
-I later added non-random test galaxies so that I could verify whether each algorithm had solved the graph correctly. This was useful because random graphs were not always easy to judge by eye. Edges should not intersect as it makes the graph harder to visualise. This is why I introduced the `CheckLines` stage.
+##### Learnings and things added later
+I later added non-random test galaxies which were used for testing so that I could verify whether each algorithm had solved the graph correctly. This was useful because random graphs were not always easy to judge by eye. Edges should not intersect as it makes the graph harder to visualise. This is why I introduced the `CheckLines` stage.
 
 ##### Implement in future
-Validating distance between start and end I did mention this in design but the start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly. There are three main conditions I could use to determine this:
+Validating distance between start and end I did mention this in design but was never implemented. but the start and end planets should be a reasonable distance from each other to prevent graphs being solved too quickly. There are three main conditions I could use to determine this:
 * Whether the absolute distance between the start and end nodes is less than some predetermined threshold.
 * Check if the number of edges between the start and end, this will mean I can specify the minimum number of steps for an algorithm.
 * Check if the total weight to the finish is less than a certain value. This would be the same as the number of edges for algorithms that do not use weights.
 For the way I have structured the graph generation, I think all of these would have a similar effect because deciding whether there is a connection and the weight itself are both based on absolute distance.
 
+
 #### Subcomponent Two : Graph Rendering
 
-| ID                                                              | Description                                                                                                          | Thoughts |
-| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
-| FR6<br><span style="color: green;"><strong>Met</strong></span>  | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes. |          |
-| FR10<br><span style="color: green;"><strong>Met</strong></span> | Graphs should not be rendered with lines crossing each other where possible.                                         |          |
-| UR1<br><span style="color: green;"><strong>Met</strong></span>  | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.         |          |
+| ID                                                              | Description                                                                                                          | Thoughts                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FR6<br><span style="color: green;"><strong>Met</strong></span>  | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes. | This I thought was also implemented very well as the colors clearly showed a difference.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| FR10<br><span style="color: green;"><strong>Met</strong></span> | Graphs should not be rendered with lines crossing each other where possible.                                         | This was met as I had a function that removed all intersecting paths. In my testing I could not see any intersecting paths.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| UR1<br><span style="color: green;"><strong>Met</strong></span>  | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.         | The only comment was Jim on that the UI could have been bigger on larger screens however this did not cause any readability problems. Therefore the requirement was met as none of the users had any issues with reading the text. <br>I used layers to ensure UI elements did not appear ontop of each other prioritising showing text. I used high contrast for text with light colors on a black backround. I liked how swiftUI automatically wraps text on overflow and uses ellipses to signa if out of space. This made lots of the text still look nice and not overlap with other elements. |
 
 
-For visualising the difference in the algorithms I definitely achieved the main goal of getting them all running correctly, and visualising the backtracking helps a lot. However, the way the random graphs were generated, with weights proportional to the distance to the node, meant that a few algorithms performed quite similarly. What I could have done was add more noise to the weights in generation.
-
-FR10 was met as I had a function that removed all intersecting paths. In my testing I could not see any intersecting paths.
-
-UR1 was met as none of the users had any issues with reading the text. The only comment was that the UI could have been bigger on larger screens however this did not cause any readability problems.
-
-I used layers to ensure UI elements did not appear ontop of each other prioritising showing text. I used high contrast for text with light colors on a black backround.
 
 #### Subcomponent Three : Algorithm Solving
 
-| ID                                                                        | Description                                                                                                | Thoughts |
-| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------- |
-| FR3<br><span style="color: green;"><strong>Met</strong></span>            | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.      |          |
-| FR8<br><span style="color: orange;"><strong>Partially Met</strong></span> | The simulation shows when a graph cannot be solved by ending safely and displaying that no path was found. |          |
-| PR4<br><span style="color: green;"><strong>Met</strong></span>            | The algorithms do not give incorrect or misleading results on the fixed test graphs.                       |          |
-
-**TODO: CRITICAL:** say whether each algorithm worked correctly and refer directly to the weighted square graph and tree graph test results table.
+| ID                                                                        | Description                                                                                                | Thoughts                                                                                                                                                                                                                                                                                                |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FR3<br><span style="color: green;"><strong>Met</strong></span>            | The program correctly runs BFS, DFS, Greedy Best First Search, Dijkstra, and A* on fixed test graphs.      | I tested this using the trace table and they all produced the expected results. The test graphs were very usefull as they gave different results for each algorithm.                                                                                                                                    |
+| FR8<br><span style="color: orange;"><strong>Partially Met</strong></span> | The simulation shows when a graph cannot be solved by ending safely and displaying that no path was found. | The only indication was in the explanation box which some users found texious to read each time. This was clearly not enough for the users as throught the program they got used to expect visual indicators (eg color changes). I would like to give clearer indications for all events in future.<br> |
+| PR4<br><span style="color: green;"><strong>Met</strong></span>            | The algorithms do not give incorrect or misleading results on the fixed test graphs.                       | This overall worked great as they passed all the relevant tests.                                                                                                                                                                                                                                        |
+##### Things added Later
+I added Greedy Best First Search as I felt this completed the picture of the algorithms. I had two simple graph traversal, BFS and DFS and three that aim to find the shortest path or the target node in a the shortest path: 
+* Dijkstra guaratees the shortest path
+* A* uses a heuristic to find a reletavely short path in a short amount of time
+* Greedy BFS aims to find the target in the shortest amount of time using only a heuristic.
+##### Implement in future
+I think I covered the main graph search algorithms I wanted to cover but adding more would be nice. Dijkstra is my only shortest path algorithm however a flaw with dikstra is that it only works with positive weights, an algorithm that I may want to add in future is the Bellman-Ford Algorithm which works with negative weights. To keep with the theme and adding negative weights I thought I could implement features like an asteroid field between nodes. I could just create a line through which this has an effect to add on weight. I would reuse the logic in the checklines.
 
 #### Subcomponent Four : Algorithm Control
 
-| ID                                                                        | Description                                                                                                                     | Thoughts |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| FR4<br><span style="color: green;"><strong>Met</strong></span>            | The user can step forwards and backwards through the algorithm one step at a time.                                              |          |
-| FR5<br><span style="color: orange;"><strong>Partially Met</strong></span> | The user can auto-play the whole algorithm from start to finish.                                                                |          |
-| PR2<br><span style="color: green;"><strong>Met</strong></span>            | On the tested devices, the app updates without noticeable delay when the user changes the graph or uses the algorithm controls. |          |
+| ID                                                                        | Description                                                                                                                     | Thoughts                                                                                                                                                                                     |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FR4<br><span style="color: green;"><strong>Met</strong></span>            | The user can step forwards and backwards through the algorithm one step at a time.                                              | This worked really well with the backtracking. I thought it really showed the user what the algorithm was doing and the stakeholders agreed saying they found it useful.                     |
+| FR5<br><span style="color: orange;"><strong>Partially Met</strong></span> | The user can auto-play the whole algorithm from start to finish.                                                                | This worked for small graphs but for large graphs with lots of steps for the ship the ship would jump around. I will mention how this can be improved below.                                 |
+| PR2<br><span style="color: green;"><strong>Met</strong></span>            | On the tested devices, the app updates without noticeable delay when the user changes the graph or uses the algorithm controls. | The app's performance was overall good. I was testing on my ipad mini 6 with an A15 Bionic chip and a stakeholder used a 9th gen ipad with a A13 bionic and we both didnt notice any issues. |
 
-UR5 (Most stakeholder testers can explain what the Frontier and Explored boxes mean) was not met as the majority of the stakeholders had no idea what the frontier was and complained that it could be better explained.
+##### Things added Later
+##### Implement in future
+This is not a new feature but the autoplay feature should be improved. Right now it is time based so each step has a maximum time it can take to run. 
+I found this difficult as I had to use Async so the ships movement is controlled independantly from the rest of the program.
 
-**TODO: CRITICAL:** evaluate the step system and undo system.
+A new feature I could add is more customisation of the explanations. I would add a switch in the settings that allows the users to choose between space explanations and the more technically correct vocabulary (nodes instead of planets, edges instead of paths and graph instead of galaxy).
 
 #### Subcomponent Five : Algorithm Visualisation
 
-| ID                                                                        | Description                                                                                                          | Thoughts |
-| ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
-| FR6<br><span style="color: green;"><strong>Met</strong></span>            | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes. |          |
-| FR7<br><span style="color: green;"><strong>Met</strong></span>            | The simulation gives a text explanation of what is happening at each step.                                           |          |
-| FR9<br><span style="color: orange;"><strong>Partially Met</strong></span> | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                       |          |
-| UR3<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.        |          |
-| UR5<br><span style="color: red;"><strong>Not Met</strong></span>          | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                      |          |
+| ID                                                                        | Description                                                                                                          | Thoughts                                                                                                                                                                                                                                                                                                 |
+| ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FR6<br><span style="color: green;"><strong>Met</strong></span>            | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes. | The arrows I added to the lines I thought added making it clear which way the path was from the start to the end. The color changes once the user understood them was useful and the fact that these colors were consistant across related UI elements like the frontier and explored lists was helpful. |
+| FR7<br><span style="color: green;"><strong>Met</strong></span>            | The simulation gives a text explanation of what is happening at each step.                                           | The explanation was there and the users that read it found it useful. Perhaps it was not being forced on the user enough as many skipped over the reading.                                                                                                                                               |
+| FR9<br><span style="color: orange;"><strong>Partially Met</strong></span> | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                       | This worked great and thought it was a essential feature. without the backtracking I think it would have been misleading so I am happy I got it working.                                                                                                                                                 |
+| UR3<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.        | I was glad that the stakeholders found this useful and thought that it was a powerfull feature that really taught the what was actually happening.                                                                                                                                                       |
+| UR5<br><span style="color: red;"><strong>Not Met</strong></span>          | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                      | Unfortualelly this was not met as the majority of the stakeholders had no idea what the frontier was and complained that it could be better explained. The explored seemed to be better understood as it is a more self explanatory name.                                                                |
 
-**TODO: CRITICAL:** evaluate how clear the colours, ship movement,animations and explanations were. Refer back to the user testing. Mention the problems with the ship timing when doing the auto play
+##### Implement in future
+While I never added a settings page I think a setting that could be included here is the ability to customise the colours. The chosen colours may have not meant much to the user. If they had a menu where they could choose it would add another layer of interactivity and customisation the user would enjoy.
+They could also use this for other customisation like changing the speed of the ship.
 
 #### Subcomponent Six : User Interface
 
-| ID                                                                        | Description                                                                                                     | Thoughts |
-| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | -------- |
-| FR2<br><span style="color: green;"><strong>Met</strong></span>            | The app includes a page that explains what graphs and the algorithms are used for.                              | The      |
-| UR1<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.    |          |
-| UR2<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers can move between the main screens without help.                                        |          |
-| UR4<br><span style="color: orange;"><strong>Partially Met</strong></span> | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app. |          |
-| UR6<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                  |          |
+**TODO** UR4 may not belong here
 
-FR2 was met as I included the how to use and algorithms text based pages. 
-This requirement was 
-If I were to redo this requirement it would be that this page was useful useful to all users. I could measure this by giving the users a test after they read these pages and see what they understand.
-In this case it would only be partially met as some youger less experienced users thought it assumed too much computer science knowledge paticularly around stacks and queues. I found these pages to be a weaker section of the app which could be improved in future.
+| ID                                                                        | Description                                                                                                     | Thoughts                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FR2<br><span style="color: green;"><strong>Met</strong></span>            | The app includes a page that explains what graphs and the algorithms are used for.                              | This requirement was met because it was testing whether there was a page and didnt assess the usefullness of it. If I were to redo this requirement it would focus more of the benifits of the feature. I could measure this by giving the users a test after they read these pages and see what they understand.<br>In this case it would only be partially met as some youger less experienced users thought it assumed too much computer science knowledge paticularly around stacks and queues. Overall I found the text based sections to be a weaker part of the program as the content did not feel anything special. |
+| UR1<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.    | There were no reported issues so I beleve I got it adapting nicely. Although on big screens one stakeholder suggested I could have used up more of their screen. I after tried this on my monitor and I agreed.                                                                                                                                                                                                                                                                                                                                                                                                              |
+| UR2<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers can move between the main screens without help.                                        | This was not a problem and I thought the interface was great to navigate.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| UR4<br><span style="color: orange;"><strong>Partially Met</strong></span> | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app. | For visualising the difference in the algorithms I definitely achieved the main goal of getting them all running correctly, and visualising the backtracking helps a lot. However, the way the random graphs were generated, with weights proportional to the distance to the node, meant that a few algorithms performed quite similarly. What I could have done was add more noise to the weights in generation.                                                                                                                                                                                                           |
+| UR6<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                  | For the space theme and visuals UR6 My stakeholders gave complements and were engaged in the theme and visuals. In terms of visuals some users with devices with OLED screens like Jims iPad Pro and Rocco's Monitor said the blacks looked great and made it easy on the eyes to look at                                                                                                                                                                                                                                                                                                                                    |
 
-FR1
-FR2
-FR3
-FR4
-FR5
-This had a bug for large graphs
-FR6
-Yes the graph could highlight and I chose different colors to help indicate the current node
 
-FR7
-The explanation box had suitable 
-However I would have
-FR8
-Some useres found this confusing as 
-When the graph had no connections it confused the user
-The only indication was in the explanation box which some users found texious to read each time
-FR9
-This was met as the ship would move between planets 1 after anouther and correctuly backtracks to the node.
-This was one aspect that was affected by the autoplay bug but if used step by step it works great.
-FR10
-
-UR1
-UR1 was met as the users did not have problems reading the text or information on the screen with no complaints it was too small to read. However Jim infomed me that It would be nice to take advantage if the user has a bigger screen
-
-UR6
-For the space theme and visuals UR6 My stakeholders gave complements and were engaged in the theme and visuals
-Some users with devices with OLED screens like Jims iPad Pro and Roccos Monitor said the blacks looked great and made it easy to look at 
+##### Main Pages
 The Menu Screen looked good on all devices. This is because there are just three buttons and some text.
 The Algorithm Description and About pages are 
-
-I liked how swiftUI automatically wraps text on overflow and added "... " if out of space. This made lots of the text still look nice and not overlap with other elements.
-
-**TODO: CRITICAL:** evaluate the menus, navigation and screen layout on different devices. Say how well they fitted.
-
-
+I am happy how the algorithms page was not just showing hard coded text into the view but were instead taking data from elsewhere in the program. This means that If I were to add another algorithm it would automatically show up provided I give the description to the class.
+However I did think these pages to be too static and a bit boring compared to the rest of the program. These are meant to provide the user with the foundations which makes them very important. Therefore I would like to improve these in some ways to make sure they keep the user engaged and make a solid ground for the user to build on.
 
 
 ##### Text Based SwiftUI pages
 One small thing I found was that the text and image based information pages were quite static and boring. One reason was that I used images in these screens which were simply screenshots. It may have been better if I had used small SpriteKit windows in the SwiftUI view to make them more interactive. This would future-proof it too, as if I updated the gameplay screens it would automatically update in the information pages instead of me having to take new screenshots. This also meant that the starry background in the screenshots would move relative to the starry background in the page which was a small issue but still could be better.
 
 I also thought the text and UI components did not optimise space particularly well. The back button limited the available screen real estate. To do this better I would have overlayed the UI components and used transparent images.
-
-In terms of maintainability, I think the system is reasonably strong. The program is split into separate areas such as graph generation, search logic, visualisation, and user interface, which should make future changes easier to manage. Using Git and GitHub throughout development also improved maintainability because I could track changes, compare versions, and return to earlier working versions when needed. This would make it much easier to continue developing the project or fix bugs in future.
-
-<div style="page-break-before: always;"></div>
 
 ## Conclusion
 
@@ -2945,6 +2913,9 @@ One of the main strengths of the project is that it is interactive. The user can
 I think the step-by-step system, the colour coding, and the movement of the ship all helped make the algorithms clearer. The feedback from stakeholders was also positive, and they said that they enjoyed using it, found it pretty and engaging, and better understood the algorithms by the end.
 
 Based on the user feedback, it probably is not a great tool for people that know nothing about computer science. It might be best to use it for students doing GCSE computer science or above.
+
+In terms of maintainability, I think the system is reasonably strong. The program is split into separate areas such as graph generation, search logic, visualisation, and user interface, which should make future changes easier to manage. Using Git and GitHub throughout development also improved maintainability because I could track changes, compare versions, and return to earlier working versions when needed. This would make it much easier to continue developing the project or fix bugs in future.
+
 
 Another important outcome of the project was what I learned while making it. I developed the app in Swift, which was a new language for me, so this project helped me learn a new programming language as well as new frameworks like SwiftUI and SpriteKit. I also had to learn about new programming concepts like protocols and optionals and new design patterns like Model View Controller. This made the project more difficult, but it also made it more fun.
 

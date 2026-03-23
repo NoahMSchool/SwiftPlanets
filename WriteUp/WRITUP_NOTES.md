@@ -103,31 +103,3 @@ improvements / changes.
 * There is a well developed line of reasoning which 
 is	clear	and	logically	structured.	The	information	
 presented	is	relevant	and	substantiated.
-
-
-Finish questionnaire
-
-Test Cases with stakeholder without propmpts
-- can new user navigate through app and find all screens
-- can user generate graph
-- does user understand graph algorithms by the end 
-
-Bugs and issues and fixes
-
-Make more clear inputs and and outputs in first section of design using table with datatype
-
-Deciding on regenerating graph when changing graph generation parameters
-
-Trace Table of random galaxy
-Add CheckLines diagram
-
-Fil in Clint Questionaire Final
-Evaluation
-
-Fill in the answers to the Evaluation Questions from the stakeholders
-
-Fill in willow rocco and caspian responses to questionaire in analysis.
-
-Look at critical 
-
-UI adaptability section
