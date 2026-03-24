@@ -13,7 +13,7 @@
 <div style="font-size: 0.72em; line-height: 1.15;">
 <ul>
   <li><a href="#introduction">Introduction</a> .... 3</li>
-  <li><a href="#analysis">Analysis</a> .... 3
+  <li><a href="#analysis">Analysis</a> .... 4
     <ul>
       <li><a href="#problem-recognition">Problem Recognition</a> .... 4</li>
       <li><a href="#analysing-other-solutions">Analysing Other Solutions</a> .... 5</li>
@@ -31,48 +31,48 @@
     <ul>
       <li><a href="#problem-decomposition">Problem Decomposition</a> .... 23
         <ul>
-          <li><a href="#subcomponent-one--graph-generation">Subcomponent One : Graph generation</a> .... 25</li>
-          <li><a href="#subcomponent-two--graph-rendering">Subcomponent Two : Graph Rendering</a> .... 27</li>
-          <li><a href="#subcomponent-three--algorithm-solving">Subcomponent Three : Algorithm Solving</a> .... 28</li>
-          <li><a href="#subcomponent-four--algorithm-control">Subcomponent Four : Algorithm Control</a> .... 29</li>
-          <li><a href="#subcomponent-five--algorithm-visualisation">Subcomponent Five : Algorithm Visualisation</a> .... 30</li>
-          <li><a href="#subcomponent-six--user-interface">Subcomponent Six : User Interface</a> .... 31</li>
+          <li><a href="#subcomponent-one--graph-generation">Subcomponent One : Graph generation</a> .... 24</li>
+          <li><a href="#subcomponent-two--graph-rendering">Subcomponent Two : Graph Rendering</a> .... 25</li>
+          <li><a href="#subcomponent-three--algorithm-solving">Subcomponent Three : Algorithm Solving</a> .... 26</li>
+          <li><a href="#subcomponent-four--algorithm-control">Subcomponent Four : Algorithm Control</a> .... 27</li>
+          <li><a href="#subcomponent-five--algorithm-visualisation">Subcomponent Five : Algorithm Visualisation</a> .... 28</li>
+          <li><a href="#subcomponent-six--user-interface">Subcomponent Six : User Interface</a> .... 29</li>
         </ul>
       </li>
-      <li><a href="#system-overview--architecture">System Overview / Architecture</a> .... 32</li>
-      <li><a href="#implementation-of-subcomponents">Implementation of Subcomponents</a> .... 33
+      <li><a href="#system-overview--architecture">System Overview / Architecture</a> .... 30</li>
+      <li><a href="#implementation-of-subcomponents">Implementation of Subcomponents</a> .... 31
         <ul>
-          <li><a href="#subcomponent-one--graph-generation--model">Subcomponent One : Graph generation : Model</a> .... 33</li>
-          <li><a href="#subcomponent-two--graph-rendering--view">Subcomponent Two : Graph rendering : View</a> .... 34</li>
-          <li><a href="#subcomponent-three--algorithm-solving--model">Subcomponent Three : Algorithm Solving : Model</a> .... 35</li>
-          <li><a href="#subcomponent-four--algorithm-control--model">Subcomponent Four : Algorithm Control : Model</a> .... 36</li>
-          <li><a href="#subcomponent-five--algorithm-visualisation--view">Subcomponent Five : Algorithm Visualisation : View</a> .... 37</li>
-          <li><a href="#subcomponent-six--user-interface--view">Subcomponent Six : User Interface : View</a> .... 38</li>
+          <li><a href="#subcomponent-one--graph-generation--model">Subcomponent One : Graph generation : Model</a> .... 32</li>
+          <li><a href="#subcomponent-two--graph-rendering--view">Subcomponent Two : Graph rendering : View</a> .... 32</li>
+          <li><a href="#subcomponent-three--algorithm-solving--model">Subcomponent Three : Algorithm Solving : Model</a> .... 33</li>
+          <li><a href="#subcomponent-four--algorithm-control--model">Subcomponent Four : Algorithm Control : Model</a> .... 34</li>
+          <li><a href="#subcomponent-five--algorithm-visualisation--view">Subcomponent Five : Algorithm Visualisation : View</a> .... 35</li>
+          <li><a href="#subcomponent-six--user-interface--view">Subcomponent Six : User Interface : View</a> .... 36</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li><a href="#development">Development</a> .... 42
+  <li><a href="#development">Development</a> .... 40
     <ul>
-      <li><a href="#object-model">Object Model</a> .... 42</li>
-      <li><a href="#stage-one--random-galaxy-generation">Stage One : Random Galaxy Generation</a> .... 45</li>
-      <li><a href="#stage-two--galaxy-rendering">Stage Two : Galaxy Rendering</a> .... 50</li>
-      <li><a href="#stage-three---implementing-search-algorithms">Stage Three - Implementing Search Algorithms</a> .... 52</li>
-      <li><a href="#stage-four--algorithm-control">Stage Four : Algorithm Control</a> .... 56</li>
-      <li><a href="#stage-five--algorithm-visualisation">Stage Five : Algorithm Visualisation</a> .... 61</li>
-      <li><a href="#stage-six--user-interface">Stage Six : User Interface</a> .... 65</li>
-      <li><a href="#source-control-project-tracking-tools-and-ai">Source Control, Project Tracking, Tools and AI</a> .... 74
+      <li><a href="#object-model">Object Model</a> .... 40</li>
+      <li><a href="#stage-one--random-galaxy-generation">Stage One : Random Galaxy Generation</a> .... 43</li>
+      <li><a href="#stage-two--galaxy-rendering">Stage Two : Galaxy Rendering</a> .... 49</li>
+      <li><a href="#stage-three---implementing-search-algorithms">Stage Three - Implementing Search Algorithms</a> .... 50</li>
+      <li><a href="#stage-four--algorithm-control">Stage Four : Algorithm Control</a> .... 54</li>
+      <li><a href="#stage-five--algorithm-visualisation">Stage Five : Algorithm Visualisation</a> .... 59</li>
+      <li><a href="#stage-six--user-interface">Stage Six : User Interface</a> .... 62</li>
+      <li><a href="#source-control-project-tracking-tools-and-ai">Source Control, Project Tracking, Tools and AI</a> .... 71
         <ul>
-          <li><a href="#source-control">Source Control</a> .... 74</li>
-          <li><a href="#issue-tracking">Issue Tracking</a> .... 74</li>
-          <li><a href="#development-environment">Development Environment</a> .... 75</li>
-          <li><a href="#use-of-ai">Use of AI</a> .... 75</li>
+          <li><a href="#source-control">Source Control</a> .... 71</li>
+          <li><a href="#issue-tracking">Issue Tracking</a> .... 71</li>
+          <li><a href="#development-environment">Development Environment</a> .... 72</li>
+          <li><a href="#use-of-ai">Use of AI</a> .... 72</li>
         </ul>
       </li>
-      <li><a href="#testing-to-inform-development">Testing to Inform Development</a> .... 76
+      <li><a href="#testing-to-inform-development">Testing to Inform Development</a> .... 74
         <ul>
-          <li><a href="#test-plan">Test Plan</a> .... 76</li>
-          <li><a href="#testing-the-graph-algorithms">Testing the Graph Algorithms</a> .... 79</li>
+          <li><a href="#test-plan">Test Plan</a> .... 74</li>
+          <li><a href="#testing-the-graph-algorithms">Testing the Graph Algorithms</a> .... 77</li>
           <li><a href="#bugs-fixed-during-testing">Bugs Fixed During Testing</a> .... 87</li>
         </ul>
       </li>
@@ -80,32 +80,32 @@
   </li>
   <li><a href="#evaluation">Evaluation</a> .... 93
     <ul>
-      <li><a href="#testing-to-inform-evaluation">Testing to Inform Evaluation</a> .... 93</li>
-      <li><a href="#stakeholder-testing-results">Stakeholder Testing Results</a> .... 94</li>
-      <li><a href="#open-feedback-summary">Open Feedback Summary</a> .... 98</li>
-      <li><a href="#usefulness-and-improvements">Usefulness and Improvements</a> .... 98</li>
-      <li><a href="#high-level-evaluation">High Level Evaluation</a> .... 98</li>
-      <li><a href="#success-criteria-evaluation">Success Criteria Evaluation</a> .... 99</li>
+      <li><a href="#testing-to-inform-evaluation">Testing to Inform Evaluation</a> .... 93
+        <ul>
+          <li><a href="#final-systems-testing-results">Final Systems Testing Results</a> .... 94</li>
+          <li><a href="#video-of-tests">Video of Tests</a> .... 94</li>
+          <li><a href="#stakeholder-testing-results">Stakeholder Testing Results</a> .... 94</li>
+          <li><a href="#structured-feedback">Structured Feedback</a> .... 95</li>
+          <li><a href="#open-question-feedback">Open Question Feedback</a> .... 97</li>
+        </ul>
+      </li>
+      <li><a href="#success-criteria-evaluation">Success Criteria Evaluation</a> .... 98</li>
+      <li><a href="#overall-program-evaluation">Overall Program Evaluation</a> .... 99</li>
       <li><a href="#component-evaluation">Component Evaluation</a> .... 101
         <ul>
           <li><a href="#subcomponent-one--graph-generation-1">Subcomponent One : Graph generation</a> .... 101</li>
-          <li><a href="#subcomponent-two--graph-rendering-1">Subcomponent Two : Graph Rendering</a> .... 101</li>
-          <li><a href="#subcomponent-three--algorithm-solving-1">Subcomponent Three : Algorithm Solving</a> .... 101</li>
-          <li><a href="#subcomponent-four--algorithm-control-1">Subcomponent Four : Algorithm Control</a> .... 101</li>
-          <li><a href="#subcomponent-five--algorithm-visualisation-1">Subcomponent Five : Algorithm Visualisation</a> .... 102</li>
-          <li><a href="#subcomponent-six--user-interface-1">Subcomponent Six : User Interface</a> .... 102</li>
+          <li><a href="#subcomponent-two--graph-rendering-1">Subcomponent Two : Graph Rendering</a> .... 102</li>
+          <li><a href="#subcomponent-three--algorithm-solving-1">Subcomponent Three : Algorithm Solving</a> .... 102</li>
+          <li><a href="#subcomponent-four--algorithm-control-1">Subcomponent Four : Algorithm Control</a> .... 103</li>
+          <li><a href="#subcomponent-five--algorithm-visualisation-1">Subcomponent Five : Algorithm Visualisation</a> .... 103</li>
+          <li><a href="#subcomponent-six--user-interface-1">Subcomponent Six : User Interface</a> .... 104</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li><a href="#conclusion">Conclusion</a> .... 103</li>
-  <li><a href="#appendix-sources">Appendix: Sources</a> .... 104
-    <ul>
-      <li><a href="#example-solutions">Example Solutions</a> .... 104</li>
-      <li><a href="#documentation-and-reference-sources">Documentation and Reference Sources</a> .... 104</li>
-      <li><a href="#software-and-tools">Software and Tools</a> .... 104</li>
-    </ul>
-  </li>
+  <li><a href="#conclusion">Conclusion</a> .... 105</li>
+  <li><a href="#appendix-i-sources">Appendix I: Sources</a> .... 107</li>
+  <li><a href="#appendix-ii-running-the-program">Appendix II: Running the Program</a> .... 108</li>
 </ul>
 </div>
 
@@ -117,7 +117,9 @@ This project is an engaging educational graph algorithm simulator with a space t
 
 I will be using Swift and SwiftUI to develop an app which will be able to run on 2.5 billion Apple devices all over the world.
 
-This document is organised into the main stages of the project. It begins with analysis of the problem, the audience and stakeholders interviews, and existing solutions, and then moves into the design of the system. In the design section I use tables, hand-drawn sketches, and diagrams such as hierarchy diagrams, navigation diagrams, and class diagrams to show how the solution was planned. The development section then explains how the main parts of the program were implemented, using screenshots, code samples, and further diagrams where they help explain the structure. I tried to show the most interesting algorithms and code snippets. When designing and developing I divided the program into six main components and each section tries to cover them separately. After this there are sections on testing during development and testing after development. At the end there is the evaluation section, where I revisit my requirements from analysis and re-interview my stakeholders to evaluate how well the final program met my specified criteria. Finally there is an appendix containing the sources used, and a video of the final project in use
+This document is organised into the main stages of the project. It begins with analysis of the problem, the audience and stakeholders interviews, and existing solutions, and then moves into the design of the system. In the design section I use tables, hand-drawn sketches, and diagrams such as hierarchy diagrams, navigation diagrams, and class diagrams to show how the solution was planned. The development section then explains how the main parts of the program were implemented, using screenshots, code samples, and further diagrams where they help explain the structure. I tried to show the most interesting algorithms and code snippets. When designing and developing I divided the program into six main components and each section tries to cover them separately. After this there are sections on testing during development and testing after development. At the end there is the evaluation section, where I revisit my requirements from analysis and re-interview my stakeholders to evaluate how well the final program met my specified criteria. 
+
+Finally there is an appendix containing the sources used, instructions on how to run the program yourself, and a video of the final project in use.
 
 I hope you enjoy reading it as much as I enjoyed writing it!
 <div style="page-break-before: always;"></div>
@@ -188,9 +190,9 @@ To compare the three solutions more directly, I made the following table. This h
 | Aspect to Compare                                | Graph Online                                                                          | TUM Shortest Path                                                                                                                                       | PhET                                                                                | How My Solution Will Be Different                                                                                                                                               |
 | ------------------------------------------------ | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Ease of use for beginners                        | Quite difficult for beginners because there are lots of controls and little guidance. | Better than Graph Online, but still expects some understanding of computer science.                                                                     | Very approachable, with simple intuitive controls and clear instructions.           | I will keep a simple minimal interface giving the user what they need, nothing more, nothing less.                                                                              |
-| Step-by-step explanation of the algorithm        | It just solves the graph instantly without instructions.                              | Strong step-by-step explanation with colouring and detailed descriptions.                                                                               | Strong step-by-step teaching in general, but not for graph algorithms specifically. | I will keep the step by step instructions from TUM but give options for explanations in less techincal words to make it easier for a younger or less experienced person to use. |
+| Step-by-step explanation of the algorithm        | It just solves the graph instantly without instructions.                              | Strong step-by-step explanation with colouring and detailed descriptions.                                                                               | Strong step-by-step teaching in general, but not for graph algorithms specifically. | I will keep the step by step instructions from TUM but give options for explanations in less technical words to make it easier for a younger or less experienced person to use. |
 | How the user creates or interacts with the graph | The user builds a graph manually, which can be slow and awkward.                      | The user can edit an existing graph, but the graph creation is still difficult if you want something else.                                              | The user interacts with ready-made simulations using simple controls.               | I will generate the graph for the user with a few simple but powerful inputs. The user does not need to confuse themselves making a graph.                                      |
-| How engaging the visuals and theme are           | Functional but not very visually engaging.                                            | Clear and useful, but not especially exciting or creative.                                                                                              | Polished and attractive, but mostly consistent rather than themed.                  | I am going to use an analogy that relates to the graph to keep it more engaging. This will make the                                                                             |
+| How engaging the visuals and theme are           | Functional but not very visually engaging.                                            | Clear and useful, but not especially exciting or creative.                                                                                              | Polished and attractive, but mostly consistent rather than themed.                  | I am going to use a space analogy that relates to the graph to keep it more engaging. This should make the app feel more memorable and appealing than a standard graph simulator. |
 | Range of algorithms or learning content included | Covers graph solving, but not much teaching support.                                  | Focuses mostly on shortest path algorithms. For teaching it has non simulation based lessons which provide the user with foundations before jumping in. | Wide range of science and maths topics, but not graph theory.                       | I plan to implement the key algorithms that most people should know. It will focus on giving the user a strong base understanding.                                              |
 
 The main takeaways are that I wanted to make the program approachable and relatable to the user, intuitive to use with step-by-step instructions, and not rely on any prior knowledge from the user. I believe stepping through the algorithm while giving explanations and showing state will be an essential part of the program, as it is about teaching the algorithms rather than just showing them. I noticed the graphing simulations out there had interfaces with lots of options. At the cost of making it more approachable my program may have less features exposed to the user which should make it easier to use. This will differentiate my program to the competition which should make it more appealing to my audience which is anyone seeking to learn about graphing algorithms with less experience or from scratch.
@@ -482,8 +484,9 @@ Using the requirements, stakeholder feedback, and success criteria from the anal
 ### Problem Decomposition
 I have broken down my problem into the following subcomponents. When developing I will do sprints for each of these components. At a very high level, these are the six subcomponents I am going to divide the problem into:
 
+
 ```mermaid
-flowchart LR
+flowchart TD
     Program["Program"]
 
     subgraph Row1[" "]
@@ -726,6 +729,8 @@ flowchart TD
 ```
 
 ### Implementation of Subcomponents
+
+Before starting development, I also planned the main test data I would need. During iterative development I would use a mixture of small fixed graphs and random generated graphs. The fixed graphs were important because they would let me work out the expected frontier, explored list, and final path by hand, which would make it easier to check whether the algorithms were correct. The random graphs were also important because they would show whether the program still behaved properly on a wider range of layouts and settings. For post-development testing I planned to use stakeholder questionnaires together with final system checks on the completed app. This combination would let me test not only correctness and robustness, but also whether the interface, explanations, and visualisation were actually helpful to the target users.
 
 #### Subcomponent One : Graph generation : Model
 
@@ -2100,11 +2105,11 @@ I also tried to use GitHub Issues to track tasks and bugs during development. Th
 
 #### Development Environment
 
-The IDE that I used was Swift Playgrounds, which is slightly easier to use than XCode for iOS Projects. I referred heavily to the Swift Documentation. Links to all of these tools can be found at the end of this document.
+The IDE that I used was Swift Playgrounds, which is slightly easier to use than Xcode for iOS projects. I referred heavily to the Swift Documentation. Links to all of these tools can be found at the end of this document.
 
-I used GitHub desktop on my Mac as the source control client. I used Obsidian as a markdown editor for the writeup. Obsidian is quite good at exporting markdown as a PDF I think. I used Mermaid.js for the charts in this write up as you can describe different kinds of diagrams using Markdown. Markdown was a good choice because I think the diagrams are clear and they work on the GitHub markdown pages.
+I used GitHub Desktop on my Mac as the source control client. I used Obsidian as a markdown editor for the writeup. I also used Mermaid.js for the charts in this write up, as it allows diagrams to be described clearly using Markdown. Markdown was a good choice because the diagrams are clear and they also work on GitHub markdown pages.
 
-The one big problem I had with the markdown and Obsidian is that is could not generate page numbers, which makes my Table of Contents a bit harder to use.
+The one big problem I had with Markdown and Obsidian is that they could not generate page numbers automatically, which made my Table of Contents harder to maintain.
 
 #### Use of AI
 
@@ -2113,7 +2118,7 @@ The one big problem I had with the markdown and Obsidian is that is could not ge
 | Assets     | The only AI generated item in my project was the Spaceship sprite which I made with OpenAI ChatGPT (19 Feb 2025).                         | "Prompt: Generate a transparent PNG image that I can download of a cartoony silver spaceship with cyan accents that would explore a galaxy" <img src="./screenshots/Ship8.png" alt="Ship sprite" width="20%"> |
 | Code<br>   | None of the code in the project was AI Generated, but ChatGPT did tell me about the orientation algorithm for line intersections.         | "What is the easiest way to tell if two line segments intersect if I have the x,y positions of their start and end points"                                                                                    |
 | Test Graph | For the test graph, I passed ChatGPT a list of co-ordinates and edges, and it gave me the repetitive code to add all the nodes and edges. | "Given these co-ordinates can you generate the code to add the nodes and the edges using the functions available in the galaxy builder"                                                                       |
-| Debugging  | I did ask ChatGPT for help when I had problems and error messages that I did not understand. It helped me understand the root cause.      | What does “Value of optional type must be unwrapped” mean?<br>Why am I getting “Operation not permitted” when running my program?<br>                                                                         |
+| Debugging  | I did ask ChatGPT for help when I had problems and error messages that I did not understand. It helped me understand the root cause.      | What does “Value of optional type must be unwrapped” mean?<br>Why am I getting “Operation not permitted” when running my program?                                                                         |
 
 <div style="page-break-before: always;"></div>
 
@@ -2753,7 +2758,6 @@ This table shows the responses to the open feedback questions in the survey:
 | What most needs improving?                | More explanation for someone who is not tech savvy like me           |
 
 <div style="page-break-before: always;"></div>
-<div style="page-break-before: always;"></div>
 
 ### Success Criteria Evaluation
 
@@ -2789,7 +2793,7 @@ These work well because they are simple, clear, and easy to justify with evidenc
 | UR1             | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.                    | 6/7 stakeholders had no issues                                                                  | DEV-20                                                    | <span style="color: green;"><strong>Met</strong></span>            |
 | UR2             | Most stakeholder testers can move between the main screens without help.                                                        | 7/7 stakeholders could navigate                                                                 | DEV-15, DEV-46                                            | <span style="color: green;"><strong>Met</strong></span>            |
 | UR3             | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.                   | 5/7 stakeholders said yes, 2/7 said partially                                                   | DEV-05, DEV-06                                            | <span style="color: green;"><strong> Met</strong></span>           |
-| UR4             | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app.                 | 4/7 could expain                                                                                | Partially met user testing requirements                   | <span style="color: orange;"><strong>Partially Met</strong></span> |
+| UR4             | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app.                 | 4/7 could explain                                                                               | Partially met user testing requirements                   | <span style="color: orange;"><strong>Partially Met</strong></span> |
 | UR5             | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                                 | 4/7 for Explored<br>3/7 for Frontier                                                            | Failed user testing requirements                          | <span style="color: red;"><strong>Not Met</strong></span>          |
 | UR6             | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                                  | 6/7 users said they enjoyed it in the survey.                                                   | Passed user testing requirements                          | <span style="color: green;"><strong>Met</strong></span>            |
 After I had filled in this table for the success criteria, I realised that there were some important tests that I did not include in my test table in development. In particular **FR7** and **PR2** should have been covered.
@@ -2797,9 +2801,9 @@ After I had filled in this table for the success criteria, I realised that there
 
 The feedback from the users was overall very positive. They thought that it made the problem clear with good visual explanations. The overall appearance and theme of the app was rated highly.
 
-The overall usability was great with no users struggling to perform all the functions.  There were some usability issues where I provided a feature but it wasn't understood well. These include the text explanation box and the message when a graph wasn't solvable.
+The overall usability was great with no users struggling to perform all the functions. There were some usability issues where I provided a feature but it wasn't understood well. These include the text explanation box and the message when a graph wasn't solvable.
 
-However, three of my users found the program assumed to much as it is meant to target a broad STEM audience. Even these people said it helped their understanding but they found some aspects such as stacks and queues confusing. The word Frontier also meant nothing to them.
+However, three of my users found the program assumed too much, even though it is meant to target a broad STEM audience. Even these people said it helped their understanding, but they found some aspects such as stacks and queues confusing. The word Frontier also meant nothing to them.
 
 From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. Some users found it harder than I expected to think in terms of logical rather than physical concepts. A slower introduction to the concept of shortest path algorithms would have helped them.
 
@@ -2835,7 +2839,7 @@ Validating distance between start and end I did mention this in design but was n
 
 For the way I have structured the graph generation, I think all of these would have a similar effect because deciding whether there is a connection and the weight itself are both based on absolute distance.
 
-One stakeholder suggested the ability to upload their own graphs which I think would be a good idea.
+One stakeholder suggested the ability to upload their own graphs, which I think would be a worthwhile future addition.
 
 
 #### Subcomponent Two : Graph Rendering
@@ -2848,7 +2852,7 @@ One stakeholder suggested the ability to upload their own graphs which I think w
 |                                                                 |                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 ##### Learnings and things added later
 
-I think this component worked nicely. I was very proud of how the graphs turned out and how it captured the space theme, and my users agreed. The planet names and starry background added to this.
+I think this component worked nicely. The graphs turned out well and captured the space theme effectively, which was also reflected in the stakeholder feedback. The planet names and starry background added to this.
 ##### Implement in future
 
 It might be worth making it worth on a phone sized screen so more people could use it.
@@ -2888,12 +2892,12 @@ A new feature I could add is more customisation of the explanations. I would add
 | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | FR6<br><span style="color: green;"><strong>Met</strong></span>            | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes. | The arrows I added to the lines made it clearer which way the path was from the start to the end. The color changes, once the user understood them, were useful and the fact that these colors were consistent across related UI elements like the frontier and explored lists was helpful. |
 | FR7<br><span style="color: green;"><strong>Met</strong></span>            | The simulation gives a text explanation of what is happening at each step.                                           | The explanation was there and the users that read it found it useful. Perhaps it was not being forced on the user enough as many skipped over the reading.                                                                                                                                               |
-| FR9<br><span style="color: orange;"><strong>Partially Met</strong></span> | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                       | This worked great and thought it was a essential feature. without the backtracking I think it would have been misleading so I am happy I got it working.                                                                                                                                                 |
+| FR9<br><span style="color: orange;"><strong>Partially Met</strong></span> | The ship animation shows the order in which the algorithm visits and backtracks between nodes.                       | This worked well and I thought it was an essential feature. Without the backtracking, I think it would have been misleading, so I am glad I got it working.                                                                                                                                               |
 | UR3<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers say the step-by-step simulation helped them understand what the algorithm was doing.        | I was glad that the stakeholders found this useful and thought that it was a powerful feature that really taught them what was actually happening.                                                                                                                                                        |
 | UR5<br><span style="color: red;"><strong>Not Met</strong></span>          | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                      | Unfortunately this was not met as the majority of the stakeholders had no idea what the frontier was and complained that it could be better explained. The explored list seemed to be better understood as it is a more self-explanatory name.                                                         |
 
 ##### Implement in future
-While I never added a settings page I think a setting that could be included here is the ability to customise the colours. The chosen colours may have not meant much to the user. If they had a menu where they could choose it would add another layer of interactivity and customisation the user would enjoy.
+While I never added a settings page, I think a setting that could be included here is the ability to customise the colours. The chosen colours may not have meant much to the user. If they had a menu where they could choose them, it would add another layer of interactivity and customisation that the user would enjoy.
 They could also use this for other customisation like changing the speed of the ship.
 
 #### Subcomponent Six : User Interface
@@ -2903,14 +2907,14 @@ They could also use this for other customisation like changing the speed of the 
 | FR2<br><span style="color: green;"><strong>Met</strong></span>            | The app includes a page that explains what graphs and the algorithms are used for.                              | This requirement was met because it was testing whether there was a page and didn't assess the usefulness of it. If I were to redo this requirement it would focus more on the benefits of the feature. I could measure this by giving the users a test after they read these pages and see what they understand.<br>In this case it would only be partially met as some younger less experienced users thought it assumed too much computer science knowledge, particularly around stacks and queues. Overall I found the text-based sections to be a weaker part of the program as the content did not feel anything special. |
 | UR1<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.    | There were no reported issues so I believe I got it adapting nicely. Although on big screens one stakeholder suggested I could have used up more of their screen. I tried this on my monitor afterwards and I agreed.                                                                                                                                                                                                                                                                                                                                                                                                             |
 | UR2<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers can move between the main screens without help.                                        | This was not a problem and I thought the interface was great to navigate.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| UR6<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                  | For the space theme and visuals UR6 My stakeholders gave complements and were engaged in the theme and visuals. In terms of visuals some users with devices with OLED screens like Jims iPad Pro and Rocco's Monitor said the blacks looked great and made it easy on the eyes to look at                                                                                                                                                                                                                                                                                                                                    |
+| UR6<br><span style="color: green;"><strong>Met</strong></span>            | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                  | My stakeholders gave compliments about the space theme and were engaged by the visuals. In terms of presentation, some users with devices with OLED screens, such as Jim's iPad Pro and Rocco's monitor, said the dark background looked great and was easy on the eyes.                                                                                                                                                                                                                                                                                                                                                |
 
 
 ##### Main Pages
 The Menu Screen looked good on all devices. This is because there are just three buttons and some text.
-The Algorithm Description and About pages are 
-I am happy how the algorithms page was not just showing hard coded text into the view but were instead taking data from elsewhere in the program. This means that If I were to add another algorithm it would automatically show up provided I give the description to the class.
-However I did think these pages to be too static and a bit boring compared to the rest of the program. These are meant to provide the user with the foundations which makes them very important. Therefore I would like to improve these in some ways to make sure they keep the user engaged and make a solid ground for the user to build on.
+The Algorithm Description and About pages were useful for giving the user background information before they used the simulator.
+I was happy that the algorithms page was not just showing hard coded text in the view, but was instead taking data from elsewhere in the program. This means that if I were to add another algorithm it would automatically show up provided I give the description to the class.
+However, I did think these pages were too static and a bit boring compared to the rest of the program. These are meant to provide the user with the foundations, which makes them very important. Therefore I would like to improve them in some ways to make sure they keep the user engaged and provide a solid ground for the user to build on.
 
 
 ##### Text Based SwiftUI pages
@@ -2926,7 +2930,7 @@ One of the main strengths of the project is that it is interactive. The user can
 
 I think the step-by-step system, the colour coding, and the movement of the ship all helped make the algorithms clearer. The feedback from stakeholders was also positive, and they said that they enjoyed using it, found it pretty and engaging, and better understood the algorithms by the end.
 
-Based on the user feedback, it probably is not a great tool for people that know nothing about computer science. It might be best to use it for students doing GCSE computer science or above.
+Based on the user feedback, I think the app is most effective for people with at least some STEM interest or curiosity, rather than users who are completely unfamiliar with this kind of logical thinking. However, I still think it can be useful across a fairly wide age range provided the user is willing to engage with the explanations and explore the simulation step by step.
 
 In terms of maintainability, I think the system is reasonably strong. The program is split into separate areas such as graph generation, search logic, visualisation, and user interface, which should make future changes easier to manage. Using Git and GitHub throughout development also improved maintainability because I could track changes, compare versions, and return to earlier working versions when needed. This would make it much easier to continue developing the project or fix bugs in future.
 
@@ -2938,7 +2942,7 @@ There are still some improvements that could be made in future, such as refining
 
 <div style="page-break-before: always;"></div>
 
-## Appendix: Sources
+## Appendix I: Sources
 
 ### Example Solutions
 - Graph Online - https://graphonline.top/
@@ -2951,15 +2955,58 @@ There are still some improvements that could be made in future, such as refining
 - Swift Documentation - https://www.swift.org/documentation/
 - SwiftUI Documentation - https://developer.apple.com/documentation/swiftui/
 - SpriteKit Documentation - https://developer.apple.com/documentation/spritekit/
-- Reddit 
+- OpenAI ChatGPT - https://openai.com/chatgpt/
 - OCR Guidance - https://www.ocr.org.uk/Images/324587-project-setting-guidance.pdf
 - OCR Specification - https://www.ocr.org.uk/images/170844-specification-accredited-a-level-gce-computer-science-h446.pdf
 
 ### Software and Tools
+- Unity - https://unity.com/
+- Unreal Engine - https://www.unrealengine.com/en-US
+- Godot - https://godotengine.org/
+- Pygame - https://www.pygame.org/
 - Swift Playgrounds - https://developer.apple.com/swift-playground/
 - GitHub - https://github.com/
+- SwiftPlanets Repository / GitHub - https://github.com/NoahMSchool/SwiftPlanets
 - GitHub Desktop - https://desktop.github.com/
-- Obsidian - https://obsidian.md/
 - Obsidian Markdown Editor - https://obsidian.md/
 - Excalidraw Drawing Tool - https://excalidraw.com/
 - Mermaid JS Chart Library - https://mermaid.js.org/
+
+
+<div style="page-break-before: always;"></div>
+
+## Appendix II: Running the program
+
+This project is designed for Apple devices and is intended to be opened as the `PlanetPathingSim.swiftpm` package. The easiest way to run it is with Swift Playgrounds, which is free from Apple.
+
+### Getting Swift Playgrounds
+
+On a Mac, Swift Playgrounds can be downloaded from the Mac App Store by searching for `Swift Playgrounds`.
+
+On an iPad or iPhone, Swift Playgrounds can be downloaded from the App Store by searching for `Swift Playgrounds`.
+
+### Running on a Mac
+
+1. Install Swift Playgrounds from the Mac App Store.
+2. Open Swift Playgrounds and choose to open an existing project.
+3. Select the `PlanetPathingSim.swiftpm` folder.
+4. Once the package has loaded, press the run button.
+5. The app should open to the main menu screen.
+
+### Running on a Mac with Xcode
+
+1. Install Xcode from the Mac App Store.
+2. Open Xcode and choose to open an existing project or package.
+3. Select the `PlanetPathingSim.swiftpm` folder.
+4. Allow Xcode to load the package and any required project settings.
+5. Choose a suitable Apple device simulator or a connected device if needed.
+6. Press the run button.
+7. The app should open to the main menu screen.
+
+### Running on an iPad or iPhone
+
+1. Install Swift Playgrounds from the App Store.
+2. Copy or download the `PlanetPathingSim.swiftpm` package onto the device.
+3. Open the package in Swift Playgrounds.
+4. Press the run button once the package has loaded.
+5. The app should open to the main menu screen.
