@@ -117,10 +117,9 @@ This project is an engaging educational graph algorithm simulator with a space t
 
 I will be using Swift and SwiftUI to develop an app which will be able to run on 2.5 billion Apple devices all over the world.
 
-This document is organised into the main stages of the project. It begins with analysis of the problem, the audience and stakeholders interviews, and existing solutions, and then moves into the design of the system. In the design section I use tables, hand-drawn sketches, and diagrams such as hierarchy diagrams, navigation diagrams, and class diagrams to show how the solution was planned. The development section then explains how the main parts of the program were implemented, using screenshots, code samples, and further diagrams where they help explain the structure. I tried to show the most interesting algorithms and code snippets. When designing and developing I divided the program into six main components and each section tries to cover them separately. After this there are sections on testing during development and testing after development. At the end there is the evaluation section, where I revisit my requirements from analysis and re-interview my stakeholders to evaluate how well the final program met my specified criteria. Finally there is an appendix containing the sources used.
+This document is organised into the main stages of the project. It begins with analysis of the problem, the audience and stakeholders interviews, and existing solutions, and then moves into the design of the system. In the design section I use tables, hand-drawn sketches, and diagrams such as hierarchy diagrams, navigation diagrams, and class diagrams to show how the solution was planned. The development section then explains how the main parts of the program were implemented, using screenshots, code samples, and further diagrams where they help explain the structure. I tried to show the most interesting algorithms and code snippets. When designing and developing I divided the program into six main components and each section tries to cover them separately. After this there are sections on testing during development and testing after development. At the end there is the evaluation section, where I revisit my requirements from analysis and re-interview my stakeholders to evaluate how well the final program met my specified criteria. Finally there is an appendix containing the sources used, and a video of the final project in use
 
-There is also a video of the final project in use, alongside other key tools I used during development. I hope you enjoy reading it as much as I enjoyed writing it!
-
+I hope you enjoy reading it as much as I enjoyed writing it!
 <div style="page-break-before: always;"></div>
 
 ## Analysis
@@ -175,7 +174,6 @@ This is a math simulation that shows you the derivative of a function. I thought
 
 <p align="center"><img src="./exampletools/phet.png" alt="PhET Graph Example" width="80%"></p>
 
-The following simulation is about Kepler's laws, and you can choose between the three of them. This screenshot is specifically for Kepler's 3rd law. This is a theme across most simulations, but you can turn off relevant information. Lots of the tools to help learning were consistent across the simulations. This would mean that the user is familiar with how to use these tools before even starting the simulation.
 
 <p align="center"><img src="./exampletools/targetorbit.png" alt="PhET Orbit Example" width="80%"></p>
 
@@ -1839,7 +1837,7 @@ This is the first screen that is shown on launch, so it should allow the user to
 
 #### SpriteKit Screens
 
-There are two SwiftUI screens that overlay on top of the SpriteKit view. They are the Graph Generation and the Graph Solving.
+There are two SwiftUI screens that overlay on top of the SpriteKit view. They are the Graph Generation and the Graph Solving. The user needs to be able to zoom in and out and pan around the galaxy.
 
 For the UI elements of these two SwiftUI control views I realised that half of the SwiftUI components were shared between the two views. The repeated sections were mainly the top half, which was for navigation of the SpriteKit scene and app navigation. This meant that I could just reuse the top half of the SwiftUI that I created for the graph generation screen by packaging it into a reusable component. I used a 1 by 2 grid as it seemed to be the best way to swap out the views.
 
@@ -1880,6 +1878,7 @@ ZStack {
 The HUDView is a new view that just swaps between the Graph generation HUD and the Graph solving HUD
 
 The two HUDs are very similar because they both share the top half. This is the generic top `HUDView`, which was placed at the top of both SpriteKit screens.
+
 ```swift
 struct TopPlayingHUDRow : View{
     @Environment(\.presentationMode) var presentationMode
@@ -2656,8 +2655,6 @@ To evaluate whether the final program met the success criteria, I planned a shor
 
 As a final check beyond the stakeholder questionnaire, I also reviewed the completed app against the main functional and stability requirements using the finished version of the program after the development bug fixes had been applied.
 
-**TODO**: Refer to the video
-
 | Check ID | Area      | Final check carried out                                                                               | Evidence from final version                                                                                                                                                | Result                                                             |
 | -------- | --------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | EVAL-01  | Function  | Generate a random graph using normal settings and change graph size and distance                      | Graphs generated successfully and rebuilt correctly after the `planetCount` and `maxDistance` fixes from development testing                                               | <span style="color: green;"><strong>PASSED</strong></span>         |
@@ -2667,7 +2664,17 @@ As a final check beyond the stakeholder questionnaire, I also reviewed the compl
 | EVAL-05  | Stability | Run an unsolvable graph to the end                                                                    | The algorithm finished safely without crashing and did not attempt to draw a completed path when no path existed                                                           | <span style="color: green;"><strong>PASSED</strong></span>         |
 | EVAL-06  | Stability | Check for obvious invalid graph states                                                                | The start and end planets remained different and the graph stayed usable after rebuilding and recalculating                                                                | <span style="color: green;"><strong>PASSED</strong></span>         |
 | EVAL-07  | Stability | Use the app across the main tested screens during stakeholder testing                                 | No crashes occurred during stakeholder use and all seven stakeholders reported that the app did not crash                                                                  | <span style="color: green;"><strong>PASSED</strong></span>         |
+#### Video of Tests
 
+I have included a video (ShortTestRun.mp4) showing a test run of the app. It includes the following steps:
+* Start App and visit start screen
+* Go to the Instructions page and scroll through all of it. Return to menu.
+* Go to the Algorithms page and scroll through all of it. Check algorithm descriptions. Return to menu.
+* Go to the Galaxy Builder. Test the Pan and Zoom around the galaxy
+* Generate many random galaxies, including testing the sliders to number of planets and max fuel on both maximum and minimum settings
+* Select Algorithms and step through the entire solution
+* Generate the square galaxy and auto solve
+* Generate the tree galaxy and auto solve
 #### Stakeholder Testing Results
 
 The following results show the responses from the post-development stakeholder testing that I used as evidence in the evaluation.
@@ -2785,7 +2792,7 @@ These work well because they are simple, clear, and easy to justify with evidenc
 | UR4             | Most stakeholder testers can explain at least one difference between two of the algorithms after using the app.                 | 4/7 could expain                                                                                | Partially met user testing requirements                   | <span style="color: orange;"><strong>Partially Met</strong></span> |
 | UR5             | Most stakeholder testers can explain what the Frontier and Explored boxes mean.                                                 | 4/7 for Explored<br>3/7 for Frontier                                                            | Failed user testing requirements                          | <span style="color: red;"><strong>Not Met</strong></span>          |
 | UR6             | Most stakeholder testers say the space theme is engaging and suitable for the target audience.                                  | 6/7 users said they enjoyed it in the survey.                                                   | Passed user testing requirements                          | <span style="color: green;"><strong>Met</strong></span>            |
-While filling in this table for the success criteria, I realised that there were some important tests that I did not include in my test table in development. In particular **FR7** and **PR2** should have been covered.
+After I had filled in this table for the success criteria, I realised that there were some important tests that I did not include in my test table in development. In particular **FR7** and **PR2** should have been covered.
 ### Overall Program Evaluation
 
 The feedback from the users was overall very positive. They thought that it made the problem clear with good visual explanations. The overall appearance and theme of the app was rated highly.
@@ -2794,15 +2801,16 @@ The overall usability was great with no users struggling to perform all the func
 
 However, three of my users found the program assumed to much as it is meant to target a broad STEM audience. Even these people said it helped their understanding but they found some aspects such as stacks and queues confusing. The word Frontier also meant nothing to them.
 
-Missing features or requests included sound and more graph customisation.
+From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. Some users found it harder than I expected to think in terms of logical rather than physical concepts. A slower introduction to the concept of shortest path algorithms would have helped them.
 
-Most of the Usability Tests were well met although people did not find the explanation text as useful as I thought.
+One of the most important results was **UR4**, which asked whether stakeholders could explain at least one difference between two algorithms after using the app. This was only partially met, and I think that matters because it goes to the heart of whether the program actually teaches graph algorithms rather than only showing an attractive animation. 
 
-One of the most important results was **UR4**, which asked whether stakeholders could explain at least one difference between two algorithms after using the app. This was only partially met, and I think that matters because it goes to the heart of whether the program actually teaches graph algorithms rather than only showing an attractive animation. Although most users said the app helped them understand the topic better overall, not all of them could clearly describe how the algorithms behaved differently. I think this happened partly because the visualisation focused more on the process of solving than on directly comparing the algorithms, and partly because my random graph generation often produced graphs where several algorithms behaved quite similarly. In future I would improve this by including more test graphs designed to highlight the differences between algorithms more clearly, and by adding stronger explanations of why one algorithm chooses a different route or order from another.
+Although most users said the app helped them understand the topic better overall, not all of them could clearly describe how the algorithms behaved differently. I think this happened partly because the visualisation focused more on the process of solving than on directly comparing the algorithms, and partly because my random graph generation often produced graphs where several algorithms behaved quite similarly. 
 
-From the stakeholder feedback I concluded that the program could assume too much if the user is brand new to computer science. Some users found it harder than I expected to think in terms of logical rather than physical concepts.
+In future I would improve this by including more test graphs designed to highlight the differences between algorithms more clearly, and by adding stronger explanations of why one algorithm chooses a different route or order from another.
+
 <div style="page-break-before: always;"></div>
-
+Missing features or requests included sound and more graph customisation.
 ### Component Evaluation
 
 After judging the success criteria as a whole, I then evaluated each main component of the system in more detail. This helps show which parts of the app worked best, which were weaker, and what I would improve next. 
@@ -2824,18 +2832,26 @@ Validating distance between start and end I did mention this in design but was n
 * Whether the absolute distance between the start and end nodes is less than some predetermined threshold.
 * Check if the number of edges between the start and end, this will mean I can specify the minimum number of steps for an algorithm.
 * Check if the total weight to the finish is less than a certain value. This would be the same as the number of edges for algorithms that do not use weights.
+
 For the way I have structured the graph generation, I think all of these would have a similar effect because deciding whether there is a connection and the weight itself are both based on absolute distance.
+
+One stakeholder suggested the ability to upload their own graphs which I think would be a good idea.
 
 
 #### Subcomponent Two : Graph Rendering
 
-| ID                                                              | Description                                                                                                          | Thoughts                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| FR6<br><span style="color: green;"><strong>Met</strong></span>  | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes. | This I thought was also implemented very well as the colors clearly showed a difference.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| FR10<br><span style="color: green;"><strong>Met</strong></span> | Graphs should not be rendered with lines crossing each other where possible.                                         | This was met as I had a function that removed all intersecting paths. In my testing I could not see any intersecting paths.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ID                                                              | Description                                                                                                          | Thoughts                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| FR6<br><span style="color: green;"><strong>Met</strong></span>  | The simulation shows the current node, explored nodes, frontier nodes, and final path using distinct visual changes. | This I thought was also implemented very well as the colors clearly showed a difference. It made creating the trace tables when testing easy too.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| FR10<br><span style="color: green;"><strong>Met</strong></span> | Graphs should not be rendered with lines crossing each other where possible.                                         | The check lines part of the project was interesting and worked well. I was very satisfied with this part.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | UR1<br><span style="color: green;"><strong>Met</strong></span>  | Most stakeholder testers can read and use the main screens properly on the tested iPad and Mac screen sizes.         | The only comment was Jim saying that the UI could have been bigger on larger screens, however this did not cause any readability problems. Therefore the requirement was met as none of the users had any issues with reading the text. <br>I used layers to ensure UI elements did not appear on top of each other, prioritising showing text. I used high contrast for text with light colors on a black background. I liked how SwiftUI automatically wraps text on overflow and uses ellipses to signal if it is out of space. This made lots of the text still look nice and not overlap with other elements. |
+|                                                                 |                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+##### Learnings and things added later
 
+I think this component worked nicely. I was very proud of how the graphs turned out and how it captured the space theme, and my users agreed. The planet names and starry background added to this.
+##### Implement in future
 
+It might be worth making it worth on a phone sized screen so more people could use it.
 
 #### Subcomponent Three : Algorithm Solving
 
@@ -2913,7 +2929,6 @@ I think the step-by-step system, the colour coding, and the movement of the ship
 Based on the user feedback, it probably is not a great tool for people that know nothing about computer science. It might be best to use it for students doing GCSE computer science or above.
 
 In terms of maintainability, I think the system is reasonably strong. The program is split into separate areas such as graph generation, search logic, visualisation, and user interface, which should make future changes easier to manage. Using Git and GitHub throughout development also improved maintainability because I could track changes, compare versions, and return to earlier working versions when needed. This would make it much easier to continue developing the project or fix bugs in future.
-
 
 Another important outcome of the project was what I learned while making it. I developed the app in Swift, which was a new language for me, so this project helped me learn a new programming language as well as new frameworks like SwiftUI and SpriteKit. I also had to learn about new programming concepts like protocols and optionals and new design patterns like Model View Controller. This made the project more difficult, but it also made it more fun.
 
